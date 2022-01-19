@@ -1,0 +1,23 @@
+{
+    "name": "lagdo/ui-builder",
+    "type": "library",
+    "description": "A customizable and extensible HTML UI builder.",
+    "authors": [
+        {
+            "name": "Thierry Feuzeu",
+            "email": "thierry.feuzeu@gmail.com"
+        }
+    ],
+    "homepage": "https://github.com/lagdo/ui-builder",
+    "license": "MIT",
+    "keywords": ["HTML", "UI", "Builder"],
+    "support": {
+        "issues": "https://github.com/lagdo/ui-builder/issues",
+        "source": "https://github.com/lagdo/ui-builder"
+    },
+    "autoload": {
+        "psr-4": {
+            "Lagdo\\UiBuilder\\": "src/"
+        }
+    }
+}
