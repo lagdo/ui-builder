@@ -37,7 +37,8 @@ abstract class AbstractBuilder extends HtmlBuilder implements BuilderInterface
     /**
      * @param string $method
      * @param array $arguments
-     * @return $this
+     *
+     * @return BuilderInterface
      * @throws LogicException When element is not initialized yet
      */
     public function __call(string $method, array $arguments)
@@ -54,8 +55,7 @@ abstract class AbstractBuilder extends HtmlBuilder implements BuilderInterface
             $tagName = substr($tagName, 5);
             $this->createScope($tagName, $arguments);
             // Prepend the UI framework class to the tag.
-            $this->scope->attributes['class'] = trim($this->getFormElementClass($tagName) .
-                ' ' . ($this->scope->attributes['class'] ?? ''));
+            $this->prependClass($this->getFormElementClass($tagName));
             return $this;
         }
         return $this->createScope($tagName, $arguments);
@@ -64,9 +64,10 @@ abstract class AbstractBuilder extends HtmlBuilder implements BuilderInterface
     /**
      * @param string $name
      * @param array $arguments
-     * @return $this
+     *
+     * @return BuilderInterface
      */
-    protected function createScope(string $name, array $arguments)
+    protected function createScope(string $name, array $arguments): BuilderInterface
     {
         $this->scope = new Scope($name, $arguments, $this->scope);
         return $this;
@@ -75,11 +76,12 @@ abstract class AbstractBuilder extends HtmlBuilder implements BuilderInterface
     /**
      * @param string $name
      * @param array $arguments
-     * @return $this
+     *
+     * @return BuilderInterface
      */
-    protected function createWrapper(string $name, array $arguments)
+    protected function createWrapper(string $name, array $arguments): BuilderInterface
     {
-        $this->scope = new Scope($name, [$arguments], $this->scope);
+        $this->createScope($name, [$arguments]);
         $this->scope->isWrapper = true;
         return $this;
     }
@@ -88,44 +90,54 @@ abstract class AbstractBuilder extends HtmlBuilder implements BuilderInterface
      * Append a class to the existing one.
      *
      * @param string $class
-     * @return void
+     *
+     * @return BuilderInterface
      */
-    protected function appendClass(string $class)
+    protected function appendClass(string $class): BuilderInterface
     {
-        $this->scope->attributes['class'] = trim(($this->scope->attributes['class'] ?? ''). ' ' . $class);
+        $class = ($this->scope->attributes['class'] ?? '') . ' ' . $class;
+        $this->scope->attributes['class'] = trim($class);
+        return $this;
     }
 
     /**
      * Prepend a class to the existing one.
      *
      * @param string $class
-     * @return void
+     *
+     * @return BuilderInterface
      */
-    protected function prependClass(string $class)
+    protected function prependClass(string $class): BuilderInterface
     {
-        $this->scope->attributes['class'] = trim($class . ' ' . ($this->scope->attributes['class'] ?? ''));
+        $class .= ' ' . ($this->scope->attributes['class'] ?? '');
+        $this->scope->attributes['class'] = trim($class);
+        return $this;
     }
 
     /**
      * @param array $attributes
-     * @return void
+     *
+     * @return BuilderInterface
      */
-    protected function setAttributes(array $attributes)
+    protected function setAttributes(array $attributes): BuilderInterface
     {
         foreach ($attributes as $name => $value) {
             $this->scope->attributes[$name] = $value;
         }
+        return $this;
     }
 
     /**
      * @param string $class
-     * @return $this
+     *
+     * @return BuilderInterface
      */
     public function setClass(string $class): BuilderInterface
     {
         if ($this->scope === null) {
             throw new LogicException('Attributes can be set for elements only');
         }
+        // Don't overwrite the current class.
         return $this->appendClass($class);
     }
 
@@ -136,7 +148,7 @@ abstract class AbstractBuilder extends HtmlBuilder implements BuilderInterface
     {
         $arguments = func_get_args();
         array_shift($arguments);
-        $this->tag('input', ...$arguments);
+        $this->createScope('input', $arguments);
         $this->scope->attributes['type'] = 'checkbox';
         if ($checked) {
             $this->scope->attributes['checked'] = 'checked';
@@ -151,7 +163,7 @@ abstract class AbstractBuilder extends HtmlBuilder implements BuilderInterface
     {
         $arguments = func_get_args();
         array_shift($arguments);
-        $this->tag('input', ...$arguments);
+        $this->createScope('input', $arguments);
         $this->scope->attributes['type'] = 'radio';
         if ($checked) {
             $this->scope->attributes['checked'] = 'checked';
@@ -166,7 +178,7 @@ abstract class AbstractBuilder extends HtmlBuilder implements BuilderInterface
     {
         $arguments = func_get_args();
         array_shift($arguments);
-        $this->tag('option', ...$arguments);
+        $this->createScope('option', $arguments);
         if ($selected) {
             $this->scope->attributes['selected'] = 'selected';
         }
@@ -198,8 +210,7 @@ abstract class AbstractBuilder extends HtmlBuilder implements BuilderInterface
         parent::end();
         // Wrappers are scopes that were automatically added.
         // They also need to be automatically ended.
-        while($this->scope !== null && $this->scope->isWrapper)
-        {
+        while ($this->scope !== null && $this->scope->isWrapper) {
             parent::end();
         }
         return $this;
@@ -213,8 +224,7 @@ abstract class AbstractBuilder extends HtmlBuilder implements BuilderInterface
         parent::endShorted();
         // Wrappers are scopes that were automatically added.
         // They also need to be automatically ended.
-        while($this->scope !== null && $this->scope->isWrapper)
-        {
+        while ($this->scope !== null && $this->scope->isWrapper) {
             parent::end();
         }
         return $this;

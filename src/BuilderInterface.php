@@ -5,6 +5,18 @@ namespace Lagdo\UiBuilder;
 interface BuilderInterface
 {
     /**
+     * @param string $icon
+     *
+     * @return BuilderInterface
+     */
+    public function addIcon(string $icon): BuilderInterface;
+
+    /**
+     * @return BuilderInterface
+     */
+    public function addCaret(): BuilderInterface;
+
+    /**
      * @param bool $checked
      *
      * @return BuilderInterface
@@ -17,6 +29,18 @@ interface BuilderInterface
      * @return BuilderInterface
      */
     public function radio(bool $checked = false): BuilderInterface;
+
+    /**
+     * @param bool $selected
+     *
+     * @return BuilderInterface
+     */
+    public function option(bool $selected = false): BuilderInterface;
+
+    /**
+     * @return BuilderInterface
+     */
+    public function text(): BuilderInterface;
 
     /**
      * @return BuilderInterface
@@ -36,25 +60,6 @@ interface BuilderInterface
     public function inputGroup(): BuilderInterface;
 
     /**
-     * @param string $text
-     *
-     * @return BuilderInterface
-     */
-    public function text(string $text): BuilderInterface;
-
-    /**
-     * @param string $icon
-     *
-     * @return BuilderInterface
-     */
-    public function addIcon(string $icon): BuilderInterface;
-
-    /**
-     * @return BuilderInterface
-     */
-    public function addCaret(): BuilderInterface;
-
-    /**
      * @param bool $fullWidth
      *
      * @return BuilderInterface
@@ -67,13 +72,6 @@ interface BuilderInterface
      * @return BuilderInterface
      */
     public function button(int $flags = 0): BuilderInterface;
-
-    /**
-     * @param bool $selected
-     *
-     * @return BuilderInterface
-     */
-    public function option(bool $selected = false): BuilderInterface;
 
     /**
      * @param string $style
@@ -103,11 +101,9 @@ interface BuilderInterface
     public function menu(): BuilderInterface;
 
     /**
-     * @param string $title
-     *
      * @return BuilderInterface
      */
-    public function menuItem(string $title): BuilderInterface;
+    public function menuItem(): BuilderInterface;
 
     /**
      * @return BuilderInterface
@@ -130,7 +126,7 @@ interface BuilderInterface
      *
      * @return BuilderInterface
      */
-    public function tabHeaderItem(string $id, bool $active): BuilderInterface;
+    public function tabHeaderItem(string $id, bool $active = false): BuilderInterface;
 
     /**
      * @return BuilderInterface
@@ -143,7 +139,7 @@ interface BuilderInterface
      *
      * @return BuilderInterface
      */
-    public function tabContentItem(string $id, bool $active): BuilderInterface;
+    public function tabContentItem(string $id, bool $active = false): BuilderInterface;
 
     /**
      * @param bool $responsive
@@ -159,7 +155,7 @@ interface BuilderInterface
      *
      * @return BuilderInterface
      */
-    public function form(bool $horizontal, bool $wrapped = true): BuilderInterface;
+    public function form(bool $horizontal = false, bool $wrapped = false): BuilderInterface;
 
     /**
      * @return BuilderInterface
