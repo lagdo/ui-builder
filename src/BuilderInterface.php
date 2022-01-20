@@ -202,4 +202,24 @@ interface BuilderInterface
      * @return BuilderInterface
      */
     public function dropdownMenuItem(): BuilderInterface;
+
+    /**
+     * @return BuilderInterface
+     */
+    public function pagination(): BuilderInterface;
+
+    /**
+     * @return BuilderInterface
+     */
+    public function paginationItem(): BuilderInterface;
+
+    /**
+     * @return BuilderInterface
+     */
+    public function paginationActiveItem(): BuilderInterface;
+
+    /**
+     * @return BuilderInterface
+     */
+    public function paginationDisabledItem(): BuilderInterface;
 }
