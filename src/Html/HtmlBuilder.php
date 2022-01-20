@@ -75,7 +75,7 @@ class HtmlBuilder
      * @param array $arguments
      * @return $this
      */
-    protected function createScope(string $name, array $arguments)
+    protected function createScope(string $name, array $arguments = [])
     {
         $this->scope = new Scope($name, $arguments, $this->scope);
         return $this;

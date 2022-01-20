@@ -67,7 +67,7 @@ abstract class AbstractBuilder extends HtmlBuilder implements BuilderInterface
      *
      * @return BuilderInterface
      */
-    protected function createScope(string $name, array $arguments): BuilderInterface
+    protected function createScope(string $name, array $arguments = []): BuilderInterface
     {
         $this->scope = new Scope($name, $arguments, $this->scope);
         return $this;
@@ -79,7 +79,7 @@ abstract class AbstractBuilder extends HtmlBuilder implements BuilderInterface
      *
      * @return BuilderInterface
      */
-    protected function createWrapper(string $name, array $arguments): BuilderInterface
+    protected function createWrapper(string $name, array $arguments = []): BuilderInterface
     {
         $this->createScope($name, [$arguments]);
         $this->scope->isWrapper = true;
