@@ -3,6 +3,7 @@
 namespace Lagdo\UiBuilder;
 
 use Lagdo\UiBuilder\Html\HtmlBuilder;
+use Lagdo\UiBuilder\Builder\Scope;
 use LogicException;
 
 use function trim;
@@ -21,6 +22,11 @@ abstract class AbstractBuilder extends HtmlBuilder implements BuilderInterface
     const BTN_FULL_WIDTH = 8;
     const BTN_OUTLINE = 16;
     const BTN_SMALL = 32;
+
+    /**
+     * @var Scope
+     */
+    protected $scope;
 
     /**
      * @var array

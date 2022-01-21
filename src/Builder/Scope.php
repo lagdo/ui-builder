@@ -1,6 +1,6 @@
 <?php
 
-namespace Lagdo\UiBuilder;
+namespace Lagdo\UiBuilder\Builder;
 
 class Scope extends \Lagdo\UiBuilder\Html\Scope
 {
