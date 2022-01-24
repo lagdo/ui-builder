@@ -182,6 +182,14 @@ interface BuilderInterface
     public function formRowClass(string $class = ''): string;
 
     /**
+     * @param string $tagName
+     * @param string $class
+     *
+     * @return string
+     */
+    public function formTagClass(string $tagName, string $class = ''): string;
+
+    /**
      * @return BuilderInterface
      */
     public function dropdown(): BuilderInterface;

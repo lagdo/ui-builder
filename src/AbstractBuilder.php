@@ -7,6 +7,8 @@ use Lagdo\UiBuilder\Builder\Scope;
 use LogicException;
 
 use function trim;
+use function ltrim;
+use function rtrim;
 use function strtolower;
 use function preg_replace;
 use function stripos;
@@ -38,7 +40,15 @@ abstract class AbstractBuilder extends HtmlBuilder implements BuilderInterface
      *
      * @return string
      */
-    protected abstract function getFormElementClass(string $tagName): string;
+    protected abstract function _formTagClass(string $tagName): string;
+
+    /**
+     * @inheritDoc
+     */
+    public function formTagClass(string $tagName, string $class = ''): string
+    {
+        return rtrim($this->_formTagClass($tagName) . ' ' . ltrim($class));
+    }
 
     /**
      * @param string $method
@@ -61,7 +71,7 @@ abstract class AbstractBuilder extends HtmlBuilder implements BuilderInterface
             $tagName = substr($tagName, 5);
             $this->createScope($tagName, $arguments);
             // Prepend the UI framework class to the tag.
-            $this->prependClass($this->getFormElementClass($tagName));
+            $this->prependClass($this->_formTagClass($tagName));
             return $this;
         }
         return $this->createScope($tagName, $arguments);
