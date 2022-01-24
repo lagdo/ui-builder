@@ -95,7 +95,7 @@ class View
 }
 ```
 
-Depending on how the `View` instance is created, the generated HTML code will be different.
+Depending on which class instance is passed to the `View` constructor, the generated HTML code will be different.
 
 With the following PHP code,
 ```php
@@ -131,7 +131,7 @@ use Lagdo\UiBuilder\Bootstrap\Bootstrap3\Builder;
 
 $view = new View(new Builder());
 ```
-the `getSimpleForm()` function will generate code for Bootstrap 4.
+the same `getSimpleForm()` function will generate code for Bootstrap 4.
 ```html
 <form id="database-form">
     <div class="form-group row">
