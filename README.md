@@ -1,22 +1,22 @@
 ## A customizable and extensible HTML UI builder
 
-This package provides a unified API in PHP to create UI for frontend frameworks like Bootstrap.
+This package provides a unified API in PHP to create UI for CSS frameworks like Bootstrap.
 
 It extends the [PHP HTML builder](https://github.com/avplab/php-html-builder) with functions to create UI components like menus, forms, tabs and so on.
 
 ### Motivation
 
 This UI builder was first created for [Jaxon DbAdmin](https://github.com/lagdo/jaxon-dbadmin), a database admin dashboard that can be inserted in a page of an existing PHP application.
-It then needs to adapt to various frontend frameworks, with as little effort as possible.
-So rewriting all the views for each supported frontend framework was not a satisfying option.
+Its user interface then needs to adapt to various CSS frameworks, with as little effort as possible.
+So rewriting all the views for each supported CSS framework was not a satisfying option.
 
-Using this UI buider, the UI of the app is writed once, and the HTML code for frontend frameworks is generated automatically.
-Adding support of a given frontend framework is then easier and less error-prone.
+Using this UI buider, the UI of the app is writed once, and the HTML code for CSS frameworks is generated automatically.
+Adding support of a given CSS framework is then easier and less error-prone.
 
-<!-- GETTING STARTED -->
 ### Getting Started
 
 The `BuilderInterface` in the `src/` directory defines the functions that can be used to build user interfaces, in addition to those provided by the [PHP HTML builder](https://github.com/avplab/php-html-builder).
+While the later only generates HTML code, the `BuilderInterface` functions will also add the CSS classes defined by the frameworks for the UI components.
 
 The class that generates the final HTML code is provided by a separate package, which must be installed in addition to this one.
 
@@ -27,7 +27,7 @@ This package requires PHP version 7.1 or greater.
 #### Installation
 
 Install the packages using Composer.
-In the above examples, we will be building UI for the Bootstrap framework.
+In the examples below, we will build simple UI components for the Bootstrap framework.
 
 ```bash
 composer require ui-builder ui-builder-bootstrap
@@ -35,7 +35,7 @@ composer require ui-builder ui-builder-bootstrap
 
 ### Usage
 
-The app UI components are built using the functions of the `BuilderInterface`.
+The `BuilderInterface` defines the functions that are use to build the UI components.
 In this example, it is passed as parameter to the `View` class constructor.
 
 ```php
@@ -59,14 +59,13 @@ class View
     /**
      * Get the HTML code of a simple form
      *
-     * @param string $formId
      * @param array $formData
      * @return string
      */
-    public function getSimpleForm(string $formId, array $formData)
+    public function getSimpleForm(array $formData)
     {
         $this->htmlBuilder->clear()
-            ->form(true)->setId($formId)
+            ->form(true)->setId('form-id')
                 ->formRow()
                     ->formCol(4)
                         ->formLabel()->setFor('name')->addText('Name')
@@ -95,7 +94,7 @@ class View
 }
 ```
 
-Depending on which class instance is passed to the `View` constructor, the generated HTML code will be different.
+Depending on which class instance is passed to the `View` constructor, a different HTML code will be generated.
 
 With the following PHP code,
 ```php
@@ -105,7 +104,7 @@ $view = new View(new Builder());
 ```
 the `getSimpleForm()` function will generate code for Bootstrap 3.
 ```html
-<form class="form-horizontal" id="database-form">
+<form class="form-horizontal" id="form-id">
     <div class="form-group">
         <div class="col-md-4">
             <label class="control-label" for="name">Name</label>
@@ -133,7 +132,7 @@ $view = new View(new Builder());
 ```
 the same `getSimpleForm()` function will generate code for Bootstrap 4.
 ```html
-<form id="database-form">
+<form id="form-id">
     <div class="form-group row">
         <div class="col-md-4">
             <label class="col-form-label" for="name">Name</label>
