@@ -18,7 +18,7 @@ This UI builder was first created for [Jaxon DbAdmin](https://github.com/lagdo/j
 Its user interface then needs to adapt to various CSS frameworks, with as little effort as possible.
 So rewriting all the views for each supported CSS framework was not a satisfying option.
 
-Using this UI buider, the UI of the app is writed once, and the HTML code for CSS frameworks is generated automatically.
+Using this UI buider, the UI of the app is written once, and the HTML code for CSS frameworks is generated automatically.
 Adding support of a given CSS framework is then easier and less error-prone.
 
 ### Getting Started
@@ -72,7 +72,7 @@ class View
      */
     public function getSimpleForm(array $formData)
     {
-        $this->htmlBuilder->clear()
+        $this->uiBuilder->clear()
             ->form(true)->setId('form-id')
                 ->formRow()
                     ->formCol(4)
@@ -97,7 +97,7 @@ class View
                     ->end()
                 ->end()
             ->end();
-        return $this->htmlBuilder->build();
+        return $this->uiBuilder->build();
     }
 }
 ```
