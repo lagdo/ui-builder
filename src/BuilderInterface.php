@@ -108,17 +108,31 @@ interface BuilderInterface
     /**
      * @return BuilderInterface
      */
+    public function menuActiveItem(): BuilderInterface;
+
+    /**
+     * @return BuilderInterface
+     */
+    public function menuDisabledItem(): BuilderInterface;
+
+    /**
+     * @return BuilderInterface
+     */
     public function breadcrumb(): BuilderInterface;
 
     /**
+     * @param bool $active
+     *
      * @return BuilderInterface
      */
-    public function breadcrumbItem(): BuilderInterface;
+    public function breadcrumbItem(bool $active): BuilderInterface;
 
     /**
+     * @param string $target The id of the tab content element
+     *
      * @return BuilderInterface
      */
-    public function tabHeader(): BuilderInterface;
+    public function tabNav(string $target = ''): BuilderInterface;
 
     /**
      * @param string $id
@@ -126,7 +140,7 @@ interface BuilderInterface
      *
      * @return BuilderInterface
      */
-    public function tabHeaderItem(string $id, bool $active = false): BuilderInterface;
+    public function tabNavItem(string $id, bool $active = false): BuilderInterface;
 
     /**
      * @return BuilderInterface
