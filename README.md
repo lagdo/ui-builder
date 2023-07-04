@@ -134,7 +134,7 @@ the `getSimpleForm()` function will generate code for Bootstrap 3.
 
 And with the following PHP code,
 ```php
-use Lagdo\UiBuilder\Bootstrap\Bootstrap3\Builder;
+use Lagdo\UiBuilder\Bootstrap\Bootstrap4\Builder;
 
 $view = new View(new Builder());
 ```
