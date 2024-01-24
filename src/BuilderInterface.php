@@ -2,6 +2,27 @@
 
 namespace Lagdo\UiBuilder;
 
+/**
+ * @method BuilderInterface clear()
+ * @method BuilderInterface setId(string $id)
+ * @method BuilderInterface setClass(string $class)
+ * @method BuilderInterface setFor(string $for)
+ * @method BuilderInterface setName(string $name)
+ * @method BuilderInterface setValue(string $value)
+ * @method BuilderInterface setType(string $type)
+ * @method BuilderInterface setOnClick(string $code)
+ * @method BuilderInterface addText(string $text)
+ * @method BuilderInterface addHtml(string $html)
+ * @method BuilderInterface div()
+ * @method BuilderInterface span()
+ * @method BuilderInterface label()
+ * @method BuilderInterface end()
+ * @method BuilderInterface input()
+ * @method BuilderInterface formInput()
+ * @method BuilderInterface formSelect()
+ * @method BuilderInterface formTextArea()
+ * @method string build()
+ */
 interface BuilderInterface
 {
     /**
