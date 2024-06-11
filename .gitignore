@@ -1,0 +1,8 @@
+# Do not commit Eclipse files
+.project
+.settings/*
+/jaxon-core.komodoproject
+composer.phar
+composer.lock
+vendor/
+.idea/
