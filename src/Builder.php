@@ -195,6 +195,15 @@ abstract class Builder implements BuilderInterface
     /**
      * @return self
      */
+    public function clear(): self
+    {
+        $this->builder->clear();
+        return $this;
+    }
+
+    /**
+     * @return self
+     */
     public function end(): self
     {
         $this->builder->end();
