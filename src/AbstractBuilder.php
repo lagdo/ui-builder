@@ -2,21 +2,13 @@
 
 namespace Lagdo\UiBuilder;
 
-use Closure;
-use Lagdo\UiBuilder\Html\HtmlBuilder;
-use Lagdo\UiBuilder\Builder\Scope;
+use Lagdo\UiBuilder\Scope\UiBuilder;
 use LogicException;
 
-use function array_merge;
-use function trim;
 use function ltrim;
 use function rtrim;
-use function strtolower;
-use function preg_replace;
-use function stripos;
-use function substr;
 
-abstract class AbstractBuilder extends HtmlBuilder implements BuilderInterface
+abstract class AbstractBuilder implements BuilderInterface
 {
     const BTN_PRIMARY = 1;
     const BTN_SECONDARY = 2;
@@ -26,36 +18,18 @@ abstract class AbstractBuilder extends HtmlBuilder implements BuilderInterface
     const BTN_SMALL = 32;
 
     /**
-     * @var Scope
+     * @var UiBuilder
      */
-    protected $scope;
+    protected $builder;
 
     /**
-     * @var array<string, Closure>
+     * The constructor
+     * 
+     * @param BuilderSetup $setup
      */
-    protected $tagBuilders;
-
-    /**
-     * @var array
-     */
-    protected $options = [];
-
     public function __construct(protected BuilderSetup $setup)
     {
-        $this->tagBuilders = array_merge([
-            'set' => function(BuilderInterface $builder, string $tagName, string $method, array $arguments) {
-                if ($this->scope === null) {
-                    throw new LogicException('Attributes can be set for elements only');
-                }
-                $this->scope->attributes[substr($tagName, 4)] = $arguments[0] ?? null;
-            },
-            'form' => function(BuilderInterface $builder, string $tagName, string $method, array $arguments) {
-                $tagName = substr($tagName, 5);
-                $this->createScope($tagName, $arguments);
-                // Prepend the UI framework class to the tag.
-                $this->prependClass($this->_formTagClass($tagName));
-            },
-        ], $setup->getTagBuilders());
+        $this->builder = $setup->getBuilder();
     }
 
     /**
@@ -67,67 +41,29 @@ abstract class AbstractBuilder extends HtmlBuilder implements BuilderInterface
      */
     public function __call(string $method, array $arguments)
     {
-        $tagName = strtolower(preg_replace('/(?<!^)([A-Z])/', '-$1', $method));
-        foreach($this->tagBuilders as $tagPrefix => $tagBuilder)
-        {
-            if (stripos($tagName, $tagPrefix . '-') === 0) {
-                $tagBuilder($this, $tagName, $method, $arguments);
-                return $this;
-            }
-        }
-        return $this->createScope($tagName, $arguments);
-    }
-
-    /**
-     * @param string $name
-     * @param array $arguments
-     *
-     * @return self
-     */
-    protected function createScope(string $name, array $arguments = []): self
-    {
-        $this->scope = new Scope($name, $arguments, $this->scope);
+        $this->builder->make($method, $arguments);
         return $this;
     }
 
     /**
      * @param string $name
-     * @param array $arguments
-     *
-     * @return self
+     * @return void
      */
-    protected function createWrapper(string $name, array $arguments = []): self
+    public function tag(string $name, ...$arguments)
     {
-        $this->createScope($name, [$arguments]);
-        $this->scope->isWrapper = true;
+        $this->builder->createScope($name, $arguments);
         return $this;
     }
 
     /**
-     * Append a class to the existing one.
+     * @param string $name
+     * @param string $value
      *
-     * @param string $class
-     *
-     * @return self
+     * @return void
      */
-    protected function appendClass(string $class): self
+    public function setAttribute(string $name, string $value)
     {
-        $class = ($this->scope->attributes['class'] ?? '') . ' ' . $class;
-        $this->scope->attributes['class'] = trim($class);
-        return $this;
-    }
-
-    /**
-     * Prepend a class to the existing one.
-     *
-     * @param string $class
-     *
-     * @return self
-     */
-    protected function prependClass(string $class): self
-    {
-        $class .= ' ' . ($this->scope->attributes['class'] ?? '');
-        $this->scope->attributes['class'] = trim($class);
+        $this->builder->setAttribute($name, $value);
         return $this;
     }
 
@@ -139,7 +75,7 @@ abstract class AbstractBuilder extends HtmlBuilder implements BuilderInterface
     public function setAttributes(array $attributes): self
     {
         foreach ($attributes as $name => $value) {
-            $this->scope->attributes[$name] = $value;
+            $this->builder->setAttribute($name, $value);
         }
         return $this;
     }
@@ -151,11 +87,36 @@ abstract class AbstractBuilder extends HtmlBuilder implements BuilderInterface
      */
     public function setClass(string $class): self
     {
-        if ($this->scope === null) {
-            throw new LogicException('Attributes can be set for elements only');
-        }
         // Don't overwrite the current class.
-        return $this->appendClass($class);
+        $this->builder->appendClass($class);
+        return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function addText(string $text): self
+    {
+        $this->builder->addText($text);
+        return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function addHtml(string $html): self
+    {
+        $this->builder->addHtml($html);
+        return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function addComment(string $comment): self
+    {
+        $this->builder->addComment($comment);
+        return $this;
     }
 
     /**
@@ -163,10 +124,10 @@ abstract class AbstractBuilder extends HtmlBuilder implements BuilderInterface
      */
     public function checkbox(bool $checked = false, ...$arguments): self
     {
-        $this->createScope('input', $arguments);
-        $this->scope->attributes['type'] = 'checkbox';
+        $this->builder->createScope('input', $arguments);
+        $this->builder->setAttribute('type', 'checkbox');
         if ($checked) {
-            $this->scope->attributes['checked'] = 'checked';
+            $this->builder->setAttribute('checked', 'checked');
         }
         return $this;
     }
@@ -176,10 +137,10 @@ abstract class AbstractBuilder extends HtmlBuilder implements BuilderInterface
      */
     public function radio(bool $checked = false, ...$arguments): self
     {
-        $this->createScope('input', $arguments);
-        $this->scope->attributes['type'] = 'radio';
+        $this->builder->createScope('input', $arguments);
+        $this->builder->setAttribute('type', 'radio');
         if ($checked) {
-            $this->scope->attributes['checked'] = 'checked';
+            $this->builder->setAttribute('checked', 'checked');
         }
         return $this;
     }
@@ -189,9 +150,9 @@ abstract class AbstractBuilder extends HtmlBuilder implements BuilderInterface
      */
     public function option(bool $selected = false, ...$arguments): self
     {
-        $this->createScope('option', $arguments);
+        $this->builder->createScope('option', $arguments);
         if ($selected) {
-            $this->scope->attributes['selected'] = 'selected';
+            $this->builder->setAttribute('selected', 'selected');
         }
         return $this;
     }
@@ -232,12 +193,7 @@ abstract class AbstractBuilder extends HtmlBuilder implements BuilderInterface
      */
     public function end(): self
     {
-        parent::end();
-        // Wrappers are scopes that were automatically added.
-        // They also need to be automatically ended.
-        while ($this->scope !== null && $this->scope->isWrapper) {
-            parent::end();
-        }
+        $this->builder->end();
         return $this;
     }
 
@@ -246,12 +202,33 @@ abstract class AbstractBuilder extends HtmlBuilder implements BuilderInterface
      */
     public function endShorted(): self
     {
-        parent::endShorted();
-        // Wrappers are scopes that were automatically added.
-        // They also need to be automatically ended.
-        while ($this->scope !== null && $this->scope->isWrapper) {
-            parent::end();
-        }
+        $this->builder->endShorted();
         return $this;
+    }
+
+    /**
+     * @inheritDoc
+     * @throws RuntimeException When element is not initialized yet.
+     */
+    public function endOpened(): self
+    {
+        $this->builder->endOpened();
+        return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function build(): string
+    {
+        return $this->builder->build();
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString(): string
+    {
+        return $this->build();
     }
 }

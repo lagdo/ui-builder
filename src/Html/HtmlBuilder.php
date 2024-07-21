@@ -32,7 +32,7 @@ class HtmlBuilder
     /**
      * @var Element[]
      */
-    protected $elements = array();
+    protected $elements = [];
 
     /**
      * @var Scope
@@ -42,7 +42,7 @@ class HtmlBuilder
     /**
      * @param string $method
      * @param array $arguments
-     * @return self
+     * @return void
      * @throws LogicException When element is not initialized yet
      */
     public function __call(string $method, array $arguments)
@@ -53,30 +53,28 @@ class HtmlBuilder
                 throw new LogicException('Attributes can be set for elements only');
             }
             $this->scope->attributes[substr($tagName, 4)] = isset($arguments[0]) ? $arguments[0] : null;
-            return $this;
+            return;
         }
-        return $this->createScope($tagName, $arguments);
+        $this->createScope($tagName, $arguments);
     }
 
     /**
-     * @return self
+     * @return void
      */
-    public function clear(): self
+    public function clear()
     {
         $this->elements = [];
         $this->scope = null;
-        return $this;
     }
 
     /**
      * @param string $name
      * @param array $arguments
-     * @return self
+     * @return void
      */
-    protected function createScope(string $name, array $arguments = []): self
+    protected function createScope(string $name, array $arguments = [])
     {
         $this->scope = new Scope($name, $arguments, $this->scope);
-        return $this;
     }
 
     /**
@@ -94,49 +92,45 @@ class HtmlBuilder
 
     /**
      * @param string $name
-     * @return self
+     * @return void
      */
-    public function tag(string $name, ...$arguments): self
+    public function tag(string $name, ...$arguments)
     {
         $this->createScope($name, $arguments);
-        return $this;
     }
 
     /**
      * @param string $text
-     * @return self
+     * @return void
      */
-    public function addText(string $text): self
+    public function addText(string $text)
     {
         $this->addElementToScope(new Text($text));
-        return $this;
     }
 
     /**
      * @param string $html
-     * @return self
+     * @return void
      */
-    public function addHtml(string $html): self
+    public function addHtml(string $html)
     {
         $this->addElementToScope(new Text($html, false));
-        return $this;
     }
 
     /**
      * @param string $comment
-     * @return self
+     * @return void
      */
-    public function addComment($comment): self
+    public function addComment($comment)
     {
         $this->addElementToScope(new Comment($comment));
-        return $this;
     }
 
     /**
-     * @return self
+     * @return void
      * @throws RuntimeException When element is not initialized yet.
      */
-    public function end(): self
+    public function end()
     {
         if ($this->scope === null) {
             throw new RuntimeException('Abnormal element completion');
@@ -144,14 +138,13 @@ class HtmlBuilder
         $element = new Tag($this->scope->name, $this->scope->attributes, $this->scope->elements);
         $this->scope = $this->scope->parent;
         $this->addElementToScope($element);
-        return $this;
     }
 
     /**
-     * @return self
+     * @return void
      * @throws RuntimeException When element is not initialized yet.
      */
-    public function endShorted(): self
+    public function endShorted()
     {
         if ($this->scope === null) {
             throw new RuntimeException('Abnormal element completion');
@@ -160,14 +153,13 @@ class HtmlBuilder
         $element->setShort(true);
         $this->scope = $this->scope->parent;
         $this->addElementToScope($element);
-        return $this;
     }
 
     /**
-     * @return self
+     * @return void
      * @throws RuntimeException When element is not initialized yet.
      */
-    public function endOpened(): self
+    public function endOpened()
     {
         if ($this->scope === null) {
             throw new RuntimeException('Abnormal element completion');
@@ -176,7 +168,6 @@ class HtmlBuilder
         $element->setOpened(true);
         $this->scope = $this->scope->parent;
         $this->addElementToScope($element);
-        return $this;
     }
 
     /**
@@ -185,13 +176,5 @@ class HtmlBuilder
     public function build(): string
     {
         return implode('', $this->elements);
-    }
-
-    /**
-     * @return string
-     */
-    public function __toString(): string
-    {
-        return $this->build();
     }
 }

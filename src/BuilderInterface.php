@@ -47,12 +47,6 @@ interface BuilderInterface extends DropdownInterface, FormInterface, HtmlInterfa
     public function setAttributes(array $attributes): self;
 
     /**
-     * @return self
-     * @throws RuntimeException When element is not initialized yet.
-     */
-    public function end(): self;
-
-    /**
      * @param string $text
      *
      * @return self
@@ -76,5 +70,20 @@ interface BuilderInterface extends DropdownInterface, FormInterface, HtmlInterfa
      *
      * @return self
      */
-    public function addComment($comment): self;
+    public function addComment(string $comment): self;
+
+    /**
+     * @return self
+     */
+    public function end(): self;
+
+    /**
+     * @return self
+     */
+    public function endShorted(): self;
+
+    /**
+     * @return self
+     */
+    public function endOpened(): self;
 }

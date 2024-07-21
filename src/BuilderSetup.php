@@ -3,13 +3,30 @@
 namespace Lagdo\UiBuilder;
 
 use Closure;
+use Lagdo\UiBuilder\Scope\UiBuilder;
 
 class BuilderSetup
 {
     /**
-     * @var array<string, Closure>
+     * @var UiBuilder
      */
-    protected $tagBuilders;
+    protected UiBuilder $builder;
+
+    /**
+     * The constructor
+     */
+    public function __construct()
+    {
+        $this->builder = new UiBuilder();
+    }
+
+    /**
+     * @return UiBuilder
+     */
+    public function getBuilder(): UiBuilder
+    {
+        return $this->builder;
+    }
 
     /**
      * @param string $tagPrefix
@@ -19,19 +36,6 @@ class BuilderSetup
      */
     public function addTagBuilder(string $tagPrefix, Closure $tagBuilder)
     {
-        // Do not overwrite existing builders.
-        if(!isset($this->tagBuilders[$tagPrefix]))
-        {
-            $this->tagBuilders[$tagPrefix] = $tagBuilder;
-        }
-        return $this;
-    }
-
-    /**
-     * @return array<string, Closure>
-     */
-    public function getTagBuilders(): array
-    {
-        return $this->tagBuilders;
+        $this->builder->addTagBuilder($tagPrefix, $tagBuilder);
     }
 }
