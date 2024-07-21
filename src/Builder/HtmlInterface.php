@@ -19,12 +19,12 @@ interface HtmlInterface
     /**
      * @return self
      */
-    public function row(): self;
+    public function row(...$arguments): self;
 
     /**
      * @param int $width
      *
      * @return self
      */
-    public function col(int $width = 12): self;
+    public function col(int $width = 12, ...$arguments): self;
 }

@@ -9,7 +9,7 @@ interface TabInterface
      *
      * @return self
      */
-    public function tabNav(string $target = ''): self;
+    public function tabNav(string $target = '', ...$arguments): self;
 
     /**
      * @param string $id
@@ -17,12 +17,12 @@ interface TabInterface
      *
      * @return self
      */
-    public function tabNavItem(string $id, bool $active = false): self;
+    public function tabNavItem(string $id, bool $active = false, ...$arguments): self;
 
     /**
      * @return self
      */
-    public function tabContent(): self;
+    public function tabContent(...$arguments): self;
 
     /**
      * @param string $id
@@ -30,5 +30,5 @@ interface TabInterface
      *
      * @return self
      */
-    public function tabContentItem(string $id, bool $active = false): self;
+    public function tabContentItem(string $id, bool $active = false, ...$arguments): self;
 }

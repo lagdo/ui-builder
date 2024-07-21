@@ -56,7 +56,7 @@ interface BuilderInterface extends DropdownInterface, FormInterface, HtmlInterfa
     /**
      * @return self
      */
-    public function text(): self;
+    public function text(...$arguments): self;
 
     /**
      * @param string $html

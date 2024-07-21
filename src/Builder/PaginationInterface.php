@@ -7,20 +7,20 @@ interface PaginationInterface
     /**
      * @return self
      */
-    public function pagination(): self;
+    public function pagination(...$arguments): self;
 
     /**
      * @return self
      */
-    public function paginationItem(): self;
+    public function paginationItem(...$arguments): self;
 
     /**
      * @return self
      */
-    public function paginationActiveItem(): self;
+    public function paginationActiveItem(...$arguments): self;
 
     /**
      * @return self
      */
-    public function paginationDisabledItem(): self;
+    public function paginationDisabledItem(...$arguments): self;
 }

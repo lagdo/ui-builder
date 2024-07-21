@@ -7,32 +7,32 @@ interface MenuInterface
     /**
      * @return self
      */
-    public function menu(): self;
+    public function menu(...$arguments): self;
 
     /**
      * @return self
      */
-    public function menuItem(): self;
+    public function menuItem(...$arguments): self;
 
     /**
      * @return self
      */
-    public function menuActiveItem(): self;
+    public function menuActiveItem(...$arguments): self;
 
     /**
      * @return self
      */
-    public function menuDisabledItem(): self;
+    public function menuDisabledItem(...$arguments): self;
 
     /**
      * @return self
      */
-    public function breadcrumb(): self;
+    public function breadcrumb(...$arguments): self;
 
     /**
      * @param bool $active
      *
      * @return self
      */
-    public function breadcrumbItem(bool $active): self;
+    public function breadcrumbItem(bool $active, ...$arguments): self;
 }

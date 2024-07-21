@@ -10,19 +10,19 @@ interface FormInterface
      *
      * @return self
      */
-    public function form(bool $horizontal = false, bool $wrapped = false): self;
+    public function form(bool $horizontal = false, bool $wrapped = false, ...$arguments): self;
 
     /**
      * @return self
      */
-    public function formRow(): self;
+    public function formRow(...$arguments): self;
 
     /**
      * @param int $width
      *
      * @return self
      */
-    public function formCol(int $width = 12): self;
+    public function formCol(int $width = 12, ...$arguments): self;
 
     /**
      * @return string
@@ -68,19 +68,19 @@ interface FormInterface
     /**
      * @return self
      */
-    public function inputGroup(): self;
+    public function inputGroup(...$arguments): self;
 
     /**
      * @param bool $fullWidth
      *
      * @return self
      */
-    public function buttonGroup(bool $fullWidth): self;
+    public function buttonGroup(bool $fullWidth, ...$arguments): self;
 
     /**
      * @param int $flags
      *
      * @return self
      */
-    public function button(int $flags = 0): self;
+    public function button(int $flags = 0, ...$arguments): self;
 }

@@ -10,5 +10,5 @@ interface TableInterface
      *
      * @return self
      */
-    public function table(bool $responsive, string $style = ''): self;
+    public function table(bool $responsive, string $style = '', ...$arguments): self;
 }

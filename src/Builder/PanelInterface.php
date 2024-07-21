@@ -9,20 +9,20 @@ interface PanelInterface
      *
      * @return self
      */
-    public function panel(string $style = 'default'): self;
+    public function panel(string $style = 'default', ...$arguments): self;
 
     /**
      * @return self
      */
-    public function panelHeader(): self;
+    public function panelHeader(...$arguments): self;
 
     /**
      * @return self
      */
-    public function panelBody(): self;
+    public function panelBody(...$arguments): self;
 
     /**
      * @return self
      */
-    public function panelFooter(): self;
+    public function panelFooter(...$arguments): self;
 }
