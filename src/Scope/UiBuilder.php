@@ -46,6 +46,14 @@ class UiBuilder extends HtmlBuilder
     }
 
     /**
+     * @return Scope|null
+     */
+    public function scope(): ?Scope
+    {
+        return $this->scope;
+    }
+
+    /**
      * @param string $tagPrefix
      * @param Closure $tagBuilder
      *
