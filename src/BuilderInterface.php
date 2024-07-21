@@ -5,28 +5,66 @@ namespace Lagdo\UiBuilder;
 use Closure;
 
 /**
- * @method BuilderInterface clear()
+ * @method BuilderInterface div()
+ * @method BuilderInterface span()
+ * @method BuilderInterface label()
+ * @method BuilderInterface input()
+ * @method BuilderInterface formInput()
+ * @method BuilderInterface formSelect()
+ * @method BuilderInterface formTextArea()
  * @method BuilderInterface setId(string $id)
  * @method BuilderInterface setClass(string $class)
  * @method BuilderInterface setFor(string $for)
  * @method BuilderInterface setName(string $name)
  * @method BuilderInterface setValue(string $value)
  * @method BuilderInterface setType(string $type)
- * @method BuilderInterface setOnClick(string $code)
- * @method BuilderInterface addText(string $text)
- * @method BuilderInterface addHtml(string $html)
- * @method BuilderInterface div()
- * @method BuilderInterface span()
- * @method BuilderInterface label()
- * @method BuilderInterface end()
- * @method BuilderInterface input()
- * @method BuilderInterface formInput()
- * @method BuilderInterface formSelect()
- * @method BuilderInterface formTextArea()
- * @method string build()
  */
 interface BuilderInterface
 {
+    /**
+     * @return string
+     */
+    public function build(): string;
+
+    /**
+     * @return self
+     */
+    public function clear(): self;
+
+    /**
+     * @param array $attributes
+     *
+     * @return self
+     */
+    public function setAttributes(array $attributes): self;
+
+    /**
+     * @return self
+     * @throws RuntimeException When element is not initialized yet.
+     */
+    public function end(): self;
+
+    /**
+     * @param string $text
+     *
+     * @return self
+     */
+    public function addText(string $text): self;
+
+    /**
+     * @param string $html
+     *
+     * @return self
+     */
+    public function addHtml(string $html): self;
+
+    /**
+     * @param string $comment
+     *
+     * @return self
+     */
+    public function addComment($comment): self;
+
     /**
      * @param string $icon
      *
