@@ -22,5 +22,7 @@
         "psr-4": {
             "Lagdo\\UiBuilder\\": "src/"
         }
-    }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
