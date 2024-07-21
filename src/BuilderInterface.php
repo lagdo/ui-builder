@@ -2,6 +2,8 @@
 
 namespace Lagdo\UiBuilder;
 
+use Closure;
+
 /**
  * @method BuilderInterface clear()
  * @method BuilderInterface setId(string $id)
@@ -28,181 +30,181 @@ interface BuilderInterface
     /**
      * @param string $icon
      *
-     * @return BuilderInterface
+     * @return self
      */
-    public function addIcon(string $icon): BuilderInterface;
+    public function addIcon(string $icon): self;
 
     /**
-     * @return BuilderInterface
+     * @return self
      */
-    public function addCaret(): BuilderInterface;
-
-    /**
-     * @param bool $checked
-     *
-     * @return BuilderInterface
-     */
-    public function checkbox(bool $checked = false): BuilderInterface;
+    public function addCaret(): self;
 
     /**
      * @param bool $checked
      *
-     * @return BuilderInterface
+     * @return self
      */
-    public function radio(bool $checked = false): BuilderInterface;
+    public function checkbox(bool $checked = false, ...$arguments): self;
+
+    /**
+     * @param bool $checked
+     *
+     * @return self
+     */
+    public function radio(bool $checked = false, ...$arguments): self;
 
     /**
      * @param bool $selected
      *
-     * @return BuilderInterface
+     * @return self
      */
-    public function option(bool $selected = false): BuilderInterface;
+    public function option(bool $selected = false, ...$arguments): self;
 
     /**
-     * @return BuilderInterface
+     * @return self
      */
-    public function text(): BuilderInterface;
+    public function text(): self;
 
     /**
-     * @return BuilderInterface
+     * @return self
      */
-    public function row(): BuilderInterface;
+    public function row(): self;
 
     /**
      * @param int $width
      *
-     * @return BuilderInterface
+     * @return self
      */
-    public function col(int $width = 12): BuilderInterface;
+    public function col(int $width = 12): self;
 
     /**
-     * @return BuilderInterface
+     * @return self
      */
-    public function inputGroup(): BuilderInterface;
+    public function inputGroup(): self;
 
     /**
      * @param bool $fullWidth
      *
-     * @return BuilderInterface
+     * @return self
      */
-    public function buttonGroup(bool $fullWidth): BuilderInterface;
+    public function buttonGroup(bool $fullWidth): self;
 
     /**
      * @param int $flags
      *
-     * @return BuilderInterface
+     * @return self
      */
-    public function button(int $flags = 0): BuilderInterface;
+    public function button(int $flags = 0): self;
 
     /**
      * @param string $style
      *
-     * @return BuilderInterface
+     * @return self
      */
-    public function panel(string $style = 'default'): BuilderInterface;
+    public function panel(string $style = 'default'): self;
 
     /**
-     * @return BuilderInterface
+     * @return self
      */
-    public function panelHeader(): BuilderInterface;
+    public function panelHeader(): self;
 
     /**
-     * @return BuilderInterface
+     * @return self
      */
-    public function panelBody(): BuilderInterface;
+    public function panelBody(): self;
 
     /**
-     * @return BuilderInterface
+     * @return self
      */
-    public function panelFooter(): BuilderInterface;
+    public function panelFooter(): self;
 
     /**
-     * @return BuilderInterface
+     * @return self
      */
-    public function menu(): BuilderInterface;
+    public function menu(): self;
 
     /**
-     * @return BuilderInterface
+     * @return self
      */
-    public function menuItem(): BuilderInterface;
+    public function menuItem(): self;
 
     /**
-     * @return BuilderInterface
+     * @return self
      */
-    public function menuActiveItem(): BuilderInterface;
+    public function menuActiveItem(): self;
 
     /**
-     * @return BuilderInterface
+     * @return self
      */
-    public function menuDisabledItem(): BuilderInterface;
+    public function menuDisabledItem(): self;
 
     /**
-     * @return BuilderInterface
+     * @return self
      */
-    public function breadcrumb(): BuilderInterface;
+    public function breadcrumb(): self;
 
     /**
      * @param bool $active
      *
-     * @return BuilderInterface
+     * @return self
      */
-    public function breadcrumbItem(bool $active): BuilderInterface;
+    public function breadcrumbItem(bool $active): self;
 
     /**
      * @param string $target The id of the tab content element
      *
-     * @return BuilderInterface
+     * @return self
      */
-    public function tabNav(string $target = ''): BuilderInterface;
+    public function tabNav(string $target = ''): self;
 
     /**
      * @param string $id
      * @param bool $active
      *
-     * @return BuilderInterface
+     * @return self
      */
-    public function tabNavItem(string $id, bool $active = false): BuilderInterface;
+    public function tabNavItem(string $id, bool $active = false): self;
 
     /**
-     * @return BuilderInterface
+     * @return self
      */
-    public function tabContent(): BuilderInterface;
+    public function tabContent(): self;
 
     /**
      * @param string $id
      * @param bool $active
      *
-     * @return BuilderInterface
+     * @return self
      */
-    public function tabContentItem(string $id, bool $active = false): BuilderInterface;
+    public function tabContentItem(string $id, bool $active = false): self;
 
     /**
      * @param bool $responsive
      * @param string $style
      *
-     * @return BuilderInterface
+     * @return self
      */
-    public function table(bool $responsive, string $style = ''): BuilderInterface;
+    public function table(bool $responsive, string $style = ''): self;
 
     /**
      * @param bool $horizontal
      * @param bool $wrapped
      *
-     * @return BuilderInterface
+     * @return self
      */
-    public function form(bool $horizontal = false, bool $wrapped = false): BuilderInterface;
+    public function form(bool $horizontal = false, bool $wrapped = false): self;
 
     /**
-     * @return BuilderInterface
+     * @return self
      */
-    public function formRow(): BuilderInterface;
+    public function formRow(): self;
 
     /**
      * @param int $width
      *
-     * @return BuilderInterface
+     * @return self
      */
-    public function formCol(int $width = 12): BuilderInterface;
+    public function formCol(int $width = 12): self;
 
     /**
      * @return string
@@ -225,44 +227,44 @@ interface BuilderInterface
     public function formTagClass(string $tagName, string $class = ''): string;
 
     /**
-     * @return BuilderInterface
+     * @return self
      */
-    public function dropdown(): BuilderInterface;
+    public function dropdown(): self;
 
     /**
      * @param string $style
      *
-     * @return BuilderInterface
+     * @return self
      */
-    public function dropdownItem(string $style = 'default'): BuilderInterface;
+    public function dropdownItem(string $style = 'default'): self;
 
     /**
-     * @return BuilderInterface
+     * @return self
      */
-    public function dropdownMenu(): BuilderInterface;
+    public function dropdownMenu(): self;
 
     /**
-     * @return BuilderInterface
+     * @return self
      */
-    public function dropdownMenuItem(): BuilderInterface;
+    public function dropdownMenuItem(): self;
 
     /**
-     * @return BuilderInterface
+     * @return self
      */
-    public function pagination(): BuilderInterface;
+    public function pagination(): self;
 
     /**
-     * @return BuilderInterface
+     * @return self
      */
-    public function paginationItem(): BuilderInterface;
+    public function paginationItem(): self;
 
     /**
-     * @return BuilderInterface
+     * @return self
      */
-    public function paginationActiveItem(): BuilderInterface;
+    public function paginationActiveItem(): self;
 
     /**
-     * @return BuilderInterface
+     * @return self
      */
-    public function paginationDisabledItem(): BuilderInterface;
+    public function paginationDisabledItem(): self;
 }

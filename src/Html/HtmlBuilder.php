@@ -22,8 +22,6 @@ use function strtolower;
 use function preg_replace;
 use function stripos;
 use function substr;
-use function func_get_args;
-use function array_shift;
 use function implode;
 
 /**
@@ -44,7 +42,7 @@ class HtmlBuilder
     /**
      * @param string $method
      * @param array $arguments
-     * @return $this
+     * @return self
      * @throws LogicException When element is not initialized yet
      */
     public function __call(string $method, array $arguments)
@@ -61,9 +59,9 @@ class HtmlBuilder
     }
 
     /**
-     * @return $this
+     * @return self
      */
-    public function clear()
+    public function clear(): self
     {
         $this->elements = [];
         $this->scope = null;
@@ -73,9 +71,9 @@ class HtmlBuilder
     /**
      * @param string $name
      * @param array $arguments
-     * @return $this
+     * @return self
      */
-    protected function createScope(string $name, array $arguments = [])
+    protected function createScope(string $name, array $arguments = []): self
     {
         $this->scope = new Scope($name, $arguments, $this->scope);
         return $this;
@@ -96,54 +94,49 @@ class HtmlBuilder
 
     /**
      * @param string $name
-     * @return $this
+     * @return self
      */
-    public function tag($name)
+    public function tag(string $name, ...$arguments): self
     {
-        $arguments = func_get_args();
-        array_shift($arguments);
         $this->createScope($name, $arguments);
         return $this;
     }
 
     /**
      * @param string $text
-     * @return $this
+     * @return self
      */
-    public function addText($text)
+    public function addText(string $text): self
     {
-        $element = new Text($text);
-        $this->addElementToScope($element);
+        $this->addElementToScope(new Text($text));
         return $this;
     }
 
     /**
      * @param string $html
-     * @return $this
+     * @return self
      */
-    public function addHtml($html)
+    public function addHtml(string $html): self
     {
-        $element = new Text($html, false);
-        $this->addElementToScope($element);
+        $this->addElementToScope(new Text($html, false));
         return $this;
     }
 
     /**
      * @param string $comment
-     * @return $this
+     * @return self
      */
-    public function addComment($comment)
+    public function addComment($comment): self
     {
-        $element = new Comment($comment);
-        $this->addElementToScope($element);
+        $this->addElementToScope(new Comment($comment));
         return $this;
     }
 
     /**
-     * @return $this
+     * @return self
      * @throws RuntimeException When element is not initialized yet.
      */
-    public function end()
+    public function end(): self
     {
         if ($this->scope === null) {
             throw new RuntimeException('Abnormal element completion');
@@ -155,10 +148,10 @@ class HtmlBuilder
     }
 
     /**
-     * @return $this
+     * @return self
      * @throws RuntimeException When element is not initialized yet.
      */
-    public function endShorted()
+    public function endShorted(): self
     {
         if ($this->scope === null) {
             throw new RuntimeException('Abnormal element completion');
@@ -171,10 +164,10 @@ class HtmlBuilder
     }
 
     /**
-     * @return $this
+     * @return self
      * @throws RuntimeException When element is not initialized yet.
      */
-    public function endOpened()
+    public function endOpened(): self
     {
         if ($this->scope === null) {
             throw new RuntimeException('Abnormal element completion');
@@ -189,7 +182,7 @@ class HtmlBuilder
     /**
      * @return string
      */
-    public function build()
+    public function build(): string
     {
         return implode('', $this->elements);
     }
@@ -197,7 +190,7 @@ class HtmlBuilder
     /**
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         return $this->build();
     }
