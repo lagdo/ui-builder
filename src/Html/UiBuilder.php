@@ -1,11 +1,8 @@
 <?php
 
-namespace Lagdo\UiBuilder\Scope;
+namespace Lagdo\UiBuilder\Html;
 
 use Closure;
-use Lagdo\UiBuilder\BuilderInterface;
-use Lagdo\UiBuilder\Html\HtmlBuilder;
-use Lagdo\UiBuilder\Scope\Scope;
 use LogicException;
 
 use function preg_replace;
@@ -15,7 +12,7 @@ use function strtolower;
 use function substr;
 use function trim;
 
-class UiBuilder extends HtmlBuilder
+class UiBuilder extends Support\HtmlBuilder
 {
     /**
      * @var array<string, Closure>

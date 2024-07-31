@@ -2,51 +2,22 @@
 
 namespace Lagdo\UiBuilder\Html;
 
-use AvpLab\Element\Text;
-
-use function is_string;
-use function is_array;
-
-class Scope
+class Scope extends Support\Scope
 {
     /**
-     * @var string
+     * @var bool
      */
-    public $name;
+    public $isInputGroup = false;
 
     /**
-     * @var Scope|null
+     * @var bool
      */
-    public $parent;
+    public $isButtonGroup = false;
 
     /**
-     * @var array
-     */
-    public $attributes = [];
-
-    /**
-     * @var array
-     */
-    public $elements = [];
-
-    /**
-     * The constructor
+     * True if the scope was added to wrap another one, due to a framework requirement.
      *
-     * @param string $name
-     * @param array $arguments
-     * @param Scope|null $parent
+     * @var bool
      */
-    public function __construct(string $name, array $arguments = [], ?Scope $parent = null)
-    {
-        $this->name = $name;
-        $this->parent = $parent;
-        // Resolve arguments
-        foreach ($arguments as $argument) {
-            if (is_string($argument)) {
-                $this->elements[] = new Text($argument, false);
-            } elseif (is_array($argument)) {
-                $this->attributes = $argument;
-            }
-        }
-    }
+    public $isWrapper = false;
 }

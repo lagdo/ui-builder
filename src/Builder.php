@@ -2,7 +2,7 @@
 
 namespace Lagdo\UiBuilder;
 
-use Lagdo\UiBuilder\Scope\UiBuilder;
+use Lagdo\UiBuilder\Html\UiBuilder;
 use LogicException;
 
 use function ltrim;

@@ -3,7 +3,7 @@
 namespace Lagdo\UiBuilder;
 
 use Closure;
-use Lagdo\UiBuilder\Scope\UiBuilder;
+use Lagdo\UiBuilder\Html\UiBuilder;
 
 class BuilderSetup
 {

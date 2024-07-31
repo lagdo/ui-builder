@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Lagdo\UiBuilder\Html;
+namespace Lagdo\UiBuilder\Html\Support;
 
 use AvpLab\Element\Comment;
 use AvpLab\Element\Element;
