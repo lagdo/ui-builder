@@ -2,27 +2,29 @@
 
 namespace Lagdo\UiBuilder\Builder;
 
+use Lagdo\UiBuilder\BuilderInterface;
+
 interface PanelInterface
 {
     /**
      * @param string $style
      *
-     * @return self
+     * @return BuilderInterface
      */
-    public function panel(string $style = 'default', ...$arguments): self;
+    public function panel(string $style = 'default', ...$arguments): BuilderInterface;
 
     /**
-     * @return self
+     * @return BuilderInterface
      */
-    public function panelHeader(...$arguments): self;
+    public function panelHeader(...$arguments): BuilderInterface;
 
     /**
-     * @return self
+     * @return BuilderInterface
      */
-    public function panelBody(...$arguments): self;
+    public function panelBody(...$arguments): BuilderInterface;
 
     /**
-     * @return self
+     * @return BuilderInterface
      */
-    public function panelFooter(...$arguments): self;
+    public function panelFooter(...$arguments): BuilderInterface;
 }

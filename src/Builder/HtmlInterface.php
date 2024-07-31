@@ -2,29 +2,31 @@
 
 namespace Lagdo\UiBuilder\Builder;
 
+use Lagdo\UiBuilder\BuilderInterface;
+
 interface HtmlInterface
 {
     /**
      * @param string $icon
      *
-     * @return self
+     * @return BuilderInterface
      */
-    public function addIcon(string $icon): self;
+    public function addIcon(string $icon): BuilderInterface;
 
     /**
-     * @return self
+     * @return BuilderInterface
      */
-    public function addCaret(): self;
+    public function addCaret(): BuilderInterface;
 
     /**
-     * @return self
+     * @return BuilderInterface
      */
-    public function row(...$arguments): self;
+    public function row(...$arguments): BuilderInterface;
 
     /**
      * @param int $width
      *
-     * @return self
+     * @return BuilderInterface
      */
-    public function col(int $width = 12, ...$arguments): self;
+    public function col(int $width = 12, ...$arguments): BuilderInterface;
 }

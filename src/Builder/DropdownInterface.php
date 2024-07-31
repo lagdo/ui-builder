@@ -2,27 +2,29 @@
 
 namespace Lagdo\UiBuilder\Builder;
 
+use Lagdo\UiBuilder\BuilderInterface;
+
 interface DropdownInterface
 {
     /**
-     * @return self
+     * @return BuilderInterface
      */
-    public function dropdown(...$arguments): self;
+    public function dropdown(...$arguments): BuilderInterface;
 
     /**
      * @param string $style
      *
-     * @return self
+     * @return BuilderInterface
      */
-    public function dropdownItem(string $style = 'default', ...$arguments): self;
+    public function dropdownItem(string $style = 'default', ...$arguments): BuilderInterface;
 
     /**
-     * @return self
+     * @return BuilderInterface
      */
-    public function dropdownMenu(...$arguments): self;
+    public function dropdownMenu(...$arguments): BuilderInterface;
 
     /**
-     * @return self
+     * @return BuilderInterface
      */
-    public function dropdownMenuItem(...$arguments): self;
+    public function dropdownMenuItem(...$arguments): BuilderInterface;
 }

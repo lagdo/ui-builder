@@ -32,16 +32,12 @@ class UiBuilder extends HtmlBuilder
      */
     public function __construct()
     {
-        $this->addTagBuilder('set', function(BuilderInterface $builder, string $tagName, string $method, array $arguments) {
+        $this->addTagBuilder('set', function(UiBuilder $builder,
+            string $tagName, string $method, array $arguments) {
             if ($this->scope === null) {
                 throw new LogicException('Attributes can be set for elements only');
             }
             $this->scope->attributes[$tagName] = $arguments[0] ?? null;
-        });
-        $this->addTagBuilder('form', function(BuilderInterface $builder, string $tagName, string $method, array $arguments) {
-            $this->createScope($tagName, $arguments);
-            // Prepend the UI framework class to the tag.
-            $this->prependClass($this->_formTagClass($tagName));
         });
     }
 

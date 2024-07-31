@@ -2,33 +2,35 @@
 
 namespace Lagdo\UiBuilder\Builder;
 
+use Lagdo\UiBuilder\BuilderInterface;
+
 interface TabInterface
 {
     /**
      * @param string $target The id of the tab content element
      *
-     * @return self
+     * @return BuilderInterface
      */
-    public function tabNav(string $target = '', ...$arguments): self;
+    public function tabNav(string $target = '', ...$arguments): BuilderInterface;
 
     /**
      * @param string $id
      * @param bool $active
      *
-     * @return self
+     * @return BuilderInterface
      */
-    public function tabNavItem(string $id, bool $active = false, ...$arguments): self;
+    public function tabNavItem(string $id, bool $active = false, ...$arguments): BuilderInterface;
 
     /**
-     * @return self
+     * @return BuilderInterface
      */
-    public function tabContent(...$arguments): self;
+    public function tabContent(...$arguments): BuilderInterface;
 
     /**
      * @param string $id
      * @param bool $active
      *
-     * @return self
+     * @return BuilderInterface
      */
-    public function tabContentItem(string $id, bool $active = false, ...$arguments): self;
+    public function tabContentItem(string $id, bool $active = false, ...$arguments): BuilderInterface;
 }

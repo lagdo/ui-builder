@@ -2,25 +2,27 @@
 
 namespace Lagdo\UiBuilder\Builder;
 
+use Lagdo\UiBuilder\BuilderInterface;
+
 interface PaginationInterface
 {
     /**
-     * @return self
+     * @return BuilderInterface
      */
-    public function pagination(...$arguments): self;
+    public function pagination(...$arguments): BuilderInterface;
 
     /**
-     * @return self
+     * @return BuilderInterface
      */
-    public function paginationItem(...$arguments): self;
+    public function paginationItem(...$arguments): BuilderInterface;
 
     /**
-     * @return self
+     * @return BuilderInterface
      */
-    public function paginationActiveItem(...$arguments): self;
+    public function paginationActiveItem(...$arguments): BuilderInterface;
 
     /**
-     * @return self
+     * @return BuilderInterface
      */
-    public function paginationDisabledItem(...$arguments): self;
+    public function paginationDisabledItem(...$arguments): BuilderInterface;
 }

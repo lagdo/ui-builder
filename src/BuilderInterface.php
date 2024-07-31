@@ -12,13 +12,13 @@ use Lagdo\UiBuilder\Builder\TabInterface;
 use Lagdo\UiBuilder\Builder\TableInterface;
 
 /**
- * @method BuilderInterface div()
- * @method BuilderInterface span()
- * @method BuilderInterface label()
- * @method BuilderInterface input()
- * @method BuilderInterface formInput()
- * @method BuilderInterface formSelect()
- * @method BuilderInterface formTextArea()
+ * @method BuilderInterface div(...$arguments)
+ * @method BuilderInterface span(...$arguments)
+ * @method BuilderInterface label(...$arguments)
+ * @method BuilderInterface input(...$arguments)
+ * @method BuilderInterface formInput(...$arguments)
+ * @method BuilderInterface formSelect(...$arguments)
+ * @method BuilderInterface formTextArea(...$arguments)
  * @method BuilderInterface setId(string $id)
  * @method BuilderInterface setClass(string $class)
  * @method BuilderInterface setFor(string $for)
@@ -35,55 +35,55 @@ interface BuilderInterface extends DropdownInterface, FormInterface, HtmlInterfa
     public function build(): string;
 
     /**
-     * @return self
+     * @return BuilderInterface
      */
-    public function clear(): self;
+    public function clear(): BuilderInterface;
 
     /**
      * @param array $attributes
      *
-     * @return self
+     * @return BuilderInterface
      */
-    public function setAttributes(array $attributes): self;
+    public function setAttributes(array $attributes): BuilderInterface;
 
     /**
      * @param string $text
      *
-     * @return self
+     * @return BuilderInterface
      */
-    public function addText(string $text): self;
+    public function addText(string $text): BuilderInterface;
 
     /**
-     * @return self
+     * @return BuilderInterface
      */
-    public function text(...$arguments): self;
+    public function text(...$arguments): BuilderInterface;
 
     /**
      * @param string $html
      *
-     * @return self
+     * @return BuilderInterface
      */
-    public function addHtml(string $html): self;
+    public function addHtml(string $html): BuilderInterface;
 
     /**
      * @param string $comment
      *
-     * @return self
+     * @return BuilderInterface
      */
-    public function addComment(string $comment): self;
+    public function addComment(string $comment): BuilderInterface;
 
     /**
-     * @return self
+     * @return BuilderInterface
      */
-    public function end(): self;
+    public function end(): BuilderInterface;
 
     /**
-     * @return self
+     * @return BuilderInterface
      */
-    public function endShorted(): self;
+    public function endShorted(): BuilderInterface;
 
     /**
-     * @return self
+     * @return BuilderInterface
      */
-    public function endOpened(): self;
+    public function endOpened(): BuilderInterface;
 }

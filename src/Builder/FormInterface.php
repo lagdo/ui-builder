@@ -2,27 +2,29 @@
 
 namespace Lagdo\UiBuilder\Builder;
 
+use Lagdo\UiBuilder\BuilderInterface;
+
 interface FormInterface
 {
     /**
      * @param bool $horizontal
      * @param bool $wrapped
      *
-     * @return self
+     * @return BuilderInterface
      */
-    public function form(bool $horizontal = false, bool $wrapped = false, ...$arguments): self;
+    public function form(bool $horizontal = false, bool $wrapped = false, ...$arguments): BuilderInterface;
 
     /**
-     * @return self
+     * @return BuilderInterface
      */
-    public function formRow(...$arguments): self;
+    public function formRow(...$arguments): BuilderInterface;
 
     /**
      * @param int $width
      *
-     * @return self
+     * @return BuilderInterface
      */
-    public function formCol(int $width = 12, ...$arguments): self;
+    public function formCol(int $width = 12, ...$arguments): BuilderInterface;
 
     /**
      * @return string
@@ -47,40 +49,40 @@ interface FormInterface
     /**
      * @param bool $checked
      *
-     * @return self
+     * @return BuilderInterface
      */
-    public function checkbox(bool $checked = false, ...$arguments): self;
+    public function checkbox(bool $checked = false, ...$arguments): BuilderInterface;
 
     /**
      * @param bool $checked
      *
-     * @return self
+     * @return BuilderInterface
      */
-    public function radio(bool $checked = false, ...$arguments): self;
+    public function radio(bool $checked = false, ...$arguments): BuilderInterface;
 
     /**
      * @param bool $selected
      *
-     * @return self
+     * @return BuilderInterface
      */
-    public function option(bool $selected = false, ...$arguments): self;
+    public function option(bool $selected = false, ...$arguments): BuilderInterface;
 
     /**
-     * @return self
+     * @return BuilderInterface
      */
-    public function inputGroup(...$arguments): self;
+    public function inputGroup(...$arguments): BuilderInterface;
 
     /**
      * @param bool $fullWidth
      *
-     * @return self
+     * @return BuilderInterface
      */
-    public function buttonGroup(bool $fullWidth, ...$arguments): self;
+    public function buttonGroup(bool $fullWidth, ...$arguments): BuilderInterface;
 
     /**
      * @param int $flags
      *
-     * @return self
+     * @return BuilderInterface
      */
-    public function button(int $flags = 0, ...$arguments): self;
+    public function button(int $flags = 0, ...$arguments): BuilderInterface;
 }

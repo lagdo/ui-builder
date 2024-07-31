@@ -2,37 +2,39 @@
 
 namespace Lagdo\UiBuilder\Builder;
 
+use Lagdo\UiBuilder\BuilderInterface;
+
 interface MenuInterface
 {
     /**
-     * @return self
+     * @return BuilderInterface
      */
-    public function menu(...$arguments): self;
+    public function menu(...$arguments): BuilderInterface;
 
     /**
-     * @return self
+     * @return BuilderInterface
      */
-    public function menuItem(...$arguments): self;
+    public function menuItem(...$arguments): BuilderInterface;
 
     /**
-     * @return self
+     * @return BuilderInterface
      */
-    public function menuActiveItem(...$arguments): self;
+    public function menuActiveItem(...$arguments): BuilderInterface;
 
     /**
-     * @return self
+     * @return BuilderInterface
      */
-    public function menuDisabledItem(...$arguments): self;
+    public function menuDisabledItem(...$arguments): BuilderInterface;
 
     /**
-     * @return self
+     * @return BuilderInterface
      */
-    public function breadcrumb(...$arguments): self;
+    public function breadcrumb(...$arguments): BuilderInterface;
 
     /**
      * @param bool $active
      *
-     * @return self
+     * @return BuilderInterface
      */
-    public function breadcrumbItem(bool $active, ...$arguments): self;
+    public function breadcrumbItem(bool $active, ...$arguments): BuilderInterface;
 }

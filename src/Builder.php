@@ -34,13 +34,19 @@ abstract class Builder implements BuilderInterface
     public function __construct(protected BuilderSetup $setup)
     {
         $this->builder = $setup->getBuilder();
+        $this->builder->addTagBuilder('form', function(UiBuilder $builder,
+            string $tagName, string $method, array $arguments) {
+            $builder->createScope($tagName, $arguments);
+            // Prepend the UI framework class to the tag.
+            $builder->prependClass($this->_formTagClass($tagName));
+        });
     }
 
     /**
      * @param string $method
      * @param array $arguments
      *
-     * @return self
+     * @return BuilderInterface
      * @throws LogicException When element is not initialized yet
      */
     public function __call(string $method, array $arguments)
@@ -51,9 +57,9 @@ abstract class Builder implements BuilderInterface
 
     /**
      * @param string $name
-     * @return void
+     * @return BuilderInterface
      */
-    public function tag(string $name, ...$arguments)
+    public function tag(string $name, ...$arguments): BuilderInterface
     {
         $this->builder->createScope($name, $arguments);
         return $this;
@@ -63,9 +69,9 @@ abstract class Builder implements BuilderInterface
      * @param string $name
      * @param string $value
      *
-     * @return void
+     * @return BuilderInterface
      */
-    public function setAttribute(string $name, string $value)
+    public function setAttribute(string $name, string $value): BuilderInterface
     {
         $this->builder->setAttribute($name, $value);
         return $this;
@@ -74,9 +80,9 @@ abstract class Builder implements BuilderInterface
     /**
      * @param array $attributes
      *
-     * @return self
+     * @return BuilderInterface
      */
-    public function setAttributes(array $attributes): self
+    public function setAttributes(array $attributes): BuilderInterface
     {
         foreach ($attributes as $name => $value) {
             $this->builder->setAttribute($name, $value);
@@ -87,9 +93,9 @@ abstract class Builder implements BuilderInterface
     /**
      * @param string $class
      *
-     * @return self
+     * @return BuilderInterface
      */
-    public function setClass(string $class): self
+    public function setClass(string $class): BuilderInterface
     {
         // Don't overwrite the current class.
         $this->builder->appendClass($class);
@@ -99,7 +105,7 @@ abstract class Builder implements BuilderInterface
     /**
      * @inheritDoc
      */
-    public function addText(string $text): self
+    public function addText(string $text): BuilderInterface
     {
         $this->builder->addText($text);
         return $this;
@@ -108,7 +114,7 @@ abstract class Builder implements BuilderInterface
     /**
      * @inheritDoc
      */
-    public function addHtml(string $html): self
+    public function addHtml(string $html): BuilderInterface
     {
         $this->builder->addHtml($html);
         return $this;
@@ -117,7 +123,7 @@ abstract class Builder implements BuilderInterface
     /**
      * @inheritDoc
      */
-    public function addComment(string $comment): self
+    public function addComment(string $comment): BuilderInterface
     {
         $this->builder->addComment($comment);
         return $this;
@@ -126,7 +132,7 @@ abstract class Builder implements BuilderInterface
     /**
      * @inheritDoc
      */
-    public function checkbox(bool $checked = false, ...$arguments): self
+    public function checkbox(bool $checked = false, ...$arguments): BuilderInterface
     {
         $this->builder->createScope('input', $arguments);
         $this->builder->setAttribute('type', 'checkbox');
@@ -139,7 +145,7 @@ abstract class Builder implements BuilderInterface
     /**
      * @inheritDoc
      */
-    public function radio(bool $checked = false, ...$arguments): self
+    public function radio(bool $checked = false, ...$arguments): BuilderInterface
     {
         $this->builder->createScope('input', $arguments);
         $this->builder->setAttribute('type', 'radio');
@@ -152,7 +158,7 @@ abstract class Builder implements BuilderInterface
     /**
      * @inheritDoc
      */
-    public function option(bool $selected = false, ...$arguments): self
+    public function option(bool $selected = false, ...$arguments): BuilderInterface
     {
         $this->builder->createScope('option', $arguments);
         if ($selected) {
@@ -179,7 +185,7 @@ abstract class Builder implements BuilderInterface
     /**
      * @inheritDoc
      */
-    public function formCol(int $width = 12, ...$arguments): self
+    public function formCol(int $width = 12, ...$arguments): BuilderInterface
     {
         return $this->col($width, ...$arguments);
     }
@@ -193,27 +199,27 @@ abstract class Builder implements BuilderInterface
     }
 
     /**
-     * @return self
+     * @return BuilderInterface
      */
-    public function clear(): self
+    public function clear(): BuilderInterface
     {
         $this->builder->clear();
         return $this;
     }
 
     /**
-     * @return self
+     * @return BuilderInterface
      */
-    public function end(): self
+    public function end(): BuilderInterface
     {
         $this->builder->end();
         return $this;
     }
 
     /**
-     * @return self
+     * @return BuilderInterface
      */
-    public function endShorted(): self
+    public function endShorted(): BuilderInterface
     {
         $this->builder->endShorted();
         return $this;
@@ -223,7 +229,7 @@ abstract class Builder implements BuilderInterface
      * @inheritDoc
      * @throws RuntimeException When element is not initialized yet.
      */
-    public function endOpened(): self
+    public function endOpened(): BuilderInterface
     {
         $this->builder->endOpened();
         return $this;
