@@ -14,7 +14,6 @@ namespace Lagdo\UiBuilder\Html\Support;
 use AvpLab\Element\Comment;
 use AvpLab\Element\Element;
 use AvpLab\Element\Text;
-use AvpLab\Element\Tag;
 use LogicException;
 use RuntimeException;
 
@@ -37,7 +36,7 @@ class HtmlBuilder
     /**
      * @var Scope
      */
-    protected $scope;
+    protected $scope = null;
 
     /**
      * @param string $method
@@ -135,7 +134,7 @@ class HtmlBuilder
         if ($this->scope === null) {
             throw new RuntimeException('Abnormal element completion');
         }
-        $element = new Tag($this->scope->name, $this->scope->attributes, $this->scope->elements);
+        $element = new Tag($this->scope->name, $this->scope, $this->scope->elements);
         $this->scope = $this->scope->parent;
         $this->addElementToScope($element);
     }
@@ -149,7 +148,7 @@ class HtmlBuilder
         if ($this->scope === null) {
             throw new RuntimeException('Abnormal element completion');
         }
-        $element = new Tag($this->scope->name, $this->scope->attributes);
+        $element = new Tag($this->scope->name, $this->scope);
         $element->setShort(true);
         $this->scope = $this->scope->parent;
         $this->addElementToScope($element);
@@ -164,7 +163,7 @@ class HtmlBuilder
         if ($this->scope === null) {
             throw new RuntimeException('Abnormal element completion');
         }
-        $element = new Tag($this->scope->name, $this->scope->attributes);
+        $element = new Tag($this->scope->name, $this->scope);
         $element->setOpened(true);
         $this->scope = $this->scope->parent;
         $this->addElementToScope($element);

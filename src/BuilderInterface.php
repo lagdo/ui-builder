@@ -2,6 +2,7 @@
 
 namespace Lagdo\UiBuilder;
 
+use Closure;
 use Lagdo\UiBuilder\Builder\DropdownInterface;
 use Lagdo\UiBuilder\Builder\FormInterface;
 use Lagdo\UiBuilder\Builder\HtmlInterface;
@@ -29,6 +30,14 @@ use Lagdo\UiBuilder\Builder\TableInterface;
 interface BuilderInterface extends DropdownInterface, FormInterface, HtmlInterface,
     MenuInterface, PaginationInterface, PanelInterface, TabInterface, TableInterface
 {
+    /**
+     * @param string $tagPrefix
+     * @param Closure $tagBuilder
+     *
+     * @return void
+     */
+    public function addTagBuilder(string $tagPrefix, Closure $tagBuilder);
+
     /**
      * @return string
      */

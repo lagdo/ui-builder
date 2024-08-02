@@ -85,23 +85,27 @@ class UiBuilder extends Support\HtmlBuilder
     /**
      * @param string $name
      * @param string $value
+     * @param bool $escape
      *
      * @return void
      */
-    public function setAttribute(string $name, string $value)
+    public function setAttribute(string $name, string $value, bool $escape = true)
     {
         $this->scope->attributes[$name] = $value;
+        $this->scope->escapes[$name] = $escape;
     }
 
     /**
      * @param array $attributes
+     * @param bool $escape
      *
      * @return self
      */
-    public function setAttributes(array $attributes): self
+    public function setAttributes(array $attributes, bool $escape = true): self
     {
         foreach ($attributes as $name => $value) {
             $this->scope->attributes[$name] = $value;
+            $this->scope->escapes[$name] = $escape;
         }
         return $this;
     }
@@ -169,9 +173,9 @@ class UiBuilder extends Support\HtmlBuilder
         parent::end();
         // Wrappers are scopes that were automatically added.
         // They also need to be automatically ended.
-        while ($this->scope !== null && $this->scope->isWrapper) {
-            parent::end();
-        }
+        // while ($this->scope !== null && $this->scope->isWrapper) {
+        //     parent::end();
+        // }
     }
 
     /**
@@ -182,9 +186,9 @@ class UiBuilder extends Support\HtmlBuilder
         parent::endShorted();
         // Wrappers are scopes that were automatically added.
         // They also need to be automatically ended.
-        while ($this->scope !== null && $this->scope->isWrapper) {
-            parent::end();
-        }
+        // while ($this->scope !== null && $this->scope->isWrapper) {
+        //     parent::end();
+        // }
     }
 
     /**

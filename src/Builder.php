@@ -2,8 +2,10 @@
 
 namespace Lagdo\UiBuilder;
 
+use Closure;
 use Lagdo\UiBuilder\Html\UiBuilder;
 use LogicException;
+use RuntimeException;
 
 use function ltrim;
 use function rtrim;
@@ -28,12 +30,10 @@ abstract class Builder implements BuilderInterface
 
     /**
      * The constructor
-     * 
-     * @param BuilderSetup $setup
      */
-    public function __construct(protected BuilderSetup $setup)
+    public function __construct()
     {
-        $this->builder = $setup->getBuilder();
+        $this->builder = new UiBuilder();
         $this->builder->addTagBuilder('form', function(UiBuilder $builder,
             string $tagName, string $method, array $arguments) {
             $builder->createScope($tagName, $arguments);
@@ -53,6 +53,17 @@ abstract class Builder implements BuilderInterface
     {
         $this->builder->make($method, $arguments);
         return $this;
+    }
+
+    /**
+     * @param string $tagPrefix
+     * @param Closure $tagBuilder
+     *
+     * @return void
+     */
+    public function addTagBuilder(string $tagPrefix, Closure $tagBuilder)
+    {
+        $this->builder->addTagBuilder($tagPrefix, $tagBuilder);
     }
 
     /**

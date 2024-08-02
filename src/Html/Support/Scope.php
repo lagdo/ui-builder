@@ -27,6 +27,11 @@ class Scope
     /**
      * @var array
      */
+    public $escapes = [];
+
+    /**
+     * @var array
+     */
     public $elements = [];
 
     /**
