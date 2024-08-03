@@ -3,9 +3,10 @@
 namespace Lagdo\UiBuilder;
 
 use Closure;
+use Lagdo\UiBuilder\Builder\ButtonInterface;
 use Lagdo\UiBuilder\Builder\DropdownInterface;
 use Lagdo\UiBuilder\Builder\FormInterface;
-use Lagdo\UiBuilder\Builder\HtmlInterface;
+use Lagdo\UiBuilder\Builder\LayoutInterface;
 use Lagdo\UiBuilder\Builder\MenuInterface;
 use Lagdo\UiBuilder\Builder\PaginationInterface;
 use Lagdo\UiBuilder\Builder\PanelInterface;
@@ -27,8 +28,9 @@ use Lagdo\UiBuilder\Builder\TableInterface;
  * @method BuilderInterface setValue(string $value)
  * @method BuilderInterface setType(string $type)
  */
-interface BuilderInterface extends DropdownInterface, FormInterface, HtmlInterface,
-    MenuInterface, PaginationInterface, PanelInterface, TabInterface, TableInterface
+interface BuilderInterface extends ButtonInterface, DropdownInterface, FormInterface,
+    LayoutInterface, MenuInterface, PaginationInterface, PanelInterface, TabInterface,
+    TableInterface
 {
     /**
      * @param string $tagPrefix

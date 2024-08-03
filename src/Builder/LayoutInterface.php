@@ -4,20 +4,8 @@ namespace Lagdo\UiBuilder\Builder;
 
 use Lagdo\UiBuilder\BuilderInterface;
 
-interface HtmlInterface
+interface LayoutInterface
 {
-    /**
-     * @param string $icon
-     *
-     * @return BuilderInterface
-     */
-    public function addIcon(string $icon): BuilderInterface;
-
-    /**
-     * @return BuilderInterface
-     */
-    public function addCaret(): BuilderInterface;
-
     /**
      * @return BuilderInterface
      */

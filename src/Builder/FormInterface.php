@@ -71,18 +71,4 @@ interface FormInterface
      * @return BuilderInterface
      */
     public function inputGroup(...$arguments): BuilderInterface;
-
-    /**
-     * @param bool $fullWidth
-     *
-     * @return BuilderInterface
-     */
-    public function buttonGroup(bool $fullWidth, ...$arguments): BuilderInterface;
-
-    /**
-     * @param int $flags
-     *
-     * @return BuilderInterface
-     */
-    public function button(int $flags = 0, ...$arguments): BuilderInterface;
 }
