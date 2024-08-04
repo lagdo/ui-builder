@@ -12,17 +12,6 @@ use function rtrim;
 
 abstract class Builder implements BuilderInterface
 {
-    const BTN_PRIMARY = 1;
-    const BTN_SECONDARY = 2;
-    const BTN_SUCCESS = 4;
-    const BTN_INFO = 8;
-    const BTN_WARNING = 16;
-    const BTN_DANGER = 32;
-    const BTN_OUTLINE = 64;
-    const BTN_FULL_WIDTH = 128;
-    const BTN_LARGE = 256;
-    const BTN_SMALL = 512;
-
     /**
      * @var UiBuilder
      */

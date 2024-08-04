@@ -15,6 +15,16 @@ class Scope extends Support\Scope
     public $isButtonGroup = false;
 
     /**
+     * @var bool
+     */
+    public $btnOutline = false;
+
+    /**
+     * @var bool
+     */
+    public $btnFullWidth = false;
+
+    /**
      * True if the scope was added to wrap another one, due to a framework requirement.
      *
      * @var bool
