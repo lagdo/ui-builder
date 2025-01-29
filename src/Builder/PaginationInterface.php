@@ -12,17 +12,23 @@ interface PaginationInterface
     public function pagination(...$arguments): BuilderInterface;
 
     /**
+     * @param int $nPageNumber
+     *
      * @return BuilderInterface
      */
-    public function paginationItem(...$arguments): BuilderInterface;
+    public function paginationItem(int $nPageNumber, ...$arguments): BuilderInterface;
 
     /**
+     * @param int $nPageNumber
+     *
      * @return BuilderInterface
      */
-    public function paginationActiveItem(...$arguments): BuilderInterface;
+    public function paginationActiveItem(int $nPageNumber, ...$arguments): BuilderInterface;
 
     /**
+     * @param int $nPageNumber
+     *
      * @return BuilderInterface
      */
-    public function paginationDisabledItem(...$arguments): BuilderInterface;
+    public function paginationDisabledItem(int $nPageNumber, ...$arguments): BuilderInterface;
 }
