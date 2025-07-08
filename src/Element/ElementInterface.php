@@ -36,7 +36,7 @@ interface ElementInterface
      *
      * @return static
      */
-    public function appendClass(string $class): static;
+    public function addClass(string $class): static;
 
     /**
      * Prepend a class to the existing one.
@@ -45,7 +45,7 @@ interface ElementInterface
      *
      * @return static
      */
-    public function prependClass(string $class): static;
+    public function addBaseClass(string $class): static;
 
     /**
      * @param string $class

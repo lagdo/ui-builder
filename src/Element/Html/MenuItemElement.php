@@ -19,7 +19,7 @@ class MenuItemElement extends Element implements MenuItemInterface
      */
     public function active(bool $active): static
     {
-        $active && $this->appendClass('active');
+        $active && $this->addClass('active');
         return $this;
     }
 
@@ -30,7 +30,7 @@ class MenuItemElement extends Element implements MenuItemInterface
      */
     public function disabled(bool $disabled): static
     {
-        $disabled && $this->appendClass('disabled');
+        $disabled && $this->addClass('disabled');
         return $this;
     }
 }

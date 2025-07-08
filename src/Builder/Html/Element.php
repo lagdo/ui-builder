@@ -127,7 +127,7 @@ class Element extends AbstractElement implements ElementInterface
      *
      * @return static
      */
-    public function appendClass(string $class): static
+    public function addClass(string $class): static
     {
         $this->classes[] = trim($class);
         return $this;
@@ -140,7 +140,7 @@ class Element extends AbstractElement implements ElementInterface
      *
      * @return static
      */
-    public function prependClass(string $class): static
+    public function addBaseClass(string $class): static
     {
         $this->classes[0][] = trim($class);
         return $this;
@@ -154,7 +154,7 @@ class Element extends AbstractElement implements ElementInterface
     public function setClass(string $class): static
     {
         // Actually appends the class.
-        $this->appendClass($class);
+        $this->addClass($class);
         return $this;
     }
 

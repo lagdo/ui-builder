@@ -19,7 +19,7 @@ class BreadcrumbItemElement extends Element implements BreadcrumbItemInterface
      */
     public function active(bool $active = false): static
     {
-        $active && $this->appendClass('active');
+        $active && $this->addClass('active');
         return $this;
     }
 }
