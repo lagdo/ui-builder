@@ -17,14 +17,14 @@ class HtmlBuilder
     /**
      * @var array<string, Closure>
      */
-    protected $tagBuilders = [];
+    protected $elementBuilders = [];
 
     /**
      * The constructor
      */
     public function __construct()
     {
-        $this->addTagBuilder('set', function(Element|null $element,
+        $this->addElementBuilder('set', function(Element|null $element,
             string $tagName, string $method, array $arguments) {
             if ($element === null) {
                 throw new LogicException('Attributes can be set for elements only');
@@ -50,16 +50,16 @@ class HtmlBuilder
 
     /**
      * @param string $tagPrefix
-     * @param Closure $tagBuilder
+     * @param Closure $elementBuilder
      *
      * @return void
      */
-    public function addTagBuilder(string $tagPrefix, Closure $tagBuilder)
+    public function addElementBuilder(string $tagPrefix, Closure $elementBuilder)
     {
         // Do not overwrite existing builders.
-        if(!isset($this->tagBuilders[$tagPrefix]))
+        if(!isset($this->elementBuilders[$tagPrefix]))
         {
-            $this->tagBuilders[$tagPrefix] = $tagBuilder;
+            $this->elementBuilders[$tagPrefix] = $elementBuilder;
         }
     }
 
@@ -74,11 +74,11 @@ class HtmlBuilder
     public function make(string $method, array $arguments, Element|null $element = null): ElementInterface
     {
         $tagName = strtolower(preg_replace('/(?<!^)([A-Z])/', '-$1', $method));
-        foreach($this->tagBuilders as $tagPrefix => $tagBuilder)
+        foreach($this->elementBuilders as $tagPrefix => $elementBuilder)
         {
             if (stripos($tagName, "$tagPrefix-") === 0) {
                 $tagName = substr($tagName, strlen($tagPrefix) + 1);
-                return $tagBuilder($element, $tagName, $method, $arguments);
+                return $elementBuilder($element, $tagName, $method, $arguments);
             }
         }
         return $this->createElement($tagName, $arguments);
@@ -101,7 +101,7 @@ class HtmlBuilder
      */
     public function build(array $arguments): string
     {
-        // The "root" element created below is not printed.
+        // The "root" element below will not be printed.
         $scope = new Scope($this->createElement('root'));
         $scope->build($arguments);
         return $scope->html();

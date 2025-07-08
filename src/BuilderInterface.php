@@ -34,7 +34,7 @@ interface BuilderInterface extends ButtonBuilderInterface, DropdownBuilderInterf
      *
      * @return void
      */
-    public function addTagBuilder(string $tagPrefix, Closure $tagBuilder);
+    public function addElementBuilder(string $tagPrefix, Closure $tagBuilder);
 
     /**
      * @param string $name
