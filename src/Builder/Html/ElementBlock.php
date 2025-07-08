@@ -2,16 +2,15 @@
 
 namespace Lagdo\UiBuilder\Builder\Html;
 
-use AvpLab\Element\Element as BaseElement;
+use AvpLab\Element\Element as Block;
 
 use function array_merge;
-use function array_reduce;
 use function htmlspecialchars;
 use function implode;
 use function is_numeric;
 use function sprintf;
 
-class ElementTag extends BaseElement
+class ElementBlock extends Block
 {
     /**
      * @var Element
@@ -29,13 +28,13 @@ class ElementTag extends BaseElement
     private $isOpened = false;
 
     /**
-     * @var BaseElement[]
+     * @var Block[]
      */
     private $children = [];
 
     /**
      * @param Element $element
-     * @param BaseElement[] $children
+     * @param Block[] $children
      */
     public function __construct(Element $element, array $children = [])
     {
@@ -44,7 +43,7 @@ class ElementTag extends BaseElement
     }
 
     /**
-     * @param BaseElement[] $children
+     * @param Block[] $children
      */
     public function setChildren(array $children)
     {

@@ -3,13 +3,11 @@
 namespace Lagdo\UiBuilder\Builder\Html;
 
 use AvpLab\Element\Comment;
-use AvpLab\Element\Element as BaseElement;
+use AvpLab\Element\Element as Block;
 use AvpLab\Element\Text;
 use Lagdo\UiBuilder\Element\ElementInterface;
 use Closure;
 
-use function array_filter;
-use function is_a;
 use function is_array;
 use function is_string;
 use function trim;
@@ -32,9 +30,9 @@ class Element extends AbstractElement implements ElementInterface
     public $escapes = [];
 
     /**
-     * @var array
+     * @var array<Block>
      */
-    public $elements = [];
+    public $blocks = [];
 
     /**
      * @var array<AbstractElement>
@@ -59,7 +57,7 @@ class Element extends AbstractElement implements ElementInterface
         // Resolve arguments
         foreach ($arguments as $argument) {
             if (is_string($argument)) {
-                $this->elements[] = new Text($argument, false);
+                $this->blocks[] = new Text($argument, false);
             } elseif (is_array($argument)) {
                 $this->setAttributes($argument);
             }
@@ -76,8 +74,7 @@ class Element extends AbstractElement implements ElementInterface
      */
     public function children(...$arguments): static
     {
-        $this->children = array_filter($arguments, fn($argument) =>
-            is_a($argument, AbstractElement::class));
+        $this->children = $arguments;
         return $this;
     }
 
@@ -162,13 +159,13 @@ class Element extends AbstractElement implements ElementInterface
     }
 
     /**
-     * @param BaseElement $element
+     * @param Block $block
      *
      * @return static
      */
-    public function addElement(BaseElement $element): static
+    protected function addBlock(Block $block): static
     {
-        $this->elements[] = $element;
+        $this->blocks[] = $block;
         return $this;
     }
 
@@ -177,7 +174,7 @@ class Element extends AbstractElement implements ElementInterface
      */
     public function addText(string $text): static
     {
-        $this->addElement(new Text($text));
+        $this->addBlock(new Text($text));
         return $this;
     }
 
@@ -186,7 +183,7 @@ class Element extends AbstractElement implements ElementInterface
      */
     public function addHtml(string $html): static
     {
-        $this->addElement(new Text($html, false));
+        $this->addBlock(new Text($html, false));
         return $this;
     }
 
@@ -195,7 +192,7 @@ class Element extends AbstractElement implements ElementInterface
      */
     public function addComment(string $comment): static
     {
-        $this->addElement(new Comment($comment));
+        $this->addBlock(new Comment($comment));
         return $this;
     }
 
