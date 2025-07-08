@@ -2,35 +2,31 @@
 
 namespace Lagdo\UiBuilder;
 
+use Lagdo\UiBuilder\Builder\ButtonBuilderInterface;
+use Lagdo\UiBuilder\Builder\DropdownBuilderInterface;
+use Lagdo\UiBuilder\Builder\FormBuilderInterface;
+use Lagdo\UiBuilder\Builder\LayoutBuilderInterface;
+use Lagdo\UiBuilder\Builder\MenuBuilderInterface;
+use Lagdo\UiBuilder\Builder\PaginationBuilderInterface;
+use Lagdo\UiBuilder\Builder\PanelBuilderInterface;
+use Lagdo\UiBuilder\Builder\TabBuilderInterface;
+use Lagdo\UiBuilder\Builder\TableBuilderInterface;
+use Lagdo\UiBuilder\Builder\Html\AbstractElement;
+use Lagdo\UiBuilder\Element\ElementInterface;
 use Closure;
-use Lagdo\UiBuilder\Builder\ButtonInterface;
-use Lagdo\UiBuilder\Builder\DropdownInterface;
-use Lagdo\UiBuilder\Builder\FormInterface;
-use Lagdo\UiBuilder\Builder\LayoutInterface;
-use Lagdo\UiBuilder\Builder\MenuInterface;
-use Lagdo\UiBuilder\Builder\PaginationInterface;
-use Lagdo\UiBuilder\Builder\PanelInterface;
-use Lagdo\UiBuilder\Builder\TabInterface;
-use Lagdo\UiBuilder\Builder\TableInterface;
 
 /**
- * @method BuilderInterface div(...$arguments)
- * @method BuilderInterface span(...$arguments)
- * @method BuilderInterface label(...$arguments)
- * @method BuilderInterface input(...$arguments)
- * @method BuilderInterface formInput(...$arguments)
- * @method BuilderInterface formSelect(...$arguments)
- * @method BuilderInterface formTextArea(...$arguments)
- * @method BuilderInterface setId(string $id)
- * @method BuilderInterface setClass(string $class)
- * @method BuilderInterface setFor(string $for)
- * @method BuilderInterface setName(string $name)
- * @method BuilderInterface setValue(string $value)
- * @method BuilderInterface setType(string $type)
+ * @method ElementInterface div(...$arguments)
+ * @method ElementInterface span(...$arguments)
+ * @method ElementInterface label(...$arguments)
+ * @method ElementInterface input(...$arguments)
+ * @method ElementInterface formInput(...$arguments)
+ * @method ElementInterface formSelect(...$arguments)
+ * @method ElementInterface formTextArea(...$arguments)
  */
-interface BuilderInterface extends ButtonInterface, DropdownInterface, FormInterface,
-    LayoutInterface, MenuInterface, PaginationInterface, PanelInterface, TabInterface,
-    TableInterface
+interface BuilderInterface extends ButtonBuilderInterface, DropdownBuilderInterface,
+    FormBuilderInterface, LayoutBuilderInterface, PaginationBuilderInterface,
+    MenuBuilderInterface, PanelBuilderInterface, TabBuilderInterface, TableBuilderInterface
 {
     /**
      * @param string $tagPrefix
@@ -41,60 +37,29 @@ interface BuilderInterface extends ButtonInterface, DropdownInterface, FormInter
     public function addTagBuilder(string $tagPrefix, Closure $tagBuilder);
 
     /**
+     * @param string $name
+     *
+     * @return ElementInterface
+     */
+    public function tag(string $name, ...$arguments): ElementInterface;
+
+    /**
+     * @return AbstractElement
+     */
+    public function each(array $values, Closure $closure): AbstractElement;
+
+    /**
+     * @return AbstractElement
+     */
+    public function list(...$arguments): AbstractElement;
+
+    /**
+     * @return AbstractElement
+     */
+    public function when(bool $condition, Closure $closure): AbstractElement;
+
+    /**
      * @return string
      */
-    public function build(): string;
-
-    /**
-     * @return BuilderInterface
-     */
-    public function clear(): BuilderInterface;
-
-    /**
-     * @param array $attributes
-     *
-     * @return BuilderInterface
-     */
-    public function setAttributes(array $attributes): BuilderInterface;
-
-    /**
-     * @param string $text
-     *
-     * @return BuilderInterface
-     */
-    public function addText(string $text): BuilderInterface;
-
-    /**
-     * @return BuilderInterface
-     */
-    public function text(...$arguments): BuilderInterface;
-
-    /**
-     * @param string $html
-     *
-     * @return BuilderInterface
-     */
-    public function addHtml(string $html): BuilderInterface;
-
-    /**
-     * @param string $comment
-     *
-     * @return BuilderInterface
-     */
-    public function addComment(string $comment): BuilderInterface;
-
-    /**
-     * @return BuilderInterface
-     */
-    public function end(): BuilderInterface;
-
-    /**
-     * @return BuilderInterface
-     */
-    public function endShorted(): BuilderInterface;
-
-    /**
-     * @return BuilderInterface
-     */
-    public function endOpened(): BuilderInterface;
+    public function build(...$arguments): string;
 }
