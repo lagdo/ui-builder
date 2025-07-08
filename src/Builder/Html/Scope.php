@@ -47,6 +47,21 @@ class Scope
     }
 
     /**
+     * @param Element $element
+     * @param Scope $scope
+     *
+     * @return ElementBlock
+     */
+    private function createBlock(Element $element, Scope $scope): ElementBlock
+    {
+        $block = new ElementBlock($element, $scope->blocks);
+        foreach ($element->wrappers as $wrapper) {
+            $block = new ElementBlock($wrapper, [$block]);
+        }
+        return $block;
+    }
+
+    /**
      * @param array $arguments The arguments passed to the element
      *
      * @return void
@@ -65,7 +80,7 @@ class Scope
             $scope->build($element->children);
 
             // Generate the corresponding tag.
-            $this->blocks[] = new ElementBlock($element, $scope->blocks);
+            $this->blocks[] = $this->createBlock($element, $scope);
         }
     }
 
