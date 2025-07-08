@@ -15,6 +15,6 @@ abstract class AbstractElement
      *
      * @return void
      */
-    protected function onBuild(Element $parent): void
+    public function onBuild(Element $parent): void
     {}
 }
