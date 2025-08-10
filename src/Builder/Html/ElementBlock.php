@@ -85,19 +85,18 @@ class ElementBlock extends Block
     {
         // Merge the classes.
         $classes = $this->element->classes;
-        $classes[0] = implode(' ', $classes[0]);
+        $classes[0] = trim(implode(' ', $classes[0]));
         if (isset($this->element->attributes['class'])) {
             $classes[] = $this->element->attributes['class'];
         }
-        $this->element->attributes['class'] = trim(implode(' ', $classes));
+        if (($class = trim(implode(' ', $classes))) !== '') {
+            $this->element->attributes['class'] = $class;
+        }
 
         $attributes = [];
         foreach ($this->element->attributes as $name => $value) {
             if (is_numeric($name)) {
                 $attributes[] = $this->escape($value);
-                continue;
-            }
-            if ($value === '') {
                 continue;
             }
 
