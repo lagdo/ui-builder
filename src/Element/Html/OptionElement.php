@@ -15,7 +15,7 @@ class OptionElement extends Element implements OptionInterface
     /**
      * @inheritDoc
      */
-    public function selected(bool $selected = false): static
+    public function selected(bool $selected = true): static
     {
         $selected && $this->setAttribute('selected', 'selected');
         return $this;
