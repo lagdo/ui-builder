@@ -5,12 +5,12 @@ namespace Lagdo\UiBuilder\Element;
 use Closure;
 
 /**
- * @method ElementInterface setId(string $id)
- * @method ElementInterface setClass(string $class)
- * @method ElementInterface setFor(string $for)
- * @method ElementInterface setName(string $name)
- * @method ElementInterface setValue(string $value)
- * @method ElementInterface setType(string $type)
+ * @method static setId(string $id)
+ * @method static setClass(string $class)
+ * @method static setFor(string $for)
+ * @method static setName(string $name)
+ * @method static setValue(string $value)
+ * @method static setType(string $type)
  */
 interface ElementInterface
 {
