@@ -2,6 +2,9 @@
 
 namespace Lagdo\UiBuilder;
 
+use AvpLab\Element\Comment;
+use AvpLab\Element\Element as Block;
+use AvpLab\Element\Text;
 use Lagdo\UiBuilder\Builder\Html\AbstractElement;
 use Lagdo\UiBuilder\Builder\Html\Element;
 use Lagdo\UiBuilder\Builder\Html\ElementExprEach;
@@ -130,6 +133,30 @@ abstract class AbstractBuilder implements BuilderInterface
     public function when(bool $condition, Closure $closure): AbstractElement
     {
         return new ElementExprWhen($condition, $closure);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function text(string $text): Block
+    {
+        return new Text($text);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function html(string $html): Block
+    {
+        return new Text($html, false);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function comment(string $comment): Block
+    {
+        return new Comment($comment);
     }
 
     /**

@@ -2,6 +2,8 @@
 
 namespace Lagdo\UiBuilder\Element;
 
+use AvpLab\Element\Element as Block;
+
 use Closure;
 
 /**
@@ -17,17 +19,19 @@ interface ElementInterface
     /**
      * @param string $name
      * @param string $value
+     * @param bool $escape
      *
      * @return static
      */
-    public function setAttribute(string $name, string $value): static;
+    public function setAttribute(string $name, string $value, bool $escape = true): static;
 
     /**
      * @param array $attributes
+     * @param bool $escape
      *
      * @return static
      */
-    public function setAttributes(array $attributes): static;
+    public function setAttributes(array $attributes, bool $escape = true): static;
 
     /**
      * Append a class to the existing one.
@@ -55,30 +59,16 @@ interface ElementInterface
     public function setClass(string $class): static;
 
     /**
-     * @param string $text
-     *
-     * @return static
-     */
-    public function addText(string $text): static;
-
-    /**
-     * @param string $html
-     *
-     * @return static
-     */
-    public function addHtml(string $html): static;
-
-    /**
-     * @param string $comment
-     *
-     * @return static
-     */
-    public function addComment(string $comment): static;
-
-    /**
      * @return static
      */
     public function children(...$arguments): static;
+
+    /**
+     * @param Block|ElementInterface $element
+     *
+     * @return static
+     */
+    public function child(Block|ElementInterface $element): static;
 
     /**
      * @param bool $condition

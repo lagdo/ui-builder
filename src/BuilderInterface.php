@@ -2,6 +2,7 @@
 
 namespace Lagdo\UiBuilder;
 
+use AvpLab\Element\Element as Block;
 use Lagdo\UiBuilder\Builder\ButtonBuilderInterface;
 use Lagdo\UiBuilder\Builder\DropdownBuilderInterface;
 use Lagdo\UiBuilder\Builder\FormBuilderInterface;
@@ -13,12 +14,12 @@ use Lagdo\UiBuilder\Builder\TabBuilderInterface;
 use Lagdo\UiBuilder\Builder\TableBuilderInterface;
 use Lagdo\UiBuilder\Builder\Html\AbstractElement;
 use Lagdo\UiBuilder\Element\ElementInterface;
+use Lagdo\UiBuilder\Element\LabelInterface;
 use Closure;
 
 /**
  * @method ElementInterface div(...$arguments)
  * @method ElementInterface span(...$arguments)
- * @method ElementInterface label(...$arguments)
  * @method ElementInterface input(...$arguments)
  * @method ElementInterface formInput(...$arguments)
  * @method ElementInterface formSelect(...$arguments)
@@ -57,6 +58,32 @@ interface BuilderInterface extends ButtonBuilderInterface, DropdownBuilderInterf
      * @return AbstractElement
      */
     public function when(bool $condition, Closure $closure): AbstractElement;
+
+    /**
+     * @return LabelInterface
+     */
+    public function label(...$arguments): LabelInterface;
+
+    /**
+     * @param string $text
+     *
+     * @return Block
+     */
+    public function text(string $text): Block;
+
+    /**
+     * @param string $html
+     *
+     * @return Block
+     */
+    public function html(string $html): Block;
+
+    /**
+     * @param string $comment
+     *
+     * @return Block
+     */
+    public function comment(string $comment): Block;
 
     /**
      * @return string

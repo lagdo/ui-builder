@@ -54,14 +54,14 @@ class View
     /**
      * @var BuilderInterface
      */
-    protected $uiBuilder;
+    protected $html;
 
     /**
      * @param BuilderInterface
      */
-    public function __construct(BuilderInterface $uiBuilder)
+    public function __construct(BuilderInterface $html)
     {
-        $this->uiBuilder = $uiBuilder;
+        $this->html = $html;
     }
 
     /**
@@ -72,32 +72,41 @@ class View
      */
     public function getSimpleForm(array $formData)
     {
-        $this->uiBuilder->clear()
-            ->form(true)->setId('form-id')
-                ->formRow()
-                    ->formCol(4)
-                        ->formLabel()->setFor('name')->addText('Name')
-                        ->end()
-                    ->end()
-                    ->formCol(8)
-                        ->formInput()->setType('text')->setName('name')->setPlaceholder('Name')
+        return $this->html->build(
+            $this->html->form(
+                $this->html->formRow(
+                    $this->html->formCol(
+                        $this->html->formLabel($this->html->text('Name'))
+                            ->setFor('name')
+                    )
+                    ->width(4),
+                    $this->html->formCol(
+                        $this->html->formInput()
+                            ->setType('text')
+                            ->setName('name')
+                            ->setPlaceholder('Name')
                             ->setValue($formData['name'])
-                        ->endShorted()
-                    ->end()
-                ->end()
-                ->formRow()
-                    ->formCol(4)
-                        ->formLabel()->setFor('description')->addText('Description')
-                        ->end()
-                    ->end()
-                    ->formCol(8)
-                        ->formTextarea()->setRows('10')->setName('description')->setWrap('on')
-                            ->setSpellcheck('false')->addText($formData['description'])
-                        ->end()
-                    ->end()
-                ->end()
-            ->end();
-        return $this->uiBuilder->build();
+                    )
+                    ->width(8)
+                ),
+                $this->html->formRow(
+                    $this->html->formCol(
+                        $this->html->formLabel($this->html->text('Description'))
+                            ->setFor('description')
+                    )
+                    ->width(4),
+                    $this->html->formCol(
+                        $this->html->formTextarea($this->html->text($formData['description']))
+                            ->setRows('10')
+                            ->setName('description')
+                            ->setWrap('on')
+                            ->setSpellcheck('false')
+                    )
+                    ->width(8)
+                )
+            )
+            ->responsive(true)->setId('form-id')
+        );
     }
 }
 ```

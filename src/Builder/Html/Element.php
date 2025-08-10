@@ -2,7 +2,6 @@
 
 namespace Lagdo\UiBuilder\Builder\Html;
 
-use AvpLab\Element\Comment;
 use AvpLab\Element\Element as Block;
 use AvpLab\Element\Text;
 use Lagdo\UiBuilder\Element\ElementInterface;
@@ -30,11 +29,6 @@ class Element extends AbstractElement implements ElementInterface
     public $escapes = [];
 
     /**
-     * @var array<Block>
-     */
-    public $blocks = [];
-
-    /**
      * @var array<AbstractElement>
      */
     public $children = [];
@@ -54,27 +48,60 @@ class Element extends AbstractElement implements ElementInterface
     public function __construct(public HtmlBuilder $builder,
         public string $name, array $arguments = [])
     {
+        $children = [];
         // Resolve arguments
         foreach ($arguments as $argument) {
-            if (is_string($argument)) {
-                $this->blocks[] = new Text($argument, false);
-            } elseif (is_array($argument)) {
+            if (is_array($argument)) {
                 $this->setAttributes($argument);
+                continue;
             }
+
+            $children[] = is_string($argument) ? new Text($argument, false) : $argument;
         }
 
         $this->onCreate();
 
         // The arguments can also contain the list of child elements.
-        $this->children(...$arguments);
+        $this->children(...$children);
     }
 
     /**
      * @return static
      */
-    public function children(...$arguments): static
+    public function children(...$children): static
     {
-        $this->children = $arguments;
+        $this->children = $children;
+        return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function child(Block|ElementInterface $element): static
+    {
+        $this->children[] = $element;
+        return $this;
+    }
+
+    /**
+     * @param string $text
+     *
+     * @return static
+     */
+    protected function addText(string $text): static
+    {
+        $this->children[] = new Text($text);
+        return $this;
+    }
+
+    /**
+     * @param string $html
+     *
+     * @return static
+     */
+    protected function addHtml(string $html): static
+    {
+        $this->children[] = new Text($html, false);
         return $this;
     }
 
@@ -91,11 +118,7 @@ class Element extends AbstractElement implements ElementInterface
     }
 
     /**
-     * @param string $name
-     * @param string $value
-     * @param bool $escape
-     *
-     * @return static
+     * @inheritDoc
      */
     public function setAttribute(string $name, string $value, bool $escape = true): static
     {
@@ -105,10 +128,7 @@ class Element extends AbstractElement implements ElementInterface
     }
 
     /**
-     * @param array $attributes
-     * @param bool $escape
-     *
-     * @return static
+     * @inheritDoc
      */
     public function setAttributes(array $attributes, bool $escape = true): static
     {
@@ -121,11 +141,7 @@ class Element extends AbstractElement implements ElementInterface
     }
 
     /**
-     * Append a class to the existing one.
-     *
-     * @param string $class
-     *
-     * @return static
+     * @inheritDoc
      */
     public function addClass(string $class): static
     {
@@ -134,11 +150,7 @@ class Element extends AbstractElement implements ElementInterface
     }
 
     /**
-     * Prepend a class to the existing one.
-     *
-     * @param string $class
-     *
-     * @return static
+     * @inheritDoc
      */
     public function addBaseClass(string $class): static
     {
@@ -147,52 +159,12 @@ class Element extends AbstractElement implements ElementInterface
     }
 
     /**
-     * @param string $class
-     *
-     * @return static
+     * @inheritDoc
      */
     public function setClass(string $class): static
     {
         // Actually appends the class.
         $this->addClass($class);
-        return $this;
-    }
-
-    /**
-     * @param Block $block
-     *
-     * @return static
-     */
-    protected function addBlock(Block $block): static
-    {
-        $this->blocks[] = $block;
-        return $this;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function addText(string $text): static
-    {
-        $this->addBlock(new Text($text));
-        return $this;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function addHtml(string $html): static
-    {
-        $this->addBlock(new Text($html, false));
-        return $this;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function addComment(string $comment): static
-    {
-        $this->addBlock(new Comment($comment));
         return $this;
     }
 

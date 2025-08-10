@@ -10,6 +10,11 @@ use function implode;
 class Scope
 {
     /**
+     * @var array<Block|ElementBlock>
+     */
+    protected $blocks = [];
+
+    /**
      * @var array<Element>
      */
     protected $children = [];
@@ -18,9 +23,8 @@ class Scope
      * The constructor
      *
      * @param Element $parent
-     * @param array<Block> $blocks
      */
-    public function __construct(protected Element $parent, protected array $blocks = [])
+    public function __construct(protected Element $parent)
     {}
 
     /**
@@ -32,17 +36,16 @@ class Scope
      */
     private function expand(mixed $element): void
     {
-        if (is_a($element, Element::class)) {
+        if (is_a($element, Block::class) ||
+            is_a($element, Element::class)) {
             $this->children[] = $element;
             return;
         }
-        if (!is_a($element, ElementExpr::class)) {
-            return;
-        }
-
-        // Recursively expand the children of the ElementExpr element.
-        foreach ($element->children as $childElement) {
-            $this->expand($childElement);
+        if (is_a($element, ElementExpr::class)) {
+            // Recursively expand the children of the ElementExpr element.
+            foreach ($element->children as $childElement) {
+                $this->expand($childElement);
+            }
         }
     }
 
@@ -73,10 +76,16 @@ class Scope
         }
 
         foreach ($this->children as $element) {
+            if (is_a($element, Block::class)) {
+                // A children of type Block doesn't need any processing.
+                $this->blocks[] = $element;
+                continue;
+            }
+
             $element->onBuild($this->parent);
 
             // Recursively build the child scope.
-            $scope = new Scope($element, $element->blocks);
+            $scope = new Scope($element);
             $scope->build($element->children);
 
             // Generate the corresponding tag.
