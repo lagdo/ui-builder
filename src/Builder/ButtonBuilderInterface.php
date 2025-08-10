@@ -2,6 +2,7 @@
 
 namespace Lagdo\UiBuilder\Builder;
 
+use Lagdo\UiBuilder\Element\BadgeInterface;
 use Lagdo\UiBuilder\Element\ButtonGroupInterface;
 use Lagdo\UiBuilder\Element\ButtonInterface;
 
@@ -16,4 +17,9 @@ interface ButtonBuilderInterface
      * @return ButtonInterface
      */
     public function button(...$arguments): ButtonInterface;
+
+    /**
+     * @return BadgeInterface
+     */
+    public function badge(...$arguments): BadgeInterface;
 }
