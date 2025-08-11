@@ -14,7 +14,7 @@ interface BadgeInterface extends ElementInterface
      *
      * @return static
      */
-    public function type(int $type): static;
+    public function type(string $type): static;
 
     /**
      * @param string $rounded

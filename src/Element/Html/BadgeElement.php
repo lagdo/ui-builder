@@ -25,7 +25,7 @@ class BadgeElement extends Element implements BadgeInterface
      *
      * @return static
      */
-    public function type(int $type): static
+    public function type(string $type): static
     {
         return $this;
     }
