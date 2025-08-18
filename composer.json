@@ -23,6 +23,6 @@
             "Lagdo\\UiBuilder\\": "src/"
         }
     },
-    "minimum-stability": "dev",
-    "prefer-stable": true
+    "minimum-stability": "stable",
+    "prefer-stable": false
 }
