@@ -2,6 +2,7 @@
 
 namespace Lagdo\UiBuilder\Builder\Html;
 
+use AvpLab\Element\Element as Block;
 use Lagdo\UiBuilder\Element\ElementInterface;
 use Closure;
 use LogicException;
@@ -68,10 +69,11 @@ class HtmlBuilder
      * @param array $arguments
      * @param Element|null $element
      *
-     * @return ElementInterface
+     * @return ElementInterface|Block
      * @throws LogicException When element is not initialized yet
      */
-    public function make(string $method, array $arguments, Element|null $element = null): ElementInterface
+    public function make(string $method, array $arguments,
+        Element|null $element = null): ElementInterface|Block
     {
         $tagName = strtolower(preg_replace('/(?<!^)([A-Z])/', '-$1', $method));
         foreach($this->elementBuilders as $tagPrefix => $elementBuilder)

@@ -40,9 +40,9 @@ interface BuilderInterface extends ButtonBuilderInterface, DropdownBuilderInterf
     /**
      * @param string $name
      *
-     * @return ElementInterface
+     * @return ElementInterface|Block
      */
-    public function tag(string $name, ...$arguments): ElementInterface;
+    public function tag(string $name, ...$arguments): ElementInterface|Block;
 
     /**
      * @return AbstractElement
