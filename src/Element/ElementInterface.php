@@ -13,6 +13,8 @@ use Closure;
  * @method static setName(string $name)
  * @method static setValue(string $value)
  * @method static setType(string $type)
+ * @method static setTitle(string $type)
+ * @method static setStyle(string $type)
  */
 interface ElementInterface
 {

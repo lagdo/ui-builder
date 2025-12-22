@@ -18,12 +18,18 @@ use Lagdo\UiBuilder\Element\LabelInterface;
 use Closure;
 
 /**
+ * @method ElementInterface body(...$arguments)
  * @method ElementInterface div(...$arguments)
  * @method ElementInterface span(...$arguments)
  * @method ElementInterface input(...$arguments)
  * @method ElementInterface formInput(...$arguments)
  * @method ElementInterface formSelect(...$arguments)
  * @method ElementInterface formTextArea(...$arguments)
+ * @method ElementInterface thead(...$arguments)
+ * @method ElementInterface tbody(...$arguments)
+ * @method ElementInterface tr(...$arguments)
+ * @method ElementInterface th(...$arguments)
+ * @method ElementInterface td(...$arguments)
  */
 interface BuilderInterface extends ButtonBuilderInterface, DropdownBuilderInterface,
     FormBuilderInterface, LayoutBuilderInterface, PaginationBuilderInterface,
