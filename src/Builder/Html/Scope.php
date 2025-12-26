@@ -36,11 +36,11 @@ class Scope
      */
     private function expand(mixed $element): void
     {
-        if (is_a($element, Block::class) ||
-            is_a($element, Element::class)) {
+        if (is_a($element, Block::class) || is_a($element, Element::class)) {
             $this->children[] = $element;
             return;
         }
+
         if (is_a($element, ElementExpr::class)) {
             // Recursively expand the children of the ElementExpr element.
             foreach ($element->children as $childElement) {
@@ -77,7 +77,7 @@ class Scope
 
         foreach ($this->children as $element) {
             if (is_a($element, Block::class)) {
-                // A children of type Block doesn't need any processing.
+                // A children of type Block doesn't need any further processing.
                 $this->blocks[] = $element;
                 continue;
             }
