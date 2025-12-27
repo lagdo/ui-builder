@@ -6,7 +6,7 @@ use Closure;
 
 use function is_callable;
 
-class ElementExprWhen extends ElementExprList
+class ElementExprWhen extends ElementExpr
 {
     /**
      * The constructor

@@ -174,7 +174,7 @@ class Element extends AbstractElement implements ElementInterface
      *
      * @return void
      */
-    protected function addWrapper(string $name, array $arguments = [])
+    protected function addWrapper(string $name, array $arguments = []): Element
     {
         $wrapper = $this->builder->createElement($name, [$arguments]);
         $this->wrappers[] = $wrapper;

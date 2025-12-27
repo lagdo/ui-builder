@@ -4,7 +4,7 @@ namespace Lagdo\UiBuilder\Builder\Html;
 
 use Closure;
 
-class ElementExprEach extends ElementExprList
+class ElementExprEach extends ElementExpr
 {
     /**
      * The constructor
