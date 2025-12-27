@@ -11,25 +11,25 @@ use Lagdo\UiBuilder\Builder\PaginationBuilderInterface;
 use Lagdo\UiBuilder\Builder\PanelBuilderInterface;
 use Lagdo\UiBuilder\Builder\TabBuilderInterface;
 use Lagdo\UiBuilder\Builder\TableBuilderInterface;
-use Lagdo\UiBuilder\Builder\Html\AbstractElement;
-use Lagdo\UiBuilder\Builder\Html\Tag\AbstractTag;
-use Lagdo\UiBuilder\Component\ElementInterface;
-use Lagdo\UiBuilder\Component\LabelInterface;
+use Lagdo\UiBuilder\Component\Base\Component;
+use Lagdo\UiBuilder\Component\Base\HtmlComponent;
+use Lagdo\UiBuilder\Component\LabelComponent;
+use Lagdo\UiBuilder\Html\HtmlElement;
 use Closure;
 
 /**
- * @method ElementInterface body(...$arguments)
- * @method ElementInterface div(...$arguments)
- * @method ElementInterface span(...$arguments)
- * @method ElementInterface input(...$arguments)
- * @method ElementInterface formInput(...$arguments)
- * @method ElementInterface formSelect(...$arguments)
- * @method ElementInterface formTextArea(...$arguments)
- * @method ElementInterface thead(...$arguments)
- * @method ElementInterface tbody(...$arguments)
- * @method ElementInterface tr(...$arguments)
- * @method ElementInterface th(...$arguments)
- * @method ElementInterface td(...$arguments)
+ * @method HtmlComponent body(...$arguments)
+ * @method HtmlComponent div(...$arguments)
+ * @method HtmlComponent span(...$arguments)
+ * @method HtmlComponent input(...$arguments)
+ * @method HtmlComponent formInput(...$arguments)
+ * @method HtmlComponent formSelect(...$arguments)
+ * @method HtmlComponent formTextArea(...$arguments)
+ * @method HtmlComponent thead(...$arguments)
+ * @method HtmlComponent tbody(...$arguments)
+ * @method HtmlComponent tr(...$arguments)
+ * @method HtmlComponent th(...$arguments)
+ * @method HtmlComponent td(...$arguments)
  */
 interface BuilderInterface extends ButtonBuilderInterface, DropdownBuilderInterface,
     FormBuilderInterface, LayoutBuilderInterface, PaginationBuilderInterface,
@@ -46,61 +46,61 @@ interface BuilderInterface extends ButtonBuilderInterface, DropdownBuilderInterf
     /**
      * @param string $name
      *
-     * @return ElementInterface|AbstractTag
+     * @return HtmlComponent|HtmlElement
      */
-    public function tag(string $name, ...$arguments): ElementInterface|AbstractTag;
+    public function tag(string $name, ...$arguments): HtmlComponent|HtmlElement;
 
     /**
      * @param array $values
      * @param Closure $closure
      *
-     * @return AbstractElement
+     * @return Component
      */
-    public function each(array $values, Closure $closure): AbstractElement;
+    public function each(array $values, Closure $closure): Component;
 
     /**
-     * @return AbstractElement
+     * @return Component
      */
-    public function list(...$arguments): AbstractElement;
+    public function list(...$arguments): Component;
 
     /**
      * @param bool $condition
      * @param Closure $closure
      *
-     * @return AbstractElement
+     * @return Component
      */
-    public function when(bool $condition, Closure $closure): AbstractElement;
+    public function when(bool $condition, Closure $closure): Component;
 
     /**
-     * @return AbstractElement
+     * @return Component
      */
-    public function take(...$arguments): AbstractElement;
+    public function take(...$arguments): Component;
 
     /**
-     * @return LabelInterface
+     * @return LabelComponent
      */
-    public function label(...$arguments): LabelInterface;
+    public function label(...$arguments): LabelComponent;
 
     /**
      * @param string $text
      *
-     * @return AbstractTag
+     * @return HtmlElement
      */
-    public function text(string $text): AbstractTag;
+    public function text(string $text): HtmlElement;
 
     /**
      * @param string $html
      *
-     * @return AbstractTag
+     * @return HtmlElement
      */
-    public function html(string $html): AbstractTag;
+    public function html(string $html): HtmlElement;
 
     /**
      * @param string $comment
      *
-     * @return AbstractTag
+     * @return HtmlElement
      */
-    public function comment(string $comment): AbstractTag;
+    public function comment(string $comment): HtmlElement;
 
     /**
      * @return string

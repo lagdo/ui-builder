@@ -2,32 +2,32 @@
 
 namespace Lagdo\UiBuilder\Builder;
 
-use Lagdo\UiBuilder\Component\PanelInterface;
-use Lagdo\UiBuilder\Component\PanelBodyInterface;
-use Lagdo\UiBuilder\Component\PanelFooterInterface;
-use Lagdo\UiBuilder\Component\PanelHeaderInterface;
+use Lagdo\UiBuilder\Component\PanelComponent;
+use Lagdo\UiBuilder\Component\PanelBodyComponent;
+use Lagdo\UiBuilder\Component\PanelFooterComponent;
+use Lagdo\UiBuilder\Component\PanelHeaderComponent;
 
 interface PanelBuilderInterface
 {
     /**
      * @param string $style
      *
-     * @return PanelInterface
+     * @return PanelComponent
      */
-    public function panel(...$arguments): PanelInterface;
+    public function panel(...$arguments): PanelComponent;
 
     /**
-     * @return PanelHeaderInterface
+     * @return PanelHeaderComponent
      */
-    public function panelHeader(...$arguments): PanelHeaderInterface;
+    public function panelHeader(...$arguments): PanelHeaderComponent;
 
     /**
-     * @return PanelBodyInterface
+     * @return PanelBodyComponent
      */
-    public function panelBody(...$arguments): PanelBodyInterface;
+    public function panelBody(...$arguments): PanelBodyComponent;
 
     /**
-     * @return PanelHeaderInterface
+     * @return PanelHeaderComponent
      */
-    public function panelFooter(...$arguments): PanelFooterInterface;
+    public function panelFooter(...$arguments): PanelFooterComponent;
 }

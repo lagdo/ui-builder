@@ -2,18 +2,18 @@
 
 namespace Lagdo\UiBuilder\Builder;
 
-use Lagdo\UiBuilder\Component\ColInterface;
-use Lagdo\UiBuilder\Component\RowInterface;
+use Lagdo\UiBuilder\Component\ColComponent;
+use Lagdo\UiBuilder\Component\RowComponent;
 
 interface LayoutBuilderInterface
 {
     /**
-     * @return RowInterface
+     * @return RowComponent
      */
-    public function row(...$arguments): RowInterface;
+    public function row(...$arguments): RowComponent;
 
     /**
-     * @return ColInterface
+     * @return ColComponent
      */
-    public function col(...$arguments): ColInterface;
+    public function col(...$arguments): ColComponent;
 }

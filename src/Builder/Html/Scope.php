@@ -2,7 +2,9 @@
 
 namespace Lagdo\UiBuilder\Builder\Html;
 
-use Lagdo\UiBuilder\Builder\Html\Tag\AbstractTag;
+use Lagdo\UiBuilder\Component\Base\HtmlComponent;
+use Lagdo\UiBuilder\Component\Virtual\VirtualComponent;
+use Lagdo\UiBuilder\Html\HtmlElement;
 
 use function is_a;
 use function implode;
@@ -10,62 +12,63 @@ use function implode;
 class Scope
 {
     /**
-     * @var array<AbstractTag|ElementTag>
+     * @var array<HtmlElement|Content>
      */
-    protected $tags = [];
+    protected $contents = [];
 
     /**
-     * @var array<Element>
+     * @var array<HtmlComponent>
      */
     protected $children = [];
 
     /**
      * The constructor
      *
-     * @param Element $parent
+     * @param HtmlComponent $parent
      */
-    public function __construct(protected Element $parent)
+    public function __construct(protected HtmlComponent $parent)
     {}
 
     /**
-     * Create the corresponding elements
+     * Create the corresponding components
      *
-     * @param mixed $element
+     * @param mixed $component
      *
      * @return void
      */
-    private function expand(mixed $element): void
+    private function expand(mixed $component): void
     {
-        if (is_a($element, AbstractTag::class) || is_a($element, Element::class)) {
-            $this->children[] = $element;
+        if (is_a($component, HtmlElement::class) ||
+            is_a($component, HtmlComponent::class)) {
+            $this->children[] = $component;
             return;
         }
 
-        if (is_a($element, ElementExpr::class)) {
-            // Recursively expand the children of the ElementExpr element.
-            foreach ($element->children as $childElement) {
+        if (is_a($component, VirtualComponent::class)) {
+            // Recursively expand the children of the virtual components.
+            foreach ($component->children as $childElement) {
                 $this->expand($childElement);
             }
         }
     }
 
     /**
-     * @param Element $element
+     * @param HtmlComponent $component
      * @param Scope $scope
      *
-     * @return ElementTag
+     * @return Content
      */
-    private function createTag(Element $element, Scope $scope): ElementTag
+    private function createContent(HtmlComponent $component, Scope $scope): Content
     {
-        $tag = new ElementTag($element, $scope->tags);
-        foreach ($element->wrappers as $wrapper) {
-            $tag = new ElementTag($wrapper, [$tag]);
+        $content = new Content($component, $scope->contents);
+        foreach ($component->wrappers as $wrapper) {
+            $content = new Content($wrapper, [$content]);
         }
-        return $tag;
+        return $content;
     }
 
     /**
-     * @param array $arguments The arguments passed to the element
+     * @param array $arguments The arguments passed to the component
      *
      * @return void
      */
@@ -75,21 +78,21 @@ class Scope
             $this->expand($argument);
         }
 
-        foreach ($this->children as $element) {
-            if (is_a($element, AbstractTag::class)) {
-                // A children of type AbstractTag doesn't need any further processing.
-                $this->tags[] = $element;
+        foreach ($this->children as $component) {
+            if (is_a($component, HtmlElement::class)) {
+                // A children of type HtmlElement doesn't need any further processing.
+                $this->contents[] = $component;
                 continue;
             }
 
-            $element->onBuild($this->parent);
+            $component->onBuild($this->parent);
 
             // Recursively build the child scope.
-            $scope = new Scope($element);
-            $scope->build($element->children);
+            $scope = new Scope($component);
+            $scope->build($component->children);
 
-            // Generate the corresponding tag.
-            $this->tags[] = $this->createTag($element, $scope);
+            // Generate the component content.
+            $this->contents[] = $this->createContent($component, $scope);
         }
     }
 
@@ -98,7 +101,7 @@ class Scope
      */
     public function html(): string
     {
-        // Merge all the generated tags.
-        return implode('', $this->tags);
+        // Merge all the generated contents.
+        return implode('', $this->contents);
     }
 }

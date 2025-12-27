@@ -2,54 +2,54 @@
 
 namespace Lagdo\UiBuilder\Builder;
 
-use Lagdo\UiBuilder\Component\CheckboxInterface;
-use Lagdo\UiBuilder\Component\ColInterface;
-use Lagdo\UiBuilder\Component\FormInterface;
-use Lagdo\UiBuilder\Component\InputGroupInterface;
-use Lagdo\UiBuilder\Component\OptionInterface;
-use Lagdo\UiBuilder\Component\RadioInterface;
-use Lagdo\UiBuilder\Component\RowInterface;
+use Lagdo\UiBuilder\Component\CheckboxComponent;
+use Lagdo\UiBuilder\Component\ColComponent;
+use Lagdo\UiBuilder\Component\FormComponent;
+use Lagdo\UiBuilder\Component\InputGroupComponent;
+use Lagdo\UiBuilder\Component\OptionComponent;
+use Lagdo\UiBuilder\Component\RadioComponent;
+use Lagdo\UiBuilder\Component\RowComponent;
 
 interface FormBuilderInterface
 {
     /**
-     * @return FormInterface
+     * @return FormComponent
      */
-    public function form(...$arguments): FormInterface;
+    public function form(...$arguments): FormComponent;
 
     /**
-     * @return RowInterface
+     * @return RowComponent
      */
-    public function formRow(...$arguments): RowInterface;
+    public function formRow(...$arguments): RowComponent;
 
     /**
-     * @return ColInterface
+     * @return ColComponent
      */
-    public function formCol(...$arguments): ColInterface;
-
-    /**
-     * @param bool $checked
-     *
-     * @return CheckboxInterface
-     */
-    public function checkbox(...$arguments): CheckboxInterface;
+    public function formCol(...$arguments): ColComponent;
 
     /**
      * @param bool $checked
      *
-     * @return RadioInterface
+     * @return CheckboxComponent
      */
-    public function radio(...$arguments): RadioInterface;
+    public function checkbox(...$arguments): CheckboxComponent;
+
+    /**
+     * @param bool $checked
+     *
+     * @return RadioComponent
+     */
+    public function radio(...$arguments): RadioComponent;
 
     /**
      * @param bool $selected
      *
-     * @return OptionInterface
+     * @return OptionComponent
      */
-    public function option(...$arguments): OptionInterface;
+    public function option(...$arguments): OptionComponent;
 
     /**
-     * @return InputGroupInterface
+     * @return InputGroupComponent
      */
-    public function inputGroup(...$arguments): InputGroupInterface;
+    public function inputGroup(...$arguments): InputGroupComponent;
 }

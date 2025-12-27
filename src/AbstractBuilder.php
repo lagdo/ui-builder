@@ -2,19 +2,18 @@
 
 namespace Lagdo\UiBuilder;
 
-use Lagdo\UiBuilder\Builder\Html\AbstractElement;
-use Lagdo\UiBuilder\Builder\Html\Element;
-use Lagdo\UiBuilder\Builder\Html\ElementExprEach;
-use Lagdo\UiBuilder\Builder\Html\ElementExprList;
-use Lagdo\UiBuilder\Builder\Html\ElementExprTake;
-use Lagdo\UiBuilder\Builder\Html\ElementExprWhen;
 use Lagdo\UiBuilder\Builder\Html\HtmlBuilder;
-use Lagdo\UiBuilder\Builder\Html\Tag\AbstractTag;
-use Lagdo\UiBuilder\Builder\Html\Tag\Comment;
-use Lagdo\UiBuilder\Builder\Html\Tag\Text;
-use Lagdo\UiBuilder\Component\ElementInterface;
-use Lagdo\UiBuilder\Component\ColInterface;
-use Lagdo\UiBuilder\Component\RowInterface;
+use Lagdo\UiBuilder\Component\Base\Component;
+use Lagdo\UiBuilder\Component\Base\HtmlComponent;
+use Lagdo\UiBuilder\Component\ColComponent;
+use Lagdo\UiBuilder\Component\RowComponent;
+use Lagdo\UiBuilder\Component\Virtual\EachComponent;
+use Lagdo\UiBuilder\Component\Virtual\ListComponent;
+use Lagdo\UiBuilder\Component\Virtual\TakeComponent;
+use Lagdo\UiBuilder\Component\Virtual\WhenComponent;
+use Lagdo\UiBuilder\Html\HtmlElement;
+use Lagdo\UiBuilder\Html\Comment;
+use Lagdo\UiBuilder\Html\Text;
 use Closure;
 
 abstract class AbstractBuilder implements BuilderInterface
@@ -30,9 +29,9 @@ abstract class AbstractBuilder implements BuilderInterface
     public function __construct()
     {
         $this->builder = new HtmlBuilder();
-        $this->builder->addElementBuilder('form', function(Element|null $element,
+        $this->builder->addElementBuilder('form', function(HtmlComponent|null $element,
             string $tagName, string $method, array $arguments) {
-            return $this->createFormElement($tagName, $arguments);
+            return $this->createFormComponent($tagName, $arguments);
         });
     }
 
@@ -40,7 +39,7 @@ abstract class AbstractBuilder implements BuilderInterface
      * @param string $method
      * @param array $arguments
      *
-     * @return ElementInterface
+     * @return HtmlComponent
      */
     public function __call(string $method, array $arguments): mixed
     {
@@ -58,7 +57,7 @@ abstract class AbstractBuilder implements BuilderInterface
     /**
      * @inheritDoc
      */
-    public function tag(string $name, ...$arguments): ElementInterface
+    public function tag(string $name, ...$arguments): HtmlComponent
     {
         return $this->builder->createElement($name, $arguments);
     }
@@ -66,13 +65,13 @@ abstract class AbstractBuilder implements BuilderInterface
     /**
      * Create an element of a given class name
      *
-     * @template T of Element
+     * @template T of HtmlComponent
      * @psalm-param class-string<T> $class
      * @param array $arguments
      *
      * @return T
      */
-    protected function createElementOfClass(string $class, $arguments): Element
+    protected function createElementOfClass(string $class, $arguments): HtmlComponent
     {
         return $this->builder->createElement($class::$tag, $arguments, $class);
     }
@@ -81,14 +80,14 @@ abstract class AbstractBuilder implements BuilderInterface
      * @param string $tagName
      * @param array $arguments
      *
-     * @return ElementInterface
+     * @return HtmlComponent
      */
-    abstract protected function createFormElement(string $tagName, $arguments): ElementInterface;
+    abstract protected function createFormComponent(string $tagName, $arguments): HtmlComponent;
 
     /**
      * @inheritDoc
      */
-    public function formRow(...$arguments): RowInterface
+    public function formRow(...$arguments): RowComponent
     {
         return $this->row(...$arguments);
     }
@@ -96,7 +95,7 @@ abstract class AbstractBuilder implements BuilderInterface
     /**
      * @inheritDoc
      */
-    public function formCol(...$arguments): ColInterface
+    public function formCol(...$arguments): ColComponent
     {
         return $this->col(...$arguments);
     }
@@ -104,39 +103,39 @@ abstract class AbstractBuilder implements BuilderInterface
     /**
      * @inheritDoc
      */
-    public function each(array $values, Closure $closure): AbstractElement
+    public function each(array $values, Closure $closure): Component
     {
-        return new ElementExprEach($values, $closure);
+        return new EachComponent($values, $closure);
     }
 
     /**
      * @inheritDoc
      */
-    public function list(...$arguments): AbstractElement
+    public function list(...$arguments): Component
     {
-        return new ElementExprList($arguments);
+        return new ListComponent($arguments);
     }
 
     /**
      * @inheritDoc
      */
-    public function when(bool $condition, Closure $closure): AbstractElement
+    public function when(bool $condition, Closure $closure): Component
     {
-        return new ElementExprWhen($condition, $closure);
+        return new WhenComponent($condition, $closure);
     }
 
     /**
      * @inheritDoc
      */
-    public function take(...$arguments): AbstractElement
+    public function take(...$arguments): Component
     {
-        return new ElementExprTake($arguments);
+        return new TakeComponent($arguments);
     }
 
     /**
      * @inheritDoc
      */
-    public function text(string $text): AbstractTag
+    public function text(string $text): HtmlElement
     {
         return new Text($text);
     }
@@ -144,7 +143,7 @@ abstract class AbstractBuilder implements BuilderInterface
     /**
      * @inheritDoc
      */
-    public function html(string $html): AbstractTag
+    public function html(string $html): HtmlElement
     {
         return new Text($html, false);
     }
@@ -152,7 +151,7 @@ abstract class AbstractBuilder implements BuilderInterface
     /**
      * @inheritDoc
      */
-    public function comment(string $comment): AbstractTag
+    public function comment(string $comment): HtmlElement
     {
         return new Comment($comment);
     }

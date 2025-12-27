@@ -2,8 +2,8 @@
 
 namespace Lagdo\UiBuilder\Builder\Html;
 
-use Lagdo\UiBuilder\Builder\Html\Tag\AbstractTag;
-use Lagdo\UiBuilder\Component\ElementInterface;
+use Lagdo\UiBuilder\Component\Base\HtmlComponent;
+use Lagdo\UiBuilder\Html\HtmlElement;
 use Closure;
 use LogicException;
 
@@ -25,7 +25,7 @@ class HtmlBuilder
      */
     public function __construct()
     {
-        $this->addElementBuilder('set', function(Element|null $element,
+        $this->addElementBuilder('set', function(HtmlComponent|null $element,
             string $tagName, string $method, array $arguments) {
             if ($element === null) {
                 throw new LogicException('Attributes can be set for elements only');
@@ -36,7 +36,7 @@ class HtmlBuilder
     }
 
     /**
-     * @template T of Element
+     * @template T of HtmlComponent
      * @param string $name
      * @param array $arguments
      * @psalm-param class-string<T> $class
@@ -44,7 +44,7 @@ class HtmlBuilder
      * @return T
      */
     public function createElement(string $name, array $arguments = [],
-        string $class = Element::class): mixed
+        string $class = HtmlComponent::class): mixed
     {
         return new $class($this, $name, $arguments);
     }
@@ -67,13 +67,13 @@ class HtmlBuilder
     /**
      * @param string $method
      * @param array $arguments
-     * @param Element|null $element
+     * @param HtmlComponent|null $element
      *
-     * @return ElementInterface|AbstractTag
+     * @return HtmlComponent|HtmlElement
      * @throws LogicException When element is not initialized yet
      */
     public function make(string $method, array $arguments,
-        Element|null $element = null): ElementInterface|AbstractTag
+        HtmlComponent|null $element = null): HtmlComponent|HtmlElement
     {
         $tagName = strtolower(preg_replace('/(?<!^)([A-Z])/', '-$1', $method));
         foreach($this->elementBuilders as $tagPrefix => $elementBuilder)
@@ -89,9 +89,9 @@ class HtmlBuilder
     /**
      * @param string $name
      *
-     * @return Element
+     * @return HtmlComponent
      */
-    public function tag(string $name, ...$arguments): Element
+    public function tag(string $name, ...$arguments): HtmlComponent
     {
         return $this->createElement($name, $arguments);
     }

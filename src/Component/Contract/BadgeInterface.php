@@ -1,0 +1,32 @@
+<?php
+
+namespace Lagdo\UiBuilder\Component\Contract;
+
+interface BadgeInterface
+{
+    /**
+     * @return static
+     */
+    public function top(): static;
+
+    /**
+     * @param string $type
+     *
+     * @return static
+     */
+    public function type(string $type): static;
+
+    /**
+     * @param string $rounded
+     *
+     * @return static
+     */
+    public function rounded(string $rounded): static;
+
+    /**
+     * @param string $border
+     *
+     * @return static
+     */
+    public function border(string $border): static;
+}
