@@ -6,6 +6,7 @@ use Lagdo\UiBuilder\Builder\Html\AbstractElement;
 use Lagdo\UiBuilder\Builder\Html\Element;
 use Lagdo\UiBuilder\Builder\Html\ElementExprEach;
 use Lagdo\UiBuilder\Builder\Html\ElementExprList;
+use Lagdo\UiBuilder\Builder\Html\ElementExprTake;
 use Lagdo\UiBuilder\Builder\Html\ElementExprWhen;
 use Lagdo\UiBuilder\Builder\Html\HtmlBuilder;
 use Lagdo\UiBuilder\Builder\Html\Tag\AbstractTag;
@@ -133,6 +134,14 @@ abstract class AbstractBuilder implements BuilderInterface
     public function when(bool $condition, Closure $closure): AbstractElement
     {
         return new ElementExprWhen($condition, $closure);
+    }
+
+    /**
+     * @return AbstractElement
+     */
+    public function take(...$arguments): AbstractElement
+    {
+        return new ElementExprTake($arguments);
     }
 
     /**

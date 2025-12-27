@@ -66,6 +66,11 @@ interface BuilderInterface extends ButtonBuilderInterface, DropdownBuilderInterf
     public function when(bool $condition, Closure $closure): AbstractElement;
 
     /**
+     * @return AbstractElement
+     */
+    public function take(...$arguments): AbstractElement;
+
+    /**
      * @return LabelInterface
      */
     public function label(...$arguments): LabelInterface;
