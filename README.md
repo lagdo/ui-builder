@@ -10,7 +10,7 @@ A customizable and extensible HTML UI builder
 
 This package provides a unified API in PHP to create UI for CSS frameworks like Bootstrap.
 
-It extends the [PHP HTML builder](https://github.com/avplab/php-html-builder) with functions to create UI components like menus, forms, tabs and so on.
+It takes its inspiration from the [PHP HTML builder](https://github.com/avplab/php-html-builder), with functions to create UI components like menus, forms, tabs and so on.
 
 ### Motivation
 
@@ -23,14 +23,14 @@ Adding support of a given CSS framework is then easier and less error-prone.
 
 ### Getting Started
 
-The `BuilderInterface` in the `src/` directory defines the functions that can be used to build user interfaces, in addition to those provided by the [PHP HTML builder](https://github.com/avplab/php-html-builder).
-While the later only generates HTML code, the `BuilderInterface` functions will also add the CSS classes defined by the frameworks for the UI components.
+The `BuilderInterface` in the `src/` directory defines the functions that can be used to build user interfaces.
+What it actually creates is not only HTML elements, but also UI components as defined by popular CSS frameworks like Bootstrap or Bulma.
 
-The class that generates the final HTML code is provided by a separate package, which must be installed in addition to this one.
+The classes that generate the final HTML code is provided by a separate package, which must be installed in addition to this one.
 
 #### Prerequisites
 
-This package requires PHP version 7.1 or greater.
+This package requires PHP version 8.0 or greater.
 
 #### Installation
 
