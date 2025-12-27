@@ -2,13 +2,13 @@
 
 namespace Lagdo\UiBuilder\Builder;
 
-use Lagdo\UiBuilder\Element\CheckboxInterface;
-use Lagdo\UiBuilder\Element\ColInterface;
-use Lagdo\UiBuilder\Element\FormInterface;
-use Lagdo\UiBuilder\Element\InputGroupInterface;
-use Lagdo\UiBuilder\Element\OptionInterface;
-use Lagdo\UiBuilder\Element\RadioInterface;
-use Lagdo\UiBuilder\Element\RowInterface;
+use Lagdo\UiBuilder\Component\CheckboxInterface;
+use Lagdo\UiBuilder\Component\ColInterface;
+use Lagdo\UiBuilder\Component\FormInterface;
+use Lagdo\UiBuilder\Component\InputGroupInterface;
+use Lagdo\UiBuilder\Component\OptionInterface;
+use Lagdo\UiBuilder\Component\RadioInterface;
+use Lagdo\UiBuilder\Component\RowInterface;
 
 interface FormBuilderInterface
 {

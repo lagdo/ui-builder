@@ -2,8 +2,8 @@
 
 namespace Lagdo\UiBuilder\Builder;
 
-use Lagdo\UiBuilder\Element\ColInterface;
-use Lagdo\UiBuilder\Element\RowInterface;
+use Lagdo\UiBuilder\Component\ColInterface;
+use Lagdo\UiBuilder\Component\RowInterface;
 
 interface LayoutBuilderInterface
 {

@@ -2,10 +2,10 @@
 
 namespace Lagdo\UiBuilder\Builder;
 
-use Lagdo\UiBuilder\Element\DropdownInterface;
-use Lagdo\UiBuilder\Element\DropdownItemInterface;
-use Lagdo\UiBuilder\Element\DropdownMenuInterface;
-use Lagdo\UiBuilder\Element\DropdownMenuItemInterface;
+use Lagdo\UiBuilder\Component\DropdownInterface;
+use Lagdo\UiBuilder\Component\DropdownItemInterface;
+use Lagdo\UiBuilder\Component\DropdownMenuInterface;
+use Lagdo\UiBuilder\Component\DropdownMenuItemInterface;
 
 interface DropdownBuilderInterface
 {

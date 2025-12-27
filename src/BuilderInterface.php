@@ -13,8 +13,8 @@ use Lagdo\UiBuilder\Builder\TabBuilderInterface;
 use Lagdo\UiBuilder\Builder\TableBuilderInterface;
 use Lagdo\UiBuilder\Builder\Html\AbstractElement;
 use Lagdo\UiBuilder\Builder\Html\Tag\AbstractTag;
-use Lagdo\UiBuilder\Element\ElementInterface;
-use Lagdo\UiBuilder\Element\LabelInterface;
+use Lagdo\UiBuilder\Component\ElementInterface;
+use Lagdo\UiBuilder\Component\LabelInterface;
 use Closure;
 
 /**
@@ -51,6 +51,9 @@ interface BuilderInterface extends ButtonBuilderInterface, DropdownBuilderInterf
     public function tag(string $name, ...$arguments): ElementInterface|AbstractTag;
 
     /**
+     * @param array $values
+     * @param Closure $closure
+     *
      * @return AbstractElement
      */
     public function each(array $values, Closure $closure): AbstractElement;
@@ -61,6 +64,9 @@ interface BuilderInterface extends ButtonBuilderInterface, DropdownBuilderInterf
     public function list(...$arguments): AbstractElement;
 
     /**
+     * @param bool $condition
+     * @param Closure $closure
+     *
      * @return AbstractElement
      */
     public function when(bool $condition, Closure $closure): AbstractElement;

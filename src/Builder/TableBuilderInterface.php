@@ -2,7 +2,7 @@
 
 namespace Lagdo\UiBuilder\Builder;
 
-use Lagdo\UiBuilder\Element\TableInterface;
+use Lagdo\UiBuilder\Component\TableInterface;
 
 interface TableBuilderInterface
 {

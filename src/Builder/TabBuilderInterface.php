@@ -2,10 +2,10 @@
 
 namespace Lagdo\UiBuilder\Builder;
 
-use Lagdo\UiBuilder\Element\TabNavInterface;
-use Lagdo\UiBuilder\Element\TabNavItemInterface;
-use Lagdo\UiBuilder\Element\TabContentInterface;
-use Lagdo\UiBuilder\Element\TabContentItemInterface;
+use Lagdo\UiBuilder\Component\TabNavInterface;
+use Lagdo\UiBuilder\Component\TabNavItemInterface;
+use Lagdo\UiBuilder\Component\TabContentInterface;
+use Lagdo\UiBuilder\Component\TabContentItemInterface;
 
 interface TabBuilderInterface
 {

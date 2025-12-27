@@ -2,10 +2,10 @@
 
 namespace Lagdo\UiBuilder\Builder;
 
-use Lagdo\UiBuilder\Element\BreadcrumbInterface;
-use Lagdo\UiBuilder\Element\BreadcrumbItemInterface;
-use Lagdo\UiBuilder\Element\MenuInterface;
-use Lagdo\UiBuilder\Element\MenuItemInterface;
+use Lagdo\UiBuilder\Component\BreadcrumbInterface;
+use Lagdo\UiBuilder\Component\BreadcrumbItemInterface;
+use Lagdo\UiBuilder\Component\MenuInterface;
+use Lagdo\UiBuilder\Component\MenuItemInterface;
 
 interface MenuBuilderInterface
 {

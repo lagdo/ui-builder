@@ -3,7 +3,7 @@
 namespace Lagdo\UiBuilder\Builder\Html;
 
 use Lagdo\UiBuilder\Builder\Html\Tag\AbstractTag;
-use Lagdo\UiBuilder\Element\ElementInterface;
+use Lagdo\UiBuilder\Component\ElementInterface;
 use Closure;
 use LogicException;
 

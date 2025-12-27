@@ -12,9 +12,9 @@ use Lagdo\UiBuilder\Builder\Html\HtmlBuilder;
 use Lagdo\UiBuilder\Builder\Html\Tag\AbstractTag;
 use Lagdo\UiBuilder\Builder\Html\Tag\Comment;
 use Lagdo\UiBuilder\Builder\Html\Tag\Text;
-use Lagdo\UiBuilder\Element\ElementInterface;
-use Lagdo\UiBuilder\Element\ColInterface;
-use Lagdo\UiBuilder\Element\RowInterface;
+use Lagdo\UiBuilder\Component\ElementInterface;
+use Lagdo\UiBuilder\Component\ColInterface;
+use Lagdo\UiBuilder\Component\RowInterface;
 use Closure;
 
 abstract class AbstractBuilder implements BuilderInterface
@@ -48,10 +48,7 @@ abstract class AbstractBuilder implements BuilderInterface
     }
 
     /**
-     * @param string $tagPrefix
-     * @param Closure $tagBuilder
-     *
-     * @return void
+     * @inheritDoc
      */
     public function addElementBuilder(string $tagPrefix, Closure $tagBuilder)
     {
@@ -59,9 +56,7 @@ abstract class AbstractBuilder implements BuilderInterface
     }
 
     /**
-     * @param string $name
-     *
-     * @return ElementInterface
+     * @inheritDoc
      */
     public function tag(string $name, ...$arguments): ElementInterface
     {
@@ -107,10 +102,7 @@ abstract class AbstractBuilder implements BuilderInterface
     }
 
     /**
-     * @param array $values
-     * @param Closure $closure
-     *
-     * @return ElementExprEach
+     * @inheritDoc
      */
     public function each(array $values, Closure $closure): AbstractElement
     {
@@ -118,7 +110,7 @@ abstract class AbstractBuilder implements BuilderInterface
     }
 
     /**
-     * @return AbstractElement
+     * @inheritDoc
      */
     public function list(...$arguments): AbstractElement
     {
@@ -126,10 +118,7 @@ abstract class AbstractBuilder implements BuilderInterface
     }
 
     /**
-     * @param bool $condition
-     * @param Closure $closure
-     *
-     * @return AbstractElement
+     * @inheritDoc
      */
     public function when(bool $condition, Closure $closure): AbstractElement
     {
@@ -137,7 +126,7 @@ abstract class AbstractBuilder implements BuilderInterface
     }
 
     /**
-     * @return AbstractElement
+     * @inheritDoc
      */
     public function take(...$arguments): AbstractElement
     {

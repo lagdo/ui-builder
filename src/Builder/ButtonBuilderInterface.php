@@ -2,9 +2,9 @@
 
 namespace Lagdo\UiBuilder\Builder;
 
-use Lagdo\UiBuilder\Element\BadgeInterface;
-use Lagdo\UiBuilder\Element\ButtonGroupInterface;
-use Lagdo\UiBuilder\Element\ButtonInterface;
+use Lagdo\UiBuilder\Component\BadgeInterface;
+use Lagdo\UiBuilder\Component\ButtonGroupInterface;
+use Lagdo\UiBuilder\Component\ButtonInterface;
 
 interface ButtonBuilderInterface
 {

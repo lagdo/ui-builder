@@ -2,10 +2,10 @@
 
 namespace Lagdo\UiBuilder\Builder;
 
-use Lagdo\UiBuilder\Element\PanelInterface;
-use Lagdo\UiBuilder\Element\PanelBodyInterface;
-use Lagdo\UiBuilder\Element\PanelFooterInterface;
-use Lagdo\UiBuilder\Element\PanelHeaderInterface;
+use Lagdo\UiBuilder\Component\PanelInterface;
+use Lagdo\UiBuilder\Component\PanelBodyInterface;
+use Lagdo\UiBuilder\Component\PanelFooterInterface;
+use Lagdo\UiBuilder\Component\PanelHeaderInterface;
 
 interface PanelBuilderInterface
 {
