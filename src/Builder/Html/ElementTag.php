@@ -2,7 +2,7 @@
 
 namespace Lagdo\UiBuilder\Builder\Html;
 
-use AvpLab\Element\Element as Block;
+use Lagdo\UiBuilder\Builder\Html\Tag\AbstractTag;
 
 use function array_merge;
 use function htmlspecialchars;
@@ -10,7 +10,7 @@ use function implode;
 use function is_numeric;
 use function sprintf;
 
-class ElementBlock extends Block
+class ElementTag extends AbstractTag
 {
     /**
      * @var Element
@@ -28,13 +28,13 @@ class ElementBlock extends Block
     private $isOpened = false;
 
     /**
-     * @var Block[]
+     * @var AbstractTag[]
      */
     private $children = [];
 
     /**
      * @param Element $element
-     * @param Block[] $children
+     * @param AbstractTag[] $children
      */
     public function __construct(Element $element, array $children = [])
     {
@@ -43,9 +43,9 @@ class ElementBlock extends Block
     }
 
     /**
-     * @param Block[] $children
+     * @param AbstractTag[] $children
      */
-    public function setChildren(array $children)
+    public function setChildren(array $children): void
     {
         $this->children = array_merge($this->children, $children);
     }
@@ -53,7 +53,7 @@ class ElementBlock extends Block
     /**
      * @param bool $isShort
      */
-    public function setShort($isShort)
+    public function setShort($isShort): void
     {
         $this->isShort = $isShort;
     }
@@ -61,15 +61,15 @@ class ElementBlock extends Block
     /**
      * @param bool $isOpened
      */
-    public function setOpened($isOpened)
+    public function setOpened($isOpened): void
     {
         $this->isOpened = $isOpened;
     }
 
     /**
-     * [@inheritdoc}
+     * @inheritDoc
      */
-    protected function render()
+    protected function render(): string
     {
         return match(true) {
             $this->isShort => $this->renderShort(),
@@ -81,7 +81,7 @@ class ElementBlock extends Block
     /**
      * @return string
      */
-    private function renderAttributes()
+    private function renderAttributes(): string
     {
         // Merge the classes.
         $classes = $this->element->classes;
@@ -111,7 +111,7 @@ class ElementBlock extends Block
     /**
      * @return string
      */
-    private function renderShort()
+    private function renderShort(): string
     {
         return sprintf('<%s%s />', $this->element->name, $this->renderAttributes());
     }
@@ -119,7 +119,7 @@ class ElementBlock extends Block
     /**
      * @return string
      */
-    private function renderOpened()
+    private function renderOpened(): string
     {
         return sprintf('<%s%s>', $this->element->name, $this->renderAttributes());
     }
@@ -127,7 +127,7 @@ class ElementBlock extends Block
     /**
      * @return string
      */
-    private function renderTag()
+    private function renderTag(): string
     {
         $children = '';
         foreach ($this->children as $child) {
@@ -138,12 +138,11 @@ class ElementBlock extends Block
     }
 
     /**
-     * Helper for escaping
-     *
      * @param $value
+     *
      * @return string
      */
-    private function escape($value)
+    private function escape($value): string
     {
         return htmlspecialchars($value, ENT_COMPAT);
     }

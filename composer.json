@@ -16,7 +16,6 @@
         "source": "https://github.com/lagdo/ui-builder"
     },
     "require": {
-        "avplab/php-html-builder": "^2.0"
     },
     "autoload": {
         "psr-4": {

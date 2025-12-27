@@ -2,7 +2,6 @@
 
 namespace Lagdo\UiBuilder;
 
-use AvpLab\Element\Element as Block;
 use Lagdo\UiBuilder\Builder\ButtonBuilderInterface;
 use Lagdo\UiBuilder\Builder\DropdownBuilderInterface;
 use Lagdo\UiBuilder\Builder\FormBuilderInterface;
@@ -13,6 +12,7 @@ use Lagdo\UiBuilder\Builder\PanelBuilderInterface;
 use Lagdo\UiBuilder\Builder\TabBuilderInterface;
 use Lagdo\UiBuilder\Builder\TableBuilderInterface;
 use Lagdo\UiBuilder\Builder\Html\AbstractElement;
+use Lagdo\UiBuilder\Builder\Html\Tag\AbstractTag;
 use Lagdo\UiBuilder\Element\ElementInterface;
 use Lagdo\UiBuilder\Element\LabelInterface;
 use Closure;
@@ -46,9 +46,9 @@ interface BuilderInterface extends ButtonBuilderInterface, DropdownBuilderInterf
     /**
      * @param string $name
      *
-     * @return ElementInterface|Block
+     * @return ElementInterface|AbstractTag
      */
-    public function tag(string $name, ...$arguments): ElementInterface|Block;
+    public function tag(string $name, ...$arguments): ElementInterface|AbstractTag;
 
     /**
      * @return AbstractElement
@@ -73,23 +73,23 @@ interface BuilderInterface extends ButtonBuilderInterface, DropdownBuilderInterf
     /**
      * @param string $text
      *
-     * @return Block
+     * @return AbstractTag
      */
-    public function text(string $text): Block;
+    public function text(string $text): AbstractTag;
 
     /**
      * @param string $html
      *
-     * @return Block
+     * @return AbstractTag
      */
-    public function html(string $html): Block;
+    public function html(string $html): AbstractTag;
 
     /**
      * @param string $comment
      *
-     * @return Block
+     * @return AbstractTag
      */
-    public function comment(string $comment): Block;
+    public function comment(string $comment): AbstractTag;
 
     /**
      * @return string

@@ -2,7 +2,7 @@
 
 namespace Lagdo\UiBuilder\Builder\Html;
 
-use AvpLab\Element\Element as Block;
+use Lagdo\UiBuilder\Builder\Html\Tag\AbstractTag;
 
 use function is_a;
 use function implode;
@@ -10,9 +10,9 @@ use function implode;
 class Scope
 {
     /**
-     * @var array<Block|ElementBlock>
+     * @var array<AbstractTag|ElementTag>
      */
-    protected $blocks = [];
+    protected $tags = [];
 
     /**
      * @var array<Element>
@@ -36,7 +36,7 @@ class Scope
      */
     private function expand(mixed $element): void
     {
-        if (is_a($element, Block::class) || is_a($element, Element::class)) {
+        if (is_a($element, AbstractTag::class) || is_a($element, Element::class)) {
             $this->children[] = $element;
             return;
         }
@@ -53,15 +53,15 @@ class Scope
      * @param Element $element
      * @param Scope $scope
      *
-     * @return ElementBlock
+     * @return ElementTag
      */
-    private function createBlock(Element $element, Scope $scope): ElementBlock
+    private function createTag(Element $element, Scope $scope): ElementTag
     {
-        $block = new ElementBlock($element, $scope->blocks);
+        $tag = new ElementTag($element, $scope->tags);
         foreach ($element->wrappers as $wrapper) {
-            $block = new ElementBlock($wrapper, [$block]);
+            $tag = new ElementTag($wrapper, [$tag]);
         }
-        return $block;
+        return $tag;
     }
 
     /**
@@ -76,9 +76,9 @@ class Scope
         }
 
         foreach ($this->children as $element) {
-            if (is_a($element, Block::class)) {
-                // A children of type Block doesn't need any further processing.
-                $this->blocks[] = $element;
+            if (is_a($element, AbstractTag::class)) {
+                // A children of type AbstractTag doesn't need any further processing.
+                $this->tags[] = $element;
                 continue;
             }
 
@@ -89,7 +89,7 @@ class Scope
             $scope->build($element->children);
 
             // Generate the corresponding tag.
-            $this->blocks[] = $this->createBlock($element, $scope);
+            $this->tags[] = $this->createTag($element, $scope);
         }
     }
 
@@ -99,6 +99,6 @@ class Scope
     public function html(): string
     {
         // Merge all the generated tags.
-        return implode('', $this->blocks);
+        return implode('', $this->tags);
     }
 }

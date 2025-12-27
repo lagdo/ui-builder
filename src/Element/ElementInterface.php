@@ -2,7 +2,7 @@
 
 namespace Lagdo\UiBuilder\Element;
 
-use AvpLab\Element\Element as Block;
+use Lagdo\UiBuilder\Builder\Html\Tag\AbstractTag;
 
 use Closure;
 
@@ -66,11 +66,11 @@ interface ElementInterface
     public function children(...$arguments): static;
 
     /**
-     * @param Block|ElementInterface $element
+     * @param AbstractTag|ElementInterface $element
      *
      * @return static
      */
-    public function child(Block|ElementInterface $element): static;
+    public function child(AbstractTag|ElementInterface $element): static;
 
     /**
      * @param bool $condition

@@ -2,15 +2,15 @@
 
 namespace Lagdo\UiBuilder;
 
-use AvpLab\Element\Comment;
-use AvpLab\Element\Element as Block;
-use AvpLab\Element\Text;
 use Lagdo\UiBuilder\Builder\Html\AbstractElement;
 use Lagdo\UiBuilder\Builder\Html\Element;
 use Lagdo\UiBuilder\Builder\Html\ElementExprEach;
 use Lagdo\UiBuilder\Builder\Html\ElementExprList;
 use Lagdo\UiBuilder\Builder\Html\ElementExprWhen;
 use Lagdo\UiBuilder\Builder\Html\HtmlBuilder;
+use Lagdo\UiBuilder\Builder\Html\Tag\AbstractTag;
+use Lagdo\UiBuilder\Builder\Html\Tag\Comment;
+use Lagdo\UiBuilder\Builder\Html\Tag\Text;
 use Lagdo\UiBuilder\Element\ElementInterface;
 use Lagdo\UiBuilder\Element\ColInterface;
 use Lagdo\UiBuilder\Element\RowInterface;
@@ -138,7 +138,7 @@ abstract class AbstractBuilder implements BuilderInterface
     /**
      * @inheritDoc
      */
-    public function text(string $text): Block
+    public function text(string $text): AbstractTag
     {
         return new Text($text);
     }
@@ -146,7 +146,7 @@ abstract class AbstractBuilder implements BuilderInterface
     /**
      * @inheritDoc
      */
-    public function html(string $html): Block
+    public function html(string $html): AbstractTag
     {
         return new Text($html, false);
     }
@@ -154,7 +154,7 @@ abstract class AbstractBuilder implements BuilderInterface
     /**
      * @inheritDoc
      */
-    public function comment(string $comment): Block
+    public function comment(string $comment): AbstractTag
     {
         return new Comment($comment);
     }

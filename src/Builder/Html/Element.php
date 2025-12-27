@@ -2,8 +2,8 @@
 
 namespace Lagdo\UiBuilder\Builder\Html;
 
-use AvpLab\Element\Element as Block;
-use AvpLab\Element\Text;
+use Lagdo\UiBuilder\Builder\Html\Tag\AbstractTag;
+use Lagdo\UiBuilder\Builder\Html\Tag\Text;
 use Lagdo\UiBuilder\Element\ElementInterface;
 use Closure;
 
@@ -77,7 +77,7 @@ class Element extends AbstractElement implements ElementInterface
     /**
      * @inheritDoc
      */
-    public function child(Block|ElementInterface $element): static
+    public function child(AbstractTag|ElementInterface $element): static
     {
         $this->children[] = $element;
         return $this;
