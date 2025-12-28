@@ -3,12 +3,11 @@
 namespace Lagdo\UiBuilder\Builder;
 
 use Lagdo\UiBuilder\Component\CheckboxComponent;
-use Lagdo\UiBuilder\Component\ColComponent;
 use Lagdo\UiBuilder\Component\FormComponent;
 use Lagdo\UiBuilder\Component\InputGroupComponent;
+use Lagdo\UiBuilder\Component\LabelComponent;
 use Lagdo\UiBuilder\Component\OptionComponent;
 use Lagdo\UiBuilder\Component\RadioComponent;
-use Lagdo\UiBuilder\Component\RowComponent;
 
 interface FormBuilderInterface
 {
@@ -18,14 +17,9 @@ interface FormBuilderInterface
     public function form(...$arguments): FormComponent;
 
     /**
-     * @return RowComponent
+     * @return LabelComponent
      */
-    public function formRow(...$arguments): RowComponent;
-
-    /**
-     * @return ColComponent
-     */
-    public function formCol(...$arguments): ColComponent;
+    public function label(...$arguments): LabelComponent;
 
     /**
      * @param bool $checked

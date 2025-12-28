@@ -5,8 +5,6 @@ namespace Lagdo\UiBuilder;
 use Lagdo\UiBuilder\Builder\Html\HtmlBuilder;
 use Lagdo\UiBuilder\Component\Base\Component;
 use Lagdo\UiBuilder\Component\Base\HtmlComponent;
-use Lagdo\UiBuilder\Component\ColComponent;
-use Lagdo\UiBuilder\Component\RowComponent;
 use Lagdo\UiBuilder\Component\Virtual\EachComponent;
 use Lagdo\UiBuilder\Component\Virtual\ListComponent;
 use Lagdo\UiBuilder\Component\Virtual\TakeComponent;
@@ -18,6 +16,16 @@ use Closure;
 
 abstract class AbstractBuilder implements BuilderInterface
 {
+    use Builder\LayoutBuilderTrait;
+    use Builder\ButtonBuilderTrait;
+    use Builder\DropdownBuilderTrait;
+    use Builder\PanelBuilderTrait;
+    use Builder\FormBuilderTrait;
+    use Builder\MenuBuilderTrait;
+    use Builder\TabBuilderTrait;
+    use Builder\PaginationBuilderTrait;
+    use Builder\TableBuilderTrait;
+
     /**
      * @var HtmlBuilder
      */
@@ -74,30 +82,6 @@ abstract class AbstractBuilder implements BuilderInterface
     protected function createElementOfClass(string $class, $arguments): HtmlComponent
     {
         return $this->builder->createElement($class::$tag, $arguments, $class);
-    }
-
-    /**
-     * @param string $tagName
-     * @param array $arguments
-     *
-     * @return HtmlComponent
-     */
-    abstract protected function createFormElement(string $tagName, $arguments): HtmlComponent;
-
-    /**
-     * @inheritDoc
-     */
-    public function formRow(...$arguments): RowComponent
-    {
-        return $this->row(...$arguments);
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function formCol(...$arguments): ColComponent
-    {
-        return $this->col(...$arguments);
     }
 
     /**

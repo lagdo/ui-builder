@@ -16,4 +16,14 @@ interface LayoutBuilderInterface
      * @return ColComponent
      */
     public function col(...$arguments): ColComponent;
+
+    /**
+     * @return RowComponent
+     */
+    public function formRow(...$arguments): RowComponent;
+
+    /**
+     * @return ColComponent
+     */
+    public function formCol(...$arguments): ColComponent;
 }

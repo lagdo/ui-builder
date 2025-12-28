@@ -13,7 +13,6 @@ use Lagdo\UiBuilder\Builder\TabBuilderInterface;
 use Lagdo\UiBuilder\Builder\TableBuilderInterface;
 use Lagdo\UiBuilder\Component\Base\Component;
 use Lagdo\UiBuilder\Component\Base\HtmlComponent;
-use Lagdo\UiBuilder\Component\LabelComponent;
 use Lagdo\UiBuilder\Html\HtmlElement;
 use Closure;
 
@@ -48,6 +47,8 @@ use Closure;
  * @method HtmlComponent select(...$arguments)
  * @method HtmlComponent option(...$arguments)
  * @method HtmlComponent optgroup(...$arguments)
+ * @method HtmlComponent img(...$arguments)
+ * @method HtmlComponent figure(...$arguments)
  */
 interface BuilderInterface extends ButtonBuilderInterface, DropdownBuilderInterface,
     FormBuilderInterface, LayoutBuilderInterface, PaginationBuilderInterface,
@@ -93,11 +94,6 @@ interface BuilderInterface extends ButtonBuilderInterface, DropdownBuilderInterf
      * @return Component
      */
     public function take(...$arguments): Component;
-
-    /**
-     * @return LabelComponent
-     */
-    public function label(...$arguments): LabelComponent;
 
     /**
      * @param string $text
