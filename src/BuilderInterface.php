@@ -22,6 +22,8 @@ use Closure;
  * @method HtmlComponent div(...$arguments)
  * @method HtmlComponent span(...$arguments)
  * @method HtmlComponent input(...$arguments)
+ * @method HtmlComponent formCol(...$arguments)
+ * @method HtmlComponent formRow(...$arguments)
  * @method HtmlComponent formInput(...$arguments)
  * @method HtmlComponent formSelect(...$arguments)
  * @method HtmlComponent formTextArea(...$arguments)
@@ -30,6 +32,19 @@ use Closure;
  * @method HtmlComponent tr(...$arguments)
  * @method HtmlComponent th(...$arguments)
  * @method HtmlComponent td(...$arguments)
+ * @method HtmlComponent nav(...$arguments)
+ * @method HtmlComponent h1(...$arguments)
+ * @method HtmlComponent h2(...$arguments)
+ * @method HtmlComponent h3(...$arguments)
+ * @method HtmlComponent h4(...$arguments)
+ * @method HtmlComponent h5(...$arguments)
+ * @method HtmlComponent h6(...$arguments)
+ * @method HtmlComponent ol(...$arguments)
+ * @method HtmlComponent ul(...$arguments)
+ * @method HtmlComponent li(...$arguments)
+ * @method HtmlComponent select(...$arguments)
+ * @method HtmlComponent option(...$arguments)
+ * @method HtmlComponent optgroup(...$arguments)
  */
 interface BuilderInterface extends ButtonBuilderInterface, DropdownBuilderInterface,
     FormBuilderInterface, LayoutBuilderInterface, PaginationBuilderInterface,

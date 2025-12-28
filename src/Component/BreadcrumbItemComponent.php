@@ -3,9 +3,8 @@
 namespace Lagdo\UiBuilder\Component;
 
 use Lagdo\UiBuilder\Component\Base\HtmlComponent;
-use Lagdo\UiBuilder\Component\Contract\BreadcrumbItemInterface;
 
-class BreadcrumbItemComponent extends HtmlComponent implements BreadcrumbItemInterface
+class BreadcrumbItemComponent extends HtmlComponent
 {
     /**
      * @var string

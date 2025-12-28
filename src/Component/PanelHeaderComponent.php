@@ -3,9 +3,8 @@
 namespace Lagdo\UiBuilder\Component;
 
 use Lagdo\UiBuilder\Component\Base\HtmlComponent;
-use Lagdo\UiBuilder\Component\Contract\PanelHeaderInterface;
 
-class PanelHeaderComponent extends HtmlComponent implements PanelHeaderInterface
+class PanelHeaderComponent extends HtmlComponent
 {
     /**
      * @var string

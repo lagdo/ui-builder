@@ -3,9 +3,8 @@
 namespace Lagdo\UiBuilder\Component;
 
 use Lagdo\UiBuilder\Component\Base\HtmlComponent;
-use Lagdo\UiBuilder\Component\Contract\BadgeInterface;
 
-class BadgeComponent extends HtmlComponent implements BadgeInterface
+class BadgeComponent extends HtmlComponent
 {
     /**
      * @var string

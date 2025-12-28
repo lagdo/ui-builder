@@ -3,9 +3,8 @@
 namespace Lagdo\UiBuilder\Component;
 
 use Lagdo\UiBuilder\Component\Base\HtmlComponent;
-use Lagdo\UiBuilder\Component\Contract\MenuInterface;
 
-class MenuComponent extends HtmlComponent implements MenuInterface
+class MenuComponent extends HtmlComponent
 {
     /**
      * @var string

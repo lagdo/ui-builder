@@ -3,9 +3,8 @@
 namespace Lagdo\UiBuilder\Component;
 
 use Lagdo\UiBuilder\Component\Base\HtmlComponent;
-use Lagdo\UiBuilder\Component\Contract\TableInterface;
 
-class TableComponent extends HtmlComponent implements TableInterface
+class TableComponent extends HtmlComponent
 {
     /**
      * @var string

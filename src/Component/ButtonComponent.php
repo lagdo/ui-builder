@@ -3,9 +3,8 @@
 namespace Lagdo\UiBuilder\Component;
 
 use Lagdo\UiBuilder\Component\Base\HtmlComponent;
-use Lagdo\UiBuilder\Component\Contract\ButtonInterface;
 
-class ButtonComponent extends HtmlComponent implements ButtonInterface
+class ButtonComponent extends HtmlComponent
 {
     /**
      * @var string

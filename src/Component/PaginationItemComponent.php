@@ -3,9 +3,8 @@
 namespace Lagdo\UiBuilder\Component;
 
 use Lagdo\UiBuilder\Component\Base\HtmlComponent;
-use Lagdo\UiBuilder\Component\Contract\PaginationItemInterface;
 
-class PaginationItemComponent extends HtmlComponent implements PaginationItemInterface
+class PaginationItemComponent extends HtmlComponent
 {
     /**
      * @var string

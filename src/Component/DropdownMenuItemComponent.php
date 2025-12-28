@@ -3,9 +3,8 @@
 namespace Lagdo\UiBuilder\Component;
 
 use Lagdo\UiBuilder\Component\Base\HtmlComponent;
-use Lagdo\UiBuilder\Component\Contract\DropdownMenuItemInterface;
 
-class DropdownMenuItemComponent extends HtmlComponent implements DropdownMenuItemInterface
+class DropdownMenuItemComponent extends HtmlComponent
 {
     /**
      * @var string

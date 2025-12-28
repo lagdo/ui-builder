@@ -17,7 +17,7 @@ class Scope
     protected $contents = [];
 
     /**
-     * @var array<HtmlComponent>
+     * @var array<HtmlElement|HtmlComponent>
      */
     protected $children = [];
 
@@ -61,6 +61,7 @@ class Scope
     private function createContent(HtmlComponent $component, Scope $scope): Content
     {
         $content = new Content($component, $scope->contents);
+        // Nest the component content into its wrappers contents.
         foreach ($component->wrappers as $wrapper) {
             $content = new Content($wrapper, [$content]);
         }
@@ -85,6 +86,7 @@ class Scope
                 continue;
             }
 
+            // The component is an instance of HtmlComponent.
             $component->onBuild($this->parent);
 
             // Recursively build the child scope.

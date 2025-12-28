@@ -3,9 +3,8 @@
 namespace Lagdo\UiBuilder\Component;
 
 use Lagdo\UiBuilder\Component\Base\HtmlComponent;
-use Lagdo\UiBuilder\Component\Contract\TabNavInterface;
 
-class TabNavComponent extends HtmlComponent implements TabNavInterface
+class TabNavComponent extends HtmlComponent
 {
     /**
      * @var string

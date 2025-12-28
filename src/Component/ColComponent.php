@@ -3,9 +3,8 @@
 namespace Lagdo\UiBuilder\Component;
 
 use Lagdo\UiBuilder\Component\Base\HtmlComponent;
-use Lagdo\UiBuilder\Component\Contract\ColInterface;
 
-class ColComponent extends HtmlComponent implements ColInterface
+class ColComponent extends HtmlComponent
 {
     /**
      * @var string

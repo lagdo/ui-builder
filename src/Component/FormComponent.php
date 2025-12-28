@@ -3,9 +3,8 @@
 namespace Lagdo\UiBuilder\Component;
 
 use Lagdo\UiBuilder\Component\Base\HtmlComponent;
-use Lagdo\UiBuilder\Component\Contract\FormInterface;
 
-class FormComponent extends HtmlComponent implements FormInterface
+class FormComponent extends HtmlComponent
 {
     /**
      * @var string

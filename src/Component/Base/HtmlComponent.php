@@ -21,7 +21,7 @@ use function trim;
  * @method static setTitle(string $type)
  * @method static setStyle(string $type)
  */
-class HtmlComponent extends Component implements HtmlComponentInterface
+class HtmlComponent extends Component
 {
     /**
      * @var array

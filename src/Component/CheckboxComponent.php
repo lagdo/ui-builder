@@ -3,9 +3,8 @@
 namespace Lagdo\UiBuilder\Component;
 
 use Lagdo\UiBuilder\Component\Base\HtmlComponent;
-use Lagdo\UiBuilder\Component\Contract\CheckboxInterface;
 
-class CheckboxComponent extends HtmlComponent implements CheckboxInterface
+class CheckboxComponent extends HtmlComponent
 {
     /**
      * @var string
