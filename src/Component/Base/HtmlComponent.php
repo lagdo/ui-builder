@@ -76,6 +76,19 @@ class HtmlComponent extends Component
     }
 
     /**
+     * Called for each child after a perent is expanded.
+     *
+     * @param HtmlComponent $parent
+     *
+     * @return static
+     */
+    final public function expanded(HtmlComponent $parent): static
+    {
+        $this->onBuild($parent);
+        return $this;
+    }
+
+    /**
      * @return static
      */
     public function children(...$children): static
@@ -85,7 +98,9 @@ class HtmlComponent extends Component
     }
 
     /**
-     * @inheritDoc
+     * @param HtmlElement|HtmlComponent $child
+     *
+     * @return static
      */
     public function child(HtmlElement|HtmlComponent $child): static
     {

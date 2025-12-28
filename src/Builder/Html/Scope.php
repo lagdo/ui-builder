@@ -87,13 +87,13 @@ class Scope
             }
 
             // The component is an instance of HtmlComponent.
-            $component->onBuild($this->parent);
+            // Allow the component libraries to react to the parent-child relation.
+            $component->expanded($this->parent);
 
-            // Recursively build the child scope.
             $scope = new Scope($component);
+            // Recursively build the component children.
             $scope->build($component->children);
-
-            // Generate the component content.
+            // Add the child component content to the parent contents.
             $this->contents[] = $this->createContent($component, $scope);
         }
     }

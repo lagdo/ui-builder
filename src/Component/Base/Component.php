@@ -10,16 +10,20 @@ use Lagdo\UiBuilder\Component\Base\HtmlComponent;
 abstract class Component
 {
     /**
+     * Callback on component creation.
+     *
      * @return void
      */
     protected function onCreate(): void
     {}
 
     /**
+     * Callback on component parent-child relation.
+     *
      * @param HtmlComponent $parent
      *
      * @return void
      */
-    public function onBuild(HtmlComponent $parent): void
+    protected function onBuild(HtmlComponent $parent): void
     {}
 }
