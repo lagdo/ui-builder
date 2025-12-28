@@ -31,7 +31,7 @@ abstract class AbstractBuilder implements BuilderInterface
         $this->builder = new HtmlBuilder();
         $this->builder->addElementBuilder('form', function(HtmlComponent|null $element,
             string $tagName, string $method, array $arguments) {
-            return $this->createFormComponent($tagName, $arguments);
+            return $this->createFormElement($tagName, $arguments);
         });
     }
 
@@ -49,7 +49,7 @@ abstract class AbstractBuilder implements BuilderInterface
     /**
      * @inheritDoc
      */
-    public function addElementBuilder(string $tagPrefix, Closure $tagBuilder)
+    public function addElementBuilder(string $tagPrefix, Closure $tagBuilder): void
     {
         $this->builder->addElementBuilder($tagPrefix, $tagBuilder);
     }
@@ -82,7 +82,7 @@ abstract class AbstractBuilder implements BuilderInterface
      *
      * @return HtmlComponent
      */
-    abstract protected function createFormComponent(string $tagName, $arguments): HtmlComponent;
+    abstract protected function createFormElement(string $tagName, $arguments): HtmlComponent;
 
     /**
      * @inheritDoc

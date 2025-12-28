@@ -55,7 +55,7 @@ class HtmlBuilder
      *
      * @return void
      */
-    public function addElementBuilder(string $tagPrefix, Closure $elementBuilder)
+    public function addElementBuilder(string $tagPrefix, Closure $elementBuilder): void
     {
         // Do not overwrite existing builders.
         if(!isset($this->elementBuilders[$tagPrefix]))
