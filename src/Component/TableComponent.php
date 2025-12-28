@@ -26,7 +26,7 @@ class TableComponent extends HtmlComponent
      *
      * @return static
      */
-    public function style(string $style): static
+    public function look(string $style): static
     {
         return $this;
     }
