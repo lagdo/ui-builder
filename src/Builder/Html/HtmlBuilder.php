@@ -30,7 +30,7 @@ class HtmlBuilder
             if ($element === null) {
                 throw new LogicException('Attributes can be set for elements only');
             }
-            $element->attributes[$tagName] = $arguments[0] ?? null;
+            $element->setAttribute($tagName, $arguments[0] ?? null);
             return $element;
         });
     }

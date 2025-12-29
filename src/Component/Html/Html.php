@@ -11,18 +11,22 @@
 
 namespace Lagdo\UiBuilder\Component\Html;
 
-use function htmlspecialchars;
-
 /**
- * Provides text block. Supports escaping.
+ * Provides text block. No escaping.
  */
-class Text extends Html
+class Html extends Element
 {
+    /**
+     * @param string $text
+     */
+    public function __construct(protected string $text)
+    {}
+
     /**
      * @inheritDoc
      */
     protected function render(): string
     {
-        return htmlspecialchars($this->text, ENT_COMPAT);
+        return (string)$this->text;
     }
 }

@@ -7,6 +7,7 @@ use Lagdo\UiBuilder\Component\Base\Component;
 use Lagdo\UiBuilder\Component\Base\HtmlComponent;
 use Lagdo\UiBuilder\Component\Html\Comment;
 use Lagdo\UiBuilder\Component\Html\Element;
+use Lagdo\UiBuilder\Component\Html\Html;
 use Lagdo\UiBuilder\Component\Html\Text;
 use Lagdo\UiBuilder\Component\Virtual\EachComponent;
 use Lagdo\UiBuilder\Component\Virtual\ListComponent;
@@ -129,7 +130,7 @@ abstract class AbstractBuilder implements BuilderInterface
      */
     public function html(string $html): Element
     {
-        return new Text($html, false);
+        return new Html($html);
     }
 
     /**

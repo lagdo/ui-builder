@@ -4,6 +4,7 @@ namespace Lagdo\UiBuilder\Component\Base;
 
 use Lagdo\UiBuilder\Builder\Html\HtmlBuilder;
 use Lagdo\UiBuilder\Component\Html\Element;
+use Lagdo\UiBuilder\Component\Html\Html;
 use Lagdo\UiBuilder\Component\Html\Text;
 use Closure;
 
@@ -126,7 +127,7 @@ class HtmlComponent extends Component
      */
     protected function addHtml(string $html): static
     {
-        $this->children[] = new Text($html, false);
+        $this->children[] = new Html($html);
         return $this;
     }
 

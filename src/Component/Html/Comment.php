@@ -17,19 +17,13 @@ use function sprintf;
 /**
  * Provides html comment block
  */
-class Comment extends Element
+class Comment extends Html
 {
-    /**
-     * @param string $comment
-     */
-    public function __construct(private string $comment)
-    {}
-
     /**
      * @inheritDoc
      */
     protected function render(): string
     {
-        return sprintf('<!--%s-->', htmlspecialchars($this->comment, ENT_COMPAT));
+        return sprintf('<!--%s-->', htmlspecialchars($this->text, ENT_COMPAT));
     }
 }
