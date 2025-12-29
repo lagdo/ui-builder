@@ -17,7 +17,7 @@ use function sprintf;
 /**
  * Provides html comment block
  */
-class Comment extends HtmlElement
+class Comment extends Element
 {
     /**
      * @param string $comment

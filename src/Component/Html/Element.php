@@ -14,7 +14,7 @@ namespace Lagdo\UiBuilder\Component\Html;
 /**
  * Base class for implementing elements
  */
-abstract class HtmlElement
+abstract class Element
 {
     /**
      * @return string

@@ -16,7 +16,7 @@ use function htmlspecialchars;
 /**
  * Provides text block. Supports escaping.
  */
-class Text extends HtmlElement
+class Text extends Element
 {
     /**
      * @param string $text

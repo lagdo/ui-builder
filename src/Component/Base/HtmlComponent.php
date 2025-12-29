@@ -3,7 +3,7 @@
 namespace Lagdo\UiBuilder\Component\Base;
 
 use Lagdo\UiBuilder\Builder\Html\HtmlBuilder;
-use Lagdo\UiBuilder\Component\Html\HtmlElement;
+use Lagdo\UiBuilder\Component\Html\Element;
 use Lagdo\UiBuilder\Component\Html\Text;
 use Closure;
 
@@ -98,11 +98,11 @@ class HtmlComponent extends Component
     }
 
     /**
-     * @param HtmlElement|HtmlComponent $child
+     * @param Element|HtmlComponent $child
      *
      * @return static
      */
-    public function child(HtmlElement|HtmlComponent $child): static
+    public function child(Element|HtmlComponent $child): static
     {
         $this->children[] = $child;
         return $this;

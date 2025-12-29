@@ -3,7 +3,7 @@
 namespace Lagdo\UiBuilder\Builder\Html;
 
 use Lagdo\UiBuilder\Component\Base\HtmlComponent;
-use Lagdo\UiBuilder\Component\Html\HtmlElement;
+use Lagdo\UiBuilder\Component\Html\Element;
 use Closure;
 use LogicException;
 
@@ -69,11 +69,11 @@ class HtmlBuilder
      * @param array $arguments
      * @param HtmlComponent|null $element
      *
-     * @return HtmlComponent|HtmlElement
+     * @return HtmlComponent|Element
      * @throws LogicException When element is not initialized yet
      */
     public function make(string $method, array $arguments,
-        HtmlComponent|null $element = null): HtmlComponent|HtmlElement
+        HtmlComponent|null $element = null): HtmlComponent|Element
     {
         $tagName = strtolower(preg_replace('/(?<!^)([A-Z])/', '-$1', $method));
         foreach($this->elementBuilders as $tagPrefix => $elementBuilder)
