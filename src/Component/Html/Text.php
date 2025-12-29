@@ -9,20 +9,20 @@
  * file that was distributed with this source code.
  */
 
-namespace Lagdo\UiBuilder\Html;
+namespace Lagdo\UiBuilder\Component\Html;
 
 use function htmlspecialchars;
-use function sprintf;
 
 /**
- * Provides html comment block
+ * Provides text block. Supports escaping.
  */
-class Comment extends HtmlElement
+class Text extends HtmlElement
 {
     /**
-     * @param string $comment
+     * @param string $text
+     * @param bool $isPlain
      */
-    public function __construct(private string $comment)
+    public function __construct(private string $text, private bool $isPlain = true)
     {}
 
     /**
@@ -30,6 +30,6 @@ class Comment extends HtmlElement
      */
     protected function render(): string
     {
-        return sprintf('<!--%s-->', htmlspecialchars($this->comment, ENT_COMPAT));
+        return $this->isPlain ? htmlspecialchars($this->text, ENT_COMPAT) : (string)$this->text;
     }
 }

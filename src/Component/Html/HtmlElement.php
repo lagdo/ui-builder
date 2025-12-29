@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Lagdo\UiBuilder\Html;
+namespace Lagdo\UiBuilder\Component\Html;
 
 /**
  * Base class for implementing elements

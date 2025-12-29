@@ -3,8 +3,8 @@
 namespace Lagdo\UiBuilder\Component\Base;
 
 use Lagdo\UiBuilder\Builder\Html\HtmlBuilder;
-use Lagdo\UiBuilder\Html\HtmlElement;
-use Lagdo\UiBuilder\Html\Text;
+use Lagdo\UiBuilder\Component\Html\HtmlElement;
+use Lagdo\UiBuilder\Component\Html\Text;
 use Closure;
 
 use function is_array;

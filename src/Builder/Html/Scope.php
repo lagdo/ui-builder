@@ -3,8 +3,8 @@
 namespace Lagdo\UiBuilder\Builder\Html;
 
 use Lagdo\UiBuilder\Component\Base\HtmlComponent;
+use Lagdo\UiBuilder\Component\Html\HtmlElement;
 use Lagdo\UiBuilder\Component\Virtual\VirtualComponent;
-use Lagdo\UiBuilder\Html\HtmlElement;
 
 use function is_a;
 use function implode;

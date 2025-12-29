@@ -5,13 +5,13 @@ namespace Lagdo\UiBuilder;
 use Lagdo\UiBuilder\Builder\Html\HtmlBuilder;
 use Lagdo\UiBuilder\Component\Base\Component;
 use Lagdo\UiBuilder\Component\Base\HtmlComponent;
+use Lagdo\UiBuilder\Component\Html\Comment;
+use Lagdo\UiBuilder\Component\Html\HtmlElement;
+use Lagdo\UiBuilder\Component\Html\Text;
 use Lagdo\UiBuilder\Component\Virtual\EachComponent;
 use Lagdo\UiBuilder\Component\Virtual\ListComponent;
 use Lagdo\UiBuilder\Component\Virtual\TakeComponent;
 use Lagdo\UiBuilder\Component\Virtual\WhenComponent;
-use Lagdo\UiBuilder\Html\HtmlElement;
-use Lagdo\UiBuilder\Html\Comment;
-use Lagdo\UiBuilder\Html\Text;
 use Closure;
 
 abstract class AbstractBuilder implements BuilderInterface

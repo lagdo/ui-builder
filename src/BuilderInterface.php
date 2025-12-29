@@ -13,7 +13,7 @@ use Lagdo\UiBuilder\Builder\TabBuilderInterface;
 use Lagdo\UiBuilder\Builder\TableBuilderInterface;
 use Lagdo\UiBuilder\Component\Base\Component;
 use Lagdo\UiBuilder\Component\Base\HtmlComponent;
-use Lagdo\UiBuilder\Html\HtmlElement;
+use Lagdo\UiBuilder\Component\Html\HtmlElement;
 use Closure;
 
 /**
