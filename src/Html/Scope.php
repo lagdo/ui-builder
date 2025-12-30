@@ -59,7 +59,7 @@ class Scope
      *
      * @return HtmlElement
      */
-    public function getElement(HtmlComponent $component, array $children): HtmlElement
+    private function getElement(HtmlComponent $component, array $children): HtmlElement
     {
         $element = $component->element();
         $element->addChildren($children);

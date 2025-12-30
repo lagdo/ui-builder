@@ -4,7 +4,6 @@ namespace Lagdo\UiBuilder;
 
 use Lagdo\UiBuilder\Component\Base\Component;
 use Lagdo\UiBuilder\Component\Base\HtmlComponent;
-use Lagdo\UiBuilder\Component\Base\HtmlElement;
 use Lagdo\UiBuilder\Component\Html\Comment;
 use Lagdo\UiBuilder\Component\Html\Element;
 use Lagdo\UiBuilder\Component\Html\Html;
@@ -66,9 +65,9 @@ abstract class AbstractBuilder implements BuilderInterface
     /**
      * @inheritDoc
      */
-    public function tag(string $name, ...$arguments): HtmlElement
+    public function tag(string $name, ...$arguments): HtmlComponent
     {
-        return $this->builder->createElement($name, $arguments);
+        return $this->builder->createComponent($name, $arguments);
     }
 
     /**

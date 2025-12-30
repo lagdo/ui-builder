@@ -57,7 +57,7 @@ class HtmlElement extends Element
      * @param string $tag
      * @param array $attributes
      */
-    public function __construct(private HtmlBuilder $builder, public string $tag, array $attributes = [])
+    public function __construct(private HtmlBuilder $builder, private string $tag, array $attributes = [])
     {
         $this->setAttributes($attributes);
     }
