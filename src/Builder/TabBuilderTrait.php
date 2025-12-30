@@ -34,7 +34,7 @@ trait TabBuilderTrait
      */
     public function tabNav(...$arguments): TabNavComponent
     {
-        return $this->createElementOfClass($this->_tabNavComponentClass(), $arguments);
+        return $this->createComponentOfClass($this->_tabNavComponentClass(), $arguments);
     }
 
     /**
@@ -42,7 +42,7 @@ trait TabBuilderTrait
      */
     public function tabNavItem(...$arguments): TabNavItemComponent
     {
-        return $this->createElementOfClass($this->_tabNavItemComponentClass(), $arguments);
+        return $this->createComponentOfClass($this->_tabNavItemComponentClass(), $arguments);
     }
 
     /**
@@ -50,7 +50,7 @@ trait TabBuilderTrait
      */
     public function tabContent(...$arguments): TabContentComponent
     {
-        return $this->createElementOfClass($this->_tabContentComponentClass(), $arguments);
+        return $this->createComponentOfClass($this->_tabContentComponentClass(), $arguments);
     }
 
     /**
@@ -58,6 +58,6 @@ trait TabBuilderTrait
      */
     public function tabContentItem(...$arguments): TabContentItemComponent
     {
-        return $this->createElementOfClass($this->_tabContentItemComponentClass(), $arguments);
+        return $this->createComponentOfClass($this->_tabContentItemComponentClass(), $arguments);
     }
 }

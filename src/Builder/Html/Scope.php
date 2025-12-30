@@ -3,7 +3,8 @@
 namespace Lagdo\UiBuilder\Builder\Html;
 
 use Lagdo\UiBuilder\Component\Base\HtmlComponent;
-use Lagdo\UiBuilder\Component\Html\HtmlElement;
+use Lagdo\UiBuilder\Component\Base\HtmlElement;
+use Lagdo\UiBuilder\Component\Html\Element;
 use Lagdo\UiBuilder\Component\Virtual\VirtualComponent;
 
 use function is_a;
@@ -12,12 +13,12 @@ use function implode;
 class Scope
 {
     /**
-     * @var array<HtmlElement|Content>
+     * @var array<Element>
      */
-    protected $contents = [];
+    protected $elements = [];
 
     /**
-     * @var array<HtmlElement|HtmlComponent>
+     * @var array<Element|HtmlComponent>
      */
     protected $children = [];
 
@@ -38,7 +39,7 @@ class Scope
      */
     private function expand(mixed $component): void
     {
-        if (is_a($component, HtmlElement::class) ||
+        if (is_a($component, Element::class) ||
             is_a($component, HtmlComponent::class)) {
             $this->children[] = $component;
             return;
@@ -46,7 +47,7 @@ class Scope
 
         if (is_a($component, VirtualComponent::class)) {
             // Recursively expand the children of the virtual components.
-            foreach ($component->children as $childElement) {
+            foreach ($component->children() as $childElement) {
                 $this->expand($childElement);
             }
         }
@@ -54,18 +55,21 @@ class Scope
 
     /**
      * @param HtmlComponent $component
-     * @param Scope $scope
+     * @param array<Element> $children
      *
-     * @return Content
+     * @return HtmlElement
      */
-    private function createContent(HtmlComponent $component, Scope $scope): Content
+    public function getElement(HtmlComponent $component, array $children): HtmlElement
     {
-        $content = new Content($component, $scope->contents);
-        // Nest the component content into its wrappers contents.
-        foreach ($component->wrappers as $wrapper) {
-            $content = new Content($wrapper, [$content]);
+        $element = $component->element();
+        $element->addChildren($children);
+        // Nest the component element into its wrappers elements.
+        foreach ($component->wrappers() as $wrapper) {
+            $wrapper->addChild($element);
+            $element = $wrapper;
         }
-        return $content;
+
+        return $element;
     }
 
     /**
@@ -80,9 +84,9 @@ class Scope
         }
 
         foreach ($this->children as $component) {
-            if (is_a($component, HtmlElement::class)) {
-                // A children of type HtmlElement doesn't need any further processing.
-                $this->contents[] = $component;
+            if (is_a($component, Element::class)) {
+                // A children of type Element doesn't need any further processing.
+                $this->elements[] = $component;
                 continue;
             }
 
@@ -92,9 +96,10 @@ class Scope
 
             $scope = new Scope($component);
             // Recursively build the component children.
-            $scope->build($component->children);
-            // Add the child component content to the parent contents.
-            $this->contents[] = $this->createContent($component, $scope);
+            $scope->build($component->children());
+
+            // Add the child component element to the scope elements.
+            $this->elements[] = $this->getElement($component, $scope->elements);
         }
     }
 
@@ -103,7 +108,7 @@ class Scope
      */
     public function html(): string
     {
-        // Merge all the generated contents.
-        return implode('', $this->contents);
+        // Merge all the generated elements.
+        return implode('', $this->elements);
     }
 }

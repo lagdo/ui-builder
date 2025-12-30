@@ -22,7 +22,7 @@ trait LayoutBuilderTrait
      */
     public function row(...$arguments): RowComponent
     {
-        return $this->createElementOfClass($this->_rowComponentClass(), $arguments);
+        return $this->createComponentOfClass($this->_rowComponentClass(), $arguments);
     }
 
     /**
@@ -30,7 +30,7 @@ trait LayoutBuilderTrait
      */
     public function col(...$arguments): ColComponent
     {
-        return $this->createElementOfClass($this->_colComponentClass(), $arguments);
+        return $this->createComponentOfClass($this->_colComponentClass(), $arguments);
     }
 
     /**

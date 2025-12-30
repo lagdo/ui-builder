@@ -34,7 +34,7 @@ trait DropdownBuilderTrait
      */
     public function dropdown(...$arguments): DropdownComponent
     {
-        return $this->createElementOfClass($this->_dropdownComponentClass(), $arguments);
+        return $this->createComponentOfClass($this->_dropdownComponentClass(), $arguments);
     }
 
     /**
@@ -42,7 +42,7 @@ trait DropdownBuilderTrait
      */
     public function dropdownItem(...$arguments): DropdownItemComponent
     {
-        return $this->createElementOfClass($this->_dropdownItemComponentClass(), $arguments);
+        return $this->createComponentOfClass($this->_dropdownItemComponentClass(), $arguments);
     }
 
     /**
@@ -50,7 +50,7 @@ trait DropdownBuilderTrait
      */
     public function dropdownMenu(...$arguments): DropdownMenuComponent
     {
-        return $this->createElementOfClass($this->_dropdownMenuComponentClass(), $arguments);
+        return $this->createComponentOfClass($this->_dropdownMenuComponentClass(), $arguments);
     }
 
     /**
@@ -58,6 +58,6 @@ trait DropdownBuilderTrait
      */
     public function dropdownMenuItem(...$arguments): DropdownMenuItemComponent
     {
-        return $this->createElementOfClass($this->_dropdownMenuItemComponentClass(), $arguments);
+        return $this->createComponentOfClass($this->_dropdownMenuItemComponentClass(), $arguments);
     }
 }

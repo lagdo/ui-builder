@@ -5,6 +5,7 @@ namespace Lagdo\UiBuilder;
 use Lagdo\UiBuilder\Builder\Html\HtmlBuilder;
 use Lagdo\UiBuilder\Component\Base\Component;
 use Lagdo\UiBuilder\Component\Base\HtmlComponent;
+use Lagdo\UiBuilder\Component\Base\HtmlElement;
 use Lagdo\UiBuilder\Component\Html\Comment;
 use Lagdo\UiBuilder\Component\Html\Element;
 use Lagdo\UiBuilder\Component\Html\Html;
@@ -38,10 +39,9 @@ abstract class AbstractBuilder implements BuilderInterface
     public function __construct()
     {
         $this->builder = new HtmlBuilder();
-        $this->builder->addElementBuilder('form', function(HtmlComponent|null $element,
-            string $tagName, string $method, array $arguments) {
-            return $this->createFormElement($tagName, $arguments);
-        });
+        $this->builder->registerFactory('form', HtmlBuilder::TARGET_BUILDER,
+            fn(string $tagName, string $method, array $arguments) =>
+                $this->createFormComponent($tagName, $arguments));
     }
 
     /**
@@ -52,21 +52,21 @@ abstract class AbstractBuilder implements BuilderInterface
      */
     public function __call(string $method, array $arguments): mixed
     {
-        return $this->builder->make($method, $arguments);
+        return $this->builder->callBuilderFactory($method, $arguments);
     }
 
     /**
      * @inheritDoc
      */
-    public function addElementBuilder(string $tagPrefix, Closure $tagBuilder): void
+    public function registerFactory(string $tagPrefix, string $tagTarget, Closure $tagFactory): void
     {
-        $this->builder->addElementBuilder($tagPrefix, $tagBuilder);
+        $this->builder->registerFactory($tagPrefix, $tagTarget, $tagFactory);
     }
 
     /**
      * @inheritDoc
      */
-    public function tag(string $name, ...$arguments): HtmlComponent
+    public function tag(string $name, ...$arguments): HtmlElement
     {
         return $this->builder->createElement($name, $arguments);
     }
@@ -80,9 +80,9 @@ abstract class AbstractBuilder implements BuilderInterface
      *
      * @return T
      */
-    protected function createElementOfClass(string $class, $arguments): HtmlComponent
+    protected function createComponentOfClass(string $class, $arguments): HtmlComponent
     {
-        return $this->builder->createElement($class::$tag, $arguments, $class);
+        return $this->builder->createComponent($class::$tag, $arguments, $class);
     }
 
     /**

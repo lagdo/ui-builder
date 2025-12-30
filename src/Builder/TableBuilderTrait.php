@@ -16,6 +16,6 @@ trait TableBuilderTrait
      */
     public function table(...$arguments): TableComponent
     {
-        return $this->createElementOfClass($this->_tableComponentClass(), $arguments);
+        return $this->createComponentOfClass($this->_tableComponentClass(), $arguments);
     }
 }

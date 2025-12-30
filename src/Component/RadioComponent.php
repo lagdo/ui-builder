@@ -16,7 +16,7 @@ class RadioComponent extends HtmlComponent
      */
     public function checked(bool $checked = false): static
     {
-        $checked && $this->setAttribute('checked', 'checked');
+        $checked && $this->element()->setAttribute('checked', 'checked');
         return $this;
     }
 }

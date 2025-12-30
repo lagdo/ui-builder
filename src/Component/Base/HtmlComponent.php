@@ -10,7 +10,6 @@ use Closure;
 
 use function is_array;
 use function is_string;
-use function trim;
 
 /**
  * @method static setId(string $id)
@@ -25,29 +24,19 @@ use function trim;
 class HtmlComponent extends Component
 {
     /**
-     * @var array
+     * @var HtmlElement
      */
-    public $attributes = [];
+    private $element;
 
     /**
-     * @var array
+     * @var array<HtmlElement>
      */
-    public $classes = [[]]; // In the first entry are the element base classes.
+    private $wrappers = [];
 
     /**
-     * @var array
+     * @var array<Element|Component>
      */
-    public $escapes = [];
-
-    /**
-     * @var array<Component>
-     */
-    public $children = [];
-
-    /**
-     * @var array
-     */
-    public $wrappers = [];
+    private $children = [];
 
     /**
      * The constructor
@@ -56,24 +45,14 @@ class HtmlComponent extends Component
      * @param string $name
      * @param array $arguments
      */
-    public function __construct(public HtmlBuilder $builder,
-        public string $name, array $arguments = [])
+    public function __construct(private HtmlBuilder $builder, string $name, array $arguments = [])
     {
-        $children = [];
-        // Resolve arguments
-        foreach ($arguments as $argument) {
-            if (is_array($argument)) {
-                $this->setAttributes($argument);
-                continue;
-            }
+        $this->element = new HtmlElement($builder, $name);
 
-            $children[] = is_string($argument) ? new Text($argument, false) : $argument;
-        }
+        // Resolve arguments
+        $this->props(...$arguments);
 
         $this->onCreate();
-
-        // The arguments can also contain the list of child elements.
-        $this->children(...$children);
     }
 
     /**
@@ -92,21 +71,47 @@ class HtmlComponent extends Component
     /**
      * @return static
      */
-    public function children(...$children): static
+    public function props(...$arguments): static
     {
-        $this->children = $children;
+        // Resolve arguments
+        foreach ($arguments as $argument) {
+            switch (true) {
+            case is_array($argument):
+                $this->element->setAttributes($argument);
+                break;
+            case is_string($argument):
+                $this->children[] = new Html($argument);
+                break;
+            case is_a($argument, Element::class):
+            case is_a($argument, Component::class):
+                $this->children[] = $argument;
+            }
+        }
         return $this;
     }
 
     /**
-     * @param Element|HtmlComponent $child
-     *
-     * @return static
+     * @return HtmlElement
      */
-    public function child(Element|HtmlComponent $child): static
+    public function element(): HtmlElement
     {
-        $this->children[] = $child;
-        return $this;
+        return $this->element;
+    }
+
+    /**
+     * @return array<HtmlElement>
+     */
+    public function wrappers(): array
+    {
+        return $this->wrappers;
+    }
+
+    /**
+     * @return array<Element|Component>
+     */
+    public function children(): array
+    {
+        return $this->children;
     }
 
     /**
@@ -139,58 +144,19 @@ class HtmlComponent extends Component
      */
     public function __call(string $method, array $arguments): static
     {
-        $this->builder->make($method, $arguments, $this);
+        $this->builder->callComponentFactory($this, $method, $arguments);
         return $this;
     }
 
     /**
-     * @inheritDoc
-     */
-    public function setAttribute(string $name, string $value, bool $escape = true): static
-    {
-        $this->attributes[$name] = $value;
-        $this->escapes[$name] = $escape;
-        return $this;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function setAttributes(array $attributes, bool $escape = true): static
-    {
-        foreach ($attributes as $name => $value) {
-            if (is_string($value)) {
-                $this->setAttribute($name, $value, $escape);
-            }
-        }
-        return $this;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function addClass(string $class): static
-    {
-        $this->classes[] = trim($class);
-        return $this;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function addBaseClass(string $class): static
-    {
-        $this->classes[0][] = trim($class);
-        return $this;
-    }
-
-    /**
-     * @inheritDoc
+     * @param string $class
+     *
+     * @return static
      */
     public function setClass(string $class): static
     {
-        // Actually appends the class.
-        $this->addClass($class);
+        // Must actually append the class.
+        $this->element->addClass($class);
         return $this;
     }
 
@@ -198,50 +164,23 @@ class HtmlComponent extends Component
      * @param string $name
      * @param array $arguments
      *
-     * @return HtmlComponent
+     * @return HtmlElement
      */
-    protected function addWrapper(string $name, array $arguments = []): HtmlComponent
+    protected function addWrapper(string $name, array $arguments = []): HtmlElement
     {
-        $wrapper = $this->builder->createElement($name, [$arguments]);
+        $wrapper = new HtmlElement($this->builder, $name, $arguments);
         $this->wrappers[] = $wrapper;
         return $wrapper;
     }
 
     /**
      * @param int $index
-     * @param string $class
      *
-     * @return static
+     * @return HtmlElement|null
      */
-    protected function setWrapperClass(int $index, string $class): static
+    protected function wrapper(int $index): HtmlElement|null
     {
-        $this->wrappers[$index]?->setClass($class);
-        return $this;
-    }
-
-    /**
-     * @param int $index
-     * @param string $name
-     * @param string $value
-     *
-     * @return static
-     */
-    public function setWrapperAttribute(int $index, string $name, string $value): static
-    {
-        $this->wrappers[$index]?->setAttribute($name, $value);
-        return $this;
-    }
-
-    /**
-     * @param int $index
-     * @param array $attributes
-     *
-     * @return static
-     */
-    public function setWrapperAttributes(int $index, array $attributes): static
-    {
-        $this->wrappers[$index]?->setAttributes($attributes);
-        return $this;
+        return $this->wrappers[$index] ?? null;
     }
 
     /**

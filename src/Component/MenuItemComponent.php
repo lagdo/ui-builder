@@ -18,7 +18,7 @@ class MenuItemComponent extends HtmlComponent
      */
     public function active(bool $active): static
     {
-        $active && $this->addClass('active');
+        $active && $this->element()->addClass('active');
         return $this;
     }
 
@@ -29,7 +29,7 @@ class MenuItemComponent extends HtmlComponent
      */
     public function disabled(bool $disabled): static
     {
-        $disabled && $this->addClass('disabled');
+        $disabled && $this->element()->addClass('disabled');
         return $this;
     }
 }

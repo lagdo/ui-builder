@@ -13,6 +13,7 @@ use Lagdo\UiBuilder\Builder\TabBuilderInterface;
 use Lagdo\UiBuilder\Builder\TableBuilderInterface;
 use Lagdo\UiBuilder\Component\Base\Component;
 use Lagdo\UiBuilder\Component\Base\HtmlComponent;
+use Lagdo\UiBuilder\Component\Base\HtmlElement;
 use Lagdo\UiBuilder\Component\Html\Element;
 use Closure;
 
@@ -56,18 +57,19 @@ interface BuilderInterface extends ButtonBuilderInterface, DropdownBuilderInterf
 {
     /**
      * @param string $tagPrefix
-     * @param Closure $tagBuilder
+     * @param string $tagTarget
+     * @param Closure $tagFactory
      *
      * @return void
      */
-    public function addElementBuilder(string $tagPrefix, Closure $tagBuilder): void;
+    public function registerFactory(string $tagPrefix, string $tagTarget, Closure $tagFactory): void;
 
     /**
      * @param string $name
      *
-     * @return HtmlComponent|Element
+     * @return HtmlElement
      */
-    public function tag(string $name, ...$arguments): HtmlComponent|Element;
+    public function tag(string $name, ...$arguments): HtmlElement;
 
     /**
      * @param array $values

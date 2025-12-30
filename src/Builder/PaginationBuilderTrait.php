@@ -22,7 +22,7 @@ trait PaginationBuilderTrait
      */
     public function pagination(...$arguments): PaginationComponent
     {
-        return $this->createElementOfClass($this->_paginationComponentClass(), $arguments);
+        return $this->createComponentOfClass($this->_paginationComponentClass(), $arguments);
     }
 
     /**
@@ -30,6 +30,6 @@ trait PaginationBuilderTrait
      */
     public function paginationItem(...$arguments): PaginationItemComponent
     {
-        return $this->createElementOfClass($this->_paginationItemComponentClass(), $arguments);
+        return $this->createComponentOfClass($this->_paginationItemComponentClass(), $arguments);
     }
 }

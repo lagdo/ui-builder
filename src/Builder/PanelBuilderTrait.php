@@ -34,7 +34,7 @@ trait PanelBuilderTrait
      */
     public function panel(...$arguments): PanelComponent
     {
-        return $this->createElementOfClass($this->_panelComponentClass(), $arguments);
+        return $this->createComponentOfClass($this->_panelComponentClass(), $arguments);
     }
 
     /**
@@ -42,7 +42,7 @@ trait PanelBuilderTrait
      */
     public function panelHeader(...$arguments): PanelHeaderComponent
     {
-        return $this->createElementOfClass($this->_panelHeaderComponentClass(), $arguments);
+        return $this->createComponentOfClass($this->_panelHeaderComponentClass(), $arguments);
     }
 
     /**
@@ -50,7 +50,7 @@ trait PanelBuilderTrait
      */
     public function panelBody(...$arguments): PanelBodyComponent
     {
-        return $this->createElementOfClass($this->_panelBodyComponentClass(), $arguments);
+        return $this->createComponentOfClass($this->_panelBodyComponentClass(), $arguments);
     }
 
     /**
@@ -58,6 +58,6 @@ trait PanelBuilderTrait
      */
     public function panelFooter(...$arguments): PanelFooterComponent
     {
-        return $this->createElementOfClass($this->_panelFooterComponentClass(), $arguments);
+        return $this->createComponentOfClass($this->_panelFooterComponentClass(), $arguments);
     }
 }

@@ -18,7 +18,7 @@ class BreadcrumbItemComponent extends HtmlComponent
      */
     public function active(bool $active = false): static
     {
-        $active && $this->addClass('active');
+        $active && $this->element()->addClass('active');
         return $this;
     }
 }

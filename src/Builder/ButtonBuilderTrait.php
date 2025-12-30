@@ -28,7 +28,7 @@ trait ButtonBuilderTrait
      */
     public function buttonGroup(...$arguments): ButtonGroupComponent
     {
-        return $this->createElementOfClass($this->_buttonGroupComponentClass(), $arguments);
+        return $this->createComponentOfClass($this->_buttonGroupComponentClass(), $arguments);
     }
 
     /**
@@ -36,7 +36,7 @@ trait ButtonBuilderTrait
      */
     public function button(...$arguments): ButtonComponent
     {
-        return $this->createElementOfClass($this->_buttonComponentClass(), $arguments);
+        return $this->createComponentOfClass($this->_buttonComponentClass(), $arguments);
     }
 
     /**
@@ -44,6 +44,6 @@ trait ButtonBuilderTrait
      */
     public function badge(...$arguments): BadgeComponent
     {
-        return $this->createElementOfClass($this->_badgeComponentClass(), $arguments);
+        return $this->createComponentOfClass($this->_badgeComponentClass(), $arguments);
     }
 }

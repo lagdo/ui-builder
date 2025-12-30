@@ -48,14 +48,14 @@ trait FormBuilderTrait
      *
      * @return HtmlComponent
      */
-    abstract protected function createFormElement(string $tagName, $arguments): HtmlComponent;
+    abstract protected function createFormComponent(string $tagName, $arguments): HtmlComponent;
 
     /**
      * @inheritDoc
      */
     public function form(...$arguments): FormComponent
     {
-        return $this->createElementOfClass($this->_formComponentClass(), $arguments);
+        return $this->createComponentOfClass($this->_formComponentClass(), $arguments);
     }
 
     /**
@@ -63,7 +63,7 @@ trait FormBuilderTrait
      */
     public function label(...$arguments): LabelComponent
     {
-        return $this->createElementOfClass($this->_labelComponentClass(), $arguments);
+        return $this->createComponentOfClass($this->_labelComponentClass(), $arguments);
     }
 
     /**
@@ -71,7 +71,7 @@ trait FormBuilderTrait
      */
     public function inputGroup(...$arguments): InputGroupComponent
     {
-        return $this->createElementOfClass($this->_inputGroupComponentClass(), $arguments);
+        return $this->createComponentOfClass($this->_inputGroupComponentClass(), $arguments);
     }
 
     /**
@@ -79,7 +79,7 @@ trait FormBuilderTrait
      */
     public function checkbox(...$arguments): CheckboxComponent
     {
-        return $this->createElementOfClass($this->_checkboxComponentClass(), $arguments);
+        return $this->createComponentOfClass($this->_checkboxComponentClass(), $arguments);
     }
 
     /**
@@ -87,7 +87,7 @@ trait FormBuilderTrait
      */
     public function radio(...$arguments): RadioComponent
     {
-        return $this->createElementOfClass($this->_radioComponentClass(), $arguments);
+        return $this->createComponentOfClass($this->_radioComponentClass(), $arguments);
     }
 
     /**
@@ -95,6 +95,6 @@ trait FormBuilderTrait
      */
     public function option(...$arguments): OptionComponent
     {
-        return $this->createElementOfClass($this->_optionComponentClass(), $arguments);
+        return $this->createComponentOfClass($this->_optionComponentClass(), $arguments);
     }
 }
