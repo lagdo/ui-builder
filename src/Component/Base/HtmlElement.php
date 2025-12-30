@@ -2,8 +2,8 @@
 
 namespace Lagdo\UiBuilder\Component\Base;
 
-use Lagdo\UiBuilder\Builder\Html\HtmlBuilder;
 use Lagdo\UiBuilder\Component\Html\Element;
+use Lagdo\UiBuilder\Html\HtmlBuilder;
 
 use function htmlspecialchars;
 use function implode;
