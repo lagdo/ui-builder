@@ -92,7 +92,6 @@ class HtmlBuilder
      * @param array $arguments
      *
      * @return HtmlComponent|Element
-     * @throws LogicException When component is not initialized yet
      */
     public function callBuilderFactory(string $method, array $arguments): HtmlComponent|Element
     {
@@ -103,6 +102,7 @@ class HtmlBuilder
                 return $factory($tagName, $method, $arguments);
             }
         }
+
         return $this->createComponent($tagName, $arguments);
     }
 
@@ -123,9 +123,8 @@ class HtmlBuilder
                 return $factory($component, $tagName, $method, $arguments);
             }
         }
-        // Todo: throw an exception.
-        // throw new LogicException('Attributes can be set for elements only');
-        return $component;
+
+        throw new LogicException("No \"{$method}()\" method defined in the HTML component builder.");
     }
 
     /**
@@ -145,9 +144,8 @@ class HtmlBuilder
                 return $factory($element, $tagName, $method, $arguments);
             }
         }
-        // Todo: throw an exception.
-        // throw new LogicException('Attributes can be set for elements only');
-        return $element;
+
+        throw new LogicException("No \"{$method}()\" method defined in the HTML element builder.");
     }
 
     /**
