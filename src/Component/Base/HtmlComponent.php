@@ -50,7 +50,7 @@ class HtmlComponent extends Component
         $this->element = new HtmlElement($builder, $name);
 
         // Resolve arguments
-        $this->props(...$arguments);
+        $this->contents(...$arguments);
 
         $this->onCreate();
     }
@@ -71,7 +71,7 @@ class HtmlComponent extends Component
     /**
      * @return static
      */
-    public function props(...$arguments): static
+    public function contents(...$arguments): static
     {
         // Resolve arguments
         foreach ($arguments as $argument) {
@@ -158,6 +158,16 @@ class HtmlComponent extends Component
         // Must actually append the class.
         $this->element->addClass($class);
         return $this;
+    }
+
+    /**
+     * @param string $class
+     *
+     * @return static
+     */
+    public function addClass(string $class): static
+    {
+        return $this->setClass($class);
     }
 
     /**
