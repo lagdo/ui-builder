@@ -194,11 +194,25 @@ class HtmlComponent extends Component
     }
 
     /**
-     * @inheritDoc
+     * @param bool $condition
+     * @param Closure $closure
+     *
+     * @return static
      */
     public function when(bool $condition, Closure $closure): static
     {
         $condition && $closure($this);
+        return $this;
+    }
+
+    /**
+     * @param Closure $closure
+     *
+     * @return static
+     */
+    public function with(Closure $closure): static
+    {
+        $closure($this);
         return $this;
     }
 }
