@@ -22,25 +22,25 @@ class Engine
     /**
      * @var int
      */
-    public const TARGET_BUILDER = 'builder';
+    public const TARGET_BUILDER = 0;
 
     /**
      * @var int
      */
-    public const TARGET_COMPONENT = 'component';
+    public const TARGET_COMPONENT = 1;
 
     /**
      * @var int
      */
-    public const TARGET_ELEMENT = 'element';
+    public const TARGET_ELEMENT = 2;
 
     /**
      * @var array<string, array<string, Closure>>
      */
     protected $helpers = [
-        self::TARGET_BUILDER => [],
-        self::TARGET_COMPONENT => [],
-        self::TARGET_ELEMENT => [],
+        /*self::TARGET_BUILDER =>*/ [],
+        /*self::TARGET_COMPONENT =>*/ [],
+        /*self::TARGET_ELEMENT =>*/ [],
     ];
 
     /**
