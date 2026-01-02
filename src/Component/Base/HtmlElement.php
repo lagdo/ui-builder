@@ -3,7 +3,7 @@
 namespace Lagdo\UiBuilder\Component\Base;
 
 use Lagdo\UiBuilder\Component\Html\Element;
-use Lagdo\UiBuilder\Html\HtmlBuilder;
+use Lagdo\UiBuilder\Engine\Engine;
 
 use function htmlspecialchars;
 use function implode;
@@ -53,11 +53,11 @@ class HtmlElement extends Element
     private $children = [];
 
     /**
-     * @param HtmlBuilder $builder
+     * @param Engine $engine
      * @param string $tag
      * @param array $attributes
      */
-    public function __construct(private HtmlBuilder $builder, private string $tag, array $attributes = [])
+    public function __construct(private Engine $engine, private string $tag, array $attributes = [])
     {
         $this->setAttributes($attributes);
     }
@@ -70,7 +70,7 @@ class HtmlElement extends Element
      */
     public function __call(string $method, array $arguments): static
     {
-        $this->builder->callElementFactory($this, $method, $arguments);
+        $this->engine->callElementHelper($this, $method, $arguments);
         return $this;
     }
 

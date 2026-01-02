@@ -1,6 +1,6 @@
 <?php
 
-namespace Lagdo\UiBuilder\Html;
+namespace Lagdo\UiBuilder\Engine;
 
 use Lagdo\UiBuilder\Component\Base\HtmlComponent;
 use Lagdo\UiBuilder\Component\Base\HtmlElement;

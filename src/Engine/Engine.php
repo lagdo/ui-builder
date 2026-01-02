@@ -1,6 +1,6 @@
 <?php
 
-namespace Lagdo\UiBuilder\Html;
+namespace Lagdo\UiBuilder\Engine;
 
 use Lagdo\UiBuilder\Component\Base\HtmlComponent;
 use Lagdo\UiBuilder\Component\Base\HtmlElement;
@@ -17,7 +17,7 @@ use function strlen;
 use function strtolower;
 use function substr;
 
-class HtmlBuilder
+class Engine
 {
     /**
      * @var int
@@ -37,7 +37,7 @@ class HtmlBuilder
     /**
      * @var array<string, array<string, Closure>>
      */
-    protected $factories = [
+    protected $helpers = [
         self::TARGET_BUILDER => [],
         self::TARGET_COMPONENT => [],
         self::TARGET_ELEMENT => [],
@@ -48,13 +48,13 @@ class HtmlBuilder
      */
     public function __construct()
     {
-        $this->registerFactory('set', self::TARGET_COMPONENT,
+        $this->registerHelper('set', self::TARGET_COMPONENT,
             function(HtmlComponent $component, string $tagName,
                 string $method, array $arguments): HtmlComponent {
                 $component->element()->setAttribute($tagName, $arguments[0] ?? null);
                 return $component;
             });
-        $this->registerFactory('set', self::TARGET_ELEMENT,
+        $this->registerHelper('set', self::TARGET_ELEMENT,
             function(HtmlElement $element, string $tagName,
                 string $method, array $arguments): HtmlElement {
                 $element->setAttribute($tagName, $arguments[0] ?? null);
@@ -65,15 +65,15 @@ class HtmlBuilder
     /**
      * @param string $tagPrefix
      * @param string $tagTarget
-     * @param Closure $factory
+     * @param Closure $tagHelper
      *
      * @return void
      */
-    public function registerFactory(string $tagPrefix, string $tagTarget, Closure $factory): void
+    public function registerHelper(string $tagPrefix, string $tagTarget, Closure $tagHelper): void
     {
-        // Do not overwrite existing factories.
-        if(isset($this->factories[$tagTarget]) && !isset($this->factories[$tagTarget][$tagPrefix])) {
-            $this->factories[$tagTarget][$tagPrefix] = $factory;
+        // Do not overwrite existing helpers.
+        if(isset($this->helpers[$tagTarget]) && !isset($this->helpers[$tagTarget][$tagPrefix])) {
+            $this->helpers[$tagTarget][$tagPrefix] = $tagHelper;
         }
     }
 
@@ -93,13 +93,13 @@ class HtmlBuilder
      *
      * @return HtmlComponent|Element
      */
-    public function callBuilderFactory(string $method, array $arguments): HtmlComponent|Element
+    public function callBuilderHelper(string $method, array $arguments): HtmlComponent|Element
     {
         $tagName = $this->getTagName($method);
-        foreach($this->factories[self::TARGET_BUILDER] as $tagPrefix => $factory) {
+        foreach($this->helpers[self::TARGET_BUILDER] as $tagPrefix => $helper) {
             if (stripos($tagName, "$tagPrefix-") === 0) {
                 $tagName = substr($tagName, strlen($tagPrefix) + 1);
-                return $factory($tagName, $method, $arguments);
+                return $helper($tagName, $method, $arguments);
             }
         }
 
@@ -114,17 +114,17 @@ class HtmlBuilder
      * @return HtmlComponent
      * @throws LogicException When component is not initialized yet
      */
-    public function callComponentFactory(HtmlComponent $component, string $method, array $arguments): HtmlComponent
+    public function callComponentHelper(HtmlComponent $component, string $method, array $arguments): HtmlComponent
     {
         $tagName = $this->getTagName($method);
-        foreach($this->factories[self::TARGET_COMPONENT] as $tagPrefix => $factory) {
+        foreach($this->helpers[self::TARGET_COMPONENT] as $tagPrefix => $helper) {
             if (stripos($tagName, "$tagPrefix-") === 0) {
                 $tagName = substr($tagName, strlen($tagPrefix) + 1);
-                return $factory($component, $tagName, $method, $arguments);
+                return $helper($component, $tagName, $method, $arguments);
             }
         }
 
-        throw new LogicException("No \"{$method}()\" method defined in the HTML component builder.");
+        throw new LogicException("No \"{$method}()\" method defined in the HTML component helper.");
     }
 
     /**
@@ -135,17 +135,17 @@ class HtmlBuilder
      * @return HtmlElement
      * @throws LogicException When component is not initialized yet
      */
-    public function callElementFactory(HtmlElement $element, string $method, array $arguments): HtmlElement
+    public function callElementHelper(HtmlElement $element, string $method, array $arguments): HtmlElement
     {
         $tagName = $this->getTagName($method);
-        foreach($this->factories[self::TARGET_ELEMENT] as $tagPrefix => $factory) {
+        foreach($this->helpers[self::TARGET_ELEMENT] as $tagPrefix => $helper) {
             if (stripos($tagName, "$tagPrefix-") === 0) {
                 $tagName = substr($tagName, strlen($tagPrefix) + 1);
-                return $factory($element, $tagName, $method, $arguments);
+                return $helper($element, $tagName, $method, $arguments);
             }
         }
 
-        throw new LogicException("No \"{$method}()\" method defined in the HTML element builder.");
+        throw new LogicException("No \"{$method}()\" method defined in the HTML element helper.");
     }
 
     /**

@@ -12,7 +12,7 @@ use Lagdo\UiBuilder\Component\Virtual\EachComponent;
 use Lagdo\UiBuilder\Component\Virtual\ListComponent;
 use Lagdo\UiBuilder\Component\Virtual\TakeComponent;
 use Lagdo\UiBuilder\Component\Virtual\WhenComponent;
-use Lagdo\UiBuilder\Html\HtmlBuilder;
+use Lagdo\UiBuilder\Engine\Engine;
 use Closure;
 
 abstract class AbstractBuilder implements BuilderInterface
@@ -28,17 +28,17 @@ abstract class AbstractBuilder implements BuilderInterface
     use Builder\TableBuilderTrait;
 
     /**
-     * @var HtmlBuilder
+     * @var Engine
      */
-    protected $builder;
+    private $engine;
 
     /**
      * The constructor
      */
     public function __construct()
     {
-        $this->builder = new HtmlBuilder();
-        $this->builder->registerFactory('form', HtmlBuilder::TARGET_BUILDER,
+        $this->engine = new Engine();
+        $this->engine->registerHelper('form', Engine::TARGET_BUILDER,
             fn(string $tagName, string $method, array $arguments) =>
                 $this->createFormComponent($tagName, $arguments));
     }
@@ -51,15 +51,15 @@ abstract class AbstractBuilder implements BuilderInterface
      */
     public function __call(string $method, array $arguments): mixed
     {
-        return $this->builder->callBuilderFactory($method, $arguments);
+        return $this->engine->callBuilderHelper($method, $arguments);
     }
 
     /**
      * @inheritDoc
      */
-    public function registerFactory(string $tagPrefix, string $tagTarget, Closure $tagFactory): void
+    public function registerHelper(string $tagPrefix, string $tagTarget, Closure $tagHelper): void
     {
-        $this->builder->registerFactory($tagPrefix, $tagTarget, $tagFactory);
+        $this->engine->registerHelper($tagPrefix, $tagTarget, $tagHelper);
     }
 
     /**
@@ -67,11 +67,24 @@ abstract class AbstractBuilder implements BuilderInterface
      */
     public function tag(string $name, ...$arguments): HtmlComponent
     {
-        return $this->builder->createComponent($name, $arguments);
+        return $this->engine->createComponent($name, $arguments);
     }
 
     /**
-     * Create an element of a given class name
+     * Create a component
+     *
+     * @param string $name
+     * @param array $arguments
+     *
+     * @return HtmlComponent
+     */
+    protected function createComponent(string $name, $arguments): HtmlComponent
+    {
+        return $this->engine->createComponent($name, $arguments);
+    }
+
+    /**
+     * Create a component of a given class name
      *
      * @template T of HtmlComponent
      * @psalm-param class-string<T> $class
@@ -81,7 +94,7 @@ abstract class AbstractBuilder implements BuilderInterface
      */
     protected function createComponentOfClass(string $class, $arguments): HtmlComponent
     {
-        return $this->builder->createComponent($class::$tag, $arguments, $class);
+        return $this->engine->createComponent($class::$tag, $arguments, $class);
     }
 
     /**
@@ -145,6 +158,6 @@ abstract class AbstractBuilder implements BuilderInterface
      */
     public function build(...$arguments): string
     {
-        return $this->builder->build($arguments);
+        return $this->engine->build($arguments);
     }
 }

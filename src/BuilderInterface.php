@@ -57,11 +57,11 @@ interface BuilderInterface extends ButtonBuilderInterface, DropdownBuilderInterf
     /**
      * @param string $tagPrefix
      * @param string $tagTarget
-     * @param Closure $tagFactory
+     * @param Closure $tagHelper
      *
      * @return void
      */
-    public function registerFactory(string $tagPrefix, string $tagTarget, Closure $tagFactory): void;
+    public function registerHelper(string $tagPrefix, string $tagTarget, Closure $tagHelper): void;
 
     /**
      * @param string $name

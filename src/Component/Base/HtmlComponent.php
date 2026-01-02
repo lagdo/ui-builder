@@ -5,7 +5,7 @@ namespace Lagdo\UiBuilder\Component\Base;
 use Lagdo\UiBuilder\Component\Html\Element;
 use Lagdo\UiBuilder\Component\Html\Html;
 use Lagdo\UiBuilder\Component\Html\Text;
-use Lagdo\UiBuilder\Html\HtmlBuilder;
+use Lagdo\UiBuilder\Engine\Engine;
 use Closure;
 
 use function is_array;
@@ -41,13 +41,13 @@ class HtmlComponent extends Component
     /**
      * The constructor
      *
-     * @param HtmlBuilder $builder
+     * @param Engine $engine
      * @param string $name
      * @param array $arguments
      */
-    public function __construct(private HtmlBuilder $builder, string $name, array $arguments = [])
+    public function __construct(private Engine $engine, string $name, array $arguments = [])
     {
-        $this->element = new HtmlElement($builder, $name);
+        $this->element = new HtmlElement($engine, $name);
 
         // Resolve arguments
         $this->contents(...$arguments);
@@ -144,7 +144,7 @@ class HtmlComponent extends Component
      */
     public function __call(string $method, array $arguments): static
     {
-        $this->builder->callComponentFactory($this, $method, $arguments);
+        $this->engine->callComponentHelper($this, $method, $arguments);
         return $this;
     }
 
@@ -203,7 +203,7 @@ class HtmlComponent extends Component
      */
     protected function addWrapper(string $name, array $arguments = []): HtmlElement
     {
-        $wrapper = new HtmlElement($this->builder, $name, $arguments);
+        $wrapper = new HtmlElement($this->engine, $name, $arguments);
         $this->wrappers[] = $wrapper;
         return $wrapper;
     }
