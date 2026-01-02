@@ -2,10 +2,10 @@
 
 namespace Lagdo\UiBuilder\Builder;
 
-use Lagdo\UiBuilder\Component\PanelComponent;
-use Lagdo\UiBuilder\Component\PanelBodyComponent;
-use Lagdo\UiBuilder\Component\PanelFooterComponent;
-use Lagdo\UiBuilder\Component\PanelHeaderComponent;
+use Lagdo\UiBuilder\Component\Base\PanelComponent;
+use Lagdo\UiBuilder\Component\Base\PanelBodyComponent;
+use Lagdo\UiBuilder\Component\Base\PanelFooterComponent;
+use Lagdo\UiBuilder\Component\Base\PanelHeaderComponent;
 
 trait PanelBuilderTrait
 {

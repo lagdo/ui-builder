@@ -11,8 +11,8 @@ use Lagdo\UiBuilder\Builder\PaginationBuilderInterface;
 use Lagdo\UiBuilder\Builder\PanelBuilderInterface;
 use Lagdo\UiBuilder\Builder\TabBuilderInterface;
 use Lagdo\UiBuilder\Builder\TableBuilderInterface;
-use Lagdo\UiBuilder\Component\Base\Component;
-use Lagdo\UiBuilder\Component\Base\HtmlComponent;
+use Lagdo\UiBuilder\Component\Component;
+use Lagdo\UiBuilder\Component\HtmlComponent;
 use Lagdo\UiBuilder\Component\Html\Element;
 use Closure;
 

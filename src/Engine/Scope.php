@@ -2,8 +2,8 @@
 
 namespace Lagdo\UiBuilder\Engine;
 
-use Lagdo\UiBuilder\Component\Base\HtmlComponent;
-use Lagdo\UiBuilder\Component\Base\HtmlElement;
+use Lagdo\UiBuilder\Component\HtmlComponent;
+use Lagdo\UiBuilder\Component\HtmlElement;
 use Lagdo\UiBuilder\Component\Html\Element;
 use Lagdo\UiBuilder\Component\Virtual\VirtualComponent;
 

@@ -2,7 +2,7 @@
 
 namespace Lagdo\UiBuilder\Component\Virtual;
 
-use Lagdo\UiBuilder\Component\Base\Component;
+use Lagdo\UiBuilder\Component\Component;
 use Lagdo\UiBuilder\Component\Html\Element;
 
 /**

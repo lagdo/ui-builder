@@ -2,8 +2,8 @@
 
 namespace Lagdo\UiBuilder\Builder;
 
-use Lagdo\UiBuilder\Component\PaginationComponent;
-use Lagdo\UiBuilder\Component\PaginationItemComponent;
+use Lagdo\UiBuilder\Component\Base\PaginationComponent;
+use Lagdo\UiBuilder\Component\Base\PaginationItemComponent;
 
 interface PaginationBuilderInterface
 {

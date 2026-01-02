@@ -2,10 +2,10 @@
 
 namespace Lagdo\UiBuilder\Builder;
 
-use Lagdo\UiBuilder\Component\TabNavComponent;
-use Lagdo\UiBuilder\Component\TabNavItemComponent;
-use Lagdo\UiBuilder\Component\TabContentComponent;
-use Lagdo\UiBuilder\Component\TabContentItemComponent;
+use Lagdo\UiBuilder\Component\Base\TabNavComponent;
+use Lagdo\UiBuilder\Component\Base\TabNavItemComponent;
+use Lagdo\UiBuilder\Component\Base\TabContentComponent;
+use Lagdo\UiBuilder\Component\Base\TabContentItemComponent;
 
 trait TabBuilderTrait
 {

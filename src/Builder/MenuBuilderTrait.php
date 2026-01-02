@@ -2,10 +2,10 @@
 
 namespace Lagdo\UiBuilder\Builder;
 
-use Lagdo\UiBuilder\Component\BreadcrumbComponent;
-use Lagdo\UiBuilder\Component\BreadcrumbItemComponent;
-use Lagdo\UiBuilder\Component\MenuComponent;
-use Lagdo\UiBuilder\Component\MenuItemComponent;
+use Lagdo\UiBuilder\Component\Base\BreadcrumbComponent;
+use Lagdo\UiBuilder\Component\Base\BreadcrumbItemComponent;
+use Lagdo\UiBuilder\Component\Base\MenuComponent;
+use Lagdo\UiBuilder\Component\Base\MenuItemComponent;
 
 trait MenuBuilderTrait
 {

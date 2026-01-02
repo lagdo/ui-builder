@@ -2,10 +2,10 @@
 
 namespace Lagdo\UiBuilder\Builder;
 
-use Lagdo\UiBuilder\Component\DropdownComponent;
-use Lagdo\UiBuilder\Component\DropdownItemComponent;
-use Lagdo\UiBuilder\Component\DropdownMenuComponent;
-use Lagdo\UiBuilder\Component\DropdownMenuItemComponent;
+use Lagdo\UiBuilder\Component\Base\DropdownComponent;
+use Lagdo\UiBuilder\Component\Base\DropdownItemComponent;
+use Lagdo\UiBuilder\Component\Base\DropdownMenuComponent;
+use Lagdo\UiBuilder\Component\Base\DropdownMenuItemComponent;
 
 trait DropdownBuilderTrait
 {

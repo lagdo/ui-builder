@@ -2,10 +2,10 @@
 
 namespace Lagdo\UiBuilder\Component\Virtual;
 
-use Lagdo\UiBuilder\Component\Base\Component;
+use Lagdo\UiBuilder\Component\Component;
 use Closure;
 
-use function is_callable;
+use function is_a;
 
 class WhenComponent extends VirtualComponent
 {
@@ -21,7 +21,7 @@ class WhenComponent extends VirtualComponent
             return;
         }
 
-        if (is_callable($element)) {
+        if (is_a($element, Closure::class)) {
             $element = $element();
         }
         if ($element !== null) {
