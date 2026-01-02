@@ -5,12 +5,9 @@ namespace Lagdo\UiBuilder\Engine;
 use Lagdo\UiBuilder\Component\HtmlComponent;
 use Lagdo\UiBuilder\Component\HtmlElement;
 use Lagdo\UiBuilder\Component\Html\Element;
-use Lagdo\UiBuilder\Component\Html\Html;
 use Closure;
 use LogicException;
 
-use function is_array;
-use function is_string;
 use function preg_replace;
 use function stripos;
 use function strlen;
@@ -149,28 +146,6 @@ class Engine
     }
 
     /**
-     * @param string $name
-     * @param array $arguments
-     *
-     * @return HtmlElement
-     */
-    public function createElement(string $name, array $arguments = []): HtmlElement
-    {
-        $element = new HtmlElement($this, $name);
-        // Resolve arguments
-        foreach ($arguments as $argument) {
-            switch (true) {
-            case is_array($argument):
-                $element->setAttributes($argument);
-                break;
-            case is_string($argument):
-                $element->addChild(new Html($argument));
-            }
-        }
-        return $element;
-    }
-
-    /**
      * @template T of HtmlComponent
      * @param string $name
      * @param array $arguments
@@ -182,16 +157,6 @@ class Engine
         string $class = HtmlComponent::class): mixed
     {
         return new $class($this, $name, $arguments);
-    }
-
-    /**
-     * @param string $name
-     *
-     * @return HtmlElement
-     */
-    public function tag(string $name, ...$arguments): HtmlElement
-    {
-        return $this->createElement($name, $arguments);
     }
 
     /**
