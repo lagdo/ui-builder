@@ -14,6 +14,15 @@ use function trim;
 
 /**
  * The HTML tags finally generated for a given component
+ *
+ * @method static setId(string $id, bool $escape = true)
+ * @method static setClass(string $class, bool $escape = true)
+ * @method static setFor(string $for, bool $escape = true)
+ * @method static setName(string $name, bool $escape = true)
+ * @method static setValue(string $value, bool $escape = true)
+ * @method static setType(string $type, bool $escape = true)
+ * @method static setTitle(string $type, bool $escape = true)
+ * @method static setStyle(string $type, bool $escape = true)
  */
 class HtmlElement extends Element
 {

@@ -12,14 +12,14 @@ use function is_array;
 use function is_string;
 
 /**
- * @method static setId(string $id)
- * @method static setClass(string $class)
- * @method static setFor(string $for)
- * @method static setName(string $name)
- * @method static setValue(string $value)
- * @method static setType(string $type)
- * @method static setTitle(string $type)
- * @method static setStyle(string $type)
+ * @method static setId(string $id, bool $escape = true)
+ * @method static setClass(string $class, bool $escape = true)
+ * @method static setFor(string $for, bool $escape = true)
+ * @method static setName(string $name, bool $escape = true)
+ * @method static setValue(string $value, bool $escape = true)
+ * @method static setType(string $type, bool $escape = true)
+ * @method static setTitle(string $type, bool $escape = true)
+ * @method static setStyle(string $type, bool $escape = true)
  */
 class HtmlComponent extends Component
 {

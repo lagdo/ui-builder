@@ -51,13 +51,13 @@ class Engine
         $this->registerHelper('set', self::TARGET_COMPONENT,
             function(HtmlComponent $component, string $tagName,
                 string $method, array $arguments): HtmlComponent {
-                $component->element()->setAttribute($tagName, $arguments[0] ?? null);
+                $component->setAttribute($tagName, $arguments[0] ?? null, $arguments[1] ?? true);
                 return $component;
             });
         $this->registerHelper('set', self::TARGET_ELEMENT,
             function(HtmlElement $element, string $tagName,
                 string $method, array $arguments): HtmlElement {
-                $element->setAttribute($tagName, $arguments[0] ?? null);
+                $element->setAttribute($tagName, $arguments[0] ?? null, $arguments[1] ?? true);
                 return $element;
             });
     }
@@ -124,7 +124,7 @@ class Engine
             }
         }
 
-        throw new LogicException("No \"{$method}()\" method defined in the HTML component helper.");
+        throw new LogicException("No \"{$method}()\" method defined in the HTML component.");
     }
 
     /**
@@ -145,7 +145,7 @@ class Engine
             }
         }
 
-        throw new LogicException("No \"{$method}()\" method defined in the HTML element helper.");
+        throw new LogicException("No \"{$method}()\" method defined in the HTML element.");
     }
 
     /**
