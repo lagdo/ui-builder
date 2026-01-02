@@ -121,7 +121,7 @@ class Engine
             }
         }
 
-        throw new LogicException("No \"{$method}()\" method defined in the HTML component.");
+        throw new LogicException("Call to undefined method \"{$method}()\" in the HTML component.");
     }
 
     /**
@@ -142,7 +142,7 @@ class Engine
             }
         }
 
-        throw new LogicException("No \"{$method}()\" method defined in the HTML element.");
+        throw new LogicException("Call to undefined method \"{$method}()\" in the HTML element.");
     }
 
     /**
