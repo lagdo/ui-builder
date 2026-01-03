@@ -4,7 +4,7 @@ namespace Lagdo\UiBuilder\Component\Virtual;
 
 use function is_callable;
 
-class TakeComponent extends VirtualComponent
+class PickComponent extends VirtualComponent
 {
     /**
      * The constructor

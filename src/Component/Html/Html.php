@@ -27,6 +27,6 @@ class Html extends Element
      */
     protected function render(): string
     {
-        return (string)$this->text;
+        return $this->text;
     }
 }

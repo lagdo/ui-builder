@@ -10,7 +10,7 @@ use Lagdo\UiBuilder\Component\Html\Html;
 use Lagdo\UiBuilder\Component\Html\Text;
 use Lagdo\UiBuilder\Component\Virtual\EachComponent;
 use Lagdo\UiBuilder\Component\Virtual\ListComponent;
-use Lagdo\UiBuilder\Component\Virtual\TakeComponent;
+use Lagdo\UiBuilder\Component\Virtual\PickComponent;
 use Lagdo\UiBuilder\Component\Virtual\WhenComponent;
 use Lagdo\UiBuilder\Engine\Engine;
 use Closure;
@@ -124,9 +124,9 @@ abstract class AbstractBuilder implements BuilderInterface
     /**
      * @inheritDoc
      */
-    public function take(...$arguments): Component
+    public function pick(...$arguments): Component
     {
-        return new TakeComponent($arguments);
+        return new PickComponent($arguments);
     }
 
     /**

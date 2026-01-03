@@ -94,7 +94,7 @@ interface BuilderInterface extends ButtonBuilderInterface, DropdownBuilderInterf
     /**
      * @return Component
      */
-    public function take(...$arguments): Component;
+    public function pick(...$arguments): Component;
 
     /**
      * @param string $text
