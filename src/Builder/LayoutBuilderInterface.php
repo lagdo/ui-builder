@@ -2,28 +2,27 @@
 
 namespace Lagdo\UiBuilder\Builder;
 
-use Lagdo\UiBuilder\Component\Base\ColComponent;
-use Lagdo\UiBuilder\Component\Base\RowComponent;
+use Lagdo\UiBuilder\Component\Base;
 
 interface LayoutBuilderInterface
 {
     /**
-     * @return RowComponent
+     * @return Base\RowComponent
      */
-    public function row(...$arguments): RowComponent;
+    public function row(...$arguments): Base\RowComponent;
 
     /**
-     * @return ColComponent
+     * @return Base\ColComponent
      */
-    public function col(...$arguments): ColComponent;
+    public function col(...$arguments): Base\ColComponent;
 
     /**
-     * @return RowComponent
+     * @return Base\RowComponent
      */
-    public function formRow(...$arguments): RowComponent;
+    public function formRow(...$arguments): Base\RowComponent;
 
     /**
-     * @return ColComponent
+     * @return Base\ColComponent
      */
-    public function formCol(...$arguments): ColComponent;
+    public function formCol(...$arguments): Base\ColComponent;
 }

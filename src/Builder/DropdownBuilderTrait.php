@@ -2,10 +2,7 @@
 
 namespace Lagdo\UiBuilder\Builder;
 
-use Lagdo\UiBuilder\Component\Base\DropdownComponent;
-use Lagdo\UiBuilder\Component\Base\DropdownItemComponent;
-use Lagdo\UiBuilder\Component\Base\DropdownMenuComponent;
-use Lagdo\UiBuilder\Component\Base\DropdownMenuItemComponent;
+use Lagdo\UiBuilder\Component\Base;
 
 trait DropdownBuilderTrait
 {
@@ -32,7 +29,7 @@ trait DropdownBuilderTrait
     /**
      * @inheritDoc
      */
-    public function dropdown(...$arguments): DropdownComponent
+    public function dropdown(...$arguments): Base\DropdownComponent
     {
         return $this->createComponentOfClass($this->dropdownComponentClass, $arguments);
     }
@@ -40,7 +37,7 @@ trait DropdownBuilderTrait
     /**
      * @inheritDoc
      */
-    public function dropdownItem(...$arguments): DropdownItemComponent
+    public function dropdownItem(...$arguments): Base\DropdownItemComponent
     {
         return $this->createComponentOfClass($this->dropdownItemComponentClass, $arguments);
     }
@@ -48,7 +45,7 @@ trait DropdownBuilderTrait
     /**
      * @inheritDoc
      */
-    public function dropdownMenu(...$arguments): DropdownMenuComponent
+    public function dropdownMenu(...$arguments): Base\DropdownMenuComponent
     {
         return $this->createComponentOfClass($this->dropdownMenuComponentClass, $arguments);
     }
@@ -56,7 +53,7 @@ trait DropdownBuilderTrait
     /**
      * @inheritDoc
      */
-    public function dropdownMenuItem(...$arguments): DropdownMenuItemComponent
+    public function dropdownMenuItem(...$arguments): Base\DropdownMenuItemComponent
     {
         return $this->createComponentOfClass($this->dropdownMenuItemComponentClass, $arguments);
     }

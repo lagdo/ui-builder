@@ -2,12 +2,7 @@
 
 namespace Lagdo\UiBuilder\Builder;
 
-use Lagdo\UiBuilder\Component\Base\CheckboxComponent;
-use Lagdo\UiBuilder\Component\Base\FormComponent;
-use Lagdo\UiBuilder\Component\Base\InputGroupComponent;
-use Lagdo\UiBuilder\Component\Base\LabelComponent;
-use Lagdo\UiBuilder\Component\Base\OptionComponent;
-use Lagdo\UiBuilder\Component\Base\RadioComponent;
+use Lagdo\UiBuilder\Component\Base;
 use Lagdo\UiBuilder\Component\HtmlComponent;
 
 trait FormBuilderTrait
@@ -53,7 +48,7 @@ trait FormBuilderTrait
     /**
      * @inheritDoc
      */
-    public function form(...$arguments): FormComponent
+    public function form(...$arguments): Base\FormComponent
     {
         return $this->createComponentOfClass($this->formComponentClass, $arguments);
     }
@@ -61,7 +56,7 @@ trait FormBuilderTrait
     /**
      * @inheritDoc
      */
-    public function label(...$arguments): LabelComponent
+    public function label(...$arguments): Base\LabelComponent
     {
         return $this->createComponentOfClass($this->labelComponentClass, $arguments);
     }
@@ -69,7 +64,7 @@ trait FormBuilderTrait
     /**
      * @inheritDoc
      */
-    public function inputGroup(...$arguments): InputGroupComponent
+    public function inputGroup(...$arguments): Base\InputGroupComponent
     {
         return $this->createComponentOfClass($this->inputGroupComponentClass, $arguments);
     }
@@ -77,7 +72,7 @@ trait FormBuilderTrait
     /**
      * @inheritDoc
      */
-    public function checkbox(...$arguments): CheckboxComponent
+    public function checkbox(...$arguments): Base\CheckboxComponent
     {
         return $this->createComponentOfClass($this->checkboxComponentClass, $arguments);
     }
@@ -85,7 +80,7 @@ trait FormBuilderTrait
     /**
      * @inheritDoc
      */
-    public function radio(...$arguments): RadioComponent
+    public function radio(...$arguments): Base\RadioComponent
     {
         return $this->createComponentOfClass($this->radioComponentClass, $arguments);
     }
@@ -93,7 +88,7 @@ trait FormBuilderTrait
     /**
      * @inheritDoc
      */
-    public function option(...$arguments): OptionComponent
+    public function option(...$arguments): Base\OptionComponent
     {
         return $this->createComponentOfClass($this->optionComponentClass, $arguments);
     }

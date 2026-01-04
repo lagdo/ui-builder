@@ -2,8 +2,7 @@
 
 namespace Lagdo\UiBuilder\Builder;
 
-use Lagdo\UiBuilder\Component\Base\PaginationComponent;
-use Lagdo\UiBuilder\Component\Base\PaginationItemComponent;
+use Lagdo\UiBuilder\Component\Base;
 
 trait PaginationBuilderTrait
 {
@@ -20,7 +19,7 @@ trait PaginationBuilderTrait
     /**
      * @inheritDoc
      */
-    public function pagination(...$arguments): PaginationComponent
+    public function pagination(...$arguments): Base\PaginationComponent
     {
         return $this->createComponentOfClass($this->paginationComponentClass, $arguments);
     }
@@ -28,7 +27,7 @@ trait PaginationBuilderTrait
     /**
      * @inheritDoc
      */
-    public function paginationItem(...$arguments): PaginationItemComponent
+    public function paginationItem(...$arguments): Base\PaginationItemComponent
     {
         return $this->createComponentOfClass($this->paginationItemComponentClass, $arguments);
     }

@@ -2,10 +2,7 @@
 
 namespace Lagdo\UiBuilder\Builder;
 
-use Lagdo\UiBuilder\Component\Base\TabNavComponent;
-use Lagdo\UiBuilder\Component\Base\TabNavItemComponent;
-use Lagdo\UiBuilder\Component\Base\TabContentComponent;
-use Lagdo\UiBuilder\Component\Base\TabContentItemComponent;
+use Lagdo\UiBuilder\Component\Base;
 
 trait TabBuilderTrait
 {
@@ -32,7 +29,7 @@ trait TabBuilderTrait
     /**
      * @inheritDoc
      */
-    public function tabNav(...$arguments): TabNavComponent
+    public function tabNav(...$arguments): Base\TabNavComponent
     {
         return $this->createComponentOfClass($this->tabNavComponentClass, $arguments);
     }
@@ -40,7 +37,7 @@ trait TabBuilderTrait
     /**
      * @inheritDoc
      */
-    public function tabNavItem(...$arguments): TabNavItemComponent
+    public function tabNavItem(...$arguments): Base\TabNavItemComponent
     {
         return $this->createComponentOfClass($this->tabNavItemComponentClass, $arguments);
     }
@@ -48,7 +45,7 @@ trait TabBuilderTrait
     /**
      * @inheritDoc
      */
-    public function tabContent(...$arguments): TabContentComponent
+    public function tabContent(...$arguments): Base\TabContentComponent
     {
         return $this->createComponentOfClass($this->tabContentComponentClass, $arguments);
     }
@@ -56,7 +53,7 @@ trait TabBuilderTrait
     /**
      * @inheritDoc
      */
-    public function tabContentItem(...$arguments): TabContentItemComponent
+    public function tabContentItem(...$arguments): Base\TabContentItemComponent
     {
         return $this->createComponentOfClass($this->tabContentItemComponentClass, $arguments);
     }

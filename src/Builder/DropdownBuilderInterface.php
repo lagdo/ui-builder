@@ -2,32 +2,29 @@
 
 namespace Lagdo\UiBuilder\Builder;
 
-use Lagdo\UiBuilder\Component\Base\DropdownComponent;
-use Lagdo\UiBuilder\Component\Base\DropdownItemComponent;
-use Lagdo\UiBuilder\Component\Base\DropdownMenuComponent;
-use Lagdo\UiBuilder\Component\Base\DropdownMenuItemComponent;
+use Lagdo\UiBuilder\Component\Base;
 
 interface DropdownBuilderInterface
 {
     /**
-     * @return DropdownComponent
+     * @return Base\DropdownComponent
      */
-    public function dropdown(...$arguments): DropdownComponent;
+    public function dropdown(...$arguments): Base\DropdownComponent;
 
     /**
      * @param string $style
      *
-     * @return DropdownItemComponent
+     * @return Base\DropdownItemComponent
      */
-    public function dropdownItem(...$arguments): DropdownItemComponent;
+    public function dropdownItem(...$arguments): Base\DropdownItemComponent;
 
     /**
-     * @return DropdownMenuComponent
+     * @return Base\DropdownMenuComponent
      */
-    public function dropdownMenu(...$arguments): DropdownMenuComponent;
+    public function dropdownMenu(...$arguments): Base\DropdownMenuComponent;
 
     /**
-     * @return DropdownMenuItemComponent
+     * @return Base\DropdownMenuItemComponent
      */
-    public function dropdownMenuItem(...$arguments): DropdownMenuItemComponent;
+    public function dropdownMenuItem(...$arguments): Base\DropdownMenuItemComponent;
 }

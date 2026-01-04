@@ -2,48 +2,43 @@
 
 namespace Lagdo\UiBuilder\Builder;
 
-use Lagdo\UiBuilder\Component\Base\CheckboxComponent;
-use Lagdo\UiBuilder\Component\Base\FormComponent;
-use Lagdo\UiBuilder\Component\Base\InputGroupComponent;
-use Lagdo\UiBuilder\Component\Base\LabelComponent;
-use Lagdo\UiBuilder\Component\Base\OptionComponent;
-use Lagdo\UiBuilder\Component\Base\RadioComponent;
+use Lagdo\UiBuilder\Component\Base;
 
 interface FormBuilderInterface
 {
     /**
-     * @return FormComponent
+     * @return Base\FormComponent
      */
-    public function form(...$arguments): FormComponent;
+    public function form(...$arguments): Base\FormComponent;
 
     /**
-     * @return LabelComponent
+     * @return Base\LabelComponent
      */
-    public function label(...$arguments): LabelComponent;
-
-    /**
-     * @param bool $checked
-     *
-     * @return CheckboxComponent
-     */
-    public function checkbox(...$arguments): CheckboxComponent;
+    public function label(...$arguments): Base\LabelComponent;
 
     /**
      * @param bool $checked
      *
-     * @return RadioComponent
+     * @return Base\CheckboxComponent
      */
-    public function radio(...$arguments): RadioComponent;
+    public function checkbox(...$arguments): Base\CheckboxComponent;
+
+    /**
+     * @param bool $checked
+     *
+     * @return Base\RadioComponent
+     */
+    public function radio(...$arguments): Base\RadioComponent;
 
     /**
      * @param bool $selected
      *
-     * @return OptionComponent
+     * @return Base\OptionComponent
      */
-    public function option(...$arguments): OptionComponent;
+    public function option(...$arguments): Base\OptionComponent;
 
     /**
-     * @return InputGroupComponent
+     * @return Base\InputGroupComponent
      */
-    public function inputGroup(...$arguments): InputGroupComponent;
+    public function inputGroup(...$arguments): Base\InputGroupComponent;
 }

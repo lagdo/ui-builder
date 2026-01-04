@@ -2,30 +2,27 @@
 
 namespace Lagdo\UiBuilder\Builder;
 
-use Lagdo\UiBuilder\Component\Base\BreadcrumbComponent;
-use Lagdo\UiBuilder\Component\Base\BreadcrumbItemComponent;
-use Lagdo\UiBuilder\Component\Base\MenuComponent;
-use Lagdo\UiBuilder\Component\Base\MenuItemComponent;
+use Lagdo\UiBuilder\Component\Base;
 
 interface MenuBuilderInterface
 {
     /**
-     * @return MenuComponent
+     * @return Base\MenuComponent
      */
-    public function menu(...$arguments): MenuComponent;
+    public function menu(...$arguments): Base\MenuComponent;
 
     /**
-     * @return MenuItemComponent
+     * @return Base\MenuItemComponent
      */
-    public function menuItem(...$arguments): MenuItemComponent;
+    public function menuItem(...$arguments): Base\MenuItemComponent;
 
     /**
-     * @return BreadcrumbComponent
+     * @return Base\BreadcrumbComponent
      */
-    public function breadcrumb(...$arguments): BreadcrumbComponent;
+    public function breadcrumb(...$arguments): Base\BreadcrumbComponent;
 
     /**
-     * @return BreadcrumbItemComponent
+     * @return Base\BreadcrumbItemComponent
      */
-    public function breadcrumbItem(...$arguments): BreadcrumbItemComponent;
+    public function breadcrumbItem(...$arguments): Base\BreadcrumbItemComponent;
 }

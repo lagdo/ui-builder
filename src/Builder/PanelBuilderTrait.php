@@ -2,10 +2,7 @@
 
 namespace Lagdo\UiBuilder\Builder;
 
-use Lagdo\UiBuilder\Component\Base\PanelComponent;
-use Lagdo\UiBuilder\Component\Base\PanelBodyComponent;
-use Lagdo\UiBuilder\Component\Base\PanelFooterComponent;
-use Lagdo\UiBuilder\Component\Base\PanelHeaderComponent;
+use Lagdo\UiBuilder\Component\Base;
 
 trait PanelBuilderTrait
 {
@@ -32,7 +29,7 @@ trait PanelBuilderTrait
     /**
      * @inheritDoc
      */
-    public function panel(...$arguments): PanelComponent
+    public function panel(...$arguments): Base\PanelComponent
     {
         return $this->createComponentOfClass($this->panelComponentClass, $arguments);
     }
@@ -40,7 +37,7 @@ trait PanelBuilderTrait
     /**
      * @inheritDoc
      */
-    public function panelHeader(...$arguments): PanelHeaderComponent
+    public function panelHeader(...$arguments): Base\PanelHeaderComponent
     {
         return $this->createComponentOfClass($this->panelHeaderComponentClass, $arguments);
     }
@@ -48,7 +45,7 @@ trait PanelBuilderTrait
     /**
      * @inheritDoc
      */
-    public function panelBody(...$arguments): PanelBodyComponent
+    public function panelBody(...$arguments): Base\PanelBodyComponent
     {
         return $this->createComponentOfClass($this->panelBodyComponentClass, $arguments);
     }
@@ -56,7 +53,7 @@ trait PanelBuilderTrait
     /**
      * @inheritDoc
      */
-    public function panelFooter(...$arguments): PanelFooterComponent
+    public function panelFooter(...$arguments): Base\PanelFooterComponent
     {
         return $this->createComponentOfClass($this->panelFooterComponentClass, $arguments);
     }

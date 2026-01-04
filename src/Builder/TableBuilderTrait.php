@@ -2,7 +2,7 @@
 
 namespace Lagdo\UiBuilder\Builder;
 
-use Lagdo\UiBuilder\Component\Base\TableComponent;
+use Lagdo\UiBuilder\Component\Base;
 
 trait TableBuilderTrait
 {
@@ -14,7 +14,7 @@ trait TableBuilderTrait
     /**
      * @inheritDoc
      */
-    public function table(...$arguments): TableComponent
+    public function table(...$arguments): Base\TableComponent
     {
         return $this->createComponentOfClass($this->tableComponentClass, $arguments);
     }

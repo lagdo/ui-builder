@@ -2,24 +2,22 @@
 
 namespace Lagdo\UiBuilder\Builder;
 
-use Lagdo\UiBuilder\Component\Base\BadgeComponent;
-use Lagdo\UiBuilder\Component\Base\ButtonGroupComponent;
-use Lagdo\UiBuilder\Component\Base\ButtonComponent;
+use Lagdo\UiBuilder\Component\Base;
 
 interface ButtonBuilderInterface
 {
     /**
-     * @return ButtonGroupComponent
+     * @return Base\ButtonGroupComponent
      */
-    public function buttonGroup(...$arguments): ButtonGroupComponent;
+    public function buttonGroup(...$arguments): Base\ButtonGroupComponent;
 
     /**
-     * @return ButtonComponent
+     * @return Base\ButtonComponent
      */
-    public function button(...$arguments): ButtonComponent;
+    public function button(...$arguments): Base\ButtonComponent;
 
     /**
-     * @return BadgeComponent
+     * @return Base\BadgeComponent
      */
-    public function badge(...$arguments): BadgeComponent;
+    public function badge(...$arguments): Base\BadgeComponent;
 }

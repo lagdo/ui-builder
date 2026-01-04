@@ -2,30 +2,27 @@
 
 namespace Lagdo\UiBuilder\Builder;
 
-use Lagdo\UiBuilder\Component\Base\TabNavComponent;
-use Lagdo\UiBuilder\Component\Base\TabNavItemComponent;
-use Lagdo\UiBuilder\Component\Base\TabContentComponent;
-use Lagdo\UiBuilder\Component\Base\TabContentItemComponent;
+use Lagdo\UiBuilder\Component\Base;
 
 interface TabBuilderInterface
 {
     /**
-     * @return TabNavComponent
+     * @return Base\TabNavComponent
      */
-    public function tabNav(...$arguments): TabNavComponent;
+    public function tabNav(...$arguments): Base\TabNavComponent;
 
     /**
-     * @return TabNavItemComponent
+     * @return Base\TabNavItemComponent
      */
-    public function tabNavItem(...$arguments): TabNavItemComponent;
+    public function tabNavItem(...$arguments): Base\TabNavItemComponent;
 
     /**
-     * @return TabContentComponent
+     * @return Base\TabContentComponent
      */
-    public function tabContent(...$arguments): TabContentComponent;
+    public function tabContent(...$arguments): Base\TabContentComponent;
 
     /**
-     * @return TabContentItemComponent
+     * @return Base\TabContentItemComponent
      */
-    public function tabContentItem(...$arguments): TabContentItemComponent;
+    public function tabContentItem(...$arguments): Base\TabContentItemComponent;
 }

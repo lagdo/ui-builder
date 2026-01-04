@@ -2,8 +2,7 @@
 
 namespace Lagdo\UiBuilder\Builder;
 
-use Lagdo\UiBuilder\Component\Base\ColComponent;
-use Lagdo\UiBuilder\Component\Base\RowComponent;
+use Lagdo\UiBuilder\Component\Base;
 
 trait LayoutBuilderTrait
 {
@@ -20,7 +19,7 @@ trait LayoutBuilderTrait
     /**
      * @inheritDoc
      */
-    public function row(...$arguments): RowComponent
+    public function row(...$arguments): Base\RowComponent
     {
         return $this->createComponentOfClass($this->rowComponentClass, $arguments);
     }
@@ -28,7 +27,7 @@ trait LayoutBuilderTrait
     /**
      * @inheritDoc
      */
-    public function col(...$arguments): ColComponent
+    public function col(...$arguments): Base\ColComponent
     {
         return $this->createComponentOfClass($this->colComponentClass, $arguments);
     }
@@ -36,7 +35,7 @@ trait LayoutBuilderTrait
     /**
      * @inheritDoc
      */
-    public function formRow(...$arguments): RowComponent
+    public function formRow(...$arguments): Base\RowComponent
     {
         return $this->row(...$arguments);
     }
@@ -44,7 +43,7 @@ trait LayoutBuilderTrait
     /**
      * @inheritDoc
      */
-    public function formCol(...$arguments): ColComponent
+    public function formCol(...$arguments): Base\ColComponent
     {
         return $this->col(...$arguments);
     }

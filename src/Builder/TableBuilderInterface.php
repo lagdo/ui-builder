@@ -2,12 +2,12 @@
 
 namespace Lagdo\UiBuilder\Builder;
 
-use Lagdo\UiBuilder\Component\Base\TableComponent;
+use Lagdo\UiBuilder\Component\Base;
 
 interface TableBuilderInterface
 {
     /**
-     * @return TableComponent
+     * @return Base\TableComponent
      */
-    public function table(...$arguments): TableComponent;
+    public function table(...$arguments): Base\TableComponent;
 }
