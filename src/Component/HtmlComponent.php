@@ -44,7 +44,7 @@ class HtmlComponent extends Component
     private $children = [];
 
     /**
-     * @var array So empty arrays aren't created when an element doesn't exist.
+     * @var array So empty arrays aren't created anytime an element doesn't exist.
      */
     private const EMPTY_ARRAY = [];
 
@@ -76,6 +76,14 @@ class HtmlComponent extends Component
     {
         $this->onBuild($parent);
         return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    protected function inForm(): bool
+    {
+        return $this->engine->inForm();
     }
 
     /**

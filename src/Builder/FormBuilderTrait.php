@@ -3,7 +3,6 @@
 namespace Lagdo\UiBuilder\Builder;
 
 use Lagdo\UiBuilder\Component\Base;
-use Lagdo\UiBuilder\Component\HtmlComponent;
 
 trait FormBuilderTrait
 {
@@ -51,14 +50,6 @@ trait FormBuilderTrait
      * @var string
      */
     protected string $inputGroupComponentClass = '';
-
-    /**
-     * @param string $tagName
-     * @param array $arguments
-     *
-     * @return HtmlComponent
-     */
-    abstract protected function createFormComponent(string $tagName, $arguments): HtmlComponent;
 
     /**
      * @inheritDoc

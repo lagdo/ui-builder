@@ -18,6 +18,11 @@ use function substr;
 class Engine
 {
     /**
+     * @var int
+     */
+    private int $formLevel = 0;
+
+    /**
      * @var array<array<string, Closure>>
      */
     protected $helpers = [
@@ -28,8 +33,10 @@ class Engine
 
     /**
      * The constructor
+     *
+     * @param Builder $builder
      */
-    public function __construct()
+    public function __construct(private Builder $builder)
     {
         $this->registerHelper('set', Builder::TARGET_COMPONENT,
             function(HtmlComponent $component, string $tagName,
@@ -86,7 +93,7 @@ class Engine
             }
         }
 
-        return $this->createComponent($tagName, $arguments);
+        return $this->builder->createComponent($tagName, $arguments);
     }
 
     /**
@@ -132,17 +139,27 @@ class Engine
     }
 
     /**
-     * @template T of HtmlComponent
-     * @param string $name
-     * @param array $arguments
-     * @psalm-param class-string<T> $class
-     *
-     * @return T
+     * @return void
      */
-    public function createComponent(string $name, array $arguments = [],
-        string $class = HtmlComponent::class): mixed
+    public function formStarted(): void
     {
-        return new $class($this, $name, $arguments);
+        $this->formLevel++;
+    }
+
+    /**
+     * @return void
+     */
+    public function formEnded(): void
+    {
+        $this->formLevel--;
+    }
+
+    /**
+     * @return bool
+     */
+    public function inForm(): bool
+    {
+        return $this->formLevel > 0;
     }
 
     /**
@@ -152,9 +169,10 @@ class Engine
      */
     public function build(array $arguments): string
     {
+        $this->formLevel = 0;
         // The "root" component below will not be printed.
-        $scope = new Scope($this->createComponent('root'));
-        $scope->build($arguments);
+        $scope = new Scope($this->builder->createComponent('root'));
+        $scope->build($this, $arguments);
 
         return $scope->html();
     }

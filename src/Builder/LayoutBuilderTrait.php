@@ -31,20 +31,4 @@ trait LayoutBuilderTrait
     {
         return $this->createComponentOfClass($this->colComponentClass, $arguments);
     }
-
-    /**
-     * @inheritDoc
-     */
-    public function formRow(...$arguments): Base\RowComponent
-    {
-        return $this->row(...$arguments);
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function formCol(...$arguments): Base\ColComponent
-    {
-        return $this->col(...$arguments);
-    }
 }

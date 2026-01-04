@@ -85,6 +85,14 @@ class HtmlElement extends Element
     }
 
     /**
+     * @return string
+     */
+    public function tag(): string
+    {
+        return $this->tag;
+    }
+
+    /**
      * @param string $tag
      *
      * @return void
@@ -260,10 +268,15 @@ class HtmlElement extends Element
             // Attributes with false as value are ignored.
             if ($value !== false) {
                 $name = $this->escape($name);
-                if ($value !== null && ($this->escapes[$name] ?? true) === true) {
+                if ($value === true) {
+                    $attributes[] = $name;
+                    continue;
+                }
+
+                if (($this->escapes[$name] ?? true) === true) {
                     $value = $this->escape($value);
                 }
-                $attributes[] = $value !== true ? "$name=\"$value\"" : $name;
+                $attributes[] = "$name=\"$value\"";
             }
         }
 

@@ -52,10 +52,7 @@ abstract class Builder implements BuilderInterface
      */
     public function __construct()
     {
-        $this->engine = new Engine();
-        $this->engine->registerHelper('form', self::TARGET_BUILDER,
-            fn(string $tagName, string $method, array $arguments) =>
-                $this->createFormComponent($tagName, $arguments));
+        $this->engine = new Engine($this);
         $this->_init();
     }
 
@@ -84,11 +81,27 @@ abstract class Builder implements BuilderInterface
     }
 
     /**
+     * Create a component
+     *
+     * @template T of HtmlComponent
+     * @param string $name
+     * @param array $arguments
+     * @psalm-param class-string<T> $class
+     *
+     * @return T
+     */
+    private function _createComponent(string $name, array $arguments = [],
+        string $class = HtmlComponent::class): mixed
+    {
+        return new $class($this->engine, $name, $arguments);
+    }
+
+    /**
      * @inheritDoc
      */
     public function tag(string $name, ...$arguments): HtmlComponent
     {
-        return $this->engine->createComponent($name, $arguments);
+        return $this->_createComponent($name, $arguments);
     }
 
     /**
@@ -99,9 +112,9 @@ abstract class Builder implements BuilderInterface
      *
      * @return HtmlComponent
      */
-    protected function createComponent(string $name, $arguments): HtmlComponent
+    public function createComponent(string $name, $arguments = []): HtmlComponent
     {
-        return $this->engine->createComponent($name, $arguments);
+        return $this->_createComponent($name, $arguments);
     }
 
     /**
@@ -113,9 +126,9 @@ abstract class Builder implements BuilderInterface
      *
      * @return T
      */
-    protected function createComponentOfClass(string $class, $arguments): HtmlComponent
+    protected function createComponentOfClass(string $class, $arguments = []): HtmlComponent
     {
-        return $this->engine->createComponent($class::$tag, $arguments, $class);
+        return $this->_createComponent($class::$tag, $arguments, $class);
     }
 
     /**

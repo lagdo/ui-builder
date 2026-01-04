@@ -73,11 +73,12 @@ class Scope
     }
 
     /**
+     * @param Engine $engine
      * @param array $arguments The arguments passed to the component
      *
      * @return void
      */
-    public function build(array $arguments): void
+    public function build(Engine $engine, array $arguments): void
     {
         foreach ($arguments as $argument) {
             $this->expand($argument);
@@ -91,12 +92,21 @@ class Scope
             }
 
             // The component is an instance of HtmlComponent.
+            $isForm = $component->element()->tag() === 'form';
+            if ($isForm) {
+                $engine->formStarted();
+            }
+
             // Allow the component libraries to react to the parent-child relation.
             $component->expanded($this->parent);
 
             $scope = new Scope($component);
             // Recursively build the component children.
-            $scope->build($component->children());
+            $scope->build($engine, $component->children());
+
+            if ($isForm) {
+                $engine->formEnded();
+            }
 
             // Add the child component element and its siblings to the scope elements.
             $this->elements = [
