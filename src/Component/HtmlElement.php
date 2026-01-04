@@ -7,6 +7,7 @@ use Lagdo\UiBuilder\Engine\Engine;
 
 use function htmlspecialchars;
 use function implode;
+use function is_bool;
 use function is_numeric;
 use function is_string;
 use function sprintf;
@@ -187,12 +188,12 @@ class HtmlElement extends Element
 
     /**
      * @param string $name
-     * @param string|null $value
+     * @param string|bool $value
      * @param bool $escape
      *
-     * @return void
+     * @return static
      */
-    public function setAttribute(string $name, string|null $value = null, bool $escape = true): void
+    public function setAttribute(string $name, string|bool $value = true, bool $escape = true): void
     {
         $this->attributes[$name] = $value;
         $this->escapes[$name] = $escape;
@@ -212,6 +213,7 @@ class HtmlElement extends Element
                 $this->setAttribute($value);
                 break;
             case is_string($value):
+            case is_bool($value):
                 $this->setAttribute($name, $value, $escape);
                 break;
             default: // Any other values are ignored.
@@ -235,11 +237,14 @@ class HtmlElement extends Element
 
         $attributes = [];
         foreach ($this->attributes as $name => $value) {
-            $name = $this->escape($name);
-            if ($value !== null && ($this->escapes[$name] ?? true) === true) {
-                $value = $this->escape($value);
+            // Attributes with false as value are ignored.
+            if ($value !== false) {
+                $name = $this->escape($name);
+                if ($value !== null && ($this->escapes[$name] ?? true) === true) {
+                    $value = $this->escape($value);
+                }
+                $attributes[] = $value !== true ? "$name=\"$value\"" : $name;
             }
-            $attributes[] = $value !== null ? "$name=\"$value\"" : $name;
         }
 
         return !$attributes ? '' : ' ' . implode(' ', $attributes);

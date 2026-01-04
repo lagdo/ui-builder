@@ -192,12 +192,12 @@ class HtmlComponent extends Component
 
     /**
      * @param string $name
-     * @param string|null $value
+     * @param string|bool $value
      * @param bool $escape
      *
      * @return static
      */
-    public function setAttribute(string $name, string|null $value = null, bool $escape = true): static
+    public function setAttribute(string $name, string|bool $value = true, bool $escape = true): static
     {
         $this->element->setAttribute($name, $value, $escape);
         return $this;
