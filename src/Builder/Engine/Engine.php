@@ -1,7 +1,8 @@
 <?php
 
-namespace Lagdo\UiBuilder\Engine;
+namespace Lagdo\UiBuilder\Builder\Engine;
 
+use Lagdo\UiBuilder\Builder;
 use Lagdo\UiBuilder\Component\HtmlComponent;
 use Lagdo\UiBuilder\Component\HtmlElement;
 use Lagdo\UiBuilder\Component\Html\Element;
@@ -17,27 +18,12 @@ use function substr;
 class Engine
 {
     /**
-     * @var int
-     */
-    public const TARGET_BUILDER = 0;
-
-    /**
-     * @var int
-     */
-    public const TARGET_COMPONENT = 1;
-
-    /**
-     * @var int
-     */
-    public const TARGET_ELEMENT = 2;
-
-    /**
-     * @var array<string, array<string, Closure>>
+     * @var array<array<string, Closure>>
      */
     protected $helpers = [
-        /*self::TARGET_BUILDER =>*/ [],
-        /*self::TARGET_COMPONENT =>*/ [],
-        /*self::TARGET_ELEMENT =>*/ [],
+        /*Builder::TARGET_BUILDER =>*/ [],
+        /*Builder::TARGET_COMPONENT =>*/ [],
+        /*Builder::TARGET_ELEMENT =>*/ [],
     ];
 
     /**
@@ -45,13 +31,13 @@ class Engine
      */
     public function __construct()
     {
-        $this->registerHelper('set', self::TARGET_COMPONENT,
+        $this->registerHelper('set', Builder::TARGET_COMPONENT,
             function(HtmlComponent $component, string $tagName,
                 string $method, array $arguments): HtmlComponent {
                 $component->setAttribute($tagName, $arguments[0] ?? null, $arguments[1] ?? true);
                 return $component;
             });
-        $this->registerHelper('set', self::TARGET_ELEMENT,
+        $this->registerHelper('set', Builder::TARGET_ELEMENT,
             function(HtmlElement $element, string $tagName,
                 string $method, array $arguments): HtmlElement {
                 $element->setAttribute($tagName, $arguments[0] ?? null, $arguments[1] ?? true);
@@ -93,7 +79,7 @@ class Engine
     public function callBuilderHelper(string $method, array $arguments): HtmlComponent|Element
     {
         $tagName = $this->getTagName($method);
-        foreach($this->helpers[self::TARGET_BUILDER] as $tagPrefix => $helper) {
+        foreach($this->helpers[Builder::TARGET_BUILDER] as $tagPrefix => $helper) {
             if (stripos($tagName, "$tagPrefix-") === 0) {
                 $tagName = substr($tagName, strlen($tagPrefix) + 1);
                 return $helper($tagName, $method, $arguments);
@@ -114,7 +100,7 @@ class Engine
     public function callComponentHelper(HtmlComponent $component, string $method, array $arguments): HtmlComponent
     {
         $tagName = $this->getTagName($method);
-        foreach($this->helpers[self::TARGET_COMPONENT] as $tagPrefix => $helper) {
+        foreach($this->helpers[Builder::TARGET_COMPONENT] as $tagPrefix => $helper) {
             if (stripos($tagName, "$tagPrefix-") === 0) {
                 $tagName = substr($tagName, strlen($tagPrefix) + 1);
                 return $helper($component, $tagName, $method, $arguments);
@@ -135,7 +121,7 @@ class Engine
     public function callElementHelper(HtmlElement $element, string $method, array $arguments): HtmlElement
     {
         $tagName = $this->getTagName($method);
-        foreach($this->helpers[self::TARGET_ELEMENT] as $tagPrefix => $helper) {
+        foreach($this->helpers[Builder::TARGET_ELEMENT] as $tagPrefix => $helper) {
             if (stripos($tagName, "$tagPrefix-") === 0) {
                 $tagName = substr($tagName, strlen($tagPrefix) + 1);
                 return $helper($element, $tagName, $method, $arguments);
@@ -169,6 +155,7 @@ class Engine
         // The "root" component below will not be printed.
         $scope = new Scope($this->createComponent('root'));
         $scope->build($arguments);
+
         return $scope->html();
     }
 }

@@ -2,6 +2,7 @@
 
 namespace Lagdo\UiBuilder;
 
+use Lagdo\UiBuilder\Builder\Engine\Engine;
 use Lagdo\UiBuilder\Component\Component;
 use Lagdo\UiBuilder\Component\HtmlComponent;
 use Lagdo\UiBuilder\Component\Html\Comment;
@@ -12,10 +13,9 @@ use Lagdo\UiBuilder\Component\Virtual\EachComponent;
 use Lagdo\UiBuilder\Component\Virtual\ListComponent;
 use Lagdo\UiBuilder\Component\Virtual\PickComponent;
 use Lagdo\UiBuilder\Component\Virtual\WhenComponent;
-use Lagdo\UiBuilder\Engine\Engine;
 use Closure;
 
-abstract class AbstractBuilder implements BuilderInterface
+abstract class Builder implements BuilderInterface
 {
     use Builder\LayoutBuilderTrait;
     use Builder\ButtonBuilderTrait;
@@ -28,6 +28,21 @@ abstract class AbstractBuilder implements BuilderInterface
     use Builder\TableBuilderTrait;
 
     /**
+     * @var int
+     */
+    public const TARGET_BUILDER = 0;
+
+    /**
+     * @var int
+     */
+    public const TARGET_COMPONENT = 1;
+
+    /**
+     * @var int
+     */
+    public const TARGET_ELEMENT = 2;
+
+    /**
      * @var Engine
      */
     private $engine;
@@ -38,7 +53,7 @@ abstract class AbstractBuilder implements BuilderInterface
     public function __construct()
     {
         $this->engine = new Engine();
-        $this->engine->registerHelper('form', Engine::TARGET_BUILDER,
+        $this->engine->registerHelper('form', self::TARGET_BUILDER,
             fn(string $tagName, string $method, array $arguments) =>
                 $this->createFormComponent($tagName, $arguments));
         $this->_init();

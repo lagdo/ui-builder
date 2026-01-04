@@ -2,10 +2,10 @@
 
 namespace Lagdo\UiBuilder\Component;
 
+use Lagdo\UiBuilder\Builder\Engine\Engine;
 use Lagdo\UiBuilder\Component\Html\Element;
 use Lagdo\UiBuilder\Component\Html\Html;
 use Lagdo\UiBuilder\Component\Html\Text;
-use Lagdo\UiBuilder\Engine\Engine;
 use Closure;
 
 use function is_array;
