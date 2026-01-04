@@ -217,6 +217,26 @@ class HtmlComponent extends Component
 
     /**
      * @param string $name
+     *
+     * @return bool
+     */
+    public function hasAttribute(string $name): bool
+    {
+        return $this->element->hasAttribute($name);
+    }
+
+    /**
+     * @param string $name
+     *
+     * @return string|bool
+     */
+    public function getAttribute(string $name): string|bool
+    {
+        return $this->element->getAttribute($name);
+    }
+
+    /**
+     * @param string $name
      * @param array $arguments
      *
      * @return HtmlElement

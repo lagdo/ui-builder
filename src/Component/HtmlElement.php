@@ -222,6 +222,26 @@ class HtmlElement extends Element
     }
 
     /**
+     * @param string $name
+     *
+     * @return bool
+     */
+    public function hasAttribute(string $name): bool
+    {
+        return isset($this->attributes[$name]) && $this->attributes[$name] !== false;
+    }
+
+    /**
+     * @param string $name
+     *
+     * @return string|bool
+     */
+    public function getAttribute(string $name): string|bool
+    {
+        return $this->attributes[$name] ?? false;
+    }
+
+    /**
      * @return string
      */
     private function renderAttributes(): string
