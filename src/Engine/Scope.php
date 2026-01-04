@@ -98,8 +98,13 @@ class Scope
             // Recursively build the component children.
             $scope->build($component->children());
 
-            // Add the child component element to the scope elements.
-            $this->elements[] = $this->getElement($component, $scope->elements);
+            // Add the child component element and its siblings to the scope elements.
+            $this->elements = [
+                ...$this->elements,
+                ...$component->siblings('prev'),
+                $this->getElement($component, $scope->elements),
+                ...$component->siblings('next'),
+            ];
         }
     }
 

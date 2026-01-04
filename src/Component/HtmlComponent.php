@@ -29,14 +29,24 @@ class HtmlComponent extends Component
     private $element;
 
     /**
-     * @var array<HtmlElement>
+     * @var array<HtmlElement>|null
      */
-    private $wrappers = [];
+    private $wrappers = null;
+
+    /**
+     * @var array<HtmlElement>|null
+     */
+    private $siblings = null;
 
     /**
      * @var array<Element|Component>
      */
     private $children = [];
+
+    /**
+     * @var array So empty arrays aren't created when an element doesn't exist.
+     */
+    private const EMPTY_ARRAY = [];
 
     /**
      * The constructor
@@ -56,7 +66,7 @@ class HtmlComponent extends Component
     }
 
     /**
-     * Called for each child after a perent is expanded.
+     * Called for each child after a parent is expanded.
      *
      * @param HtmlComponent $parent
      *
@@ -103,7 +113,17 @@ class HtmlComponent extends Component
      */
     public function wrappers(): array
     {
-        return $this->wrappers;
+        return $this->wrappers ?? self::EMPTY_ARRAY;
+    }
+
+    /**
+     * @param string $position "prev" or "next"
+     *
+     * @return array<HtmlElement>
+     */
+    public function siblings(string $position): array
+    {
+        return $this->siblings[$position] ?? self::EMPTY_ARRAY;
     }
 
     /**
@@ -203,9 +223,10 @@ class HtmlComponent extends Component
      */
     protected function addWrapper(string $name, array $arguments = []): HtmlElement
     {
-        $wrapper = new HtmlElement($this->engine, $name, $arguments);
-        $this->wrappers[] = $wrapper;
-        return $wrapper;
+        $element = new HtmlElement($this->engine, $name, $arguments);
+        $this->wrappers ??= [];
+        $this->wrappers[] = $element;
+        return $element;
     }
 
     /**
@@ -216,6 +237,56 @@ class HtmlComponent extends Component
     protected function wrapper(int $index): HtmlElement|null
     {
         return $this->wrappers[$index] ?? null;
+    }
+
+    /**
+     * @param string $name
+     * @param array $arguments
+     *
+     * @return HtmlElement
+     */
+    protected function addSiblingPrev(string $name, array $arguments = []): HtmlElement
+    {
+        $element = new HtmlElement($this->engine, $name, $arguments);
+        $this->siblings ??= [];
+        $this->siblings['prev'] ??= [];
+        $this->siblings['prev'][] = $element;
+        return $element;
+    }
+
+    /**
+     * @param int $index
+     *
+     * @return HtmlElement|null
+     */
+    protected function siblingPrev(int $index): HtmlElement|null
+    {
+        return $this->siblings['prev'][$index] ?? null;
+    }
+
+    /**
+     * @param string $name
+     * @param array $arguments
+     *
+     * @return HtmlElement
+     */
+    protected function addSiblingNext(string $name, array $arguments = []): HtmlElement
+    {
+        $element = new HtmlElement($this->engine, $name, $arguments);
+        $this->siblings ??= [];
+        $this->siblings['next'] ??= [];
+        $this->siblings['next'][] = $element;
+        return $element;
+    }
+
+    /**
+     * @param int $index
+     *
+     * @return HtmlElement|null
+     */
+    protected function siblingNext(int $index): HtmlElement|null
+    {
+        return $this->siblings['next'][$index] ?? null;
     }
 
     /**
