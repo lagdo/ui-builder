@@ -17,6 +17,16 @@ interface FormBuilderInterface
     public function label(...$arguments): Base\LabelComponent;
 
     /**
+     * @return Base\InputComponent
+     */
+    public function input(...$arguments): Base\InputComponent;
+
+    /**
+     * @return Base\TextareaComponent
+     */
+    public function textarea(...$arguments): Base\TextareaComponent;
+
+    /**
      * @param bool $checked
      *
      * @return Base\CheckboxComponent
@@ -29,6 +39,11 @@ interface FormBuilderInterface
      * @return Base\RadioComponent
      */
     public function radio(...$arguments): Base\RadioComponent;
+
+    /**
+     * @return Base\SelectComponent
+     */
+    public function select(...$arguments): Base\SelectComponent;
 
     /**
      * @param bool $selected

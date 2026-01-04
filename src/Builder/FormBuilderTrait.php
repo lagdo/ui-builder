@@ -20,7 +20,12 @@ trait FormBuilderTrait
     /**
      * @var string
      */
-    protected string $inputGroupComponentClass = '';
+    protected string $inputComponentClass = '';
+
+    /**
+     * @var string
+     */
+    protected string $textareaComponentClass = '';
 
     /**
      * @var string
@@ -35,7 +40,17 @@ trait FormBuilderTrait
     /**
      * @var string
      */
+    protected string $selectComponentClass = '';
+
+    /**
+     * @var string
+     */
     protected string $optionComponentClass = '';
+
+    /**
+     * @var string
+     */
+    protected string $inputGroupComponentClass = '';
 
     /**
      * @param string $tagName
@@ -64,9 +79,17 @@ trait FormBuilderTrait
     /**
      * @inheritDoc
      */
-    public function inputGroup(...$arguments): Base\InputGroupComponent
+    public function input(...$arguments): Base\InputComponent
     {
-        return $this->createComponentOfClass($this->inputGroupComponentClass, $arguments);
+        return $this->createComponentOfClass($this->inputComponentClass, $arguments);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function textarea(...$arguments): Base\TextareaComponent
+    {
+        return $this->createComponentOfClass($this->textareaComponentClass, $arguments);
     }
 
     /**
@@ -88,8 +111,24 @@ trait FormBuilderTrait
     /**
      * @inheritDoc
      */
+    public function select(...$arguments): Base\SelectComponent
+    {
+        return $this->createComponentOfClass($this->selectComponentClass, $arguments);
+    }
+
+    /**
+     * @inheritDoc
+     */
     public function option(...$arguments): Base\OptionComponent
     {
         return $this->createComponentOfClass($this->optionComponentClass, $arguments);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function inputGroup(...$arguments): Base\InputGroupComponent
+    {
+        return $this->createComponentOfClass($this->inputGroupComponentClass, $arguments);
     }
 }
