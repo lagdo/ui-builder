@@ -10,31 +10,31 @@ use Lagdo\UiBuilder\Component\Base\DropdownMenuItemComponent;
 trait DropdownBuilderTrait
 {
     /**
-     * @return string
+     * @var string
      */
-    abstract protected function _dropdownComponentClass(): string;
+    protected string $dropdownComponentClass = '';
 
     /**
-     * @return string
+     * @var string
      */
-    abstract protected function _dropdownItemComponentClass(): string;
+    protected string $dropdownItemComponentClass = '';
 
     /**
-     * @return string
+     * @var string
      */
-    abstract protected function _dropdownMenuComponentClass(): string;
+    protected string $dropdownMenuComponentClass = '';
 
     /**
-     * @return string
+     * @var string
      */
-    abstract protected function _dropdownMenuItemComponentClass(): string;
+    protected string $dropdownMenuItemComponentClass = '';
 
     /**
      * @inheritDoc
      */
     public function dropdown(...$arguments): DropdownComponent
     {
-        return $this->createComponentOfClass($this->_dropdownComponentClass(), $arguments);
+        return $this->createComponentOfClass($this->dropdownComponentClass, $arguments);
     }
 
     /**
@@ -42,7 +42,7 @@ trait DropdownBuilderTrait
      */
     public function dropdownItem(...$arguments): DropdownItemComponent
     {
-        return $this->createComponentOfClass($this->_dropdownItemComponentClass(), $arguments);
+        return $this->createComponentOfClass($this->dropdownItemComponentClass, $arguments);
     }
 
     /**
@@ -50,7 +50,7 @@ trait DropdownBuilderTrait
      */
     public function dropdownMenu(...$arguments): DropdownMenuComponent
     {
-        return $this->createComponentOfClass($this->_dropdownMenuComponentClass(), $arguments);
+        return $this->createComponentOfClass($this->dropdownMenuComponentClass, $arguments);
     }
 
     /**
@@ -58,6 +58,6 @@ trait DropdownBuilderTrait
      */
     public function dropdownMenuItem(...$arguments): DropdownMenuItemComponent
     {
-        return $this->createComponentOfClass($this->_dropdownMenuItemComponentClass(), $arguments);
+        return $this->createComponentOfClass($this->dropdownMenuItemComponentClass, $arguments);
     }
 }

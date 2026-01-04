@@ -10,31 +10,31 @@ use Lagdo\UiBuilder\Component\Base\PanelHeaderComponent;
 trait PanelBuilderTrait
 {
     /**
-     * @return string
+     * @var string
      */
-    abstract protected function _panelComponentClass(): string;
+    protected string $panelComponentClass = '';
 
     /**
-     * @return string
+     * @var string
      */
-    abstract protected function _panelHeaderComponentClass(): string;
+    protected string $panelHeaderComponentClass = '';
 
     /**
-     * @return string
+     * @var string
      */
-    abstract protected function _panelBodyComponentClass(): string;
+    protected string $panelBodyComponentClass = '';
 
     /**
-     * @return string
+     * @var string
      */
-    abstract protected function _panelFooterComponentClass(): string;
+    protected string $panelFooterComponentClass = '';
 
     /**
      * @inheritDoc
      */
     public function panel(...$arguments): PanelComponent
     {
-        return $this->createComponentOfClass($this->_panelComponentClass(), $arguments);
+        return $this->createComponentOfClass($this->panelComponentClass, $arguments);
     }
 
     /**
@@ -42,7 +42,7 @@ trait PanelBuilderTrait
      */
     public function panelHeader(...$arguments): PanelHeaderComponent
     {
-        return $this->createComponentOfClass($this->_panelHeaderComponentClass(), $arguments);
+        return $this->createComponentOfClass($this->panelHeaderComponentClass, $arguments);
     }
 
     /**
@@ -50,7 +50,7 @@ trait PanelBuilderTrait
      */
     public function panelBody(...$arguments): PanelBodyComponent
     {
-        return $this->createComponentOfClass($this->_panelBodyComponentClass(), $arguments);
+        return $this->createComponentOfClass($this->panelBodyComponentClass, $arguments);
     }
 
     /**
@@ -58,6 +58,6 @@ trait PanelBuilderTrait
      */
     public function panelFooter(...$arguments): PanelFooterComponent
     {
-        return $this->createComponentOfClass($this->_panelFooterComponentClass(), $arguments);
+        return $this->createComponentOfClass($this->panelFooterComponentClass, $arguments);
     }
 }

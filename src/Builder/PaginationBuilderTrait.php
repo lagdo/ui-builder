@@ -8,21 +8,21 @@ use Lagdo\UiBuilder\Component\Base\PaginationItemComponent;
 trait PaginationBuilderTrait
 {
     /**
-     * @return string
+     * @var string
      */
-    abstract protected function _paginationComponentClass(): string;
+    protected string $paginationComponentClass = '';
 
     /**
-     * @return string
+     * @var string
      */
-    abstract protected function _paginationItemComponentClass(): string;
+    protected string $paginationItemComponentClass = '';
 
     /**
      * @inheritDoc
      */
     public function pagination(...$arguments): PaginationComponent
     {
-        return $this->createComponentOfClass($this->_paginationComponentClass(), $arguments);
+        return $this->createComponentOfClass($this->paginationComponentClass, $arguments);
     }
 
     /**
@@ -30,6 +30,6 @@ trait PaginationBuilderTrait
      */
     public function paginationItem(...$arguments): PaginationItemComponent
     {
-        return $this->createComponentOfClass($this->_paginationItemComponentClass(), $arguments);
+        return $this->createComponentOfClass($this->paginationItemComponentClass, $arguments);
     }
 }

@@ -7,15 +7,15 @@ use Lagdo\UiBuilder\Component\Base\TableComponent;
 trait TableBuilderTrait
 {
     /**
-     * @return string
+     * @var string
      */
-    abstract protected function _tableComponentClass(): string;
+    protected string $tableComponentClass = '';
 
     /**
      * @inheritDoc
      */
     public function table(...$arguments): TableComponent
     {
-        return $this->createComponentOfClass($this->_tableComponentClass(), $arguments);
+        return $this->createComponentOfClass($this->tableComponentClass, $arguments);
     }
 }

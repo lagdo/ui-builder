@@ -9,26 +9,26 @@ use Lagdo\UiBuilder\Component\Base\ButtonGroupComponent;
 trait ButtonBuilderTrait
 {
     /**
-     * @return string
+     * @var string
      */
-    abstract protected function _buttonComponentClass(): string;
+    protected string $buttonComponentClass = '';
 
     /**
-     * @return string
+     * @var string
      */
-    abstract protected function _buttonGroupComponentClass(): string;
+    protected string $buttonGroupComponentClass = '';
 
     /**
-     * @return string
+     * @var string
      */
-    abstract protected function _badgeComponentClass(): string;
+    protected string $badgeComponentClass = '';
 
     /**
      * @inheritDoc
      */
     public function buttonGroup(...$arguments): ButtonGroupComponent
     {
-        return $this->createComponentOfClass($this->_buttonGroupComponentClass(), $arguments);
+        return $this->createComponentOfClass($this->buttonGroupComponentClass, $arguments);
     }
 
     /**
@@ -36,7 +36,7 @@ trait ButtonBuilderTrait
      */
     public function button(...$arguments): ButtonComponent
     {
-        return $this->createComponentOfClass($this->_buttonComponentClass(), $arguments);
+        return $this->createComponentOfClass($this->buttonComponentClass, $arguments);
     }
 
     /**
@@ -44,6 +44,6 @@ trait ButtonBuilderTrait
      */
     public function badge(...$arguments): BadgeComponent
     {
-        return $this->createComponentOfClass($this->_badgeComponentClass(), $arguments);
+        return $this->createComponentOfClass($this->badgeComponentClass, $arguments);
     }
 }

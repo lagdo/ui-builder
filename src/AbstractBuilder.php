@@ -41,7 +41,13 @@ abstract class AbstractBuilder implements BuilderInterface
         $this->engine->registerHelper('form', Engine::TARGET_BUILDER,
             fn(string $tagName, string $method, array $arguments) =>
                 $this->createFormComponent($tagName, $arguments));
+        $this->_init();
     }
+
+    /**
+     * @return void
+     */
+    abstract protected function _init(): void;
 
     /**
      * @param string $method

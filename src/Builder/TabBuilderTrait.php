@@ -10,31 +10,31 @@ use Lagdo\UiBuilder\Component\Base\TabContentItemComponent;
 trait TabBuilderTrait
 {
     /**
-     * @return string
+     * @var string
      */
-    abstract protected function _tabNavComponentClass(): string;
+    protected string $tabNavComponentClass = '';
 
     /**
-     * @return string
+     * @var string
      */
-    abstract protected function _tabNavItemComponentClass(): string;
+    protected string $tabNavItemComponentClass = '';
 
     /**
-     * @return string
+     * @var string
      */
-    abstract protected function _tabContentComponentClass(): string;
+    protected string $tabContentComponentClass = '';
 
     /**
-     * @return string
+     * @var string
      */
-    abstract protected function _tabContentItemComponentClass(): string;
+    protected string $tabContentItemComponentClass = '';
 
     /**
      * @inheritDoc
      */
     public function tabNav(...$arguments): TabNavComponent
     {
-        return $this->createComponentOfClass($this->_tabNavComponentClass(), $arguments);
+        return $this->createComponentOfClass($this->tabNavComponentClass, $arguments);
     }
 
     /**
@@ -42,7 +42,7 @@ trait TabBuilderTrait
      */
     public function tabNavItem(...$arguments): TabNavItemComponent
     {
-        return $this->createComponentOfClass($this->_tabNavItemComponentClass(), $arguments);
+        return $this->createComponentOfClass($this->tabNavItemComponentClass, $arguments);
     }
 
     /**
@@ -50,7 +50,7 @@ trait TabBuilderTrait
      */
     public function tabContent(...$arguments): TabContentComponent
     {
-        return $this->createComponentOfClass($this->_tabContentComponentClass(), $arguments);
+        return $this->createComponentOfClass($this->tabContentComponentClass, $arguments);
     }
 
     /**
@@ -58,6 +58,6 @@ trait TabBuilderTrait
      */
     public function tabContentItem(...$arguments): TabContentItemComponent
     {
-        return $this->createComponentOfClass($this->_tabContentItemComponentClass(), $arguments);
+        return $this->createComponentOfClass($this->tabContentItemComponentClass, $arguments);
     }
 }

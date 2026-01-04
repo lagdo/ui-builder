@@ -13,34 +13,34 @@ use Lagdo\UiBuilder\Component\HtmlComponent;
 trait FormBuilderTrait
 {
     /**
-     * @return string
+     * @var string
      */
-    abstract protected function _formComponentClass(): string;
+    protected string $formComponentClass = '';
 
     /**
-     * @return string
+     * @var string
      */
-    abstract protected function _labelComponentClass(): string;
+    protected string $labelComponentClass = '';
 
     /**
-     * @return string
+     * @var string
      */
-    abstract protected function _inputGroupComponentClass(): string;
+    protected string $inputGroupComponentClass = '';
 
     /**
-     * @return string
+     * @var string
      */
-    abstract protected function _checkboxComponentClass(): string;
+    protected string $checkboxComponentClass = '';
 
     /**
-     * @return string
+     * @var string
      */
-    abstract protected function _radioComponentClass(): string;
+    protected string $radioComponentClass = '';
 
     /**
-     * @return string
+     * @var string
      */
-    abstract protected function _optionComponentClass(): string;
+    protected string $optionComponentClass = '';
 
     /**
      * @param string $tagName
@@ -55,7 +55,7 @@ trait FormBuilderTrait
      */
     public function form(...$arguments): FormComponent
     {
-        return $this->createComponentOfClass($this->_formComponentClass(), $arguments);
+        return $this->createComponentOfClass($this->formComponentClass, $arguments);
     }
 
     /**
@@ -63,7 +63,7 @@ trait FormBuilderTrait
      */
     public function label(...$arguments): LabelComponent
     {
-        return $this->createComponentOfClass($this->_labelComponentClass(), $arguments);
+        return $this->createComponentOfClass($this->labelComponentClass, $arguments);
     }
 
     /**
@@ -71,7 +71,7 @@ trait FormBuilderTrait
      */
     public function inputGroup(...$arguments): InputGroupComponent
     {
-        return $this->createComponentOfClass($this->_inputGroupComponentClass(), $arguments);
+        return $this->createComponentOfClass($this->inputGroupComponentClass, $arguments);
     }
 
     /**
@@ -79,7 +79,7 @@ trait FormBuilderTrait
      */
     public function checkbox(...$arguments): CheckboxComponent
     {
-        return $this->createComponentOfClass($this->_checkboxComponentClass(), $arguments);
+        return $this->createComponentOfClass($this->checkboxComponentClass, $arguments);
     }
 
     /**
@@ -87,7 +87,7 @@ trait FormBuilderTrait
      */
     public function radio(...$arguments): RadioComponent
     {
-        return $this->createComponentOfClass($this->_radioComponentClass(), $arguments);
+        return $this->createComponentOfClass($this->radioComponentClass, $arguments);
     }
 
     /**
@@ -95,6 +95,6 @@ trait FormBuilderTrait
      */
     public function option(...$arguments): OptionComponent
     {
-        return $this->createComponentOfClass($this->_optionComponentClass(), $arguments);
+        return $this->createComponentOfClass($this->optionComponentClass, $arguments);
     }
 }

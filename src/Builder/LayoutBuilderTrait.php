@@ -8,21 +8,21 @@ use Lagdo\UiBuilder\Component\Base\RowComponent;
 trait LayoutBuilderTrait
 {
     /**
-     * @return string
+     * @var string
      */
-    abstract protected function _rowComponentClass(): string;
+    protected string $rowComponentClass = '';
 
     /**
-     * @return string
+     * @var string
      */
-    abstract protected function _colComponentClass(): string;
+    protected string $colComponentClass = '';
 
     /**
      * @inheritDoc
      */
     public function row(...$arguments): RowComponent
     {
-        return $this->createComponentOfClass($this->_rowComponentClass(), $arguments);
+        return $this->createComponentOfClass($this->rowComponentClass, $arguments);
     }
 
     /**
@@ -30,7 +30,7 @@ trait LayoutBuilderTrait
      */
     public function col(...$arguments): ColComponent
     {
-        return $this->createComponentOfClass($this->_colComponentClass(), $arguments);
+        return $this->createComponentOfClass($this->colComponentClass, $arguments);
     }
 
     /**

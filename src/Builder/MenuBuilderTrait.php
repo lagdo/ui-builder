@@ -10,31 +10,31 @@ use Lagdo\UiBuilder\Component\Base\MenuItemComponent;
 trait MenuBuilderTrait
 {
     /**
-     * @return string
+     * @var string
      */
-    abstract protected function _menuComponentClass(): string;
+    protected string $menuComponentClass = '';
 
     /**
-     * @return string
+     * @var string
      */
-    abstract protected function _menuItemComponentClass(): string;
+    protected string $menuItemComponentClass = '';
 
     /**
-     * @return string
+     * @var string
      */
-    abstract protected function _breadcrumbComponentClass(): string;
+    protected string $breadcrumbComponentClass = '';
 
     /**
-     * @return string
+     * @var string
      */
-    abstract protected function _breadcrumbItemComponentClass(): string;
+    protected string $breadcrumbItemComponentClass = '';
 
     /**
      * @inheritDoc
      */
     public function menu(...$arguments): MenuComponent
     {
-        return $this->createComponentOfClass($this->_menuComponentClass(), $arguments);
+        return $this->createComponentOfClass($this->menuComponentClass, $arguments);
     }
 
     /**
@@ -42,7 +42,7 @@ trait MenuBuilderTrait
      */
     public function menuItem(...$arguments): MenuItemComponent
     {
-        return $this->createComponentOfClass($this->_menuItemComponentClass(), $arguments);
+        return $this->createComponentOfClass($this->menuItemComponentClass, $arguments);
     }
 
     /**
@@ -50,7 +50,7 @@ trait MenuBuilderTrait
      */
     public function breadcrumb(...$arguments): BreadcrumbComponent
     {
-        return $this->createComponentOfClass($this->_breadcrumbComponentClass(), $arguments);
+        return $this->createComponentOfClass($this->breadcrumbComponentClass, $arguments);
     }
 
     /**
@@ -58,6 +58,6 @@ trait MenuBuilderTrait
      */
     public function breadcrumbItem(...$arguments): BreadcrumbItemComponent
     {
-        return $this->createComponentOfClass($this->_breadcrumbItemComponentClass(), $arguments);
+        return $this->createComponentOfClass($this->breadcrumbItemComponentClass, $arguments);
     }
 }
