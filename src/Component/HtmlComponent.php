@@ -181,9 +181,8 @@ class HtmlComponent extends Component
      *
      * @return static
      */
-    public function setClass(string $class): static
+    public function addClass(string $class): static
     {
-        // Must actually append the class.
         $this->element->addClass($class);
         return $this;
     }
@@ -193,9 +192,31 @@ class HtmlComponent extends Component
      *
      * @return static
      */
-    public function addClass(string $class): static
+    public function setClass(string $class): static
     {
-        return $this->setClass($class);
+        // Actually appends the class.
+        return $this->addClass($class);
+    }
+
+    /**
+     * @param string $class
+     *
+     * @return static
+     */
+    public function removeClass(string $class): static
+    {
+        $this->element->removeClass($class);
+        return $this;
+    }
+
+    /**
+     * @param string $class
+     *
+     * @return bool
+     */
+    public function hasClass(string $class): bool
+    {
+        return $this->element->hasClass($class);
     }
 
     /**
@@ -241,6 +262,17 @@ class HtmlComponent extends Component
     public function getAttribute(string $name): string|bool
     {
         return $this->element->getAttribute($name);
+    }
+
+    /**
+     * @param string $name
+     *
+     * @return static
+     */
+    public function removeAttribute(string $name): static
+    {
+        $this->element->removeAttribute($name);
+        return $this;
     }
 
     /**

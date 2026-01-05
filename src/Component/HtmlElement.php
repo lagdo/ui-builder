@@ -5,6 +5,8 @@ namespace Lagdo\UiBuilder\Component;
 use Lagdo\UiBuilder\Builder\Engine\Engine;
 use Lagdo\UiBuilder\Component\Html\Element;
 
+use function array_filter;
+use function array_keys;
 use function htmlspecialchars;
 use function implode;
 use function is_bool;
@@ -160,7 +162,7 @@ class HtmlElement extends Element
      */
     public function addClass(string $class): void
     {
-        $this->classes[] = trim($class);
+        $this->classes[trim($class)] = true;
     }
 
     /**
@@ -172,6 +174,26 @@ class HtmlElement extends Element
     {
         // Actually appends the class.
         $this->addClass($class);
+    }
+
+    /**
+     * @param string $class
+     *
+     * @return void
+     */
+    public function removeClass(string $class): void
+    {
+        $this->classes[trim($class)] = false;
+    }
+
+    /**
+     * @param string $class
+     *
+     * @return bool
+     */
+    public function hasClass(string $class): bool
+    {
+        return ($this->classes[trim($class)] ?? false) === true;
     }
 
     /**
@@ -250,12 +272,23 @@ class HtmlElement extends Element
     }
 
     /**
+     * @param string $name
+     *
+     * @return void
+     */
+    public function removeAttribute(string $name): void
+    {
+        $this->attributes[$name] = false;
+    }
+
+    /**
      * @return string
      */
     private function renderAttributes(): string
     {
         // Merge the classes.
-        $classes = [...$this->baseClasses, ...$this->classes];
+        $classes = array_keys(array_filter($this->classes, fn($active) => $active === true));
+        $classes = [...$this->baseClasses, ...$classes];
         if (isset($this->attributes['class'])) {
             $classes[] = $this->attributes['class'];
         }
