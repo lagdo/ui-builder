@@ -12,6 +12,16 @@ class FormComponent extends HtmlComponent
     public static string $tag = 'form';
 
     /**
+     * @param bool $validated
+     *
+     * @return static
+     */
+    public function validated(bool $validated): static
+    {
+        return $this;
+    }
+
+    /**
      * @inheritDoc
      */
     public function horizontal(bool $horizontal = true): static
