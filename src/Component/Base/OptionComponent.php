@@ -12,7 +12,9 @@ class OptionComponent extends HtmlComponent
     public static string $tag = 'option';
 
     /**
-     * @inheritDoc
+     * @param bool $selected
+     *
+     * @return static
      */
     public function selected(bool $selected = true): static
     {

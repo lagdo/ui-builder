@@ -22,7 +22,9 @@ class FormComponent extends HtmlComponent
     }
 
     /**
-     * @inheritDoc
+     * @param bool $horizontal
+     *
+     * @return static
      */
     public function horizontal(bool $horizontal = true): static
     {
@@ -30,7 +32,9 @@ class FormComponent extends HtmlComponent
     }
 
     /**
-     * @inheritDoc
+     * @param bool $wrapped
+     *
+     * @return static
      */
     public function wrapped(bool $wrapped = true): static
     {

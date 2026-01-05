@@ -15,7 +15,9 @@ class CheckboxComponent extends HtmlComponent
     public static string $tag = 'input';
 
     /**
-     * @inheritDoc
+     * @param bool $checked
+     *
+     * @return static
      */
     public function checked(bool $checked = false): static
     {
