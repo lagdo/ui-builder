@@ -24,14 +24,6 @@ class ButtonComponent extends HtmlComponent
     /**
      * @return static
      */
-    public function addCaret(): static
-    {
-        return $this;
-    }
-
-    /**
-     * @return static
-     */
     public function primary(): static
     {
         return $this;

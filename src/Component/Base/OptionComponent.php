@@ -16,7 +16,7 @@ class OptionComponent extends HtmlComponent
      */
     public function selected(bool $selected = true): static
     {
-        $selected && $this->element()->setAttribute('selected', 'selected');
+        $this->element()->setAttribute('selected', $selected ? 'selected' : false);
         return $this;
     }
 }

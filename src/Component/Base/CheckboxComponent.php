@@ -19,7 +19,7 @@ class CheckboxComponent extends HtmlComponent
      */
     public function checked(bool $checked = false): static
     {
-        $checked && $this->element()->setAttribute('checked', 'checked');
+        $this->element()->setAttribute('checked', $checked ? 'checked' : false);
         return $this;
     }
 }
