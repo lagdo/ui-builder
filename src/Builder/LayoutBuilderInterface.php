@@ -7,12 +7,12 @@ use Lagdo\UiBuilder\Component\Base;
 interface LayoutBuilderInterface
 {
     /**
-     * @return Base\RowComponent
+     * @return Base\GridRowComponent
      */
-    public function row(...$arguments): Base\RowComponent;
+    public function row(...$arguments): Base\GridRowComponent;
 
     /**
-     * @return Base\ColComponent
+     * @return Base\GridColComponent
      */
-    public function col(...$arguments): Base\ColComponent;
+    public function col(...$arguments): Base\GridColComponent;
 }

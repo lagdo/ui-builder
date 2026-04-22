@@ -4,7 +4,7 @@ namespace Lagdo\UiBuilder\Component\Base;
 
 use Lagdo\UiBuilder\Component\HtmlComponent;
 
-class RadioComponent extends HtmlComponent
+abstract class RadioComponent extends HtmlComponent
 {
     use Traits\InputLabelTrait;
     use Traits\InputValidationTrait;

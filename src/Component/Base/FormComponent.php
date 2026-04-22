@@ -4,7 +4,7 @@ namespace Lagdo\UiBuilder\Component\Base;
 
 use Lagdo\UiBuilder\Component\HtmlComponent;
 
-class FormComponent extends HtmlComponent
+abstract class FormComponent extends HtmlComponent
 {
     /**
      * @var string
@@ -12,11 +12,9 @@ class FormComponent extends HtmlComponent
     public static string $tag = 'form';
 
     /**
-     * @param bool $validated
-     *
      * @return static
      */
-    public function validated(bool $validated): static
+    public function validated(): static
     {
         return $this;
     }

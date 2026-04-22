@@ -97,93 +97,102 @@ class HtmlElement extends Element
     /**
      * @param string $tag
      *
-     * @return void
+     * @return static
      */
-    public function setTag(string $tag): void
+    public function setTag(string $tag): static
     {
         $this->tag = $tag;
+        return $this;
     }
 
     /**
      * @param array<Element> $children
      *
-     * @return void
+     * @return static
      */
-    public function setChildren(array $children): void
+    public function setChildren(array $children): static
     {
         $this->children = $children;
+        return $this;
     }
 
     /**
      * @param array<Element> $children
      *
-     * @return void
+     * @return static
      */
-    public function addChildren(array $children): void
+    public function addChildren(array $children): static
     {
         $this->children = [...$this->children, ...$children];
+        return $this;
     }
 
     /**
      * @param Element $child
      *
-     * @return void
+     * @return static
      */
-    public function addChild(Element $child): void
+    public function addChild(Element $child): static
     {
         $this->children[] = $child;
+        return $this;
     }
 
     /**
      * @param string $class
      *
-     * @return void
+     * @return static
      */
-    public function addBaseClass(string $class): void
+    public function addBaseClass(string $class): static
     {
         $this->baseClasses[] = trim($class);
+        return $this;
     }
 
     /**
      * @param int $index
      * @param string $class
      *
-     * @return void
+     * @return static
      */
-    public function setBaseClass(int $index, string $class): void
+    public function setBaseClass(int $index, string $class): static
     {
-       $this->baseClasses[$index] = trim($class);
+        $this->baseClasses[$index] = trim($class);
+        return $this;
     }
 
     /**
      * @param string $class
      *
-     * @return void
+     * @return static
      */
-    public function addClass(string $class): void
+    public function addClass(string $class): static
     {
         $this->classes[trim($class)] = true;
+        return $this;
     }
 
     /**
      * @param string $class
      *
-     * @return void
+     * @return static
      */
-    public function setClass(string $class): void
+    public function setClass(string $class): static
     {
         // Actually appends the class.
         $this->addClass($class);
+        return $this;
     }
 
     /**
      * @param string $class
      *
-     * @return void
+     * @return static
      */
-    public function removeClass(string $class): void
+    public function removeClass(string $class): static
     {
         $this->classes[trim($class)] = false;
+        return $this;
     }
 
     /**
@@ -199,11 +208,12 @@ class HtmlElement extends Element
     /**
      * @param bool $isShort
      *
-     * @return void
+     * @return static
      */
-    public function setShort($isShort): void
+    public function setShort($isShort): static
     {
         $this->isShort = $isShort;
+        return $this;
     }
 
     /**
@@ -223,32 +233,34 @@ class HtmlElement extends Element
      *
      * @return static
      */
-    public function setAttribute(string $name, string|bool $value = true, bool $escape = true): void
+    public function setAttribute(string $name, string|bool $value = true, bool $escape = true): static
     {
         $this->attributes[$name] = $value;
         $this->escapes[$name] = $escape;
+        return $this;
     }
 
     /**
      * @param array $attributes
      * @param bool $escape
      *
-     * @return void
+     * @return static
      */
-    public function setAttributes(array $attributes, bool $escape = true): void
+    public function setAttributes(array $attributes, bool $escape = true): static
     {
         foreach ($attributes as $name => $value) {
             switch (true) {
-            case is_numeric($name):
-                $this->setAttribute($value);
-                break;
-            case is_string($value):
-            case is_bool($value):
-                $this->setAttribute($name, $value, $escape);
-                break;
-            default: // Any other values are ignored.
+                case is_numeric($name):
+                    $this->setAttribute($value);
+                    break;
+                case is_string($value):
+                case is_bool($value):
+                    $this->setAttribute($name, $value, $escape);
+                    break;
+                default: // Any other values are ignored.
             }
         }
+        return $this;
     }
 
     /**
@@ -274,11 +286,12 @@ class HtmlElement extends Element
     /**
      * @param string $name
      *
-     * @return void
+     * @return static
      */
-    public function removeAttribute(string $name): void
+    public function removeAttribute(string $name): static
     {
         $this->attributes[$name] = false;
+        return $this;
     }
 
     /**

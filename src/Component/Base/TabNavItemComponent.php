@@ -4,7 +4,7 @@ namespace Lagdo\UiBuilder\Component\Base;
 
 use Lagdo\UiBuilder\Component\HtmlComponent;
 
-class TabNavItemComponent extends HtmlComponent
+abstract class TabNavItemComponent extends HtmlComponent
 {
     /**
      * @var string

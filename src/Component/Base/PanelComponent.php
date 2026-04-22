@@ -4,7 +4,7 @@ namespace Lagdo\UiBuilder\Component\Base;
 
 use Lagdo\UiBuilder\Component\HtmlComponent;
 
-class PanelComponent extends HtmlComponent
+abstract class PanelComponent extends HtmlComponent
 {
     /**
      * @var string

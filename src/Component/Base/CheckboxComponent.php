@@ -4,7 +4,7 @@ namespace Lagdo\UiBuilder\Component\Base;
 
 use Lagdo\UiBuilder\Component\HtmlComponent;
 
-class CheckboxComponent extends HtmlComponent
+abstract class CheckboxComponent extends HtmlComponent
 {
     use Traits\InputLabelTrait;
     use Traits\InputValidationTrait;

@@ -4,7 +4,7 @@ namespace Lagdo\UiBuilder\Component\Base;
 
 use Lagdo\UiBuilder\Component\HtmlComponent;
 
-class BadgeComponent extends HtmlComponent
+abstract class BadgeComponent extends HtmlComponent
 {
     /**
      * @var string

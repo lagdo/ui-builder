@@ -4,7 +4,7 @@ namespace Lagdo\UiBuilder\Component\Base;
 
 use Lagdo\UiBuilder\Component\HtmlComponent;
 
-class BreadcrumbComponent extends HtmlComponent
+abstract class BreadcrumbComponent extends HtmlComponent
 {
     /**
      * @var string

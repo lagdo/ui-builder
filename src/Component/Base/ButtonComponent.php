@@ -4,7 +4,7 @@ namespace Lagdo\UiBuilder\Component\Base;
 
 use Lagdo\UiBuilder\Component\HtmlComponent;
 
-class ButtonComponent extends HtmlComponent
+abstract class ButtonComponent extends HtmlComponent
 {
     /**
      * @var string

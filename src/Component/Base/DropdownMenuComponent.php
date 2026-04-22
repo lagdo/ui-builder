@@ -4,7 +4,7 @@ namespace Lagdo\UiBuilder\Component\Base;
 
 use Lagdo\UiBuilder\Component\HtmlComponent;
 
-class DropdownMenuComponent extends HtmlComponent
+abstract class DropdownMenuComponent extends HtmlComponent
 {
     /**
      * @var string

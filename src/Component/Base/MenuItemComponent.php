@@ -4,12 +4,22 @@ namespace Lagdo\UiBuilder\Component\Base;
 
 use Lagdo\UiBuilder\Component\HtmlComponent;
 
-class MenuItemComponent extends HtmlComponent
+abstract class MenuItemComponent extends HtmlComponent
 {
     /**
      * @var string
      */
-    public static string $tag = 'a';
+    public static string $tag = 'li';
+
+    /**
+     * @var string
+     */
+    protected static string $activeClass = 'active';
+
+    /**
+     * @var string
+     */
+    protected static string $disabledClass = 'disabled';
 
     /**
      * @param bool $active
@@ -18,13 +28,9 @@ class MenuItemComponent extends HtmlComponent
      */
     public function active(bool $active): static
     {
+        $this->element()->removeClass(static::$activeClass);
         if ($active) {
-            $this->element()->addClass('active');
-            return $this;
-        }
-
-        if ($this->element()->hasClass('active')) {
-            $this->element()->removeClass('active');
+            $this->element()->addClass(static::$activeClass);
         }
         return $this;
     }
@@ -36,13 +42,9 @@ class MenuItemComponent extends HtmlComponent
      */
     public function disabled(bool $disabled): static
     {
+        $this->element()->removeClass(static::$disabledClass);
         if ($disabled) {
-            $this->element()->addClass('disabled');
-            return $this;
-        }
-
-        if ($this->element()->hasClass('disabled')) {
-            $this->element()->removeClass('disabled');
+            $this->element()->addClass(static::$disabledClass);
         }
         return $this;
     }

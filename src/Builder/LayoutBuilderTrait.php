@@ -9,7 +9,7 @@ trait LayoutBuilderTrait
     /**
      * @var string
      */
-    protected string $rowComponentClass = '';
+    protected string $GridRowComponentClass = '';
 
     /**
      * @var string
@@ -19,7 +19,7 @@ trait LayoutBuilderTrait
     /**
      * @inheritDoc
      */
-    public function row(...$arguments): Base\RowComponent
+    public function row(...$arguments): Base\GridRowComponent
     {
         return $this->createComponentOfClass($this->rowComponentClass, $arguments);
     }
@@ -27,7 +27,7 @@ trait LayoutBuilderTrait
     /**
      * @inheritDoc
      */
-    public function col(...$arguments): Base\ColComponent
+    public function col(...$arguments): Base\GridColComponent
     {
         return $this->createComponentOfClass($this->colComponentClass, $arguments);
     }

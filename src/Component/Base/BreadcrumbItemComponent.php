@@ -4,7 +4,7 @@ namespace Lagdo\UiBuilder\Component\Base;
 
 use Lagdo\UiBuilder\Component\HtmlComponent;
 
-class BreadcrumbItemComponent extends HtmlComponent
+abstract class BreadcrumbItemComponent extends HtmlComponent
 {
     /**
      * @var string
@@ -18,13 +18,9 @@ class BreadcrumbItemComponent extends HtmlComponent
      */
     public function active(bool $active = false): static
     {
+        $this->element()->removeClass('active');
         if ($active) {
             $this->element()->addClass('active');
-            return $this;
-        }
-
-        if ($this->element()->hasClass('active')) {
-            $this->element()->removeClass('active');
         }
         return $this;
     }

@@ -48,9 +48,9 @@ interface FormBuilderInterface
     /**
      * @param bool $selected
      *
-     * @return Base\OptionComponent
+     * @return Base\SelectOptionComponent
      */
-    public function option(...$arguments): Base\OptionComponent;
+    public function option(...$arguments): Base\SelectOptionComponent;
 
     /**
      * @return Base\InputGroupComponent

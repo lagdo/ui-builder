@@ -4,7 +4,7 @@ namespace Lagdo\UiBuilder\Component\Base;
 
 use Lagdo\UiBuilder\Component\HtmlComponent;
 
-class PaginationItemComponent extends HtmlComponent
+abstract class PaginationItemComponent extends HtmlComponent
 {
     /**
      * @var string

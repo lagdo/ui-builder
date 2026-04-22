@@ -4,7 +4,7 @@ namespace Lagdo\UiBuilder\Component\Base;
 
 use Lagdo\UiBuilder\Component\HtmlComponent;
 
-class OptionComponent extends HtmlComponent
+abstract class SelectOptionComponent extends HtmlComponent
 {
     /**
      * @var string

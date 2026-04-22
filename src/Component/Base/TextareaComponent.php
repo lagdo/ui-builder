@@ -2,7 +2,7 @@
 
 namespace Lagdo\UiBuilder\Component\Base;
 
-class TextareaComponent extends InputComponent
+abstract class TextareaComponent extends InputComponent
 {
     use Traits\InputLabelTrait;
     use Traits\InputValidationTrait;

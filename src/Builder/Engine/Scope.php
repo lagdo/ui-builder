@@ -111,9 +111,9 @@ class Scope
             // Add the child component element and its siblings to the scope elements.
             $this->elements = [
                 ...$this->elements,
-                ...$component->siblings('prev'),
+                ...$component->prevSiblings(),
                 $this->getElement($component, $scope->elements),
-                ...$component->siblings('next'),
+                ...$component->nextSiblings(),
             ];
         }
     }

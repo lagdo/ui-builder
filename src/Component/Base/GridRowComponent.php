@@ -4,7 +4,7 @@ namespace Lagdo\UiBuilder\Component\Base;
 
 use Lagdo\UiBuilder\Component\HtmlComponent;
 
-class RowComponent extends HtmlComponent
+abstract class GridRowComponent extends HtmlComponent
 {
     /**
      * @var string

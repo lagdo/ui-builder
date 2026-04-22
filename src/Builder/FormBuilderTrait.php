@@ -44,7 +44,7 @@ trait FormBuilderTrait
     /**
      * @var string
      */
-    protected string $optionComponentClass = '';
+    protected string $selectOptionComponentClass = '';
 
     /**
      * @var string
@@ -110,9 +110,9 @@ trait FormBuilderTrait
     /**
      * @inheritDoc
      */
-    public function option(...$arguments): Base\OptionComponent
+    public function option(...$arguments): Base\SelectOptionComponent
     {
-        return $this->createComponentOfClass($this->optionComponentClass, $arguments);
+        return $this->createComponentOfClass($this->selectOptionComponentClass, $arguments);
     }
 
     /**
