@@ -2,7 +2,7 @@
 
 namespace Lagdo\UiBuilder\Builder\Engine;
 
-use Lagdo\UiBuilder\Builder;
+use Lagdo\UiBuilder\AbstractBuilder;
 use Lagdo\UiBuilder\Component\HtmlComponent;
 use Lagdo\UiBuilder\Component\HtmlElement;
 use Lagdo\UiBuilder\Component\Html\Element;
@@ -26,25 +26,23 @@ class Engine
      * @var array<array<string, Closure>>
      */
     protected $helpers = [
-        /*Builder::TARGET_BUILDER =>*/ [],
-        /*Builder::TARGET_COMPONENT =>*/ [],
-        /*Builder::TARGET_ELEMENT =>*/ [],
+        /*AbstractBuilder::TARGET_BUILDER =>*/ [],
+        /*AbstractBuilder::TARGET_COMPONENT =>*/ [],
+        /*AbstractBuilder::TARGET_ELEMENT =>*/ [],
     ];
 
     /**
-     * The constructor
-     *
-     * @param Builder $builder
+     * @param AbstractBuilder $builder
      */
-    public function __construct(private Builder $builder)
+    public function __construct(private AbstractBuilder $builder)
     {
-        $this->registerHelper('set', Builder::TARGET_COMPONENT,
+        $this->registerHelper('set', AbstractBuilder::TARGET_COMPONENT,
             function(HtmlComponent $component, string $tagName,
                 string $method, array $arguments): HtmlComponent {
                 $component->setAttribute($tagName, $arguments[0] ?? null, $arguments[1] ?? true);
                 return $component;
             });
-        $this->registerHelper('set', Builder::TARGET_ELEMENT,
+        $this->registerHelper('set', AbstractBuilder::TARGET_ELEMENT,
             function(HtmlElement $element, string $tagName,
                 string $method, array $arguments): HtmlElement {
                 $element->setAttribute($tagName, $arguments[0] ?? null, $arguments[1] ?? true);
@@ -86,7 +84,7 @@ class Engine
     public function callBuilderHelper(string $method, array $arguments): HtmlComponent|Element
     {
         $tagName = $this->getTagName($method);
-        foreach($this->helpers[Builder::TARGET_BUILDER] as $tagPrefix => $helper) {
+        foreach($this->helpers[AbstractBuilder::TARGET_BUILDER] as $tagPrefix => $helper) {
             if (stripos($tagName, "$tagPrefix-") === 0) {
                 $tagName = substr($tagName, strlen($tagPrefix) + 1);
                 return $helper($tagName, $method, $arguments);
@@ -104,10 +102,11 @@ class Engine
      * @return HtmlComponent
      * @throws LogicException When component is not initialized yet
      */
-    public function callComponentHelper(HtmlComponent $component, string $method, array $arguments): HtmlComponent
+    public function callComponentHelper(HtmlComponent $component,
+        string $method, array $arguments): HtmlComponent
     {
         $tagName = $this->getTagName($method);
-        foreach($this->helpers[Builder::TARGET_COMPONENT] as $tagPrefix => $helper) {
+        foreach($this->helpers[AbstractBuilder::TARGET_COMPONENT] as $tagPrefix => $helper) {
             if (stripos($tagName, "$tagPrefix-") === 0) {
                 $tagName = substr($tagName, strlen($tagPrefix) + 1);
                 return $helper($component, $tagName, $method, $arguments);
@@ -125,10 +124,11 @@ class Engine
      * @return HtmlElement
      * @throws LogicException When component is not initialized yet
      */
-    public function callElementHelper(HtmlElement $element, string $method, array $arguments): HtmlElement
+    public function callElementHelper(HtmlElement $element,
+        string $method, array $arguments): HtmlElement
     {
         $tagName = $this->getTagName($method);
-        foreach($this->helpers[Builder::TARGET_ELEMENT] as $tagPrefix => $helper) {
+        foreach($this->helpers[AbstractBuilder::TARGET_ELEMENT] as $tagPrefix => $helper) {
             if (stripos($tagName, "$tagPrefix-") === 0) {
                 $tagName = substr($tagName, strlen($tagPrefix) + 1);
                 return $helper($element, $tagName, $method, $arguments);

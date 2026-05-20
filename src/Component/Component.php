@@ -2,8 +2,6 @@
 
 namespace Lagdo\UiBuilder\Component;
 
-use Lagdo\UiBuilder\Component\HtmlComponent;
-
 /**
  * The common base class for all components, virtual or real.
  */
@@ -20,10 +18,8 @@ abstract class Component
     /**
      * Callback on component parent-child relation.
      *
-     * @param HtmlComponent $parent
-     *
      * @return void
      */
-    protected function onBuild(HtmlComponent $parent): void
+    protected function onBuild(): void
     {}
 }

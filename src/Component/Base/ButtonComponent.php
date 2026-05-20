@@ -18,6 +18,14 @@ abstract class ButtonComponent extends HtmlComponent
      */
     public function addIcon(string $icon): static
     {
+        if ($icon === 'remove') {
+            $icon = 'x';
+        } elseif ($icon === 'edit') {
+            $icon = 'pencil';
+        } elseif ($icon === 'ok') {
+            $icon = 'check';
+        }
+        $this->addHtml('<i class="fa fa-' . $icon . '"></i>');
         return $this;
     }
 

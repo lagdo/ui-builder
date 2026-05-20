@@ -24,6 +24,11 @@ use function is_string;
 class HtmlComponent extends Component
 {
     /**
+     * @var HtmlComponent
+     */
+    private HtmlComponent $parent;
+
+    /**
      * @var HtmlElement
      */
     private HtmlElement $element;
@@ -81,6 +86,14 @@ class HtmlComponent extends Component
     }
 
     /**
+     * @return HtmlComponent
+     */
+    protected function parent(): HtmlComponent
+    {
+        return $this->parent;
+    }
+
+    /**
      * @return HtmlElement
      */
     public function element(): HtmlElement
@@ -97,7 +110,8 @@ class HtmlComponent extends Component
      */
     final public function expanded(HtmlComponent $parent): static
     {
-        $this->onBuild($parent);
+        $this->parent = $parent;
+        $this->onBuild();
         // Call the deferred builders.
         foreach ($this->builders as $builder) {
             $builder();

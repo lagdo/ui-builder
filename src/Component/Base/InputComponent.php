@@ -3,7 +3,6 @@
 namespace Lagdo\UiBuilder\Component\Base;
 
 use Lagdo\UiBuilder\Component\HtmlComponent;
-use Lagdo\UiBuilder\Component\HtmlElement;
 
 abstract class InputComponent extends HtmlComponent
 {

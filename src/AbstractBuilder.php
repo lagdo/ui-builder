@@ -15,7 +15,7 @@ use Lagdo\UiBuilder\Component\Virtual\PickComponent;
 use Lagdo\UiBuilder\Component\Virtual\WhenComponent;
 use Closure;
 
-abstract class Builder implements BuilderInterface
+abstract class AbstractBuilder implements BuilderInterface
 {
     use Builder\LayoutBuilderTrait;
     use Builder\ButtonBuilderTrait;
