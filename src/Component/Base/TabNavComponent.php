@@ -46,4 +46,14 @@ abstract class TabNavComponent extends HtmlComponent
     {
         return $this;
     }
+
+    /**
+     * @param string $content
+     *
+     * @return static
+     */
+    public function content(string $content): static
+    {
+        return $this;
+    }
 }
