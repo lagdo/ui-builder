@@ -7,8 +7,10 @@ use Lagdo\UiBuilder\Component\Html\Element;
 
 use function array_filter;
 use function array_keys;
+use function count;
 use function htmlspecialchars;
 use function implode;
+use function is_a;
 use function is_bool;
 use function is_numeric;
 use function is_string;
@@ -123,6 +125,7 @@ class HtmlElement extends Element
      */
     public function addChildren(array $children): static
     {
+        $children = array_filter($children, fn($child) => is_a($child, Element::class));
         $this->children = [...$this->children, ...$children];
         return $this;
     }
@@ -326,7 +329,7 @@ class HtmlElement extends Element
             }
         }
 
-        return !$attributes ? '' : ' ' . implode(' ', $attributes);
+        return count($attributes) === 0 ? '' : ' ' . implode(' ', $attributes);
     }
 
     /**

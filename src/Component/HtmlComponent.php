@@ -59,6 +59,11 @@ class HtmlComponent extends Component
     private array $builders = [];
 
     /**
+     * @var bool
+     */
+    private bool $forForm = false;
+
+    /**
      * The constructor
      *
      * @param Engine $engine
@@ -131,11 +136,20 @@ class HtmlComponent extends Component
     }
 
     /**
+     * @return static
+     */
+    public function forForm(): static
+    {
+        $this->forForm = true;
+        return $this;
+    }
+
+    /**
      * @return bool
      */
     protected function inForm(): bool
     {
-        return $this->engine->inForm();
+        return $this->forForm || $this->engine->inForm();
     }
 
     /**
