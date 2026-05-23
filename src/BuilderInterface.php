@@ -8,7 +8,7 @@ use Lagdo\UiBuilder\Builder\FormBuilderInterface;
 use Lagdo\UiBuilder\Builder\LayoutBuilderInterface;
 use Lagdo\UiBuilder\Builder\MenuBuilderInterface;
 use Lagdo\UiBuilder\Builder\PaginationBuilderInterface;
-use Lagdo\UiBuilder\Builder\PanelBuilderInterface;
+use Lagdo\UiBuilder\Builder\CardBuilderInterface;
 use Lagdo\UiBuilder\Builder\TabBuilderInterface;
 use Lagdo\UiBuilder\Builder\TableBuilderInterface;
 use Lagdo\UiBuilder\Component\Component;
@@ -52,7 +52,7 @@ use Closure;
  */
 interface BuilderInterface extends ButtonBuilderInterface, DropdownBuilderInterface,
     FormBuilderInterface, LayoutBuilderInterface, PaginationBuilderInterface,
-    MenuBuilderInterface, PanelBuilderInterface, TabBuilderInterface, TableBuilderInterface
+    MenuBuilderInterface, CardBuilderInterface, TabBuilderInterface, TableBuilderInterface
 {
     /**
      * @param string $tagPrefix

@@ -20,7 +20,7 @@ abstract class AbstractBuilder implements BuilderInterface
     use Builder\LayoutBuilderTrait;
     use Builder\ButtonBuilderTrait;
     use Builder\DropdownBuilderTrait;
-    use Builder\PanelBuilderTrait;
+    use Builder\CardBuilderTrait;
     use Builder\FormBuilderTrait;
     use Builder\MenuBuilderTrait;
     use Builder\TabBuilderTrait;
@@ -53,13 +53,13 @@ abstract class AbstractBuilder implements BuilderInterface
     public function __construct()
     {
         $this->engine = new Engine($this);
-        $this->_init();
+        $this->initBuilder();
     }
 
     /**
      * @return void
      */
-    abstract protected function _init(): void;
+    abstract protected function initBuilder(): void;
 
     /**
      * @param string $method
