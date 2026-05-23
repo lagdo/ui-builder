@@ -23,11 +23,14 @@ abstract class TabNavComponent extends HtmlComponent
     }
 
     /**
+     * @param bool $justified
+     *
      * @return static
      */
-    public function fill(): static
+    public function fill(bool $justified = false): static
     {
         $this->properties['filled'] = true;
+        $this->properties['justified'] = $justified;
         return $this;
     }
 
