@@ -9,6 +9,11 @@ trait TabBuilderTrait
     /**
      * @var string
      */
+    protected string $tabsComponentClass = '';
+
+    /**
+     * @var string
+     */
     protected string $tabNavComponentClass = '';
 
     /**
@@ -25,6 +30,14 @@ trait TabBuilderTrait
      * @var string
      */
     protected string $tabContentItemComponentClass = '';
+
+    /**
+     * @inheritDoc
+     */
+    public function tabs(...$arguments): Base\TabsComponent
+    {
+        return $this->createComponentOfClass($this->tabsComponentClass, $arguments);
+    }
 
     /**
      * @inheritDoc

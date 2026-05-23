@@ -18,22 +18,16 @@ abstract class TabNavComponent extends HtmlComponent
      */
     public function look(string $style): static
     {
+        $this->properties['style'] = $style;
         return $this;
     }
 
     /**
      * @return static
      */
-    public function vertical(): static
+    public function fill(): static
     {
-        return $this;
-    }
-
-    /**
-     * @return static
-     */
-    public function fullWidth(): static
-    {
+        $this->properties['filled'] = true;
         return $this;
     }
 
@@ -44,16 +38,7 @@ abstract class TabNavComponent extends HtmlComponent
      */
     public function justify(string $justify): static
     {
-        return $this;
-    }
-
-    /**
-     * @param string $content
-     *
-     * @return static
-     */
-    public function content(string $content): static
-    {
+        $this->properties['justify'] = $justify;
         return $this;
     }
 }

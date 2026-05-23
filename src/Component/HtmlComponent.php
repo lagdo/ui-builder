@@ -64,6 +64,11 @@ class HtmlComponent extends Component
     private bool $forForm = false;
 
     /**
+     * @var array
+     */
+    protected array $properties = [];
+
+    /**
      * The constructor
      *
      * @param Engine $engine
@@ -104,6 +109,17 @@ class HtmlComponent extends Component
     public function element(): HtmlElement
     {
         return $this->element;
+    }
+
+    /**
+     * @param string $name
+     * @param mixed $default
+     *
+     * @return mixed
+     */
+    public function prop(string $name, mixed $default = null): mixed
+    {
+        return $this->properties[$name] ?? $default;
     }
 
     /**

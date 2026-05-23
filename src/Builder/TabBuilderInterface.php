@@ -7,6 +7,11 @@ use Lagdo\UiBuilder\Component\Base;
 interface TabBuilderInterface
 {
     /**
+     * @return Base\TabsComponent
+     */
+    public function tabs(...$arguments): Base\TabsComponent;
+
+    /**
      * @return Base\TabNavComponent
      */
     public function tabNav(...$arguments): Base\TabNavComponent;
