@@ -14,6 +14,11 @@ trait CardBuilderTrait
     /**
      * @var string
      */
+    protected string $cardImageComponentClass = '';
+
+    /**
+     * @var string
+     */
     protected string $cardHeaderComponentClass = '';
 
     /**
@@ -32,6 +37,14 @@ trait CardBuilderTrait
     public function card(...$arguments): Base\CardComponent
     {
         return $this->createComponentOfClass($this->cardComponentClass, $arguments);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function cardImage(...$arguments): Base\CardComponent
+    {
+        return $this->createComponentOfClass($this->cardImageComponentClass, $arguments);
     }
 
     /**

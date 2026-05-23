@@ -14,6 +14,11 @@ interface CardBuilderInterface
     public function card(...$arguments): Base\CardComponent;
 
     /**
+     * @return Base\CardImageComponent
+     */
+    public function cardImage(...$arguments): Base\CardImageComponent;
+
+    /**
      * @return Base\CardHeaderComponent
      */
     public function cardHeader(...$arguments): Base\CardHeaderComponent;
@@ -24,7 +29,7 @@ interface CardBuilderInterface
     public function cardBody(...$arguments): Base\CardBodyComponent;
 
     /**
-     * @return Base\CardHeaderComponent
+     * @return Base\CardFooterComponent
      */
     public function cardFooter(...$arguments): Base\CardFooterComponent;
 }
