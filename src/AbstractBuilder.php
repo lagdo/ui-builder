@@ -194,4 +194,20 @@ abstract class AbstractBuilder implements BuilderInterface
     {
         return $this->engine->build($arguments);
     }
+
+    /**
+     * @return string
+     */
+    public function css(): string
+    {
+        return '';
+    }
+
+    /**
+     * @return string
+     */
+    public function js(): string
+    {
+        return '';
+    }
 }
