@@ -123,6 +123,22 @@ class HtmlComponent extends Component
     }
 
     /**
+     * @param int $level
+     * @param string $name
+     * @param mixed $default
+     *
+     * @return mixed
+     */
+    public function parentProp(int $level, string $name, mixed $default = null): mixed
+    {
+        $parent = $this;
+        while ($parent->parent() !== null && $level-- > 0) {
+            $parent = $parent->parent();
+        }
+        return $parent->prop($name, $default);
+    }
+
+    /**
      * Called for each child after a parent is expanded.
      *
      * @param HtmlComponent $parent
