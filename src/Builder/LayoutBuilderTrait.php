@@ -9,7 +9,7 @@ trait LayoutBuilderTrait
     /**
      * @var string
      */
-    protected string $GridRowComponentClass = '';
+    protected string $rowComponentClass = '';
 
     /**
      * @var string

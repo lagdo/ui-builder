@@ -42,7 +42,7 @@ trait CardBuilderTrait
     /**
      * @inheritDoc
      */
-    public function cardImage(...$arguments): Base\CardComponent
+    public function cardImage(...$arguments): Base\CardImageComponent
     {
         return $this->createComponentOfClass($this->cardImageComponentClass, $arguments);
     }
