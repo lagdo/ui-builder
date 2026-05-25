@@ -5,10 +5,10 @@ function setUiBuilderTabEventListeners({ containerId, tabs })
 {
     const tabsContainer = document.getElementById(containerId);
     tabsContainer?.addEventListener("click", (event) => {
-        const { tabClass, paneClass, activeClass, targetAttr } = tabs;
+        const { tabClass, paneClass, activeClass, hiddenClass, targetAttr } = tabs;
 
         // Find clicked tab button
-        const clickedTab = event.target.closest(tabClass);
+        const clickedTab = event.target.closest('.' + tabClass);
         // Ignore clicks outside tab buttons
         if (!clickedTab) {
             return;
@@ -17,7 +17,7 @@ function setUiBuilderTabEventListeners({ containerId, tabs })
         // Get the target pane id
         const targetId = clickedTab.dataset[targetAttr];
         // Find the target pane
-        const targetPane = clickedTabNav.querySelector(targetId);
+        const targetPane = tabsContainer.querySelector(targetId);
         if (!targetPane) {
             return;
         }
@@ -32,8 +32,12 @@ function setUiBuilderTabEventListeners({ containerId, tabs })
         // Remove active from sibling panes
         const paneSiblings = Array.from(targetPane.parentElement.children);
         paneSiblings.filter(pane => pane.classList.contains(paneClass))
-            .forEach(pane => pane.classList.remove(activeClass));
+            .forEach(pane => {
+                pane.classList.remove(activeClass);
+                hiddenClass && pane.classList.add(hiddenClass);
+            });
         // Activate target pane
         targetPane.classList.add(activeClass);
+        hiddenClass && targetPane.classList.remove(hiddenClass);
     });
 }
