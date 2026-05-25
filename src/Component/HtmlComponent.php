@@ -24,9 +24,9 @@ use function is_string;
 class HtmlComponent extends Component
 {
     /**
-     * @var HtmlComponent
+     * @var HtmlComponent|null
      */
-    private HtmlComponent $parent;
+    private HtmlComponent|null $parent = null;
 
     /**
      * @var HtmlElement
@@ -96,9 +96,9 @@ class HtmlComponent extends Component
     }
 
     /**
-     * @return HtmlComponent
+     * @return HtmlComponent|null
      */
-    protected function parent(): HtmlComponent
+    protected function parent(): HtmlComponent|null
     {
         return $this->parent;
     }
@@ -397,7 +397,7 @@ class HtmlComponent extends Component
      *
      * @return static
      */
-    protected function addPrevSibling(Element|Component $sibling): static
+    protected function prependSibling(Element|Component $sibling): static
     {
         $this->prevSiblings[] = $sibling;
         return $this;
@@ -418,7 +418,7 @@ class HtmlComponent extends Component
      *
      * @return static
      */
-    protected function addNextSibling(Element|Component $sibling): static
+    protected function appendSibling(Element|Component $sibling): static
     {
         $this->nextSiblings[] = $sibling;
         return $this;

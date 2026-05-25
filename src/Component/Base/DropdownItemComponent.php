@@ -16,7 +16,7 @@ abstract class DropdownItemComponent extends HtmlComponent
      *
      * @return static
      */
-    public function look(string $style): static
+    public function skin(string $style): static
     {
         return $this;
     }
