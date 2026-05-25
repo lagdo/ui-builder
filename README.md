@@ -35,10 +35,10 @@ This package requires PHP version 8.0 or greater.
 #### Installation
 
 Install the packages using Composer.
-In the examples below, we will build simple UI components for the Bootstrap framework.
+In the examples below, we will build simple UI components for the Bootstrap 5 framework.
 
 ```bash
-composer require ui-builder ui-builder-bootstrap
+composer require ui-builder ui-builder-bootstrap5
 ```
 
 ### Usage
@@ -115,7 +115,7 @@ Depending on which class instance is passed to the `View` constructor, a differe
 
 With the following PHP code,
 ```php
-use Lagdo\UiBuilder\Bootstrap\Bootstrap3\Builder;
+use Lagdo\UiBuilder\Bootstrap3\Builder;
 
 $view = new View(new Builder());
 ```
@@ -143,7 +143,7 @@ the `getSimpleForm()` function will generate code for Bootstrap 3.
 
 And with the following PHP code,
 ```php
-use Lagdo\UiBuilder\Bootstrap\Bootstrap4\Builder;
+use Lagdo\UiBuilder\Bootstrap4\Builder;
 
 $view = new View(new Builder());
 ```
