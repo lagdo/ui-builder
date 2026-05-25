@@ -456,4 +456,13 @@ class HtmlComponent extends Component
         $closure($this);
         return $this;
     }
+
+    /**
+     * @return static
+     */
+    public function disable(): static
+    {
+        $this->element()->setAttribute('disabled', 'disabled');
+        return $this;
+    }
 }

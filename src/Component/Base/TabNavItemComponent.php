@@ -30,14 +30,4 @@ abstract class TabNavItemComponent extends HtmlComponent
     {
         return $this;
     }
-
-    /**
-     * @param bool $enabled
-     *
-     * @return static
-     */
-    public function enabled(bool $enabled): static
-    {
-        return $this;
-    }
 }
