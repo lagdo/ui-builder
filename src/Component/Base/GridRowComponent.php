@@ -7,7 +7,10 @@ use Lagdo\UiBuilder\Component\HtmlComponent;
 abstract class GridRowComponent extends HtmlComponent
 {
     /**
-     * @var string
+     * @return string
      */
-    public static string $tag = 'div';
+    protected function tagName(): string
+    {
+        return 'div';
+    }
 }

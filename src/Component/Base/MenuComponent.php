@@ -7,9 +7,12 @@ use Lagdo\UiBuilder\Component\HtmlComponent;
 abstract class MenuComponent extends HtmlComponent
 {
     /**
-     * @var string
+     * @return string
      */
-    public static string $tag = 'ul';
+    protected function tagName(): string
+    {
+        return 'ul';
+    }
 
     /**
      * @return static

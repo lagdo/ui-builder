@@ -7,9 +7,12 @@ use Lagdo\UiBuilder\Component\HtmlComponent;
 abstract class BadgeComponent extends HtmlComponent
 {
     /**
-     * @var string
+     * @return string
      */
-    public static string $tag = 'span';
+    protected function tagName(): string
+    {
+        return 'span';
+    }
 
     /**
      * @return static

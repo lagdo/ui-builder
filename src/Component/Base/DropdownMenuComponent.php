@@ -7,7 +7,10 @@ use Lagdo\UiBuilder\Component\HtmlComponent;
 abstract class DropdownMenuComponent extends HtmlComponent
 {
     /**
-     * @var string
+     * @return string
      */
-    public static string $tag = '';
+    protected function tagName(): string
+    {
+        return '';
+    }
 }

@@ -7,17 +7,19 @@ use Lagdo\UiBuilder\Component\HtmlComponent;
 abstract class TableComponent extends HtmlComponent
 {
     /**
-     * @var string
+     * @return string
      */
-    public static string $tag = 'table';
+    protected function tagName(): string
+    {
+        return 'table';
+    }
 
     /**
-     * @param bool $responsive
-     *
      * @return static
      */
-    public function responsive(bool $responsive = true): static
+    public function responsive(): static
     {
+        $this->properties['responsive'] = true;
         return $this;
     }
 
@@ -28,6 +30,7 @@ abstract class TableComponent extends HtmlComponent
      */
     public function skin(string $style): static
     {
+        $this->properties['style'] = $style;
         return $this;
     }
 }

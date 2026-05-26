@@ -7,9 +7,12 @@ use Lagdo\UiBuilder\Component\HtmlComponent;
 abstract class BreadcrumbItemComponent extends HtmlComponent
 {
     /**
-     * @var string
+     * @return string
      */
-    public static string $tag = 'li';
+    protected function tagName(): string
+    {
+        return 'li';
+    }
 
     /**
      * @param bool $active

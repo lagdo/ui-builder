@@ -8,7 +8,10 @@ abstract class TextareaComponent extends InputComponent
     use Traits\InputValidationTrait;
 
     /**
-     * @var string
+     * @return string
      */
-    public static string $tag = 'textarea';
+    protected function tagName(): string
+    {
+        return 'textarea';
+    }
 }

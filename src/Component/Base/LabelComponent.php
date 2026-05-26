@@ -7,7 +7,10 @@ use Lagdo\UiBuilder\Component\HtmlComponent;
 abstract class LabelComponent extends HtmlComponent
 {
     /**
-     * @var string
+     * @return string
      */
-    public static string $tag = 'label';
+    protected function tagName(): string
+    {
+        return 'label';
+    }
 }

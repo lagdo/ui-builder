@@ -84,37 +84,37 @@ abstract class AbstractBuilder implements BuilderInterface
      * Create a component
      *
      * @template T of HtmlComponent
-     * @param string $name
      * @param array $arguments
+     * @param string $tagName
      * @psalm-param class-string<T> $class
      *
      * @return T
      */
-    private function _createComponent(string $name, array $arguments = [],
-        string $class = HtmlComponent::class): mixed
+    private function _createComponent(array $arguments,
+        string $tagName = '', string $class = HtmlComponent::class): mixed
     {
-        return new $class($this->engine, $name, $arguments);
+        return new $class($this->engine, $tagName, $arguments);
     }
 
     /**
      * @inheritDoc
      */
-    public function tag(string $name, ...$arguments): HtmlComponent
+    public function tag(string $tagName, ...$arguments): HtmlComponent
     {
-        return $this->_createComponent($name, $arguments);
+        return $this->_createComponent($arguments, tagName: $tagName);
     }
 
     /**
      * Create a component
      *
-     * @param string $name
+     * @param string $tagName
      * @param array $arguments
      *
      * @return HtmlComponent
      */
-    public function createComponent(string $name, $arguments = []): HtmlComponent
+    public function createComponent(string $tagName, array $arguments = []): HtmlComponent
     {
-        return $this->_createComponent($name, $arguments);
+        return $this->_createComponent($arguments, tagName: $tagName);
     }
 
     /**
@@ -126,9 +126,9 @@ abstract class AbstractBuilder implements BuilderInterface
      *
      * @return T
      */
-    protected function createComponentOfClass(string $class, $arguments = []): HtmlComponent
+    protected function createComponentOfClass(string $class, array $arguments = []): HtmlComponent
     {
-        return $this->_createComponent($class::$tag, $arguments, $class);
+        return $this->_createComponent($arguments, class: $class);
     }
 
     /**

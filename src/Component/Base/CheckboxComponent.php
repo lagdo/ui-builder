@@ -10,9 +10,12 @@ abstract class CheckboxComponent extends HtmlComponent
     use Traits\InputValidationTrait;
 
     /**
-     * @var string
+     * @return string
      */
-    public static string $tag = 'input';
+    protected function tagName(): string
+    {
+        return 'input';
+    }
 
     /**
      * @param bool $checked

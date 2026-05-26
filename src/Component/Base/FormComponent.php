@@ -7,9 +7,12 @@ use Lagdo\UiBuilder\Component\HtmlComponent;
 abstract class FormComponent extends HtmlComponent
 {
     /**
-     * @var string
+     * @return string
      */
-    public static string $tag = 'form';
+    protected function tagName(): string
+    {
+        return 'form';
+    }
 
     /**
      * @return static
@@ -20,21 +23,25 @@ abstract class FormComponent extends HtmlComponent
     }
 
     /**
-     * @param bool $horizontal
-     *
      * @return static
      */
-    public function horizontal(bool $horizontal = true): static
+    public function vertical(): static
     {
         return $this;
     }
 
     /**
-     * @param bool $wrapped
-     *
      * @return static
      */
-    public function wrapped(bool $wrapped = true): static
+    public function horizontal(): static
+    {
+        return $this;
+    }
+
+    /**
+     * @return static
+     */
+    public function wrapped(): static
     {
         return $this;
     }

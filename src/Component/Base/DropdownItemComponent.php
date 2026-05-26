@@ -7,9 +7,12 @@ use Lagdo\UiBuilder\Component\HtmlComponent;
 abstract class DropdownItemComponent extends HtmlComponent
 {
     /**
-     * @var string
+     * @return string
      */
-    public static string $tag = 'button';
+    protected function tagName(): string
+    {
+        return 'button';
+    }
 
     /**
      * @param string $style

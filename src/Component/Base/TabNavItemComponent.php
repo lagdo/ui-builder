@@ -7,9 +7,12 @@ use Lagdo\UiBuilder\Component\HtmlComponent;
 abstract class TabNavItemComponent extends HtmlComponent
 {
     /**
-     * @var string
+     * @return string
      */
-    public static string $tag = '';
+    protected function tagName(): string
+    {
+        return '';
+    }
 
     /**
      * @param string $target

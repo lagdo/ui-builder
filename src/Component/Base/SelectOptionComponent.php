@@ -7,9 +7,12 @@ use Lagdo\UiBuilder\Component\HtmlComponent;
 abstract class SelectOptionComponent extends HtmlComponent
 {
     /**
-     * @var string
+     * @return string
      */
-    public static string $tag = 'option';
+    protected function tagName(): string
+    {
+        return 'option';
+    }
 
     /**
      * @param bool $selected
