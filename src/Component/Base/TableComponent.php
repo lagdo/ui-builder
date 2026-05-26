@@ -24,13 +24,29 @@ abstract class TableComponent extends HtmlComponent
     }
 
     /**
-     * @param string $style
-     *
      * @return static
      */
-    public function skin(string $style): static
+    public function stripe(): static
     {
-        $this->properties['style'] = $style;
+        $this->properties['stripe'] = true;
+        return $this;
+    }
+
+    /**
+     * @return static
+     */
+    public function border(): static
+    {
+        $this->properties['border'] = true;
+        return $this;
+    }
+
+    /**
+     * @return static
+     */
+    public function hover(): static
+    {
+        $this->properties['hover'] = true;
         return $this;
     }
 }

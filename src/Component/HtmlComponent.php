@@ -8,6 +8,7 @@ use Lagdo\UiBuilder\Component\Html\Html;
 use Lagdo\UiBuilder\Component\Html\Text;
 use Closure;
 
+use function get_class;
 use function is_array;
 use function is_string;
 
@@ -142,6 +143,15 @@ class HtmlComponent extends Component
             $parent = $parent->parent();
         }
         return $parent->prop($name, $default);
+    }
+
+    /**
+     * @return string
+     */
+    protected function parentClass(): string
+    {
+        $parent = $this->parent();
+        return $parent === null ? '' : get_class($parent);
     }
 
     /**
