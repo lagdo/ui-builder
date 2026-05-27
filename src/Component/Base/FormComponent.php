@@ -25,22 +25,6 @@ abstract class FormComponent extends HtmlComponent
     /**
      * @return static
      */
-    public function vertical(): static
-    {
-        return $this;
-    }
-
-    /**
-     * @return static
-     */
-    public function horizontal(): static
-    {
-        return $this;
-    }
-
-    /**
-     * @return static
-     */
     public function wrapped(): static
     {
         return $this;

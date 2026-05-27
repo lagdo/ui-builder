@@ -6,6 +6,8 @@ use Lagdo\UiBuilder\Component\HtmlComponent;
 
 abstract class MenuComponent extends HtmlComponent
 {
+    use Traits\DirectionTrait;
+
     /**
      * @return string
      */
@@ -13,14 +15,4 @@ abstract class MenuComponent extends HtmlComponent
     {
         return 'ul';
     }
-
-    /**
-     * @return static
-     */
-    abstract public function vertical(): static;
-
-    /**
-     * @return static
-     */
-    abstract public function horizontal(): static;
 }

@@ -12,11 +12,9 @@ interface DropdownBuilderInterface
     public function dropdown(...$arguments): Base\DropdownComponent;
 
     /**
-     * @param string $style
-     *
-     * @return Base\DropdownItemComponent
+     * @return Base\DropdownButtonComponent
      */
-    public function dropdownItem(...$arguments): Base\DropdownItemComponent;
+    public function dropdownButton(...$arguments): Base\DropdownButtonComponent;
 
     /**
      * @return Base\DropdownMenuComponent

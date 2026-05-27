@@ -13,14 +13,4 @@ abstract class CardComponent extends HtmlComponent
     {
         return 'div';
     }
-
-    /**
-     * @param string $style
-     *
-     * @return static
-     */
-    public function skin(string $style): static
-    {
-        return $this;
-    }
 }

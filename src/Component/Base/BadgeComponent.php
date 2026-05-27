@@ -6,6 +6,10 @@ use Lagdo\UiBuilder\Component\HtmlComponent;
 
 abstract class BadgeComponent extends HtmlComponent
 {
+    use Traits\VisualTrait;
+    use Traits\AlertTrait;
+    use Traits\VariantTrait;
+
     /**
      * @return string
      */
@@ -18,36 +22,6 @@ abstract class BadgeComponent extends HtmlComponent
      * @return static
      */
     public function top(): static
-    {
-        return $this;
-    }
-
-    /**
-     * @param string $type
-     *
-     * @return static
-     */
-    public function type(string $type): static
-    {
-        return $this;
-    }
-
-    /**
-     * @param string $rounded
-     *
-     * @return static
-     */
-    public function rounded(string $rounded): static
-    {
-        return $this;
-    }
-
-    /**
-     * @param string $border
-     *
-     * @return static
-     */
-    public function border(string $border): static
     {
         return $this;
     }

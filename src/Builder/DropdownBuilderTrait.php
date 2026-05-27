@@ -14,7 +14,7 @@ trait DropdownBuilderTrait
     /**
      * @var string
      */
-    protected string $dropdownItemComponentClass = '';
+    protected string $dropdownButtonComponentClass = '';
 
     /**
      * @var string
@@ -37,9 +37,9 @@ trait DropdownBuilderTrait
     /**
      * @inheritDoc
      */
-    public function dropdownItem(...$arguments): Base\DropdownItemComponent
+    public function dropdownButton(...$arguments): Base\DropdownButtonComponent
     {
-        return $this->createComponentOfClass($this->dropdownItemComponentClass, $arguments);
+        return $this->createComponentOfClass($this->dropdownButtonComponentClass, $arguments);
     }
 
     /**

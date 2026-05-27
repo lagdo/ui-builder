@@ -74,14 +74,14 @@ class View
     {
         return $this->html->build(
             $this->html->form(
-                $this->html->formRow(
-                    $this->html->formCol(
-                        $this->html->formLabel($this->html->text('Name'))
+                $this->html->row(
+                    $this->html->col(
+                        $this->html->label($this->html->text('Name'))
                             ->setFor('name')
                     )
                     ->width(4),
-                    $this->html->formCol(
-                        $this->html->formInput()
+                    $this->html->col(
+                        $this->html->input()
                             ->setType('text')
                             ->setName('name')
                             ->setPlaceholder('Name')
@@ -89,14 +89,14 @@ class View
                     )
                     ->width(8)
                 ),
-                $this->html->formRow(
-                    $this->html->formCol(
-                        $this->html->formLabel($this->html->text('Description'))
+                $this->html->row(
+                    $this->html->col(
+                        $this->html->label($this->html->text('Description'))
                             ->setFor('description')
                     )
                     ->width(4),
-                    $this->html->formCol(
-                        $this->html->formTextarea($this->html->text($formData['description']))
+                    $this->html->col(
+                        $this->html->textarea($this->html->text($formData['description']))
                             ->setRows('10')
                             ->setName('description')
                             ->setWrap('on')

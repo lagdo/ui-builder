@@ -6,32 +6,14 @@ use Lagdo\UiBuilder\Component\HtmlComponent;
 
 abstract class PaginationItemComponent extends HtmlComponent
 {
+    use Traits\StateTrait;
+
     /**
      * @return string
      */
     protected function tagName(): string
     {
         return 'a';
-    }
-
-    /**
-     * @param bool $active
-     *
-     * @return static
-     */
-    public function active(bool $active): static
-    {
-        return $this;
-    }
-
-    /**
-     * @param bool $enabled
-     *
-     * @return static
-     */
-    public function enabled(bool $enabled): static
-    {
-        return $this;
     }
 
     /**

@@ -15,17 +15,6 @@ abstract class TabNavComponent extends HtmlComponent
     }
 
     /**
-     * @param string $style
-     *
-     * @return static
-     */
-    public function skin(string $style): static
-    {
-        $this->properties['style'] = $style;
-        return $this;
-    }
-
-    /**
      * @param bool $justified
      *
      * @return static

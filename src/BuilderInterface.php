@@ -11,6 +11,12 @@ use Lagdo\UiBuilder\Builder\PaginationBuilderInterface;
 use Lagdo\UiBuilder\Builder\CardBuilderInterface;
 use Lagdo\UiBuilder\Builder\TabBuilderInterface;
 use Lagdo\UiBuilder\Builder\TableBuilderInterface;
+use Lagdo\UiBuilder\Component\Attr\AlertGetter;
+use Lagdo\UiBuilder\Component\Attr\DirectionGetter;
+use Lagdo\UiBuilder\Component\Attr\JustifyGetter;
+use Lagdo\UiBuilder\Component\Attr\SizeGetter;
+use Lagdo\UiBuilder\Component\Attr\VariantGetter;
+use Lagdo\UiBuilder\Component\Attr\VisualGetter;
 use Lagdo\UiBuilder\Component\Component;
 use Lagdo\UiBuilder\Component\HtmlComponent;
 use Lagdo\UiBuilder\Component\Html\Element;
@@ -22,13 +28,6 @@ use Closure;
  * @method HtmlComponent span(...$arguments)
  * @method HtmlComponent a(...$arguments)
  * @method HtmlComponent i(...$arguments)
- * @method HtmlComponent input(...$arguments)
- * @method HtmlComponent formCol(...$arguments)
- * @method HtmlComponent formRow(...$arguments)
- * @method HtmlComponent formLabel(...$arguments)
- * @method HtmlComponent formInput(...$arguments)
- * @method HtmlComponent formSelect(...$arguments)
- * @method HtmlComponent formTextArea(...$arguments)
  * @method HtmlComponent thead(...$arguments)
  * @method HtmlComponent tbody(...$arguments)
  * @method HtmlComponent tr(...$arguments)
@@ -44,8 +43,6 @@ use Closure;
  * @method HtmlComponent ol(...$arguments)
  * @method HtmlComponent ul(...$arguments)
  * @method HtmlComponent li(...$arguments)
- * @method HtmlComponent select(...$arguments)
- * @method HtmlComponent option(...$arguments)
  * @method HtmlComponent optgroup(...$arguments)
  * @method HtmlComponent img(...$arguments)
  * @method HtmlComponent figure(...$arguments)
@@ -116,6 +113,36 @@ interface BuilderInterface extends ButtonBuilderInterface, DropdownBuilderInterf
      * @return Element
      */
     public function comment(string $comment): Element;
+
+    /**
+     * @return VisualGetter
+     */
+    public function visual(): VisualGetter;
+
+    /**
+     * @return AlertGetter
+     */
+    public function alert(): AlertGetter;
+
+    /**
+     * @return SizeGetter
+     */
+    public function size(): SizeGetter;
+
+    /**
+     * @return JustifyGetter
+     */
+    public function justify(): JustifyGetter;
+
+    /**
+     * @return DirectionGetter
+     */
+    public function direction(): DirectionGetter;
+
+    /**
+     * @return VariantGetter
+     */
+    public function variant(): VariantGetter;
 
     /**
      * @return string

@@ -3,6 +3,12 @@
 namespace Lagdo\UiBuilder;
 
 use Lagdo\UiBuilder\Builder\Engine\Engine;
+use Lagdo\UiBuilder\Component\Attr\AlertGetter;
+use Lagdo\UiBuilder\Component\Attr\DirectionGetter;
+use Lagdo\UiBuilder\Component\Attr\JustifyGetter;
+use Lagdo\UiBuilder\Component\Attr\SizeGetter;
+use Lagdo\UiBuilder\Component\Attr\VariantGetter;
+use Lagdo\UiBuilder\Component\Attr\VisualGetter;
 use Lagdo\UiBuilder\Component\Component;
 use Lagdo\UiBuilder\Component\HtmlComponent;
 use Lagdo\UiBuilder\Component\Html\Comment;
@@ -46,6 +52,36 @@ abstract class AbstractBuilder implements BuilderInterface
      * @var Engine
      */
     private $engine;
+
+    /**
+     * @var AlertGetter
+     */
+    private $alertGetter;
+
+    /**
+     * @var VisualGetter
+     */
+    private $visualGetter;
+
+    /**
+     * @var SizeGetter
+     */
+    private $sizeGetter;
+
+    /**
+     * @var JustifyGetter
+     */
+    private $justifyGetter;
+
+    /**
+     * @var DirectionGetter
+     */
+    private $directionGetter;
+
+    /**
+     * @var VariantGetter
+     */
+    private $variantGetter;
 
     /**
      * The constructor
@@ -185,6 +221,54 @@ abstract class AbstractBuilder implements BuilderInterface
     public function comment(string $comment): Element
     {
         return new Comment($comment);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function alert(): AlertGetter
+    {
+        return $this->alertGetter ??= new AlertGetter();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function visual(): VisualGetter
+    {
+        return $this->visualGetter ??= new VisualGetter();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function size(): SizeGetter
+    {
+        return $this->sizeGetter ??= new SizeGetter();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function justify(): JustifyGetter
+    {
+        return $this->justifyGetter ??= new JustifyGetter();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function direction(): DirectionGetter
+    {
+        return $this->directionGetter ??= new DirectionGetter();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function variant(): VariantGetter
+    {
+        return $this->variantGetter ??= new VariantGetter();
     }
 
     /**

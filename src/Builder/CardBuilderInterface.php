@@ -7,8 +7,6 @@ use Lagdo\UiBuilder\Component\Base;
 interface CardBuilderInterface
 {
     /**
-     * @param string $style
-     *
      * @return Base\CardComponent
      */
     public function card(...$arguments): Base\CardComponent;

@@ -23,8 +23,6 @@ class Scope
     protected $children = [];
 
     /**
-     * The constructor
-     *
      * @param HtmlComponent $parent
      */
     public function __construct(protected HtmlComponent $parent)
@@ -39,8 +37,7 @@ class Scope
      */
     private function expand(mixed $component): void
     {
-        if (is_a($component, Element::class) ||
-            is_a($component, HtmlComponent::class)) {
+        if (is_a($component, Element::class) || is_a($component, HtmlComponent::class)) {
             $this->children[] = $component;
             return;
         }

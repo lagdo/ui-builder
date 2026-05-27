@@ -6,6 +6,13 @@ use Lagdo\UiBuilder\Component\HtmlComponent;
 
 abstract class ButtonComponent extends HtmlComponent
 {
+    use Traits\VisualTrait;
+    use Traits\AlertTrait;
+    use Traits\StateTrait;
+    use Traits\JustifyTrait;
+    use Traits\VariantTrait;
+    use Traits\SizeTrait;
+
     /**
      * @return string
      */
@@ -29,86 +36,6 @@ abstract class ButtonComponent extends HtmlComponent
             $icon = 'check';
         }
         $this->addHtml('<i class="fa fa-' . $icon . '"></i>');
-        return $this;
-    }
-
-    /**
-     * @return static
-     */
-    public function primary(): static
-    {
-        return $this;
-    }
-
-    /**
-     * @return static
-     */
-    public function secondary(): static
-    {
-        return $this;
-    }
-
-    /**
-     * @return static
-     */
-    public function large(): static
-    {
-        return $this;
-    }
-
-    /**
-     * @return static
-     */
-    public function small(): static
-    {
-        return $this;
-    }
-
-    /**
-     * @return static
-     */
-    public function success(): static
-    {
-        return $this;
-    }
-
-    /**
-     * @return static
-     */
-    public function info(): static
-    {
-        return $this;
-    }
-
-    /**
-     * @return static
-     */
-    public function warning(): static
-    {
-        return $this;
-    }
-
-    /**
-     * @return static
-     */
-    public function danger(): static
-    {
-        return $this;
-    }
-
-    /**
-     * @return static
-     */
-    public function outline(): static
-    {
-        return $this;
-    }
-
-    /**
-     * @return static
-     */
-    public function fullWidth(): static
-    {
         return $this;
     }
 }

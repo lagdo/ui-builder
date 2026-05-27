@@ -6,6 +6,8 @@ use Lagdo\UiBuilder\Component\HtmlComponent;
 
 abstract class TabNavItemComponent extends HtmlComponent
 {
+    use Traits\StateTrait;
+
     /**
      * @return string
      */
@@ -20,16 +22,6 @@ abstract class TabNavItemComponent extends HtmlComponent
      * @return static
      */
     public function target(string $target): static
-    {
-        return $this;
-    }
-
-    /**
-     * @param bool $active
-     *
-     * @return static
-     */
-    public function active(bool $active = false): static
     {
         return $this;
     }

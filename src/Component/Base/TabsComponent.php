@@ -6,21 +6,14 @@ use Lagdo\UiBuilder\Component\HtmlComponent;
 
 abstract class TabsComponent extends HtmlComponent
 {
+    use Traits\DirectionTrait;
+
     /**
      * @return string
      */
     protected function tagName(): string
     {
         return 'div';
-    }
-
-    /**
-     * @return static
-     */
-    public function vertical(): static
-    {
-        $this->properties['vertical'] = true;
-        return $this;
     }
 
     /**
