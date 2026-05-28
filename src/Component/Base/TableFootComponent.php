@@ -7,10 +7,7 @@ use Lagdo\UiBuilder\Component\HtmlComponent;
 abstract class TableFootComponent extends HtmlComponent
 {
     /**
-     * @return string
+     * @var string
      */
-    protected function tagName(): string
-    {
-        return 'tfoot';
-    }
+    protected string $tagName = 'tfoot';
 }

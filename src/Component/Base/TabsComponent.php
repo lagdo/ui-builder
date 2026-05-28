@@ -9,12 +9,9 @@ abstract class TabsComponent extends HtmlComponent
     use Traits\DirectionTrait;
 
     /**
-     * @return string
+     * @var string
      */
-    protected function tagName(): string
-    {
-        return 'div';
-    }
+    protected string $tagName = 'div';
 
     /**
      * @param string $content

@@ -7,10 +7,7 @@ use Lagdo\UiBuilder\Component\HtmlComponent;
 abstract class TableDataCellComponent extends HtmlComponent
 {
     /**
-     * @return string
+     * @var string
      */
-    protected function tagName(): string
-    {
-        return 'td';
-    }
+    protected string $tagName = 'td';
 }

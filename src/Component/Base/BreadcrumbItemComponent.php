@@ -9,10 +9,7 @@ abstract class BreadcrumbItemComponent extends HtmlComponent
     use Traits\StateTrait;
 
     /**
-     * @return string
+     * @var string
      */
-    protected function tagName(): string
-    {
-        return 'li';
-    }
+    protected string $tagName = 'li';
 }

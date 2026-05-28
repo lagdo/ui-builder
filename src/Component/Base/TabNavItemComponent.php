@@ -9,12 +9,9 @@ abstract class TabNavItemComponent extends HtmlComponent
     use Traits\StateTrait;
 
     /**
-     * @return string
+     * @var string
      */
-    protected function tagName(): string
-    {
-        return '';
-    }
+    protected string $tagName = '';
 
     /**
      * @param string $target

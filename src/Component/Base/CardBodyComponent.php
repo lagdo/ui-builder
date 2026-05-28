@@ -7,10 +7,7 @@ use Lagdo\UiBuilder\Component\HtmlComponent;
 abstract class CardBodyComponent extends HtmlComponent
 {
     /**
-     * @return string
+     * @var string
      */
-    protected function tagName(): string
-    {
-        return 'div';
-    }
+    protected string $tagName = 'div';
 }

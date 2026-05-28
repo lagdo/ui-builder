@@ -9,12 +9,9 @@ abstract class PaginationItemComponent extends HtmlComponent
     use Traits\StateTrait;
 
     /**
-     * @return string
+     * @var string
      */
-    protected function tagName(): string
-    {
-        return 'a';
-    }
+    protected string $tagName = 'a';
 
     /**
      * @param int $number

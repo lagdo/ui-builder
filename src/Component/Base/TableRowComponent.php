@@ -7,12 +7,9 @@ use Lagdo\UiBuilder\Component\HtmlComponent;
 abstract class TableRowComponent extends HtmlComponent
 {
     /**
-     * @return string
+     * @var string
      */
-    protected function tagName(): string
-    {
-        return 'tr';
-    }
+    protected string $tagName = 'tr';
 
     /**
      * @return static

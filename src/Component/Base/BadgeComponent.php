@@ -10,12 +10,9 @@ abstract class BadgeComponent extends HtmlComponent
     use Traits\VariantTrait;
 
     /**
-     * @return string
+     * @var string
      */
-    protected function tagName(): string
-    {
-        return 'span';
-    }
+    protected string $tagName = 'span';
 
     /**
      * @return static

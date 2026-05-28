@@ -70,25 +70,22 @@ class HtmlComponent extends Component
     protected array $properties = [];
 
     /**
+     * @var string
+     */
+    protected string $tagName = '';
+
+    /**
      * @param Engine $engine
      * @param string $tagName
      * @param array $arguments
      */
     public function __construct(private Engine $engine, string $tagName, array $arguments = [])
     {
-        $this->element = new HtmlElement($engine, $tagName ?: $this->tagName());
+        $this->element = new HtmlElement($engine, $tagName ?: $this->tagName);
         // Resolve arguments
         $this->contents(...$arguments);
 
         $this->onCreate();
-    }
-
-    /**
-     * @return string
-     */
-    protected function tagName(): string
-    {
-        return '';
     }
 
     /**

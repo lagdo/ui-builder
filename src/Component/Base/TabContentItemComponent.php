@@ -9,10 +9,7 @@ abstract class TabContentItemComponent extends HtmlComponent
     use Traits\StateTrait;
 
     /**
-     * @return string
+     * @var string
      */
-    protected function tagName(): string
-    {
-        return 'div';
-    }
+    protected string $tagName = 'div';
 }

@@ -7,12 +7,9 @@ use Lagdo\UiBuilder\Component\HtmlComponent;
 abstract class FormComponent extends HtmlComponent
 {
     /**
-     * @return string
+     * @var string
      */
-    protected function tagName(): string
-    {
-        return 'form';
-    }
+    protected string $tagName = 'form';
 
     /**
      * @return static

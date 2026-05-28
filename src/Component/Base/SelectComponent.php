@@ -8,10 +8,7 @@ abstract class SelectComponent extends InputComponent
     use Traits\InputValidationTrait;
 
     /**
-     * @return string
+     * @var string
      */
-    protected function tagName(): string
-    {
-        return 'select';
-    }
+    protected string $tagName = 'select';
 }

@@ -9,10 +9,7 @@ abstract class MenuComponent extends HtmlComponent
     use Traits\DirectionTrait;
 
     /**
-     * @return string
+     * @var string
      */
-    protected function tagName(): string
-    {
-        return 'ul';
-    }
+    protected string $tagName = 'ul';
 }

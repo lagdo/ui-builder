@@ -10,10 +10,7 @@ abstract class InputComponent extends HtmlComponent
     use Traits\InputValidationTrait;
 
     /**
-     * @return string
+     * @var string
      */
-    protected function tagName(): string
-    {
-        return 'input';
-    }
+    protected string $tagName = 'input';
 }

@@ -10,10 +10,7 @@ abstract class AlertComponent extends HtmlComponent
     use Traits\VariantTrait;
 
     /**
-     * @return string
+     * @var string
      */
-    protected function tagName(): string
-    {
-        return 'div';
-    }
+    protected string $tagName = 'div';
 }

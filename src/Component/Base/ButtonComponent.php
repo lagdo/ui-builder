@@ -13,12 +13,9 @@ abstract class ButtonComponent extends HtmlComponent
     use Traits\SizeTrait;
 
     /**
-     * @return string
+     * @var string
      */
-    protected function tagName(): string
-    {
-        return 'button';
-    }
+    protected string $tagName = 'button';
 
     /**
      * @param string $icon
