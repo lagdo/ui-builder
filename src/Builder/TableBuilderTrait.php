@@ -34,7 +34,12 @@ trait TableBuilderTrait
     /**
      * @var string
      */
-    protected string $tableDataComponentClass = '';
+    protected string $tableHeadCellComponentClass = '';
+
+    /**
+     * @var string
+     */
+    protected string $tableDataCellComponentClass = '';
 
     /**
      * @inheritDoc
@@ -79,8 +84,16 @@ trait TableBuilderTrait
     /**
      * @inheritDoc
      */
-    public function tableData(...$arguments): Base\TableDataComponent
+    public function tableHeadCell(...$arguments): Base\TableHeadCellComponent
     {
-        return $this->createComponentOfClass($this->tableDataComponentClass, $arguments);
+        return $this->createComponentOfClass($this->tableHeadCellComponentClass, $arguments);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function tableDataCell(...$arguments): Base\TableDataCellComponent
+    {
+        return $this->createComponentOfClass($this->tableDataCellComponentClass, $arguments);
     }
 }

@@ -32,7 +32,12 @@ interface TableBuilderInterface
     public function tableRow(...$arguments): Base\TableRowComponent;
 
     /**
-     * @return Base\TableDataComponent
+     * @return Base\TableHeadCellComponent
      */
-    public function tableData(...$arguments): Base\TableDataComponent;
+    public function tableHeadCell(...$arguments): Base\TableHeadCellComponent;
+
+    /**
+     * @return Base\TableDataCellComponent
+     */
+    public function tableDataCell(...$arguments): Base\TableDataCellComponent;
 }
