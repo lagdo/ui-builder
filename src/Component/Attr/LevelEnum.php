@@ -2,7 +2,7 @@
 
 namespace Lagdo\UiBuilder\Component\Attr;
 
-enum AlertEnum: string
+enum LevelEnum: string
 {
     case INFO = 'info';
 

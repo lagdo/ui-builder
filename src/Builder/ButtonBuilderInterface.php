@@ -7,17 +7,12 @@ use Lagdo\UiBuilder\Component\Base;
 interface ButtonBuilderInterface
 {
     /**
-     * @return Base\ButtonGroupComponent
-     */
-    public function buttonGroup(...$arguments): Base\ButtonGroupComponent;
-
-    /**
      * @return Base\ButtonComponent
      */
     public function button(...$arguments): Base\ButtonComponent;
 
     /**
-     * @return Base\BadgeComponent
+     * @return Base\ButtonGroupComponent
      */
-    public function badge(...$arguments): Base\BadgeComponent;
+    public function buttonGroup(...$arguments): Base\ButtonGroupComponent;
 }

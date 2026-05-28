@@ -3,9 +3,9 @@
 namespace Lagdo\UiBuilder;
 
 use Lagdo\UiBuilder\Builder\Engine\Engine;
-use Lagdo\UiBuilder\Component\Attr\AlertGetter;
 use Lagdo\UiBuilder\Component\Attr\DirectionGetter;
 use Lagdo\UiBuilder\Component\Attr\JustifyGetter;
+use Lagdo\UiBuilder\Component\Attr\LevelGetter;
 use Lagdo\UiBuilder\Component\Attr\SizeGetter;
 use Lagdo\UiBuilder\Component\Attr\VariantGetter;
 use Lagdo\UiBuilder\Component\Attr\VisualGetter;
@@ -54,9 +54,9 @@ abstract class AbstractBuilder implements BuilderInterface
     private $engine;
 
     /**
-     * @var AlertGetter
+     * @var LevelGetter
      */
-    private $alertGetter;
+    private $levelGetter;
 
     /**
      * @var VisualGetter
@@ -226,9 +226,9 @@ abstract class AbstractBuilder implements BuilderInterface
     /**
      * @inheritDoc
      */
-    public function alert(): AlertGetter
+    public function level(): LevelGetter
     {
-        return $this->alertGetter ??= new AlertGetter();
+        return $this->levelGetter ??= new LevelGetter();
     }
 
     /**

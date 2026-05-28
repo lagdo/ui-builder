@@ -7,7 +7,6 @@ use Lagdo\UiBuilder\Component\HtmlComponent;
 abstract class ButtonComponent extends HtmlComponent
 {
     use Traits\VisualTrait;
-    use Traits\AlertTrait;
     use Traits\StateTrait;
     use Traits\JustifyTrait;
     use Traits\VariantTrait;
@@ -28,14 +27,13 @@ abstract class ButtonComponent extends HtmlComponent
      */
     public function addIcon(string $icon): static
     {
-        if ($icon === 'remove') {
-            $icon = 'x';
-        } elseif ($icon === 'edit') {
-            $icon = 'pencil';
-        } elseif ($icon === 'ok') {
-            $icon = 'check';
-        }
-        $this->addHtml('<i class="fa fa-' . $icon . '"></i>');
+        $icon = match($icon) {
+            'remove' => 'x',
+            'edit' => 'pencil',
+            'ok' => 'check',
+            default => $icon,
+        };
+        $this->addHtml("<i class=\"fa fa-{$icon}\"></i>");
         return $this;
     }
 }

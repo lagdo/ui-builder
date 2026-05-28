@@ -9,4 +9,13 @@ enum VisualEnum: string
     case PRIMARY = 'primary';
 
     case SECONDARY = 'secondary';
+
+    // The following values are the same as in LevelEnum.
+    case INFO = 'info';
+
+    case SUCCESS = 'success';
+
+    case WARNING = 'warning';
+
+    case DANGER = 'danger';
 }

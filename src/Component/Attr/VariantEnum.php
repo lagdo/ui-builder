@@ -10,5 +10,7 @@ enum VariantEnum: string
 
     case LIGHT = 'light';
 
+    case DARK = 'dark';
+
     case GHOST = 'ghost';
 }

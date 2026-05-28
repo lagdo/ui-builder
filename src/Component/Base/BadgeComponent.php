@@ -7,7 +7,6 @@ use Lagdo\UiBuilder\Component\HtmlComponent;
 abstract class BadgeComponent extends HtmlComponent
 {
     use Traits\VisualTrait;
-    use Traits\AlertTrait;
     use Traits\VariantTrait;
 
     /**

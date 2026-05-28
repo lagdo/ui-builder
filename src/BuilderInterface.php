@@ -11,9 +11,9 @@ use Lagdo\UiBuilder\Builder\PaginationBuilderInterface;
 use Lagdo\UiBuilder\Builder\CardBuilderInterface;
 use Lagdo\UiBuilder\Builder\TabBuilderInterface;
 use Lagdo\UiBuilder\Builder\TableBuilderInterface;
-use Lagdo\UiBuilder\Component\Attr\AlertGetter;
 use Lagdo\UiBuilder\Component\Attr\DirectionGetter;
 use Lagdo\UiBuilder\Component\Attr\JustifyGetter;
+use Lagdo\UiBuilder\Component\Attr\LevelGetter;
 use Lagdo\UiBuilder\Component\Attr\SizeGetter;
 use Lagdo\UiBuilder\Component\Attr\VariantGetter;
 use Lagdo\UiBuilder\Component\Attr\VisualGetter;
@@ -120,9 +120,9 @@ interface BuilderInterface extends ButtonBuilderInterface, DropdownBuilderInterf
     public function visual(): VisualGetter;
 
     /**
-     * @return AlertGetter
+     * @return LevelGetter
      */
-    public function alert(): AlertGetter;
+    public function level(): LevelGetter;
 
     /**
      * @return SizeGetter

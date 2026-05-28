@@ -2,18 +2,18 @@
 
 namespace Lagdo\UiBuilder\Component\Base\Traits;
 
-use Lagdo\UiBuilder\Component\Attr\AlertEnum;
+use Lagdo\UiBuilder\Component\Attr\LevelEnum;
 
-trait AlertTrait
+trait LevelTrait
 {
     /**
-     * @param AlertEnum $alert
+     * @param LevelEnum $level
      *
      * @return static
      */
-    public function alert(AlertEnum $alert): static
+    public function level(LevelEnum $level): static
     {
-        $this->properties['alert'] = $alert;
+        $this->properties['level'] = $level;
         return $this;
     }
 
@@ -22,7 +22,7 @@ trait AlertTrait
      */
     public function success(): static
     {
-        return $this->alert(AlertEnum::SUCCESS);
+        return $this->level(LevelEnum::SUCCESS);
     }
 
     /**
@@ -30,7 +30,7 @@ trait AlertTrait
      */
     public function info(): static
     {
-        return $this->alert(AlertEnum::INFO);
+        return $this->level(LevelEnum::INFO);
     }
 
     /**
@@ -38,7 +38,7 @@ trait AlertTrait
      */
     public function warning(): static
     {
-        return $this->alert(AlertEnum::WARNING);
+        return $this->level(LevelEnum::WARNING);
     }
 
     /**
@@ -46,6 +46,6 @@ trait AlertTrait
      */
     public function danger(): static
     {
-        return $this->alert(AlertEnum::DANGER);
+        return $this->level(LevelEnum::DANGER);
     }
 }
