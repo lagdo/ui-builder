@@ -15,4 +15,14 @@ interface LayoutBuilderInterface
      * @return Base\GridColComponent
      */
     public function col(...$arguments): Base\GridColComponent;
+
+    /**
+     * @return Base\AlertComponent
+     */
+    public function alert(...$arguments): Base\AlertComponent;
+
+    /**
+     * @return Base\BadgeComponent
+     */
+    public function badge(...$arguments): Base\BadgeComponent;
 }
