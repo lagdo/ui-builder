@@ -11,15 +11,7 @@ use Lagdo\UiBuilder\Component\Html\Element;
 abstract class VirtualComponent extends Component
 {
     /**
-     * @var array
-     */
-    protected array $children = [];
-
-    /**
      * @return array<Element|Component>
      */
-    public function children(): array
-    {
-        return $this->children;
-    }
+    abstract public function children(): array;
 }

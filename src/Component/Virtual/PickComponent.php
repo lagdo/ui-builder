@@ -2,28 +2,37 @@
 
 namespace Lagdo\UiBuilder\Component\Virtual;
 
-use function is_callable;
+use Lagdo\UiBuilder\Component\Component;
+use Lagdo\UiBuilder\Component\Html\Element;
+
+use function array_filter;
+use function count;
+use function is_a;
 
 class PickComponent extends VirtualComponent
 {
     /**
-     * The constructor
-     *
      * @param array $choices
      */
-    public function __construct(array $choices)
+    public function __construct(private array $choices)
+    {}
+
+    /**
+     * @return array<Element|Component>
+     */
+    public function children(): array
     {
-        foreach ($choices as [$condition, $element]) {
+        foreach ($this->choices as [$condition, $element]) {
             if ($condition) {
                 if (is_callable($element)) {
                     $element = $element();
                 }
-                if ($element !== null) {
-                    $this->children[] = $element;
-                }
-                // The function exits once a condition is matched.
-                return;
+
+                // The function returns once a condition is matched.
+                return $element !== null ? [$element] : $element;
             }
         }
+
+        return [];
     }
 }
