@@ -19,6 +19,14 @@ class WhenComponent extends VirtualComponent
     {}
 
     /**
+     * @return bool
+     */
+    public function matches(): bool
+    {
+        return $this->condition;
+    }
+
+    /**
      * @return array<Element|Component>
      */
     public function children(): array
