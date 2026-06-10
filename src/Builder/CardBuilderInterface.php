@@ -2,32 +2,32 @@
 
 namespace Lagdo\UiBuilder\Builder;
 
-use Lagdo\UiBuilder\Component\Base;
+use Lagdo\UiBuilder\Component;
 
 interface CardBuilderInterface
 {
     /**
-     * @return Base\CardComponent
+     * @return Component\CardComponent
      */
-    public function card(...$arguments): Base\CardComponent;
+    public function card(...$arguments): Component\CardComponent;
 
     /**
-     * @return Base\CardImageComponent
+     * @return Component\CardImageComponent
      */
-    public function cardImage(...$arguments): Base\CardImageComponent;
+    public function cardImage(...$arguments): Component\CardImageComponent;
 
     /**
-     * @return Base\CardHeaderComponent
+     * @return Component\CardHeaderComponent
      */
-    public function cardHeader(...$arguments): Base\CardHeaderComponent;
+    public function cardHeader(...$arguments): Component\CardHeaderComponent;
 
     /**
-     * @return Base\CardBodyComponent
+     * @return Component\CardBodyComponent
      */
-    public function cardBody(...$arguments): Base\CardBodyComponent;
+    public function cardBody(...$arguments): Component\CardBodyComponent;
 
     /**
-     * @return Base\CardFooterComponent
+     * @return Component\CardFooterComponent
      */
-    public function cardFooter(...$arguments): Base\CardFooterComponent;
+    public function cardFooter(...$arguments): Component\CardFooterComponent;
 }

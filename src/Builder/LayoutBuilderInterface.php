@@ -2,27 +2,27 @@
 
 namespace Lagdo\UiBuilder\Builder;
 
-use Lagdo\UiBuilder\Component\Base;
+use Lagdo\UiBuilder\Component;
 
 interface LayoutBuilderInterface
 {
     /**
-     * @return Base\GridRowComponent
+     * @return Component\GridRowComponent
      */
-    public function row(...$arguments): Base\GridRowComponent;
+    public function row(...$arguments): Component\GridRowComponent;
 
     /**
-     * @return Base\GridColComponent
+     * @return Component\GridColComponent
      */
-    public function col(...$arguments): Base\GridColComponent;
+    public function col(...$arguments): Component\GridColComponent;
 
     /**
-     * @return Base\AlertComponent
+     * @return Component\AlertComponent
      */
-    public function alert(...$arguments): Base\AlertComponent;
+    public function alert(...$arguments): Component\AlertComponent;
 
     /**
-     * @return Base\BadgeComponent
+     * @return Component\BadgeComponent
      */
-    public function badge(...$arguments): Base\BadgeComponent;
+    public function badge(...$arguments): Component\BadgeComponent;
 }

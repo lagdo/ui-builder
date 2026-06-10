@@ -2,7 +2,7 @@
 
 namespace Lagdo\UiBuilder\Builder;
 
-use Lagdo\UiBuilder\Component\Base;
+use Lagdo\UiBuilder\Component;
 
 trait CardBuilderTrait
 {
@@ -34,7 +34,7 @@ trait CardBuilderTrait
     /**
      * @inheritDoc
      */
-    public function card(...$arguments): Base\CardComponent
+    public function card(...$arguments): Component\CardComponent
     {
         return $this->createComponentOfClass($this->cardComponentClass, $arguments);
     }
@@ -42,7 +42,7 @@ trait CardBuilderTrait
     /**
      * @inheritDoc
      */
-    public function cardImage(...$arguments): Base\CardImageComponent
+    public function cardImage(...$arguments): Component\CardImageComponent
     {
         return $this->createComponentOfClass($this->cardImageComponentClass, $arguments);
     }
@@ -50,7 +50,7 @@ trait CardBuilderTrait
     /**
      * @inheritDoc
      */
-    public function cardHeader(...$arguments): Base\CardHeaderComponent
+    public function cardHeader(...$arguments): Component\CardHeaderComponent
     {
         return $this->createComponentOfClass($this->cardHeaderComponentClass, $arguments);
     }
@@ -58,7 +58,7 @@ trait CardBuilderTrait
     /**
      * @inheritDoc
      */
-    public function cardBody(...$arguments): Base\CardBodyComponent
+    public function cardBody(...$arguments): Component\CardBodyComponent
     {
         return $this->createComponentOfClass($this->cardBodyComponentClass, $arguments);
     }
@@ -66,7 +66,7 @@ trait CardBuilderTrait
     /**
      * @inheritDoc
      */
-    public function cardFooter(...$arguments): Base\CardFooterComponent
+    public function cardFooter(...$arguments): Component\CardFooterComponent
     {
         return $this->createComponentOfClass($this->cardFooterComponentClass, $arguments);
     }

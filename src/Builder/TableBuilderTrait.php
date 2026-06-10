@@ -2,7 +2,7 @@
 
 namespace Lagdo\UiBuilder\Builder;
 
-use Lagdo\UiBuilder\Component\Base;
+use Lagdo\UiBuilder\Component;
 
 trait TableBuilderTrait
 {
@@ -44,7 +44,7 @@ trait TableBuilderTrait
     /**
      * @inheritDoc
      */
-    public function table(...$arguments): Base\TableComponent
+    public function table(...$arguments): Component\TableComponent
     {
         return $this->createComponentOfClass($this->tableComponentClass, $arguments);
     }
@@ -52,7 +52,7 @@ trait TableBuilderTrait
     /**
      * @inheritDoc
      */
-    public function tableHead(...$arguments): Base\TableHeadComponent
+    public function tableHead(...$arguments): Component\TableHeadComponent
     {
         return $this->createComponentOfClass($this->tableHeadComponentClass, $arguments);
     }
@@ -60,7 +60,7 @@ trait TableBuilderTrait
     /**
      * @inheritDoc
      */
-    public function tableBody(...$arguments): Base\TableBodyComponent
+    public function tableBody(...$arguments): Component\TableBodyComponent
     {
         return $this->createComponentOfClass($this->tableBodyComponentClass, $arguments);
     }
@@ -68,7 +68,7 @@ trait TableBuilderTrait
     /**
      * @inheritDoc
      */
-    public function tableFoot(...$arguments): Base\TableFootComponent
+    public function tableFoot(...$arguments): Component\TableFootComponent
     {
         return $this->createComponentOfClass($this->tableFootComponentClass, $arguments);
     }
@@ -76,7 +76,7 @@ trait TableBuilderTrait
     /**
      * @inheritDoc
      */
-    public function tableRow(...$arguments): Base\TableRowComponent
+    public function tableRow(...$arguments): Component\TableRowComponent
     {
         return $this->createComponentOfClass($this->tableRowComponentClass, $arguments);
     }
@@ -84,7 +84,7 @@ trait TableBuilderTrait
     /**
      * @inheritDoc
      */
-    public function tableHeadCell(...$arguments): Base\TableHeadCellComponent
+    public function tableHeadCell(...$arguments): Component\TableHeadCellComponent
     {
         return $this->createComponentOfClass($this->tableHeadCellComponentClass, $arguments);
     }
@@ -92,7 +92,7 @@ trait TableBuilderTrait
     /**
      * @inheritDoc
      */
-    public function tableDataCell(...$arguments): Base\TableDataCellComponent
+    public function tableDataCell(...$arguments): Component\TableDataCellComponent
     {
         return $this->createComponentOfClass($this->tableDataCellComponentClass, $arguments);
     }

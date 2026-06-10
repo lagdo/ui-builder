@@ -2,17 +2,17 @@
 
 namespace Lagdo\UiBuilder\Builder;
 
-use Lagdo\UiBuilder\Component\Base;
+use Lagdo\UiBuilder\Component;
 
 interface ButtonBuilderInterface
 {
     /**
-     * @return Base\ButtonComponent
+     * @return Component\ButtonComponent
      */
-    public function button(...$arguments): Base\ButtonComponent;
+    public function button(...$arguments): Component\ButtonComponent;
 
     /**
-     * @return Base\ButtonGroupComponent
+     * @return Component\ButtonGroupComponent
      */
-    public function buttonGroup(...$arguments): Base\ButtonGroupComponent;
+    public function buttonGroup(...$arguments): Component\ButtonGroupComponent;
 }

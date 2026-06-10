@@ -17,9 +17,9 @@ use Lagdo\UiBuilder\Component\Attr\LevelGetter;
 use Lagdo\UiBuilder\Component\Attr\SizeGetter;
 use Lagdo\UiBuilder\Component\Attr\VariantGetter;
 use Lagdo\UiBuilder\Component\Attr\VisualGetter;
-use Lagdo\UiBuilder\Component\Component;
-use Lagdo\UiBuilder\Component\HtmlComponent;
-use Lagdo\UiBuilder\Component\Html\Element;
+use Lagdo\UiBuilder\Html\Component\Component;
+use Lagdo\UiBuilder\Html\Element\Element;
+use Lagdo\UiBuilder\Html\HtmlComponent;
 use Closure;
 
 /**
@@ -52,20 +52,35 @@ interface BuilderInterface extends ButtonBuilderInterface, DropdownBuilderInterf
     MenuBuilderInterface, CardBuilderInterface, TabBuilderInterface, TableBuilderInterface
 {
     /**
-     * @param string $tagPrefix
-     * @param string $tagTarget
-     * @param Closure $tagHelper
+     * @param string $prefix
+     * @param Closure $helper
      *
      * @return void
      */
-    public function registerHelper(string $tagPrefix, string $tagTarget, Closure $tagHelper): void;
+    public function registerBuilderHelper(string $prefix, Closure $helper): void;
+
+    /**
+     * @param string $prefix
+     * @param Closure $helper
+     *
+     * @return void
+     */
+    public function registerElementHelper(string $prefix, Closure $helper): void;
+
+    /**
+     * @param string $prefix
+     * @param Closure $helper
+     *
+     * @return void
+     */
+    public function registerComponentHelper(string $prefix, Closure $helper): void;
 
     /**
      * @param string $name
      *
      * @return HtmlComponent
      */
-    public function tag(string $name, ...$arguments): HtmlComponent;
+    public function tag(string $name, ...$arguments): mixed;
 
     /**
      * @param array $values

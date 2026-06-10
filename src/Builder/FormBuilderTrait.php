@@ -2,7 +2,7 @@
 
 namespace Lagdo\UiBuilder\Builder;
 
-use Lagdo\UiBuilder\Component\Base;
+use Lagdo\UiBuilder\Component;
 
 trait FormBuilderTrait
 {
@@ -54,7 +54,7 @@ trait FormBuilderTrait
     /**
      * @inheritDoc
      */
-    public function form(...$arguments): Base\FormComponent
+    public function form(...$arguments): Component\FormComponent
     {
         return $this->createComponentOfClass($this->formComponentClass, $arguments);
     }
@@ -62,7 +62,7 @@ trait FormBuilderTrait
     /**
      * @inheritDoc
      */
-    public function label(...$arguments): Base\LabelComponent
+    public function label(...$arguments): Component\LabelComponent
     {
         return $this->createComponentOfClass($this->labelComponentClass, $arguments);
     }
@@ -70,7 +70,7 @@ trait FormBuilderTrait
     /**
      * @inheritDoc
      */
-    public function input(...$arguments): Base\InputComponent
+    public function input(...$arguments): Component\InputComponent
     {
         return $this->createComponentOfClass($this->inputComponentClass, $arguments);
     }
@@ -78,7 +78,7 @@ trait FormBuilderTrait
     /**
      * @inheritDoc
      */
-    public function textarea(...$arguments): Base\TextareaComponent
+    public function textarea(...$arguments): Component\TextareaComponent
     {
         return $this->createComponentOfClass($this->textareaComponentClass, $arguments);
     }
@@ -86,7 +86,7 @@ trait FormBuilderTrait
     /**
      * @inheritDoc
      */
-    public function checkbox(...$arguments): Base\CheckboxComponent
+    public function checkbox(...$arguments): Component\CheckboxComponent
     {
         return $this->createComponentOfClass($this->checkboxComponentClass, $arguments);
     }
@@ -94,7 +94,7 @@ trait FormBuilderTrait
     /**
      * @inheritDoc
      */
-    public function radio(...$arguments): Base\RadioComponent
+    public function radio(...$arguments): Component\RadioComponent
     {
         return $this->createComponentOfClass($this->radioComponentClass, $arguments);
     }
@@ -102,7 +102,7 @@ trait FormBuilderTrait
     /**
      * @inheritDoc
      */
-    public function select(...$arguments): Base\SelectComponent
+    public function select(...$arguments): Component\SelectComponent
     {
         return $this->createComponentOfClass($this->selectComponentClass, $arguments);
     }
@@ -110,7 +110,7 @@ trait FormBuilderTrait
     /**
      * @inheritDoc
      */
-    public function option(...$arguments): Base\SelectOptionComponent
+    public function option(...$arguments): Component\SelectOptionComponent
     {
         return $this->createComponentOfClass($this->selectOptionComponentClass, $arguments);
     }
@@ -118,7 +118,7 @@ trait FormBuilderTrait
     /**
      * @inheritDoc
      */
-    public function inputGroup(...$arguments): Base\InputGroupComponent
+    public function inputGroup(...$arguments): Component\InputGroupComponent
     {
         return $this->createComponentOfClass($this->inputGroupComponentClass, $arguments);
     }

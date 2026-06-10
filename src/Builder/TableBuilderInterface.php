@@ -2,42 +2,42 @@
 
 namespace Lagdo\UiBuilder\Builder;
 
-use Lagdo\UiBuilder\Component\Base;
+use Lagdo\UiBuilder\Component;
 
 interface TableBuilderInterface
 {
     /**
-     * @return Base\TableComponent
+     * @return Component\TableComponent
      */
-    public function table(...$arguments): Base\TableComponent;
+    public function table(...$arguments): Component\TableComponent;
 
     /**
-     * @return Base\TableHeadComponent
+     * @return Component\TableHeadComponent
      */
-    public function tableHead(...$arguments): Base\TableHeadComponent;
+    public function tableHead(...$arguments): Component\TableHeadComponent;
 
     /**
-     * @return Base\TableBodyComponent
+     * @return Component\TableBodyComponent
      */
-    public function tableBody(...$arguments): Base\TableBodyComponent;
+    public function tableBody(...$arguments): Component\TableBodyComponent;
 
     /**
-     * @return Base\TableFootComponent
+     * @return Component\TableFootComponent
      */
-    public function tableFoot(...$arguments): Base\TableFootComponent;
+    public function tableFoot(...$arguments): Component\TableFootComponent;
 
     /**
-     * @return Base\TableRowComponent
+     * @return Component\TableRowComponent
      */
-    public function tableRow(...$arguments): Base\TableRowComponent;
+    public function tableRow(...$arguments): Component\TableRowComponent;
 
     /**
-     * @return Base\TableHeadCellComponent
+     * @return Component\TableHeadCellComponent
      */
-    public function tableHeadCell(...$arguments): Base\TableHeadCellComponent;
+    public function tableHeadCell(...$arguments): Component\TableHeadCellComponent;
 
     /**
-     * @return Base\TableDataCellComponent
+     * @return Component\TableDataCellComponent
      */
-    public function tableDataCell(...$arguments): Base\TableDataCellComponent;
+    public function tableDataCell(...$arguments): Component\TableDataCellComponent;
 }

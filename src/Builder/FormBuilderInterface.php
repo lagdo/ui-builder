@@ -2,58 +2,58 @@
 
 namespace Lagdo\UiBuilder\Builder;
 
-use Lagdo\UiBuilder\Component\Base;
+use Lagdo\UiBuilder\Component;
 
 interface FormBuilderInterface
 {
     /**
-     * @return Base\FormComponent
+     * @return Component\FormComponent
      */
-    public function form(...$arguments): Base\FormComponent;
+    public function form(...$arguments): Component\FormComponent;
 
     /**
-     * @return Base\LabelComponent
+     * @return Component\LabelComponent
      */
-    public function label(...$arguments): Base\LabelComponent;
+    public function label(...$arguments): Component\LabelComponent;
 
     /**
-     * @return Base\InputComponent
+     * @return Component\InputComponent
      */
-    public function input(...$arguments): Base\InputComponent;
+    public function input(...$arguments): Component\InputComponent;
 
     /**
-     * @return Base\TextareaComponent
+     * @return Component\TextareaComponent
      */
-    public function textarea(...$arguments): Base\TextareaComponent;
-
-    /**
-     * @param bool $checked
-     *
-     * @return Base\CheckboxComponent
-     */
-    public function checkbox(...$arguments): Base\CheckboxComponent;
+    public function textarea(...$arguments): Component\TextareaComponent;
 
     /**
      * @param bool $checked
      *
-     * @return Base\RadioComponent
+     * @return Component\CheckboxComponent
      */
-    public function radio(...$arguments): Base\RadioComponent;
+    public function checkbox(...$arguments): Component\CheckboxComponent;
 
     /**
-     * @return Base\SelectComponent
+     * @param bool $checked
+     *
+     * @return Component\RadioComponent
      */
-    public function select(...$arguments): Base\SelectComponent;
+    public function radio(...$arguments): Component\RadioComponent;
+
+    /**
+     * @return Component\SelectComponent
+     */
+    public function select(...$arguments): Component\SelectComponent;
 
     /**
      * @param bool $selected
      *
-     * @return Base\SelectOptionComponent
+     * @return Component\SelectOptionComponent
      */
-    public function option(...$arguments): Base\SelectOptionComponent;
+    public function option(...$arguments): Component\SelectOptionComponent;
 
     /**
-     * @return Base\InputGroupComponent
+     * @return Component\InputGroupComponent
      */
-    public function inputGroup(...$arguments): Base\InputGroupComponent;
+    public function inputGroup(...$arguments): Component\InputGroupComponent;
 }

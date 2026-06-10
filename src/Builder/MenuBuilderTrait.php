@@ -2,8 +2,8 @@
 
 namespace Lagdo\UiBuilder\Builder;
 
-use Lagdo\UiBuilder\Component\Base;
-use Lagdo\UiBuilder\Component\Base\MenuItemComponent;
+use Lagdo\UiBuilder\Component;
+use Lagdo\UiBuilder\Component\MenuItemComponent;
 
 trait MenuBuilderTrait
 {
@@ -30,7 +30,7 @@ trait MenuBuilderTrait
     /**
      * @inheritDoc
      */
-    public function menu(...$arguments): Base\MenuComponent
+    public function menu(...$arguments): Component\MenuComponent
     {
         return $this->createComponentOfClass($this->menuComponentClass, $arguments);
     }
@@ -38,7 +38,7 @@ trait MenuBuilderTrait
     /**
      * @inheritDoc
      */
-    public function menuItem(...$arguments): Base\MenuItemComponent
+    public function menuItem(...$arguments): Component\MenuItemComponent
     {
         return $this->createComponentOfClass($this->menuItemComponentClass, $arguments);
     }
@@ -46,7 +46,7 @@ trait MenuBuilderTrait
     /**
      * @inheritDoc
      */
-    public function breadcrumb(...$arguments): Base\BreadcrumbComponent
+    public function breadcrumb(...$arguments): Component\BreadcrumbComponent
     {
         return $this->createComponentOfClass($this->breadcrumbComponentClass, $arguments);
     }
@@ -54,7 +54,7 @@ trait MenuBuilderTrait
     /**
      * @inheritDoc
      */
-    public function breadcrumbItem(...$arguments): Base\BreadcrumbItemComponent
+    public function breadcrumbItem(...$arguments): Component\BreadcrumbItemComponent
     {
         return $this->createComponentOfClass($this->breadcrumbItemComponentClass, $arguments);
     }

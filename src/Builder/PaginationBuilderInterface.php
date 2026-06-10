@@ -2,17 +2,17 @@
 
 namespace Lagdo\UiBuilder\Builder;
 
-use Lagdo\UiBuilder\Component\Base;
+use Lagdo\UiBuilder\Component;
 
 interface PaginationBuilderInterface
 {
     /**
-     * @return Base\PaginationComponent
+     * @return Component\PaginationComponent
      */
-    public function pagination(...$arguments): Base\PaginationComponent;
+    public function pagination(...$arguments): Component\PaginationComponent;
 
     /**
-     * @return Base\PaginationItemComponent
+     * @return Component\PaginationItemComponent
      */
-    public function paginationItem(...$arguments): Base\PaginationItemComponent;
+    public function paginationItem(...$arguments): Component\PaginationItemComponent;
 }

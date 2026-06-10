@@ -2,7 +2,7 @@
 
 namespace Lagdo\UiBuilder\Builder;
 
-use Lagdo\UiBuilder\Component\Base;
+use Lagdo\UiBuilder\Component;
 
 trait ButtonBuilderTrait
 {
@@ -19,7 +19,7 @@ trait ButtonBuilderTrait
     /**
      * @inheritDoc
      */
-    public function button(...$arguments): Base\ButtonComponent
+    public function button(...$arguments): Component\ButtonComponent
     {
         return $this->createComponentOfClass($this->buttonComponentClass, $arguments);
     }
@@ -27,7 +27,7 @@ trait ButtonBuilderTrait
     /**
      * @inheritDoc
      */
-    public function buttonGroup(...$arguments): Base\ButtonGroupComponent
+    public function buttonGroup(...$arguments): Component\ButtonGroupComponent
     {
         return $this->createComponentOfClass($this->buttonGroupComponentClass, $arguments);
     }

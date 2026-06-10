@@ -1,0 +1,36 @@
+<?php
+
+namespace Lagdo\UiBuilder\Component;
+
+use Lagdo\UiBuilder\HtmlComponent;
+
+abstract class ButtonComponent extends HtmlComponent
+{
+    use Traits\VisualTrait;
+    use Traits\StateTrait;
+    use Traits\JustifyTrait;
+    use Traits\VariantTrait;
+    use Traits\SizeTrait;
+
+    /**
+     * @var string
+     */
+    protected string $tagName = 'button';
+
+    /**
+     * @param string $icon
+     *
+     * @return static
+     */
+    public function addIcon(string $icon): static
+    {
+        $icon = match($icon) {
+            'remove' => 'x',
+            'edit' => 'pencil',
+            'ok' => 'check',
+            default => $icon,
+        };
+        $this->addHtml("<i class=\"fa fa-{$icon}\"></i>");
+        return $this;
+    }
+}

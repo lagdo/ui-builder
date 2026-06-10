@@ -2,7 +2,7 @@
 
 namespace Lagdo\UiBuilder\Builder;
 
-use Lagdo\UiBuilder\Component\Base;
+use Lagdo\UiBuilder\Component;
 
 trait TabBuilderTrait
 {
@@ -34,7 +34,7 @@ trait TabBuilderTrait
     /**
      * @inheritDoc
      */
-    public function tabs(...$arguments): Base\TabsComponent
+    public function tabs(...$arguments): Component\TabsComponent
     {
         return $this->createComponentOfClass($this->tabsComponentClass, $arguments);
     }
@@ -42,7 +42,7 @@ trait TabBuilderTrait
     /**
      * @inheritDoc
      */
-    public function tabNav(...$arguments): Base\TabNavComponent
+    public function tabNav(...$arguments): Component\TabNavComponent
     {
         return $this->createComponentOfClass($this->tabNavComponentClass, $arguments);
     }
@@ -50,7 +50,7 @@ trait TabBuilderTrait
     /**
      * @inheritDoc
      */
-    public function tabNavItem(...$arguments): Base\TabNavItemComponent
+    public function tabNavItem(...$arguments): Component\TabNavItemComponent
     {
         return $this->createComponentOfClass($this->tabNavItemComponentClass, $arguments);
     }
@@ -58,7 +58,7 @@ trait TabBuilderTrait
     /**
      * @inheritDoc
      */
-    public function tabContent(...$arguments): Base\TabContentComponent
+    public function tabContent(...$arguments): Component\TabContentComponent
     {
         return $this->createComponentOfClass($this->tabContentComponentClass, $arguments);
     }
@@ -66,7 +66,7 @@ trait TabBuilderTrait
     /**
      * @inheritDoc
      */
-    public function tabContentItem(...$arguments): Base\TabContentItemComponent
+    public function tabContentItem(...$arguments): Component\TabContentItemComponent
     {
         return $this->createComponentOfClass($this->tabContentItemComponentClass, $arguments);
     }

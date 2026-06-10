@@ -2,13 +2,18 @@
 
 namespace Lagdo\UiBuilder;
 
+use Lagdo\UiBuilder\Builder\Engine\Engine;
 use Lagdo\UiBuilder\Component\Attr\DirectionGetter;
 use Lagdo\UiBuilder\Component\Attr\JustifyGetter;
 use Lagdo\UiBuilder\Component\Attr\LevelGetter;
 use Lagdo\UiBuilder\Component\Attr\SizeGetter;
 use Lagdo\UiBuilder\Component\Attr\VariantGetter;
 use Lagdo\UiBuilder\Component\Attr\VisualGetter;
+use Lagdo\UiBuilder\Html\HtmlBuilder;
 
+/**
+ * @extends HtmlBuilder<HtmlComponent>
+ */
 abstract class AbstractBuilder extends HtmlBuilder implements BuilderInterface
 {
     use Builder\LayoutBuilderTrait;
@@ -20,6 +25,11 @@ abstract class AbstractBuilder extends HtmlBuilder implements BuilderInterface
     use Builder\TabBuilderTrait;
     use Builder\PaginationBuilderTrait;
     use Builder\TableBuilderTrait;
+
+    /**
+     * @var string
+     */
+    protected static string $componentClass = HtmlComponent::class;
 
     /**
      * @var LevelGetter
@@ -56,7 +66,8 @@ abstract class AbstractBuilder extends HtmlBuilder implements BuilderInterface
      */
     public function __construct()
     {
-        parent::__construct();
+        $this->engine = new Engine($this);
+
         $this->initBuilder();
     }
 
