@@ -9,6 +9,7 @@ use Lagdo\UiBuilder\Html\HtmlElement;
 use Closure;
 
 use function get_class;
+use function trim;
 
 class HtmlComponent extends BaseComponent
 {
@@ -16,6 +17,11 @@ class HtmlComponent extends BaseComponent
      * @var HtmlComponent|null
      */
     private HtmlComponent|null $parent = null;
+
+    /**
+     * @var array
+     */
+    private $classes = []; // The base classes for the component.
 
     /**
      * @var array<Closure>
@@ -89,6 +95,17 @@ class HtmlComponent extends BaseComponent
     }
 
     /**
+     * @param string $class
+     *
+     * @return static
+     */
+    public function addBaseClass(string $class): static
+    {
+        $this->classes[trim($class)] = true;
+        return $this;
+    }
+
+    /**
      * @param Closure $builder
      * @param string $when
      *
@@ -134,6 +151,8 @@ class HtmlComponent extends BaseComponent
     public function build(array $children): array
     {
         $element = $this->element()->addChildren($children);
+        // Update the element classes.
+        $element->setRawClasses($this->classes + $element->getRawClasses());
         // Nest the component element into its wrappers.
         foreach ($this->wrappers() as $wrapper) {
             $wrapper->addChild($element);
