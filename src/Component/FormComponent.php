@@ -12,18 +12,6 @@ abstract class FormComponent extends HtmlComponent
     protected string $tagName = 'form';
 
     /**
-     * @param string $tagName
-     * @param array $arguments
-     */
-    public function __construct(string $tagName, array $arguments = [])
-    {
-        parent::__construct($tagName, $arguments);
-
-        $this->addBuilder(fn() => $this->engine()->formStarted(), 'before');
-        $this->addBuilder(fn() => $this->engine()->formEnded(), 'after');
-    }
-
-    /**
      * @return static
      */
     public function validated(): static

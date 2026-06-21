@@ -10,6 +10,7 @@ use Lagdo\UiBuilder\Component\Attr\SizeGetter;
 use Lagdo\UiBuilder\Component\Attr\VariantGetter;
 use Lagdo\UiBuilder\Component\Attr\VisualGetter;
 use Lagdo\UiBuilder\Html\HtmlBuilder;
+use Closure;
 
 /**
  * @extends HtmlBuilder<HtmlComponent>
@@ -75,6 +76,21 @@ abstract class AbstractBuilder extends HtmlBuilder implements BuilderInterface
      * @return void
      */
     abstract protected function initBuilder(): void;
+
+    /**
+     * @inheritDoc
+     */
+    public function inForm(Closure $builder): string
+    {
+        /** @var Engine */
+        $engine = $this->engine;
+        // Build the HTML code in a form.
+        $engine->forceForm(true);
+        $html = $builder();
+        $engine->forceForm(false);
+
+        return $html;
+    }
 
     /**
      * @inheritDoc

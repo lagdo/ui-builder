@@ -14,10 +14,23 @@ use function is_a;
 class Scope extends BaseScope
 {
     /**
+     * @var bool
+     */
+    private bool $inForm = false;
+
+    /**
      * @param HtmlComponent $parent
      */
     public function __construct(protected HtmlComponent $parent)
     {}
+
+    /**
+     * @return bool
+     */
+    public function inForm(): bool
+    {
+        return $this->inForm;
+    }
 
     /**
      * @param array $arguments The arguments passed to the component
@@ -30,6 +43,7 @@ class Scope extends BaseScope
             $this->expand($argument);
         }
 
+        $inForm = $this->inForm || $this->parent->element()->tag() === 'form';
         foreach ($this->children as $component) {
             if (is_a($component, Element::class)) {
                 // A children of type Element doesn't need any further processing.
@@ -37,12 +51,17 @@ class Scope extends BaseScope
                 continue;
             }
 
+            $scope = new Scope($component);
+            $scope->inForm = $inForm;
+            $component->engine()->setScope($scope);
+
             // Allow the component libraries to react to the parent-child relation.
             $component->expanded($this->parent);
 
-            $scope = new Scope($component);
             // Recursively build the component children.
             $scope->build($component->children());
+
+            $component->engine()->unsetScope();
 
             // Add the child component element and its siblings to the scope elements.
             $this->elements = [

@@ -7,24 +7,42 @@ use Lagdo\UiBuilder\Html\Builder\Engine as BaseEngine;
 class Engine extends BaseEngine
 {
     /**
-     * @var int
+     * @var Scope|null
      */
-    private int $formLevel = 0;
+    private Scope|null $scope = null;
 
     /**
+     * @var bool
+     */
+    private bool $forceForm = false;
+
+    /**
+     * @param Scope $scope
+     *
      * @return void
      */
-    public function formStarted(): void
+    public function setScope(Scope $scope): void
     {
-        $this->formLevel++;
+        $this->scope = $scope;
     }
 
     /**
      * @return void
      */
-    public function formEnded(): void
+    public function unsetScope(): void
     {
-        $this->formLevel--;
+        unset($this->scope);
+        $this->scope = null;
+    }
+
+    /**
+     * @param bool $forceForm
+     *
+     * @return void
+     */
+    public function forceForm(bool $forceForm): void
+    {
+        $this->forceForm = $forceForm;
     }
 
     /**
@@ -32,7 +50,7 @@ class Engine extends BaseEngine
      */
     public function inForm(): bool
     {
-        return $this->formLevel > 0;
+        return $this->forceForm || ($this->scope?->inForm() ?? false);
     }
 
     /**
@@ -42,7 +60,6 @@ class Engine extends BaseEngine
      */
     public function build(array $arguments): string
     {
-        $this->formLevel = 0;
         // The "root" component below will not be printed.
         $scope = new Scope($this->builder->createComponent('root'));
         $scope->build($arguments);

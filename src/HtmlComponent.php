@@ -44,11 +44,6 @@ class HtmlComponent extends BaseComponent
     private array $nextSiblings = [];
 
     /**
-     * @var bool
-     */
-    private bool $forForm = false;
-
-    /**
      * @param string $tagName
      * @param array $arguments
      */
@@ -62,7 +57,7 @@ class HtmlComponent extends BaseComponent
     /**
      * @return Engine
      */
-    protected function engine(): Engine
+    public function engine(): Engine
     {
         return $this->engine;
     }
@@ -208,20 +203,11 @@ class HtmlComponent extends BaseComponent
     }
 
     /**
-     * @return static
-     */
-    public function forForm(): static
-    {
-        $this->forForm = true;
-        return $this;
-    }
-
-    /**
      * @return bool
      */
     protected function inForm(): bool
     {
-        return $this->forForm || $this->engine()->inForm();
+        return $this->engine()->inForm();
     }
 
     /**
