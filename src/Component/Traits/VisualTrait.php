@@ -32,4 +32,36 @@ trait VisualTrait
     {
         return $this->visual(VisualEnum::SECONDARY);
     }
+
+    /**
+     * @return static
+     */
+    public function success(): static
+    {
+        return $this->visual(VisualEnum::SUCCESS);
+    }
+
+    /**
+     * @return static
+     */
+    public function info(): static
+    {
+        return $this->visual(VisualEnum::INFO);
+    }
+
+    /**
+     * @return static
+     */
+    public function warning(): static
+    {
+        return $this->visual(VisualEnum::WARNING);
+    }
+
+    /**
+     * @return static
+     */
+    public function danger(): static
+    {
+        return $this->visual(VisualEnum::DANGER);
+    }
 }
