@@ -36,6 +36,13 @@ interface FormBuilderInterface
     /**
      * @param bool $checked
      *
+     * @return Component\SwitchComponent
+     */
+    public function switch(...$arguments): Component\SwitchComponent;
+
+    /**
+     * @param bool $checked
+     *
      * @return Component\RadioComponent
      */
     public function radio(...$arguments): Component\RadioComponent;

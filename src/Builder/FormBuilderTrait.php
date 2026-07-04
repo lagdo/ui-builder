@@ -39,6 +39,11 @@ trait FormBuilderTrait
     /**
      * @var string
      */
+    protected string $switchComponentClass = '';
+
+    /**
+     * @var string
+     */
     protected string $selectComponentClass = '';
 
     /**
@@ -89,6 +94,14 @@ trait FormBuilderTrait
     public function checkbox(...$arguments): Component\CheckboxComponent
     {
         return $this->createComponentOfClass($this->checkboxComponentClass, $arguments);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function switch(...$arguments): Component\SwitchComponent
+    {
+        return $this->createComponentOfClass($this->switchComponentClass, $arguments);
     }
 
     /**
