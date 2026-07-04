@@ -7,7 +7,6 @@ use Lagdo\UiBuilder\HtmlComponent;
 abstract class CheckboxComponent extends HtmlComponent
 {
     use Traits\InputLabelTrait;
-    use Traits\InputValidationTrait;
 
     /**
      * @var string
@@ -19,7 +18,7 @@ abstract class CheckboxComponent extends HtmlComponent
      *
      * @return static
      */
-    public function checked(bool $checked = false): static
+    public function checked(bool $checked = true): static
     {
         $this->element()->setAttribute('checked', $checked ? 'checked' : false);
         return $this;
