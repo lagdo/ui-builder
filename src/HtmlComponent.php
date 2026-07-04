@@ -148,10 +148,16 @@ class HtmlComponent extends BaseComponent
         $element = $this->element()->addChildren($children);
         // Update the element classes.
         $element->setRawClasses($this->classes + $element->getRawClasses());
+
+        $elements = [
+            ...$this->prevSiblings(),
+            $element,
+            ...$this->nextSiblings(),
+        ];
         // Nest the component element into its wrappers.
         foreach ($this->wrappers() as $wrapper) {
-            $wrapper->addChild($element);
-            $element = $wrapper;
+            $wrapper->addChildren($elements);
+            $elements = [$wrapper];
         }
 
         // Call the deferred builders.
@@ -159,11 +165,7 @@ class HtmlComponent extends BaseComponent
             $builder();
         }
 
-        return [
-            ...$this->prevSiblings(),
-            $element,
-            ...$this->nextSiblings(),
-        ];
+        return $elements;
     }
 
     /**
