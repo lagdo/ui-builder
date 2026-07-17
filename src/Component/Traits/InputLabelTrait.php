@@ -34,7 +34,8 @@ trait InputLabelTrait
      *
      * @return void
      */
-    abstract protected function setLabel(HtmlElement $label, Text $text);
+    protected function setLabel(HtmlElement $label, Text $text)
+    {}
 
     /**
      * @return void
