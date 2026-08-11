@@ -167,7 +167,7 @@ interface BuilderInterface extends ButtonBuilderInterface, DropdownBuilderInterf
     /**
      * @param Closure $builder
      *
-     * @return void
+     * @return string
      */
     public function inForm(Closure $builder): string;
 }
