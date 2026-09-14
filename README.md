@@ -12,6 +12,8 @@ This package provides a unified API in PHP to create UI for CSS frameworks like 
 
 It takes its inspiration from the [PHP HTML builder](https://github.com/avplab/php-html-builder), with functions to create UI components like menus, forms, tabs and so on.
 
+>Todo: build the grid layout only with the Pure CSS framework.
+
 ### Motivation
 
 This UI builder was first created for [Jaxon DbAdmin](https://github.com/lagdo/jaxon-dbadmin), a database admin dashboard that can be inserted in a page of an existing PHP application.
@@ -27,6 +29,16 @@ The `BuilderInterface` in the `src/` directory defines the functions that can be
 What it actually creates is not only HTML elements, but also UI components as defined by popular CSS frameworks like Bootstrap or Bulma.
 
 The classes that generate the final HTML code is provided by a separate package, which must be installed in addition to this one.
+
+#### Note
+
+The grid system is built with the PureCSS micro framework, and not customized by the libraries.
+When using it, the following CSS files must be included in the web page.
+
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/grids-responsive-min.css">
+```
 
 #### Prerequisites
 

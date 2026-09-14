@@ -9,12 +9,12 @@ trait LayoutBuilderTrait
     /**
      * @var string
      */
-    protected string $rowComponentClass = '';
+    protected string $rowComponentClass = Component\GridRowComponent::class;
 
     /**
      * @var string
      */
-    protected string $colComponentClass = '';
+    protected string $colComponentClass = Component\GridColComponent::class;
 
     /**
      * @var string
