@@ -34,6 +34,11 @@ interface FormBuilderInterface
     public function checkbox(...$arguments): Component\CheckboxComponent;
 
     /**
+     * @return Component\CheckboxGroupComponent
+     */
+    public function checkboxGroup(...$arguments): Component\CheckboxGroupComponent;
+
+    /**
      * @param bool $checked
      *
      * @return Component\SwitchComponent
@@ -46,6 +51,11 @@ interface FormBuilderInterface
      * @return Component\RadioComponent
      */
     public function radio(...$arguments): Component\RadioComponent;
+
+    /**
+     * @return Component\RadioGroupComponent
+     */
+    public function radioGroup(...$arguments): Component\RadioGroupComponent;
 
     /**
      * @return Component\SelectComponent

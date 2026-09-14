@@ -34,7 +34,17 @@ trait FormBuilderTrait
     /**
      * @var string
      */
+    protected string $checkboxGroupComponentClass = '';
+
+    /**
+     * @var string
+     */
     protected string $radioComponentClass = '';
+
+    /**
+     * @var string
+     */
+    protected string $radioGroupComponentClass = '';
 
     /**
      * @var string
@@ -97,6 +107,14 @@ trait FormBuilderTrait
     }
 
     /**
+     * @return Component\CheckboxGroupComponent
+     */
+    public function checkboxGroup(...$arguments): Component\CheckboxGroupComponent
+    {
+        return $this->createComponentOfClass($this->checkboxGroupComponentClass, $arguments);
+    }
+
+    /**
      * @inheritDoc
      */
     public function switch(...$arguments): Component\SwitchComponent
@@ -110,6 +128,14 @@ trait FormBuilderTrait
     public function radio(...$arguments): Component\RadioComponent
     {
         return $this->createComponentOfClass($this->radioComponentClass, $arguments);
+    }
+
+    /**
+     * @return Component\RadioGroupComponent
+     */
+    public function radioGroup(...$arguments): Component\RadioGroupComponent
+    {
+        return $this->createComponentOfClass($this->radioGroupComponentClass, $arguments);
     }
 
     /**
