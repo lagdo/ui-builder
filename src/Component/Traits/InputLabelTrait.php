@@ -18,7 +18,7 @@ trait InputLabelTrait
      *
      * @return static
      */
-    abstract protected function addBuilder(Closure $builder): static;
+    abstract protected function beforeBuild(Closure $builder): static;
 
     /**
      * @param string $name
@@ -58,7 +58,7 @@ trait InputLabelTrait
     {
         $this->label = $this->newElement('label',  $attributes);
         $this->setLabel($this->label, new Text($label));
-        $this->addBuilder($this->setLabelFor(...));
+        $this->beforeBuild(fn() => $this->setLabelFor());
         return $this;
     }
 }

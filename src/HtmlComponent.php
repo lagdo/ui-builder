@@ -24,7 +24,7 @@ class HtmlComponent extends BaseComponent
     private $classes = []; // The base classes for the component.
 
     /**
-     * @var array<Closure>
+     * @var array<array<Closure>>
      */
     private array $builders = ['before' => [], 'after' => []];
 
@@ -79,6 +79,28 @@ class HtmlComponent extends BaseComponent
     {}
 
     /**
+     * @param Closure $builder
+     *
+     * @return static
+     */
+    final protected function beforeBuild(Closure $builder): static
+    {
+        $this->builders['before'][] = $builder;
+        return $this;
+    }
+
+    /**
+     * @param Closure $builder
+     *
+     * @return static
+     */
+    final protected function afterBuild(Closure $builder): static
+    {
+        $this->builders['after'][] = $builder;
+        return $this;
+    }
+
+    /**
      * @param string $tagName
      * @param array $arguments
      *
@@ -101,18 +123,6 @@ class HtmlComponent extends BaseComponent
     }
 
     /**
-     * @param Closure $builder
-     * @param string $when
-     *
-     * @return static
-     */
-    final protected function addBuilder(Closure $builder, string $when = 'before'): static
-    {
-        $this->builders[$when][] = $builder;
-        return $this;
-    }
-
-    /**
      * @return HtmlComponent|null
      */
     final protected function parent(): HtmlComponent|null
@@ -131,11 +141,6 @@ class HtmlComponent extends BaseComponent
     {
         $this->parent = $parent;
         $this->onBuild();
-
-        // Call the deferred builders.
-        foreach ($this->builders['before'] as $builder) {
-            $builder();
-        }
     }
 
     /**
@@ -145,6 +150,10 @@ class HtmlComponent extends BaseComponent
      */
     public function build(array $children): array
     {
+        foreach ($this->builders['before'] as $builder) {
+            $builder($children);
+        }
+
         $element = $this->element()->addChildren($children);
         // Update the element classes.
         $element->setRawClasses($this->classes + $element->getRawClasses());
@@ -160,9 +169,8 @@ class HtmlComponent extends BaseComponent
             $elements = [$wrapper];
         }
 
-        // Call the deferred builders.
         foreach ($this->builders['after'] as $builder) {
-            $builder();
+            $builder($elements);
         }
 
         return $elements;
