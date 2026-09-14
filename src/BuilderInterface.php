@@ -21,6 +21,8 @@ use Lagdo\UiBuilder\Html\Component\Component;
 use Lagdo\UiBuilder\Html\Element\Element;
 use Lagdo\UiBuilder\Html\HtmlComponent;
 use Closure;
+use Iterator;
+use Generator;
 
 /**
  * @method HtmlComponent body(...$arguments)
@@ -107,6 +109,14 @@ interface BuilderInterface extends ButtonBuilderInterface, DropdownBuilderInterf
      * @return Component
      */
     public function pick(...$arguments): Component;
+
+    /**
+     * @param array|Iterator|Generator $values
+     * @param Closure $closure
+     *
+     * @return Component
+     */
+    public function loop(array|Iterator|Generator $values, Closure $closure): Component;
 
     /**
      * @param string $text
