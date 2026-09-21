@@ -2,7 +2,7 @@
 
 namespace Lagdo\UiBuilder\Builder\Engine;
 
-use Lagdo\UiBuilder\Html\Builder\Engine as BaseEngine;
+use Lagdo\HtmlBuilder\Builder\Engine as BaseEngine;
 
 class Engine extends BaseEngine
 {

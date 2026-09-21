@@ -3,9 +3,9 @@
 namespace Lagdo\UiBuilder;
 
 use Lagdo\UiBuilder\Builder\Engine\Engine;
-use Lagdo\UiBuilder\Html\Element\Element;
-use Lagdo\UiBuilder\Html\HtmlComponent as BaseComponent;
-use Lagdo\UiBuilder\Html\HtmlElement;
+use Lagdo\HtmlBuilder\Element\Element;
+use Lagdo\HtmlBuilder\HtmlComponent as BaseComponent;
+use Lagdo\HtmlBuilder\HtmlElement;
 use Closure;
 
 use function get_class;

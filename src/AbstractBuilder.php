@@ -9,7 +9,7 @@ use Lagdo\UiBuilder\Component\Attr\LevelGetter;
 use Lagdo\UiBuilder\Component\Attr\SizeGetter;
 use Lagdo\UiBuilder\Component\Attr\VariantGetter;
 use Lagdo\UiBuilder\Component\Attr\VisualGetter;
-use Lagdo\UiBuilder\Html\HtmlBuilder;
+use Lagdo\HtmlBuilder\HtmlBuilder;
 use Closure;
 
 /**

@@ -2,8 +2,8 @@
 
 namespace Lagdo\UiBuilder\Component\Traits;
 
-use Lagdo\UiBuilder\Html\Element\Text;
-use Lagdo\UiBuilder\Html\HtmlElement;
+use Lagdo\HtmlBuilder\Element\Text;
+use Lagdo\HtmlBuilder\HtmlElement;
 use Closure;
 
 trait InputLabelTrait

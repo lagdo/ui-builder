@@ -2,8 +2,8 @@
 
 namespace Lagdo\UiBuilder\Builder\Engine;
 
-use Lagdo\UiBuilder\Html\Builder\Scope as BaseScope;
-use Lagdo\UiBuilder\Html\Element\Element;
+use Lagdo\HtmlBuilder\Builder\Scope as BaseScope;
+use Lagdo\HtmlBuilder\Element\Element;
 use Lagdo\UiBuilder\HtmlComponent;
 
 use function is_a;
