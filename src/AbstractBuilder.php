@@ -70,21 +70,6 @@ abstract class AbstractBuilder extends HtmlBuilder implements BuilderInterface
     abstract protected function initBuilder(): void;
 
     /**
-     * @template T of HtmlComponent
-     * @param array $arguments
-     * @param string $tagName
-     * @psalm-param class-string<T>|null $class
-     *
-     * @return T
-     */
-    private function newComponent(array $arguments,
-        string $tagName = '', string|null $class = null): mixed
-    {
-        $componentClass = $class ?? HtmlComponent::class;
-        return (new $componentClass($tagName, $arguments))->_e($this->engine);
-    }
-
-    /**
      * @param string $tagName
      * @param array $arguments
      *
@@ -92,7 +77,7 @@ abstract class AbstractBuilder extends HtmlBuilder implements BuilderInterface
      */
     public function createComponent(string $tagName, array $arguments = []): HtmlComponent
     {
-        return $this->newComponent($arguments, tagName: $tagName);
+        return (new HtmlComponent($tagName, $arguments))->_e($this->engine);
     }
 
     /**
@@ -104,7 +89,7 @@ abstract class AbstractBuilder extends HtmlBuilder implements BuilderInterface
      */
     protected function createComponentOfClass(string $class, array $arguments = []): mixed
     {
-        return $this->newComponent($arguments, class: $class);
+        return (new $class('', $arguments))->_e($this->engine);
     }
 
     /**
