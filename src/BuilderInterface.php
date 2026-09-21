@@ -2,6 +2,9 @@
 
 namespace Lagdo\UiBuilder;
 
+use Lagdo\HtmlBuilder\Component\Component;
+use Lagdo\HtmlBuilder\Element\Element;
+use Lagdo\HtmlBuilder\HtmlComponent;
 use Lagdo\UiBuilder\Builder\ButtonBuilderInterface;
 use Lagdo\UiBuilder\Builder\DropdownBuilderInterface;
 use Lagdo\UiBuilder\Builder\FormBuilderInterface;
@@ -17,9 +20,6 @@ use Lagdo\UiBuilder\Component\Attr\LevelGetter;
 use Lagdo\UiBuilder\Component\Attr\SizeGetter;
 use Lagdo\UiBuilder\Component\Attr\VariantGetter;
 use Lagdo\UiBuilder\Component\Attr\VisualGetter;
-use Lagdo\HtmlBuilder\Component\Component;
-use Lagdo\HtmlBuilder\Element\Element;
-use Lagdo\HtmlBuilder\HtmlComponent;
 use Closure;
 use Iterator;
 use Generator;

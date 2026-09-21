@@ -2,6 +2,7 @@
 
 namespace Lagdo\UiBuilder;
 
+use Lagdo\HtmlBuilder\HtmlBuilder;
 use Lagdo\UiBuilder\Builder\Engine\Engine;
 use Lagdo\UiBuilder\Component\Attr\DirectionGetter;
 use Lagdo\UiBuilder\Component\Attr\JustifyGetter;
@@ -9,12 +10,8 @@ use Lagdo\UiBuilder\Component\Attr\LevelGetter;
 use Lagdo\UiBuilder\Component\Attr\SizeGetter;
 use Lagdo\UiBuilder\Component\Attr\VariantGetter;
 use Lagdo\UiBuilder\Component\Attr\VisualGetter;
-use Lagdo\HtmlBuilder\HtmlBuilder;
 use Closure;
 
-/**
- * @extends HtmlBuilder<HtmlComponent>
- */
 abstract class AbstractBuilder extends HtmlBuilder implements BuilderInterface
 {
     use Builder\LayoutBuilderTrait;
@@ -28,39 +25,34 @@ abstract class AbstractBuilder extends HtmlBuilder implements BuilderInterface
     use Builder\TableBuilderTrait;
 
     /**
-     * @var string
-     */
-    protected static string $componentClass = HtmlComponent::class;
-
-    /**
      * @var LevelGetter
      */
-    private $levelGetter;
+    private LevelGetter $levelGetter;
 
     /**
      * @var VisualGetter
      */
-    private $visualGetter;
+    private VisualGetter $visualGetter;
 
     /**
      * @var SizeGetter
      */
-    private $sizeGetter;
+    private SizeGetter $sizeGetter;
 
     /**
      * @var JustifyGetter
      */
-    private $justifyGetter;
+    private JustifyGetter $justifyGetter;
 
     /**
      * @var DirectionGetter
      */
-    private $directionGetter;
+    private DirectionGetter $directionGetter;
 
     /**
      * @var VariantGetter
      */
-    private $variantGetter;
+    private VariantGetter $variantGetter;
 
     /**
      * The constructor
@@ -76,6 +68,44 @@ abstract class AbstractBuilder extends HtmlBuilder implements BuilderInterface
      * @return void
      */
     abstract protected function initBuilder(): void;
+
+    /**
+     * @template T of HtmlComponent
+     * @param array $arguments
+     * @param string $tagName
+     * @psalm-param class-string<T>|null $class
+     *
+     * @return T
+     */
+    private function newComponent(array $arguments,
+        string $tagName = '', string|null $class = null): mixed
+    {
+        $componentClass = $class ?? HtmlComponent::class;
+        return (new $componentClass($tagName, $arguments))->_e($this->engine);
+    }
+
+    /**
+     * @param string $tagName
+     * @param array $arguments
+     *
+     * @return HtmlComponent
+     */
+    public function createComponent(string $tagName, array $arguments = []): HtmlComponent
+    {
+        return $this->newComponent($arguments, tagName: $tagName);
+    }
+
+    /**
+     * @template T of HtmlComponent
+     * @psalm-param class-string<T> $class
+     * @param array $arguments
+     *
+     * @return T
+     */
+    protected function createComponentOfClass(string $class, array $arguments = []): mixed
+    {
+        return $this->newComponent($arguments, class: $class);
+    }
 
     /**
      * @inheritDoc
