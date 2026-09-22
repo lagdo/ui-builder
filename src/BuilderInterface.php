@@ -21,8 +21,8 @@ use Lagdo\UiBuilder\Component\Attr\SizeGetter;
 use Lagdo\UiBuilder\Component\Attr\VariantGetter;
 use Lagdo\UiBuilder\Component\Attr\VisualGetter;
 use Closure;
-use Iterator;
 use Generator;
+use Iterator;
 
 /**
  * @method HtmlComponent body(...$arguments)
@@ -82,15 +82,7 @@ interface BuilderInterface extends ButtonBuilderInterface, DropdownBuilderInterf
      *
      * @return HtmlComponent
      */
-    public function tag(string $name, ...$arguments): mixed;
-
-    /**
-     * @param array $values
-     * @param Closure $closure
-     *
-     * @return Component
-     */
-    public function each(array $values, Closure $closure): Component;
+    public function tag(string $name, ...$arguments): HtmlComponent;
 
     /**
      * @return Component
@@ -111,12 +103,20 @@ interface BuilderInterface extends ButtonBuilderInterface, DropdownBuilderInterf
     public function pick(...$arguments): Component;
 
     /**
-     * @param array|Iterator|Generator $values
+     * @param array|Iterator|Generator $items
      * @param Closure $closure
      *
      * @return Component
      */
-    public function loop(array|Iterator|Generator $values, Closure $closure): Component;
+    public function each(array|Iterator|Generator $items, Closure $closure): Component;
+
+    /**
+     * @param array|Iterator|Generator $items
+     * @param Closure $closure
+     *
+     * @return Component
+     */
+    public function loop(array|Iterator|Generator $items, Closure $closure): Component;
 
     /**
      * @param string $text
