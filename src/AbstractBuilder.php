@@ -11,6 +11,7 @@ use Lagdo\UiBuilder\Component\Attr\SizeGetter;
 use Lagdo\UiBuilder\Component\Attr\VariantGetter;
 use Lagdo\UiBuilder\Component\Attr\VisualGetter;
 use Closure;
+use Override;
 
 abstract class AbstractBuilder extends HtmlBuilder implements BuilderInterface
 {
@@ -70,6 +71,16 @@ abstract class AbstractBuilder extends HtmlBuilder implements BuilderInterface
     abstract protected function initBuilder(): void;
 
     /**
+     * @inheritDoc
+     */
+    #[Override]
+    public function tag(string $tagName, ...$arguments): HtmlComponent
+    {
+        // The HtmlComponent class is not the same as in the base class.
+        return (new HtmlComponent($tagName, $arguments))->_e($this->engine);
+    }
+
+    /**
      * @param string $tagName
      * @param array $arguments
      *
@@ -87,7 +98,7 @@ abstract class AbstractBuilder extends HtmlBuilder implements BuilderInterface
      *
      * @return T
      */
-    protected function createComponentOfClass(string $class, array $arguments = []): mixed
+    protected function createComponentOfClass(string $class, array $arguments = []): HtmlComponent
     {
         return (new $class('', $arguments))->_e($this->engine);
     }
