@@ -10,10 +10,6 @@ A customizable and extensible HTML UI builder
 
 This package provides a unified API in PHP to create UI for CSS frameworks like Bootstrap.
 
-It takes its inspiration from the [PHP HTML builder](https://github.com/avplab/php-html-builder), with functions to create UI components like menus, forms, tabs and so on.
-
->Todo: build the grid layout only with the Pure CSS framework.
-
 ### Motivation
 
 This UI builder was first created for [Jaxon DbAdmin](https://github.com/lagdo/jaxon-dbadmin), a database admin dashboard that can be inserted in a page of an existing PHP application.
