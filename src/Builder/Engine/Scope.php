@@ -4,25 +4,27 @@ namespace Lagdo\UiBuilder\Builder\Engine;
 
 use Lagdo\HtmlBuilder\Builder\Scope as BaseScope;
 use Lagdo\HtmlBuilder\Element\Element;
-use Lagdo\HtmlBuilder\HtmlComponent;
+use Lagdo\HtmlBuilder\HtmlComponent as BaseComponent;
+use Lagdo\UiBuilder\HtmlComponent;
 
 use function is_a;
 
-/**
- * @extends BaseScope<HtmlComponent>
- */
-class Scope extends BaseScope
+class Scope extends BaseScope implements ScopeInterface
 {
     /**
-     * @var bool
+     * @param BaseComponent $parent
+     * @param bool $inForm
      */
-    private bool $inForm = false;
+    public function __construct(protected BaseComponent $parent, private bool $inForm)
+    {}
 
     /**
-     * @param HtmlComponent $parent
+     * @return BaseComponent
      */
-    public function __construct(protected HtmlComponent $parent)
-    {}
+    public function parent(): BaseComponent
+    {
+        return $this->parent;
+    }
 
     /**
      * @return bool
@@ -43,7 +45,8 @@ class Scope extends BaseScope
             $this->expand($argument);
         }
 
-        $inForm = $this->inForm || $this->parent->element()->tag() === 'form';
+        $this->inForm = $this->inForm || $this->parent->element()->tag() === 'form';
+
         foreach ($this->children as $component) {
             if (is_a($component, Element::class)) {
                 // A children of type Element doesn't need any further processing.
@@ -51,17 +54,15 @@ class Scope extends BaseScope
                 continue;
             }
 
-            $scope = new Scope($component);
-            $scope->inForm = $inForm;
-            $component->engine()->setScope($scope);
-
             // Allow the component libraries to react to the parent-child relation.
-            $component->expanded($this->parent);
+            // This function exists only in the UiBuilder HtmlComponent class.
+            if (is_a($component, HtmlComponent::class)) {
+                $component->expanded($this);
+            }
 
+            $scope = new Scope($component, $this->inForm);
             // Recursively build the component children.
             $scope->build($component->children());
-
-            $component->engine()->unsetScope();
 
             // Add the child component element and its siblings to the scope elements.
             $this->elements = [

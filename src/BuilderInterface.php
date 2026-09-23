@@ -30,11 +30,7 @@ use Iterator;
  * @method HtmlComponent span(...$arguments)
  * @method HtmlComponent a(...$arguments)
  * @method HtmlComponent i(...$arguments)
- * @method HtmlComponent thead(...$arguments)
- * @method HtmlComponent tbody(...$arguments)
- * @method HtmlComponent tr(...$arguments)
- * @method HtmlComponent th(...$arguments)
- * @method HtmlComponent td(...$arguments)
+ * @method HtmlComponent b(...$arguments)
  * @method HtmlComponent nav(...$arguments)
  * @method HtmlComponent h1(...$arguments)
  * @method HtmlComponent h2(...$arguments)
@@ -45,9 +41,14 @@ use Iterator;
  * @method HtmlComponent ol(...$arguments)
  * @method HtmlComponent ul(...$arguments)
  * @method HtmlComponent li(...$arguments)
- * @method HtmlComponent optgroup(...$arguments)
+ * @method HtmlComponent thead(...$arguments)
+ * @method HtmlComponent tbody(...$arguments)
+ * @method HtmlComponent th(...$arguments)
+ * @method HtmlComponent tr(...$arguments)
+ * @method HtmlComponent td(...$arguments)
  * @method HtmlComponent img(...$arguments)
  * @method HtmlComponent figure(...$arguments)
+ * @method HtmlComponent p(...$arguments)
  */
 interface BuilderInterface extends ButtonBuilderInterface, DropdownBuilderInterface,
     FormBuilderInterface, LayoutBuilderInterface, PaginationBuilderInterface,

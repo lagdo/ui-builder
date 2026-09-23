@@ -3,54 +3,23 @@
 namespace Lagdo\UiBuilder\Builder\Engine;
 
 use Lagdo\HtmlBuilder\Builder\Engine as BaseEngine;
+use Lagdo\HtmlBuilder\HtmlComponent;
 
 class Engine extends BaseEngine
 {
     /**
-     * @var Scope|null
-     */
-    private Scope|null $scope = null;
-
-    /**
      * @var bool
      */
-    private bool $forceForm = false;
+    private bool $inForm = false;
 
     /**
-     * @param Scope $scope
+     * @param bool $inForm
      *
      * @return void
      */
-    public function setScope(Scope $scope): void
+    public function inForm(bool $inForm): void
     {
-        $this->scope = $scope;
-    }
-
-    /**
-     * @return void
-     */
-    public function unsetScope(): void
-    {
-        unset($this->scope);
-        $this->scope = null;
-    }
-
-    /**
-     * @param bool $forceForm
-     *
-     * @return void
-     */
-    public function forceForm(bool $forceForm): void
-    {
-        $this->forceForm = $forceForm;
-    }
-
-    /**
-     * @return bool
-     */
-    public function inForm(): bool
-    {
-        return $this->forceForm || ($this->scope?->inForm() ?? false);
+        $this->inForm = $inForm;
     }
 
     /**
@@ -61,9 +30,8 @@ class Engine extends BaseEngine
     public function build(array $arguments): string
     {
         // The "root" component below will not be printed.
-        $scope = new Scope($this->builder->createComponent('root'));
+        $scope = new Scope(new HtmlComponent($this, 'root'), $this->inForm);
         $scope->build($arguments);
-
         return $scope->html();
     }
 }

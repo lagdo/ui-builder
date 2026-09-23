@@ -46,7 +46,7 @@ trait TableBuilderTrait
      */
     public function table(...$arguments): Component\TableComponent
     {
-        return $this->createComponentOfClass($this->tableComponentClass, $arguments);
+        return $this->createComponent($this->tableComponentClass, $arguments);
     }
 
     /**
@@ -54,7 +54,7 @@ trait TableBuilderTrait
      */
     public function tableHead(...$arguments): Component\TableHeadComponent
     {
-        return $this->createComponentOfClass($this->tableHeadComponentClass, $arguments);
+        return $this->createComponent($this->tableHeadComponentClass, $arguments);
     }
 
     /**
@@ -62,7 +62,7 @@ trait TableBuilderTrait
      */
     public function tableBody(...$arguments): Component\TableBodyComponent
     {
-        return $this->createComponentOfClass($this->tableBodyComponentClass, $arguments);
+        return $this->createComponent($this->tableBodyComponentClass, $arguments);
     }
 
     /**
@@ -70,7 +70,7 @@ trait TableBuilderTrait
      */
     public function tableFoot(...$arguments): Component\TableFootComponent
     {
-        return $this->createComponentOfClass($this->tableFootComponentClass, $arguments);
+        return $this->createComponent($this->tableFootComponentClass, $arguments);
     }
 
     /**
@@ -78,7 +78,7 @@ trait TableBuilderTrait
      */
     public function tableRow(...$arguments): Component\TableRowComponent
     {
-        return $this->createComponentOfClass($this->tableRowComponentClass, $arguments);
+        return $this->createComponent($this->tableRowComponentClass, $arguments);
     }
 
     /**
@@ -86,7 +86,7 @@ trait TableBuilderTrait
      */
     public function tableHeadCell(...$arguments): Component\TableHeadCellComponent
     {
-        return $this->createComponentOfClass($this->tableHeadCellComponentClass, $arguments);
+        return $this->createComponent($this->tableHeadCellComponentClass, $arguments);
     }
 
     /**
@@ -94,6 +94,6 @@ trait TableBuilderTrait
      */
     public function tableDataCell(...$arguments): Component\TableDataCellComponent
     {
-        return $this->createComponentOfClass($this->tableDataCellComponentClass, $arguments);
+        return $this->createComponent($this->tableDataCellComponentClass, $arguments);
     }
 }

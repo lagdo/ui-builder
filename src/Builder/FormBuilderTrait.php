@@ -71,7 +71,7 @@ trait FormBuilderTrait
      */
     public function form(...$arguments): Component\FormComponent
     {
-        return $this->createComponentOfClass($this->formComponentClass, $arguments);
+        return $this->createComponent($this->formComponentClass, $arguments);
     }
 
     /**
@@ -79,7 +79,7 @@ trait FormBuilderTrait
      */
     public function label(...$arguments): Component\LabelComponent
     {
-        return $this->createComponentOfClass($this->labelComponentClass, $arguments);
+        return $this->createComponent($this->labelComponentClass, $arguments);
     }
 
     /**
@@ -87,7 +87,7 @@ trait FormBuilderTrait
      */
     public function input(...$arguments): Component\InputComponent
     {
-        return $this->createComponentOfClass($this->inputComponentClass, $arguments);
+        return $this->createComponent($this->inputComponentClass, $arguments);
     }
 
     /**
@@ -95,7 +95,7 @@ trait FormBuilderTrait
      */
     public function textarea(...$arguments): Component\TextareaComponent
     {
-        return $this->createComponentOfClass($this->textareaComponentClass, $arguments);
+        return $this->createComponent($this->textareaComponentClass, $arguments);
     }
 
     /**
@@ -103,7 +103,7 @@ trait FormBuilderTrait
      */
     public function checkbox(...$arguments): Component\CheckboxComponent
     {
-        return $this->createComponentOfClass($this->checkboxComponentClass, $arguments);
+        return $this->createComponent($this->checkboxComponentClass, $arguments);
     }
 
     /**
@@ -111,7 +111,7 @@ trait FormBuilderTrait
      */
     public function checkboxGroup(...$arguments): Component\CheckboxGroupComponent
     {
-        return $this->createComponentOfClass($this->checkboxGroupComponentClass, $arguments);
+        return $this->createComponent($this->checkboxGroupComponentClass, $arguments);
     }
 
     /**
@@ -119,7 +119,7 @@ trait FormBuilderTrait
      */
     public function switch(...$arguments): Component\SwitchComponent
     {
-        return $this->createComponentOfClass($this->switchComponentClass, $arguments);
+        return $this->createComponent($this->switchComponentClass, $arguments);
     }
 
     /**
@@ -127,7 +127,7 @@ trait FormBuilderTrait
      */
     public function radio(...$arguments): Component\RadioComponent
     {
-        return $this->createComponentOfClass($this->radioComponentClass, $arguments);
+        return $this->createComponent($this->radioComponentClass, $arguments);
     }
 
     /**
@@ -135,7 +135,7 @@ trait FormBuilderTrait
      */
     public function radioGroup(...$arguments): Component\RadioGroupComponent
     {
-        return $this->createComponentOfClass($this->radioGroupComponentClass, $arguments);
+        return $this->createComponent($this->radioGroupComponentClass, $arguments);
     }
 
     /**
@@ -143,7 +143,7 @@ trait FormBuilderTrait
      */
     public function select(...$arguments): Component\SelectComponent
     {
-        return $this->createComponentOfClass($this->selectComponentClass, $arguments);
+        return $this->createComponent($this->selectComponentClass, $arguments);
     }
 
     /**
@@ -151,7 +151,7 @@ trait FormBuilderTrait
      */
     public function option(...$arguments): Component\SelectOptionComponent
     {
-        return $this->createComponentOfClass($this->selectOptionComponentClass, $arguments);
+        return $this->createComponent($this->selectOptionComponentClass, $arguments);
     }
 
     /**
@@ -159,6 +159,6 @@ trait FormBuilderTrait
      */
     public function inputGroup(...$arguments): Component\InputGroupComponent
     {
-        return $this->createComponentOfClass($this->inputGroupComponentClass, $arguments);
+        return $this->createComponent($this->inputGroupComponentClass, $arguments);
     }
 }

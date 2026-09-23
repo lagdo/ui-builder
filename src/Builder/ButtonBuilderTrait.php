@@ -21,7 +21,7 @@ trait ButtonBuilderTrait
      */
     public function button(...$arguments): Component\ButtonComponent
     {
-        return $this->createComponentOfClass($this->buttonComponentClass, $arguments);
+        return $this->createComponent($this->buttonComponentClass, $arguments);
     }
 
     /**
@@ -29,6 +29,6 @@ trait ButtonBuilderTrait
      */
     public function buttonGroup(...$arguments): Component\ButtonGroupComponent
     {
-        return $this->createComponentOfClass($this->buttonGroupComponentClass, $arguments);
+        return $this->createComponent($this->buttonGroupComponentClass, $arguments);
     }
 }

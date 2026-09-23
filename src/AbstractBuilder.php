@@ -11,7 +11,6 @@ use Lagdo\UiBuilder\Component\Attr\SizeGetter;
 use Lagdo\UiBuilder\Component\Attr\VariantGetter;
 use Lagdo\UiBuilder\Component\Attr\VisualGetter;
 use Closure;
-use Override;
 
 abstract class AbstractBuilder extends HtmlBuilder implements BuilderInterface
 {
@@ -55,12 +54,9 @@ abstract class AbstractBuilder extends HtmlBuilder implements BuilderInterface
      */
     private VariantGetter $variantGetter;
 
-    /**
-     * The constructor
-     */
     public function __construct()
     {
-        $this->engine = new Engine($this);
+        $this->engine = new Engine();
 
         $this->initBuilder();
     }
@@ -71,36 +67,15 @@ abstract class AbstractBuilder extends HtmlBuilder implements BuilderInterface
     abstract protected function initBuilder(): void;
 
     /**
-     * @inheritDoc
-     */
-    #[Override]
-    public function tag(string $tagName, ...$arguments): HtmlComponent
-    {
-        // The HtmlComponent class is not the same as in the base class.
-        return (new HtmlComponent($tagName, $arguments))->_e($this->engine);
-    }
-
-    /**
-     * @param string $tagName
-     * @param array $arguments
-     *
-     * @return HtmlComponent
-     */
-    public function createComponent(string $tagName, array $arguments = []): HtmlComponent
-    {
-        return (new HtmlComponent($tagName, $arguments))->_e($this->engine);
-    }
-
-    /**
      * @template T of HtmlComponent
      * @psalm-param class-string<T> $class
      * @param array $arguments
      *
      * @return T
      */
-    protected function createComponentOfClass(string $class, array $arguments = []): HtmlComponent
+    protected function createComponent(string $class, array $arguments = []): HtmlComponent
     {
-        return (new $class('', $arguments))->_e($this->engine);
+        return new $class($this->engine, '', $arguments);
     }
 
     /**
@@ -111,9 +86,9 @@ abstract class AbstractBuilder extends HtmlBuilder implements BuilderInterface
         /** @var Engine */
         $engine = $this->engine;
         // Build the HTML code in a form.
-        $engine->forceForm(true);
+        $engine->inForm(true);
         $html = $builder();
-        $engine->forceForm(false);
+        $engine->inForm(false);
 
         return $html;
     }

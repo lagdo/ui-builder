@@ -32,7 +32,7 @@ trait MenuBuilderTrait
      */
     public function menu(...$arguments): Component\MenuComponent
     {
-        return $this->createComponentOfClass($this->menuComponentClass, $arguments);
+        return $this->createComponent($this->menuComponentClass, $arguments);
     }
 
     /**
@@ -40,7 +40,7 @@ trait MenuBuilderTrait
      */
     public function menuItem(...$arguments): Component\MenuItemComponent
     {
-        return $this->createComponentOfClass($this->menuItemComponentClass, $arguments);
+        return $this->createComponent($this->menuItemComponentClass, $arguments);
     }
 
     /**
@@ -48,7 +48,7 @@ trait MenuBuilderTrait
      */
     public function breadcrumb(...$arguments): Component\BreadcrumbComponent
     {
-        return $this->createComponentOfClass($this->breadcrumbComponentClass, $arguments);
+        return $this->createComponent($this->breadcrumbComponentClass, $arguments);
     }
 
     /**
@@ -56,6 +56,6 @@ trait MenuBuilderTrait
      */
     public function breadcrumbItem(...$arguments): Component\BreadcrumbItemComponent
     {
-        return $this->createComponentOfClass($this->breadcrumbItemComponentClass, $arguments);
+        return $this->createComponent($this->breadcrumbItemComponentClass, $arguments);
     }
 }

@@ -31,7 +31,7 @@ trait LayoutBuilderTrait
      */
     public function row(...$arguments): Component\GridRowComponent
     {
-        return $this->createComponentOfClass($this->rowComponentClass, $arguments);
+        return $this->createComponent($this->rowComponentClass, $arguments);
     }
 
     /**
@@ -39,7 +39,7 @@ trait LayoutBuilderTrait
      */
     public function col(...$arguments): Component\GridColComponent
     {
-        return $this->createComponentOfClass($this->colComponentClass, $arguments);
+        return $this->createComponent($this->colComponentClass, $arguments);
     }
 
     /**
@@ -47,7 +47,7 @@ trait LayoutBuilderTrait
      */
     public function alert(...$arguments): Component\AlertComponent
     {
-        return $this->createComponentOfClass($this->alertComponentClass, $arguments);
+        return $this->createComponent($this->alertComponentClass, $arguments);
     }
 
     /**
@@ -55,6 +55,6 @@ trait LayoutBuilderTrait
      */
     public function badge(...$arguments): Component\BadgeComponent
     {
-        return $this->createComponentOfClass($this->badgeComponentClass, $arguments);
+        return $this->createComponent($this->badgeComponentClass, $arguments);
     }
 }

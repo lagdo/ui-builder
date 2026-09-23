@@ -36,7 +36,7 @@ trait CardBuilderTrait
      */
     public function card(...$arguments): Component\CardComponent
     {
-        return $this->createComponentOfClass($this->cardComponentClass, $arguments);
+        return $this->createComponent($this->cardComponentClass, $arguments);
     }
 
     /**
@@ -44,7 +44,7 @@ trait CardBuilderTrait
      */
     public function cardImage(...$arguments): Component\CardImageComponent
     {
-        return $this->createComponentOfClass($this->cardImageComponentClass, $arguments);
+        return $this->createComponent($this->cardImageComponentClass, $arguments);
     }
 
     /**
@@ -52,7 +52,7 @@ trait CardBuilderTrait
      */
     public function cardHeader(...$arguments): Component\CardHeaderComponent
     {
-        return $this->createComponentOfClass($this->cardHeaderComponentClass, $arguments);
+        return $this->createComponent($this->cardHeaderComponentClass, $arguments);
     }
 
     /**
@@ -60,7 +60,7 @@ trait CardBuilderTrait
      */
     public function cardBody(...$arguments): Component\CardBodyComponent
     {
-        return $this->createComponentOfClass($this->cardBodyComponentClass, $arguments);
+        return $this->createComponent($this->cardBodyComponentClass, $arguments);
     }
 
     /**
@@ -68,6 +68,6 @@ trait CardBuilderTrait
      */
     public function cardFooter(...$arguments): Component\CardFooterComponent
     {
-        return $this->createComponentOfClass($this->cardFooterComponentClass, $arguments);
+        return $this->createComponent($this->cardFooterComponentClass, $arguments);
     }
 }

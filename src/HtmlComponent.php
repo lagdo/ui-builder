@@ -2,21 +2,22 @@
 
 namespace Lagdo\UiBuilder;
 
+use Lagdo\HtmlBuilder\Builder\HelperInterface;
 use Lagdo\HtmlBuilder\Element\Element;
 use Lagdo\HtmlBuilder\HtmlComponent as BaseComponent;
 use Lagdo\HtmlBuilder\HtmlElement;
-use Lagdo\UiBuilder\Builder\Engine\Engine;
+use Lagdo\UiBuilder\Builder\Engine\ScopeInterface;
 use Closure;
 
 use function get_class;
 use function trim;
 
-class HtmlComponent extends BaseComponent
+abstract class HtmlComponent extends BaseComponent
 {
     /**
-     * @var HtmlComponent|null
+     * @var ScopeInterface|null
      */
-    private HtmlComponent|null $parent = null;
+    private ScopeInterface|null $scope = null;
 
     /**
      * @var array
@@ -44,22 +45,32 @@ class HtmlComponent extends BaseComponent
     private array $nextSiblings = [];
 
     /**
+     * @param HelperInterface $helper
      * @param string $tagName
      * @param array $arguments
      */
-    public function __construct(string $tagName, array $arguments = [])
+    public function __construct(private HelperInterface $helper,
+        string $tagName, array $arguments = [])
     {
-        parent::__construct($tagName, $arguments);
+        parent::__construct($helper, $tagName, $arguments);
 
         $this->onCreate();
     }
 
     /**
-     * @return Engine
+     * @return BaseComponent|null
      */
-    public function engine(): Engine
+    final protected function parent(): BaseComponent|null
     {
-        return $this->engine;
+        return $this->scope?->parent() ?? null;
+    }
+
+    /**
+     * @return bool
+     */
+    final protected function inForm(): bool
+    {
+        return $this->scope?->inForm() ?? false;
     }
 
     /**
@@ -108,7 +119,7 @@ class HtmlComponent extends BaseComponent
      */
     final protected function newElement(string $tagName, array $arguments = []): HtmlElement
     {
-        return new HtmlElement($this, $tagName, $arguments);
+        return new HtmlElement($this->helper, $tagName, $arguments);
     }
 
     /**
@@ -123,23 +134,15 @@ class HtmlComponent extends BaseComponent
     }
 
     /**
-     * @return HtmlComponent|null
-     */
-    final protected function parent(): HtmlComponent|null
-    {
-        return $this->parent;
-    }
-
-    /**
      * Called for each child after a parent is expanded.
      *
-     * @param HtmlComponent $parent
+     * @param ScopeInterface $scope
      *
      * @return void
      */
-    final public function expanded(HtmlComponent $parent): void
+    final public function expanded(ScopeInterface $scope): void
     {
-        $this->parent = $parent;
+        $this->scope = $scope;
         $this->onBuild();
     }
 
@@ -210,14 +213,6 @@ class HtmlComponent extends BaseComponent
     {
         $parent = $this->parent();
         return $parent === null ? '' : get_class($parent);
-    }
-
-    /**
-     * @return bool
-     */
-    protected function inForm(): bool
-    {
-        return $this->engine()->inForm();
     }
 
     /**
