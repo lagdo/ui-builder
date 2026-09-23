@@ -2,9 +2,9 @@
 
 namespace Lagdo\UiBuilder\Component;
 
-use Lagdo\UiBuilder\HtmlComponent;
+use Lagdo\UiBuilder\UiComponent;
 
-abstract class DropdownComponent extends HtmlComponent
+abstract class DropdownComponent extends UiComponent
 {
     /**
      * @var string

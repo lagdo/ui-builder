@@ -2,9 +2,9 @@
 
 namespace Lagdo\UiBuilder\Component;
 
-use Lagdo\UiBuilder\HtmlComponent;
+use Lagdo\UiBuilder\UiComponent;
 
-abstract class DropdownButtonComponent extends HtmlComponent
+abstract class DropdownButtonComponent extends UiComponent
 {
     use Traits\VisualTrait;
 

@@ -4,24 +4,24 @@ namespace Lagdo\UiBuilder\Builder\Engine;
 
 use Lagdo\HtmlBuilder\Builder\Scope as BaseScope;
 use Lagdo\HtmlBuilder\Element\Element;
-use Lagdo\HtmlBuilder\HtmlComponent as BaseComponent;
-use Lagdo\UiBuilder\HtmlComponent;
+use Lagdo\HtmlBuilder\HtmlComponent;
+use Lagdo\UiBuilder\UiComponent;
 
 use function is_a;
 
 class Scope extends BaseScope implements ScopeInterface
 {
     /**
-     * @param BaseComponent $parent
+     * @param HtmlComponent $parent
      * @param bool $inForm
      */
-    public function __construct(protected BaseComponent $parent, private bool $inForm)
+    public function __construct(protected HtmlComponent $parent, private bool $inForm)
     {}
 
     /**
-     * @return BaseComponent
+     * @return HtmlComponent
      */
-    public function parent(): BaseComponent
+    public function parent(): HtmlComponent
     {
         return $this->parent;
     }
@@ -55,8 +55,8 @@ class Scope extends BaseScope implements ScopeInterface
             }
 
             // Allow the component libraries to react to the parent-child relation.
-            // This function exists only in the UiBuilder HtmlComponent class.
-            if (is_a($component, HtmlComponent::class)) {
+            // This function exists only in the UiBuilder UiComponent class.
+            if (is_a($component, UiComponent::class)) {
                 $component->expanded($this);
             }
 

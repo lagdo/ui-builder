@@ -2,9 +2,9 @@
 
 namespace Lagdo\UiBuilder\Component;
 
-use Lagdo\UiBuilder\HtmlComponent;
+use Lagdo\UiBuilder\UiComponent;
 
-abstract class CardBodyComponent extends HtmlComponent
+abstract class CardBodyComponent extends UiComponent
 {
     /**
      * @var string

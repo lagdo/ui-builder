@@ -2,9 +2,9 @@
 
 namespace Lagdo\UiBuilder\Component;
 
-use Lagdo\UiBuilder\HtmlComponent;
+use Lagdo\UiBuilder\UiComponent;
 
-abstract class BreadcrumbComponent extends HtmlComponent
+abstract class BreadcrumbComponent extends UiComponent
 {
     /**
      * @var string

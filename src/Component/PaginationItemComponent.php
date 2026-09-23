@@ -2,9 +2,9 @@
 
 namespace Lagdo\UiBuilder\Component;
 
-use Lagdo\UiBuilder\HtmlComponent;
+use Lagdo\UiBuilder\UiComponent;
 
-abstract class PaginationItemComponent extends HtmlComponent
+abstract class PaginationItemComponent extends UiComponent
 {
     use Traits\StateTrait;
 

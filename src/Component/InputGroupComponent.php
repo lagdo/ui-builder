@@ -2,9 +2,9 @@
 
 namespace Lagdo\UiBuilder\Component;
 
-use Lagdo\UiBuilder\HtmlComponent;
+use Lagdo\UiBuilder\UiComponent;
 
-abstract class InputGroupComponent extends HtmlComponent
+abstract class InputGroupComponent extends UiComponent
 {
     /**
      * @var string

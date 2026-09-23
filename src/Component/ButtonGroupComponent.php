@@ -2,9 +2,9 @@
 
 namespace Lagdo\UiBuilder\Component;
 
-use Lagdo\UiBuilder\HtmlComponent;
+use Lagdo\UiBuilder\UiComponent;
 
-abstract class ButtonGroupComponent extends HtmlComponent
+abstract class ButtonGroupComponent extends UiComponent
 {
     /**
      * @var string

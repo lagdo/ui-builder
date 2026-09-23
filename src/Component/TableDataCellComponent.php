@@ -2,9 +2,9 @@
 
 namespace Lagdo\UiBuilder\Component;
 
-use Lagdo\UiBuilder\HtmlComponent;
+use Lagdo\UiBuilder\UiComponent;
 
-abstract class TableDataCellComponent extends HtmlComponent
+abstract class TableDataCellComponent extends UiComponent
 {
     /**
      * @var string

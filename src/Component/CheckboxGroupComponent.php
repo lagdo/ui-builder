@@ -2,9 +2,9 @@
 
 namespace Lagdo\UiBuilder\Component;
 
-use Lagdo\UiBuilder\HtmlComponent;
+use Lagdo\UiBuilder\UiComponent;
 
-abstract class CheckboxGroupComponent extends HtmlComponent
+abstract class CheckboxGroupComponent extends UiComponent
 {
     use Traits\DirectionTrait;
 

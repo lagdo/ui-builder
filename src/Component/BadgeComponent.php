@@ -2,9 +2,9 @@
 
 namespace Lagdo\UiBuilder\Component;
 
-use Lagdo\UiBuilder\HtmlComponent;
+use Lagdo\UiBuilder\UiComponent;
 
-abstract class BadgeComponent extends HtmlComponent
+abstract class BadgeComponent extends UiComponent
 {
     use Traits\VisualTrait;
     use Traits\VariantTrait;

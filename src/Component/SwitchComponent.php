@@ -2,9 +2,9 @@
 
 namespace Lagdo\UiBuilder\Component;
 
-use Lagdo\UiBuilder\HtmlComponent;
+use Lagdo\UiBuilder\UiComponent;
 
-abstract class SwitchComponent extends HtmlComponent
+abstract class SwitchComponent extends UiComponent
 {
     use Traits\InputLabelTrait;
 

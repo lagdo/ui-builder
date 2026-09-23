@@ -2,9 +2,9 @@
 
 namespace Lagdo\UiBuilder\Component;
 
-use Lagdo\UiBuilder\HtmlComponent;
+use Lagdo\UiBuilder\UiComponent;
 
-abstract class ButtonComponent extends HtmlComponent
+abstract class ButtonComponent extends UiComponent
 {
     use Traits\VisualTrait;
     use Traits\StateTrait;

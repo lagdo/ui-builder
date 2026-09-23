@@ -67,13 +67,13 @@ abstract class AbstractBuilder extends HtmlBuilder implements BuilderInterface
     abstract protected function initBuilder(): void;
 
     /**
-     * @template T of HtmlComponent
+     * @template T of UiComponent
      * @psalm-param class-string<T> $class
      * @param array $arguments
      *
      * @return T
      */
-    protected function createComponent(string $class, array $arguments = []): HtmlComponent
+    protected function createComponent(string $class, array $arguments = []): UiComponent
     {
         return new $class($this->engine, '', $arguments);
     }

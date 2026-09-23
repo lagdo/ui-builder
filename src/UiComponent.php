@@ -4,7 +4,7 @@ namespace Lagdo\UiBuilder;
 
 use Lagdo\HtmlBuilder\Builder\HelperInterface;
 use Lagdo\HtmlBuilder\Element\Element;
-use Lagdo\HtmlBuilder\HtmlComponent as BaseComponent;
+use Lagdo\HtmlBuilder\HtmlComponent;
 use Lagdo\HtmlBuilder\HtmlElement;
 use Lagdo\UiBuilder\Builder\Engine\ScopeInterface;
 use Closure;
@@ -12,7 +12,7 @@ use Closure;
 use function get_class;
 use function trim;
 
-abstract class HtmlComponent extends BaseComponent
+abstract class UiComponent extends HtmlComponent
 {
     /**
      * @var ScopeInterface|null
@@ -58,9 +58,9 @@ abstract class HtmlComponent extends BaseComponent
     }
 
     /**
-     * @return BaseComponent|null
+     * @return HtmlComponent|null
      */
-    final protected function parent(): BaseComponent|null
+    final protected function parent(): HtmlComponent|null
     {
         return $this->scope?->parent() ?? null;
     }
