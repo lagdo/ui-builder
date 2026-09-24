@@ -16,8 +16,7 @@ abstract class TableComponent extends UiComponent
      */
     public function responsive(): static
     {
-        $this->properties['responsive'] = true;
-        return $this;
+        return $this->setProp('responsive', true);
     }
 
     /**
@@ -25,8 +24,7 @@ abstract class TableComponent extends UiComponent
      */
     public function stripe(): static
     {
-        $this->properties['stripe'] = true;
-        return $this;
+        return $this->setProp('stripe', true);
     }
 
     /**
@@ -34,8 +32,7 @@ abstract class TableComponent extends UiComponent
      */
     public function border(): static
     {
-        $this->properties['border'] = true;
-        return $this;
+        return $this->setProp('border', true);
     }
 
     /**
@@ -43,7 +40,6 @@ abstract class TableComponent extends UiComponent
      */
     public function hover(): static
     {
-        $this->properties['hover'] = true;
-        return $this;
+        return $this->setProp('hover', true);
     }
 }

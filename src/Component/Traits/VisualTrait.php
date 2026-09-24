@@ -13,8 +13,7 @@ trait VisualTrait
      */
     public function visual(VisualEnum $visual): static
     {
-        $this->properties['visual'] = $visual;
-        return $this;
+        return $this->setProp('visual', $visual);
     }
 
     /**

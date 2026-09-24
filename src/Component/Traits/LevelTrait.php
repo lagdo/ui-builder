@@ -13,8 +13,7 @@ trait LevelTrait
      */
     public function level(LevelEnum $level): static
     {
-        $this->properties['level'] = $level;
-        return $this;
+        return $this->setProp('level', $level);
     }
 
     /**

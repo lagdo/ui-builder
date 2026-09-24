@@ -22,7 +22,12 @@ abstract class UiComponent extends HtmlComponent
     /**
      * @var array
      */
-    private $classes = []; // The base classes for the component.
+    private array $classes = []; // The base classes for the component.
+
+    /**
+     * @var array
+     */
+    private array $properties = [];
 
     /**
      * @var array<array<Closure>>
@@ -181,11 +186,23 @@ abstract class UiComponent extends HtmlComponent
 
     /**
      * @param string $name
+     * @param mixed $value
+     *
+     * @return static
+     */
+    protected function setProp(string $name, mixed $value): static
+    {
+        $this->properties[$name] = $value;
+        return $this;
+    }
+
+    /**
+     * @param string $name
      * @param mixed $default
      *
      * @return mixed
      */
-    public function prop(string $name, mixed $default = null): mixed
+    protected function prop(string $name, mixed $default = null): mixed
     {
         return $this->properties[$name] ?? $default;
     }
@@ -197,7 +214,7 @@ abstract class UiComponent extends HtmlComponent
      *
      * @return mixed
      */
-    public function parentProp(int $level, string $name, mixed $default = null): mixed
+    protected function parentProp(int $level, string $name, mixed $default = null): mixed
     {
         $parent = $this;
         while ($parent->parent() !== null && $level-- > 0) {

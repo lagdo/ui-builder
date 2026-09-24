@@ -13,8 +13,7 @@ trait SizeTrait
      */
     public function size(SizeEnum $size): static
     {
-        $this->properties['size'] = $size;
-        return $this;
+        return $this->setProp('size', $size);
     }
 
     /**

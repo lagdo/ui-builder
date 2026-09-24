@@ -13,8 +13,7 @@ trait JustifyTrait
      */
     public function justify(JustifyEnum $justify): static
     {
-        $this->properties['justify'] = $justify;
-        return $this;
+        return $this->setProp('justify', $justify);
     }
 
     /**
@@ -22,7 +21,7 @@ trait JustifyTrait
      */
     public function fullWidth(): static
     {
-        $this->properties['fullWidth'] = true;
-        return $this->justify(JustifyEnum::FULL);
+        return $this->setProp('fullWidth', true)
+            ->justify(JustifyEnum::FULL);
     }
 }

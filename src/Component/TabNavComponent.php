@@ -18,9 +18,8 @@ abstract class TabNavComponent extends UiComponent
      */
     public function fill(bool $justified = false): static
     {
-        $this->properties['filled'] = true;
-        $this->properties['justified'] = $justified;
-        return $this;
+        return $this->setProp('filled', true)
+            ->setProp('justified', $justified);
     }
 
     /**
@@ -30,7 +29,6 @@ abstract class TabNavComponent extends UiComponent
      */
     public function justify(string $justify): static
     {
-        $this->properties['justify'] = $justify;
-        return $this;
+        return $this->setProp('justify', $justify);
     }
 }

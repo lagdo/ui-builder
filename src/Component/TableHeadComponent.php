@@ -16,6 +16,6 @@ abstract class TableHeadComponent extends UiComponent
      */
     protected function onCreate(): void
     {
-        $this->properties['head'] = true;
+        $this->setProp('head', true);
     }
 }

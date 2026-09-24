@@ -20,7 +20,6 @@ abstract class TabsComponent extends UiComponent
      */
     public function content(string $content): static
     {
-        $this->properties['content'] = $content;
-        return $this;
+        return $this->setProp('content', $content);
     }
 }

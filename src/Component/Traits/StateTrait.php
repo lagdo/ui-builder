@@ -11,8 +11,7 @@ trait StateTrait
      */
     public function active(bool $active = true): static
     {
-        $this->properties['active'] = $active;
-        return $this;
+        return $this->setProp('active', $active);
     }
 
     /**
@@ -22,8 +21,7 @@ trait StateTrait
      */
     public function inactive(bool $inactive = true): static
     {
-        $this->properties['active'] = !$inactive;
-        return $this;
+        return $this->setProp('active', !$inactive);
     }
 
     /**
@@ -33,8 +31,7 @@ trait StateTrait
      */
     public function enabled(bool $enabled = true): static
     {
-        $this->properties['enabled'] = $enabled;
-        return $this;
+        return $this->setProp('enabled', $enabled);
     }
 
     /**
@@ -45,7 +42,6 @@ trait StateTrait
     public function disabled(bool $disabled = true): static
     {
         $this->element()->setAttribute('disabled', 'disabled');
-        $this->properties['enabled'] = !$disabled;
-        return $this;
+        return $this->setProp('enabled', !$disabled);
     }
 }

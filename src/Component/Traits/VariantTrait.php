@@ -13,8 +13,7 @@ trait VariantTrait
      */
     public function variant(VariantEnum $variant): static
     {
-        $this->properties['variant'] = $variant;
-        return $this;
+        return $this->setProp('variant', $variant);
     }
 
     /**
@@ -22,8 +21,8 @@ trait VariantTrait
      */
     public function outline(): static
     {
-        $this->properties['outline'] = true;
-        return $this->variant(VariantEnum::OUTLINE);
+        return $this->setProp('outline', true)
+            ->variant(VariantEnum::OUTLINE);
     }
 
     /**

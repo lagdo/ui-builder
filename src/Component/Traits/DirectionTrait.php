@@ -13,8 +13,7 @@ trait DirectionTrait
      */
     public function direction(DirectionEnum $direction): static
     {
-        $this->properties['direction'] = $direction;
-        return $this;
+        return $this->setProp('direction', $direction);
     }
 
     /**
@@ -22,9 +21,9 @@ trait DirectionTrait
      */
     public function horizontal(): static
     {
-        $this->properties['horizontal'] = true;
-        $this->properties['vertical'] = false;
-        return $this->direction(DirectionEnum::HORIZONTAL);
+        return $this->setProp('horizontal', true)
+            ->setProp('vertical', false)
+            ->direction(DirectionEnum::HORIZONTAL);
     }
 
     /**
@@ -32,8 +31,8 @@ trait DirectionTrait
      */
     public function vertical(): static
     {
-        $this->properties['vertical'] = true;
-        $this->properties['horizontal'] = false;
-        return $this->direction(DirectionEnum::VERTICAL);
+        return $this->setProp('vertical', true)
+            ->setProp('horizontal', false)
+            ->direction(DirectionEnum::VERTICAL);
     }
 }

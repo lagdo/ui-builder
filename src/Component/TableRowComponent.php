@@ -16,7 +16,6 @@ abstract class TableRowComponent extends UiComponent
      */
     public function head(): static
     {
-        $this->properties['head'] = true;
-        return $this;
+        return $this->setProp('head', true);
     }
 }
