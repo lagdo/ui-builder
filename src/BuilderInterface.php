@@ -48,6 +48,7 @@ use Iterator;
  * @method HtmlComponent td(...$arguments)
  * @method HtmlComponent img(...$arguments)
  * @method HtmlComponent figure(...$arguments)
+ * @method HtmlComponent optgroup(...$arguments)
  * @method HtmlComponent p(...$arguments)
  */
 interface BuilderInterface extends ButtonBuilderInterface, DropdownBuilderInterface,

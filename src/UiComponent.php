@@ -63,22 +63,6 @@ abstract class UiComponent extends HtmlComponent
     }
 
     /**
-     * @return HtmlComponent|null
-     */
-    final protected function parent(): HtmlComponent|null
-    {
-        return $this->scope?->parent() ?? null;
-    }
-
-    /**
-     * @return bool
-     */
-    final protected function inForm(): bool
-    {
-        return $this->scope?->inForm() ?? false;
-    }
-
-    /**
      * Called on component creation.
      *
      * @return void
@@ -93,6 +77,35 @@ abstract class UiComponent extends HtmlComponent
      */
     protected function onBuild(): void
     {}
+
+    /**
+     * Called for each child after a parent is expanded.
+     *
+     * @param ScopeInterface $scope
+     *
+     * @return void
+     */
+    final public function expanded(ScopeInterface $scope): void
+    {
+        $this->scope = $scope;
+        $this->onBuild();
+    }
+
+    /**
+     * @return HtmlComponent|null
+     */
+    final protected function parent(): HtmlComponent|null
+    {
+        return $this->scope?->parent() ?? null;
+    }
+
+    /**
+     * @return bool
+     */
+    final protected function inForm(): bool
+    {
+        return $this->scope?->inForm() ?? false;
+    }
 
     /**
      * @param Closure $builder
@@ -132,23 +145,145 @@ abstract class UiComponent extends HtmlComponent
      *
      * @return static
      */
-    public function addBaseClass(string $class): static
+    final public function addBaseClass(string $class): static
     {
         $this->classes[trim($class)] = true;
         return $this;
     }
 
     /**
-     * Called for each child after a parent is expanded.
+     * @param string $name
+     * @param mixed $value
      *
-     * @param ScopeInterface $scope
-     *
-     * @return void
+     * @return static
      */
-    final public function expanded(ScopeInterface $scope): void
+    final protected function setProp(string $name, mixed $value): static
     {
-        $this->scope = $scope;
-        $this->onBuild();
+        $this->properties[$name] = $value;
+        return $this;
+    }
+
+    /**
+     * @param string $name
+     * @param mixed $default
+     *
+     * @return mixed
+     */
+    final protected function prop(string $name, mixed $default = null): mixed
+    {
+        return $this->properties[$name] ?? $default;
+    }
+
+    /**
+     * @param int $level
+     * @param string $name
+     * @param mixed $default
+     *
+     * @return mixed
+     */
+    final protected function parentProp(int $level, string $name, mixed $default = null): mixed
+    {
+        $parent = $this;
+        while ($parent->parent() !== null && $level-- > 0) {
+            $parent = $parent->parent();
+        }
+        return $parent->prop($name, $default);
+    }
+
+    /**
+     * @return string
+     */
+    final protected function parentClass(): string
+    {
+        $parent = $this->parent();
+        return $parent === null ? '' : get_class($parent);
+    }
+
+    /**
+     * @return array<HtmlElement>
+     */
+    final public function wrappers(): array
+    {
+        return $this->wrappers;
+    }
+
+    /**
+     * @return array<HtmlElement>
+     */
+    final public function prevSiblings(): array
+    {
+        return $this->prevSiblings;
+    }
+
+    /**
+     * @return array<HtmlElement>
+     */
+    final public function nextSiblings(): array
+    {
+        return $this->nextSiblings;
+    }
+
+    /**
+     * @param HtmlElement $wrapper
+     *
+     * @return static
+     */
+    final protected function addWrapper(HtmlElement $wrapper): static
+    {
+        $this->wrappers[] = $wrapper;
+        return $this;
+    }
+
+    /**
+     * @param int $index
+     *
+     * @return HtmlElement|null
+     */
+    final protected function wrapper(int $index): HtmlElement|null
+    {
+        return $this->wrappers[$index] ?? null;
+    }
+
+    /**
+     * @param HtmlElement $sibling
+     *
+     * @return static
+     */
+    final protected function prependSibling(HtmlElement $sibling): static
+    {
+        $this->prevSiblings[] = $sibling;
+        return $this;
+    }
+
+    /**
+     * @param int $index
+     *
+     * @return HtmlElement|null
+     */
+    final protected function prevSibling(int $index): HtmlElement|null
+    {
+        return $this->prevSiblings[$index] ?? null;
+    }
+
+    /**
+     * @param HtmlElement $sibling
+     *
+     * @return static
+     */
+    final protected function appendSibling(HtmlElement $sibling): static
+    {
+        $this->nextSiblings[] = $sibling;
+        return $this;
+    }
+
+    /**
+     * @param int $index
+     *
+     * @return HtmlElement|null
+     */
+    final protected function nextSibling(int $index): HtmlElement|null
+    {
+        return $this->nextSiblings[$index] ?? null;
     }
 
     /**
@@ -156,7 +291,7 @@ abstract class UiComponent extends HtmlComponent
      *
      * @return array<HtmlElement>
      */
-    public function build(array $children): array
+    final public function build(array $children): array
     {
         foreach ($this->builders['before'] as $builder) {
             $builder($children);
@@ -182,140 +317,5 @@ abstract class UiComponent extends HtmlComponent
         }
 
         return $elements;
-    }
-
-    /**
-     * @param string $name
-     * @param mixed $value
-     *
-     * @return static
-     */
-    protected function setProp(string $name, mixed $value): static
-    {
-        $this->properties[$name] = $value;
-        return $this;
-    }
-
-    /**
-     * @param string $name
-     * @param mixed $default
-     *
-     * @return mixed
-     */
-    protected function prop(string $name, mixed $default = null): mixed
-    {
-        return $this->properties[$name] ?? $default;
-    }
-
-    /**
-     * @param int $level
-     * @param string $name
-     * @param mixed $default
-     *
-     * @return mixed
-     */
-    protected function parentProp(int $level, string $name, mixed $default = null): mixed
-    {
-        $parent = $this;
-        while ($parent->parent() !== null && $level-- > 0) {
-            $parent = $parent->parent();
-        }
-        return $parent->prop($name, $default);
-    }
-
-    /**
-     * @return string
-     */
-    protected function parentClass(): string
-    {
-        $parent = $this->parent();
-        return $parent === null ? '' : get_class($parent);
-    }
-
-    /**
-     * @return array<HtmlElement>
-     */
-    public function wrappers(): array
-    {
-        return $this->wrappers;
-    }
-
-    /**
-     * @return array<HtmlElement>
-     */
-    public function prevSiblings(): array
-    {
-        return $this->prevSiblings;
-    }
-
-    /**
-     * @return array<HtmlElement>
-     */
-    public function nextSiblings(): array
-    {
-        return $this->nextSiblings;
-    }
-
-    /**
-     * @param HtmlElement $wrapper
-     *
-     * @return static
-     */
-    protected function addWrapper(HtmlElement $wrapper): static
-    {
-        $this->wrappers[] = $wrapper;
-        return $this;
-    }
-
-    /**
-     * @param int $index
-     *
-     * @return HtmlElement|null
-     */
-    protected function wrapper(int $index): HtmlElement|null
-    {
-        return $this->wrappers[$index] ?? null;
-    }
-
-    /**
-     * @param HtmlElement $sibling
-     *
-     * @return static
-     */
-    protected function prependSibling(HtmlElement $sibling): static
-    {
-        $this->prevSiblings[] = $sibling;
-        return $this;
-    }
-
-    /**
-     * @param int $index
-     *
-     * @return HtmlElement|null
-     */
-    protected function prevSibling(int $index): HtmlElement|null
-    {
-        return $this->prevSiblings[$index] ?? null;
-    }
-
-    /**
-     * @param HtmlElement $sibling
-     *
-     * @return static
-     */
-    protected function appendSibling(HtmlElement $sibling): static
-    {
-        $this->nextSiblings[] = $sibling;
-        return $this;
-    }
-
-    /**
-     * @param int $index
-     *
-     * @return HtmlElement|null
-     */
-    protected function nextSibling(int $index): HtmlElement|null
-    {
-        return $this->nextSiblings[$index] ?? null;
     }
 }
