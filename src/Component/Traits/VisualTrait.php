@@ -59,8 +59,16 @@ trait VisualTrait
     /**
      * @return static
      */
+    public function error(): static
+    {
+        return $this->visual(VisualEnum::ERROR);
+    }
+
+    /**
+     * @return static
+     */
     public function danger(): static
     {
-        return $this->visual(VisualEnum::DANGER);
+        return $this->visual(VisualEnum::ERROR);
     }
 }

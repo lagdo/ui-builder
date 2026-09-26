@@ -17,5 +17,5 @@ enum VisualEnum: string
 
     case WARNING = 'warning';
 
-    case DANGER = 'danger';
+    case ERROR = 'error';
 }

@@ -41,7 +41,9 @@ trait StateTrait
      */
     public function disabled(bool $disabled = true): static
     {
-        $this->element()->setAttribute('disabled', 'disabled');
+        if ($disabled) {
+            $this->element()->setAttribute('disabled', 'disabled');
+        }
         return $this->setProp('enabled', !$disabled);
     }
 }
