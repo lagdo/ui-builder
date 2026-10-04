@@ -2,7 +2,7 @@
 
 namespace Lagdo\UiBuilder\Component\Traits;
 
-use Lagdo\HtmlBuilder\Element\Text;
+use Lagdo\HtmlBuilder\Element\Html;
 use Lagdo\HtmlBuilder\HtmlElement;
 use Closure;
 
@@ -30,11 +30,11 @@ trait InputLabelTrait
 
     /**
      * @param HtmlElement $label
-     * @param Text $text
+     * @param Html $html
      *
      * @return void
      */
-    protected function setLabel(HtmlElement $label, Text $text)
+    protected function setLabel(HtmlElement $label, Html $html)
     {}
 
     /**
@@ -57,7 +57,7 @@ trait InputLabelTrait
     public function label(string $label, array $attributes = []): static
     {
         $this->label = $this->newElement('label',  $attributes);
-        $this->setLabel($this->label, new Text($label));
+        $this->setLabel($this->label, new Html($label));
         $this->beforeBuild(fn() => $this->setLabelFor());
         return $this;
     }

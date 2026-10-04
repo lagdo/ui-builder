@@ -40,12 +40,12 @@ abstract class UiComponent extends HtmlComponent
     private array $wrappers = [];
 
     /**
-     * @var array<HtmlElement>
+     * @var array<Element>
      */
     private array $prevSiblings = [];
 
     /**
-     * @var array<HtmlElement>
+     * @var array<Element>
      */
     private array $nextSiblings = [];
 
@@ -245,11 +245,11 @@ abstract class UiComponent extends HtmlComponent
     }
 
     /**
-     * @param HtmlElement $sibling
+     * @param Element $sibling
      *
      * @return static
      */
-    final protected function prependSibling(HtmlElement $sibling): static
+    final protected function prependSibling(Element $sibling): static
     {
         $this->prevSiblings[] = $sibling;
         return $this;
@@ -258,19 +258,19 @@ abstract class UiComponent extends HtmlComponent
     /**
      * @param int $index
      *
-     * @return HtmlElement|null
+     * @return Element|null
      */
-    final protected function prevSibling(int $index): HtmlElement|null
+    final protected function prevSibling(int $index): Element|null
     {
         return $this->prevSiblings[$index] ?? null;
     }
 
     /**
-     * @param HtmlElement $sibling
+     * @param Element $sibling
      *
      * @return static
      */
-    final protected function appendSibling(HtmlElement $sibling): static
+    final protected function appendSibling(Element $sibling): static
     {
         $this->nextSiblings[] = $sibling;
         return $this;
@@ -279,9 +279,9 @@ abstract class UiComponent extends HtmlComponent
     /**
      * @param int $index
      *
-     * @return HtmlElement|null
+     * @return Element|null
      */
-    final protected function nextSibling(int $index): HtmlElement|null
+    final protected function nextSibling(int $index): Element|null
     {
         return $this->nextSiblings[$index] ?? null;
     }
