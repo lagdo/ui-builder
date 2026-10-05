@@ -38,7 +38,7 @@ When using it, the following CSS files must be included in the web page.
 
 #### Prerequisites
 
-This package requires PHP version 8.0 or greater.
+This package requires PHP version 8.1 or greater.
 
 #### Installation
 
@@ -86,34 +86,29 @@ class View
                     $this->html->col(
                         $this->html->label($this->html->text('Name'))
                             ->setFor('name')
-                    )
-                    ->width(4),
+                    )->unit(1, 3),
                     $this->html->col(
                         $this->html->input()
                             ->setType('text')
                             ->setName('name')
                             ->setPlaceholder('Name')
                             ->setValue($formData['name'])
-                    )
-                    ->width(8)
+                    )->unit(2, 3)
                 ),
                 $this->html->row(
                     $this->html->col(
                         $this->html->label($this->html->text('Description'))
                             ->setFor('description')
-                    )
-                    ->width(4),
+                    )->unit(1, 3),
                     $this->html->col(
                         $this->html->textarea($this->html->text($formData['description']))
                             ->setRows('10')
                             ->setName('description')
                             ->setWrap('on')
                             ->setSpellcheck('false')
-                    )
-                    ->width(8)
+                    )->unit(2, 3)
                 )
-            )
-            ->responsive()->setId('form-id')
+            )->setId('form-id')
         );
     }
 }
@@ -123,26 +118,26 @@ Depending on which class instance is passed to the `View` constructor, a differe
 
 With the following PHP code,
 ```php
-use Lagdo\UiBuilder\Bootstrap3\Builder;
+use Lagdo\UiBuilder\Bootstrap5\Builder;
 
 $view = new View(new Builder());
 ```
-the `getSimpleForm()` function will generate code for Bootstrap 3.
+the `getSimpleForm()` function will generate code for Bootstrap 5.
 ```html
-<form class="form-horizontal" id="form-id">
-    <div class="form-group">
-        <div class="col-md-4">
-            <label class="control-label" for="name">Name</label>
+<form class="needs-validation" novalidate id="form-id">
+    <div class="pure-g">
+        <div class="pure-u-1-3">
+            <label class="form-label" for="name">Name</label>
         </div>
-        <div class="col-md-8">
+        <div class="pure-u-2-3">
             <input class="form-control" type="text" name="name" placeholder="Name" value="" />
         </div>
     </div>
-    <div class="form-group">
-        <div class="col-md-4">
-            <label class="control-label" for="description">Description</label>
+    <div class="pure-g">
+        <div class="pure-u-1-3">
+            <label class="form-label" for="description">Description</label>
         </div>
-        <div class="col-md-8">
+        <div class="pure-u-2-3">
             <textarea class="form-control" rows="10" name="description" wrap="on" spellcheck="false"></textarea>
         </div>
     </div>
@@ -157,24 +152,26 @@ $view = new View(new Builder());
 ```
 the same `getSimpleForm()` function will generate code for Bootstrap 4.
 ```html
-<form id="form-id">
-    <div class="form-group row">
-        <div class="col-md-4">
-            <label class="col-form-label" for="name">Name</label>
+<div class="portlet-body form">
+    <form id="form-id">
+        <div class="pure-g">
+            <div class="pure-u-1-3">
+                <label for="name">Name</label>
+            </div>
+            <div class="pure-u-2-3">
+                <input class="form-control" type="text" name="name" placeholder="Name" value="" />
+            </div>
         </div>
-        <div class="col-md-8">
-            <input class="form-control" type="text" name="name" placeholder="Name" value="" />
+        <div class="pure-g">
+            <div class="pure-u-1-3">
+                <label for="description">Description</label>
+            </div>
+            <div class="pure-u-2-3">
+                <textarea class="form-control" rows="10" name="description" wrap="on" spellcheck="false"></textarea>
+            </div>
         </div>
-    </div>
-    <div class="form-group row">
-        <div class="col-md-4">
-            <label class="col-form-label" for="description">Description</label>
-        </div>
-        <div class="col-md-8">
-            <textarea class="form-control" rows="10" name="description" wrap="on" spellcheck="false"></textarea>
-        </div>
-    </div>
-</form>
+    </form>
+</div>
 ```
 
 ### Documentation
@@ -185,7 +182,7 @@ Coming soon...
 
 - [ ] Add more components in the interface
 - [ ] Add support of more UI frameworks
-- [ ] Add tests
+- [ ] Add more tests
 
 See the [open issues](https://github.com/lagdo/ui-builder/issues) for a full list of proposed features (and known issues).
 
